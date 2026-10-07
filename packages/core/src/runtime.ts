@@ -5,6 +5,8 @@ import type { ParamSchema, ParamValues, ValuesOf } from './params.ts';
 import type { EffectDefinition, EffectInstance, FrameInfo } from './effect.ts';
 import type { ScheduledSurface } from './scheduler.ts';
 import { Surface } from './surface.ts';
+import { QualityController } from './quality.ts';
+import { readTextureTap } from './texture-readback.ts';
 import { createFullscreenPass, resolveSource } from './passes.ts';
 export interface MountOptions {
   params?: ParamValues;
@@ -14,6 +16,8 @@ export interface MountOptions {
   resolutionScale?: number;
   dprCap?: number;
   reducedMotion?: boolean;
+  timeScale?: number;
+  adaptiveQuality?: boolean;
 }
 /** Owns instance resources; effect definitions own only pipelines and custom allocations. */
 export class EffectField<S extends ParamSchema = ParamSchema> implements ScheduledSurface {
@@ -27,6 +31,11 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   visible = true;
   playing: boolean;
   dirty = true;
+  timeScale = 1;
+  adaptiveQuality = false;
+  quality: QualityController;
+  #rateAccumulator = 0;
+  #qualityPending = false;
   state: 'building' | 'ready' | 'lost' | 'error' | 'disposed' = 'building';
   frame: FrameInfo = {
     time: 0,
@@ -65,6 +74,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     options: MountOptions,
   ) {
     this.canvas = canvas;
+    this.quality = new QualityController(
+      options.resolutionScale ?? 1,
+      effect.quality.resolutionScale[0],
+    );
+    this.adaptiveQuality = options.adaptiveQuality ?? false;
+    this.setTimeScale(options.timeScale ?? 1);
     this.effect = effect;
     this.session = session;
     this.#releaseDevice = release;
@@ -140,6 +155,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       canvas.addEventListener('pointerdown', field.#pointer);
       canvas.addEventListener('pointerup', field.#pointer);
       canvas.addEventListener('pointerleave', field.#leave);
+      canvas.addEventListener('pointercancel', field.#cancelPointer);
+      canvas.addEventListener('lostpointercapture', field.#cancelPointer);
       return field;
     } catch (error) {
       if (field) field.destroy();
@@ -183,6 +200,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       paramsBuffer: this.#paramsBuffer,
       frameBuffer: this.#frameBuffer,
       format: 'rgba16float',
+      qualitySteps: () => (this.adaptiveQuality ? this.quality.state.stepScale : 1),
     });
     if (this.#disposed || generation !== this.#generation) {
       instance.dispose();
@@ -213,10 +231,89 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.session.scheduler.invalidate();
   }
   update(frame: import('./scheduler.ts').Tick) {
-    this.frame.delta = frame.delta;
-    this.frame.time += frame.delta;
+    this.#rateAccumulator += frame.delta * this.timeScale;
+    while (this.#rateAccumulator + 1e-10 >= 1 / 60) {
+      this.#simulationStep();
+      this.#rateAccumulator -= 1 / 60;
+    }
+  }
+  #simulationStep() {
+    this.frame.delta = 1 / 60;
+    this.frame.time += 1 / 60;
     this.frame.index++;
     this.instance?.update(this.frame);
+  }
+  /** Explicit fixed-step replay, independent of rAF/time scale; fix quality for repeatable work. */
+  advance(steps = 1) {
+    if (!Number.isInteger(steps) || steps < 0 || steps > 4096)
+      throw new RangeError('Steps must be an integer in [0, 4096]');
+    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    this.pause();
+    for (let i = 0; i < steps; i++) if (!this.reducedMotion) this.#simulationStep();
+    this.render();
+    this.session.submit();
+    this.dirty = false;
+  }
+  setTimeScale(scale: number) {
+    if (!Number.isFinite(scale) || scale < 0.25 || scale > 2)
+      throw new RangeError('Time scale must be in [0.25, 2]');
+    this.timeScale = scale;
+    this.#rateAccumulator = 0;
+  }
+  setAdaptiveQuality(enabled: boolean) {
+    const ceiling = this.quality.maxResolution;
+    this.adaptiveQuality = enabled;
+    this.quality = new QualityController(ceiling, this.effect.quality.resolutionScale[0]);
+    if (!enabled && this.surface && this.surface.resolutionScale !== ceiling) {
+      this.surface.resolutionScale = ceiling;
+      this.surface.resize();
+    }
+    this.invalidate();
+  }
+  frameCompleted(stats: { cpuMs: number; intervalMs: number }) {
+    if (!this.adaptiveQuality || !this.playing || this.#qualityPending || this.state !== 'ready')
+      return;
+    this.#qualityPending = true;
+    const start = performance.now(),
+      instance = this.instance;
+    void this.session.device.queue
+      .onSubmittedWorkDone()
+      .then(() => {
+        if (
+          this.#disposed ||
+          !this.adaptiveQuality ||
+          this.instance !== instance ||
+          this.state !== 'ready'
+        )
+          return;
+        const change = this.quality.observe(stats.cpuMs + performance.now() - start);
+        if (change && this.surface && this.surface.resolutionScale !== change.resolutionScale) {
+          this.surface.resolutionScale = change.resolutionScale;
+          this.surface.resize();
+          this.invalidate();
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        this.#qualityPending = false;
+      });
+  }
+  get textureTaps() {
+    return this.instance?.textureTaps?.() ?? {};
+  }
+  get bufferTaps() {
+    return this.instance?.bufferTaps?.() ?? {};
+  }
+  async readTap(name: string) {
+    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (this.dirty) {
+      this.render();
+      this.dirty = false;
+    }
+    this.session.submit();
+    const tap = this.textureTaps[name];
+    if (!tap) throw new Error(`Unknown texture tap: ${name}`);
+    return readTextureTap(this.session.device, tap);
   }
   render() {
     if (this.#disposed || this.state !== 'ready' || !this.surface?.target || !this.instance) return;
@@ -276,6 +373,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   reset(seed = this.frame.seed) {
     this.frame.time = this.reducedMotion ? this.effect.reducedMotion.time : 0;
     this.frame.index = 0;
+    this.#rateAccumulator = 0;
     this.frame.seed = seed >>> 0;
     this.instance?.reset(this.frame.seed);
     this.invalidate();
@@ -283,10 +381,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   step() {
     this.pause();
     if (!this.reducedMotion) {
-      this.frame.time += 1 / 60;
-      this.frame.delta = 1 / 60;
-      this.frame.index++;
-      this.instance?.update(this.frame);
+      this.#simulationStep();
     }
     this.invalidate();
   }
@@ -294,6 +389,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     if (!Number.isFinite(scale)) throw new TypeError('Finite resolution scale required');
     const [min, max] = this.effect.quality.resolutionScale;
     this.surface!.resolutionScale = Math.max(min, Math.min(max, scale));
+    this.quality = new QualityController(this.surface!.resolutionScale, min);
     this.surface!.resize();
     this.invalidate();
   }
@@ -310,6 +406,9 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       this.playing = false;
       this.frame.time = this.effect.reducedMotion.time;
       this.frame.delta = 0;
+      this.frame.index = 0;
+      this.#rateAccumulator = 0;
+      this.instance?.reset(this.frame.seed);
     } else this.playing = this.#wasPlaying;
   }
   #motionChanged = () => {
@@ -320,11 +419,18 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   #pointer = (event: PointerEvent) => {
     const rect = this.canvas.getBoundingClientRect();
     const point: readonly [number, number] = [
-      (event.clientX - rect.left) / rect.width,
-      (event.clientY - rect.top) / rect.height,
+      Math.max(0, Math.min(1, (event.clientX - rect.left) / Math.max(rect.width, 1))),
+      Math.max(0, Math.min(1, (event.clientY - rect.top) / Math.max(rect.height, 1))),
     ];
     const dt = Math.max(0.001, (event.timeStamp - this.#lastPointerTime) / 1000);
-    const intensity = this.reducedMotion ? 0.25 : 1;
+    const intensity = this.#lastPointerTime === 0 ? 0 : this.reducedMotion ? 0.25 : 1;
+    if (event.type === 'pointerdown') {
+      try {
+        this.canvas.setPointerCapture(event.pointerId);
+      } catch {
+        /* Synthetic events need no capture. */
+      }
+    }
     this.frame.velocity = [
       ((point[0] - this.#lastPointer[0]) / dt) * intensity,
       ((point[1] - this.#lastPointer[1]) / dt) * intensity,
@@ -336,7 +442,15 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#lastPointerTime = event.timeStamp;
     this.invalidate();
   };
-  #leave = () => {
+  #cancelPointer = () => {
+    this.frame.velocity = [0, 0];
+    this.frame.buttons = 0;
+    this.frame.pressure = 0;
+    this.#lastPointerTime = 0;
+    this.invalidate();
+  };
+  #leave = (event: PointerEvent) => {
+    if (this.canvas.hasPointerCapture(event.pointerId)) return;
     this.frame.velocity = [0, 0];
     this.frame.buttons = 0;
     this.invalidate();
@@ -348,9 +462,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     return this.instance?.diagnostics ?? [];
   }
   memory() {
+    const owned = this.instance?.memory?.();
     return {
-      textureBytes: this.surface?.bytes ?? 0,
-      bufferBytes: this.#disposed ? 0 : 64 + this.store.layout.byteLength,
+      textureBytes: (this.surface?.bytes ?? 0) + (owned?.textureBytes ?? 0),
+      bufferBytes: this.#disposed
+        ? 0
+        : 64 + this.store.layout.byteLength + (owned?.bufferBytes ?? 0),
       shared: this.session.resources.stats(),
     };
   }
@@ -414,6 +531,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     for (const name of ['pointermove', 'pointerdown', 'pointerup'] as const)
       this.canvas.removeEventListener(name, this.#pointer);
     this.canvas.removeEventListener('pointerleave', this.#leave);
+    this.canvas.removeEventListener('pointercancel', this.#cancelPointer);
+    this.canvas.removeEventListener('lostpointercapture', this.#cancelPointer);
     this.instance?.dispose();
     this.instance = null;
     this.surface?.dispose();

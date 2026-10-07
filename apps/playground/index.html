@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#11141b" />
-    <title>HoloGPU · Procedural studies</title>
+    <title>HoloGPU · Effects research</title>
   </head>
   <body>
     <header>
@@ -14,8 +14,8 @@
     <main>
       <aside class="browser">
         <p class="eyebrow">01 / EFFECTS</p>
-        <h1>Procedural studies</h1>
-        <p class="muted">Six ways to build an image from mathematics.</p>
+        <h1>Effects research</h1>
+        <p class="muted">Procedural fields, feedback simulations and fluids.</p>
         <input
           id="search"
           type="search"
@@ -37,7 +37,7 @@
           <span id="tier">T1 / FRAGMENT</span>
         </div>
         <div id="stage">
-          <canvas id="canvas" aria-label="Procedural effect preview"></canvas>
+          <canvas id="canvas" aria-label="Effect preview"></canvas>
           <p id="fallback" hidden></p>
         </div>
         <div class="transport">
@@ -52,6 +52,14 @@
               <option value="0.5">50%</option>
               <option value="0.25">25%</option>
             </select></label
+          ><label
+            >Time scale<select id="time-scale">
+              <option value="0.25">¼×</option>
+              <option value="0.5">½×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+            </select></label
+          ><label><input id="adaptive-quality" type="checkbox" />Adaptive quality</label
           ><label><input id="motion" type="checkbox" />Reduced motion</label>
         </div>
         <div class="readout">
@@ -62,12 +70,14 @@
           <div role="tablist" aria-label="Research drawers">
             <button role="tab" aria-selected="true" data-drawer="notes">Notes</button
             ><button role="tab" aria-selected="false" data-drawer="source">Source</button
+            ><button role="tab" aria-selected="false" data-drawer="passes">Passes</button
             ><button role="tab" aria-selected="false" data-drawer="capabilities">
               Capabilities
             </button>
           </div>
           <div id="notes" class="drawer-panel"></div>
           <pre id="source" class="drawer-panel" hidden></pre>
+          <div id="passes" class="drawer-panel" hidden></div>
           <pre id="capabilities" class="drawer-panel" hidden></pre>
         </section>
       </section>

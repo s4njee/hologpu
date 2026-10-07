@@ -54,6 +54,51 @@
       "source": "./src/truchet/index.ts",
       "types": "./dist/truchet/index.d.ts",
       "import": "./dist/truchet/index.js"
+    },
+    "./falling-sand": {
+      "source": "./src/falling-sand/index.ts",
+      "types": "./dist/falling-sand/index.d.ts",
+      "import": "./dist/falling-sand/index.js"
+    },
+    "./fluid": {
+      "source": "./src/fluid/index.ts",
+      "types": "./dist/fluid/index.d.ts",
+      "import": "./dist/fluid/index.js"
+    },
+    "./ink": {
+      "source": "./src/ink/index.ts",
+      "types": "./dist/ink/index.d.ts",
+      "import": "./dist/ink/index.js"
+    },
+    "./lenia": {
+      "source": "./src/lenia/index.ts",
+      "types": "./dist/lenia/index.d.ts",
+      "import": "./dist/lenia/index.js"
+    },
+    "./life": {
+      "source": "./src/life/index.ts",
+      "types": "./dist/life/index.d.ts",
+      "import": "./dist/life/index.js"
+    },
+    "./physarum": {
+      "source": "./src/physarum/index.ts",
+      "types": "./dist/physarum/index.d.ts",
+      "import": "./dist/physarum/index.js"
+    },
+    "./reaction-diffusion": {
+      "source": "./src/reaction-diffusion/index.ts",
+      "types": "./dist/reaction-diffusion/index.d.ts",
+      "import": "./dist/reaction-diffusion/index.js"
+    },
+    "./smoke": {
+      "source": "./src/smoke/index.ts",
+      "types": "./dist/smoke/index.d.ts",
+      "import": "./dist/smoke/index.js"
+    },
+    "./wave": {
+      "source": "./src/wave/index.ts",
+      "types": "./dist/wave/index.d.ts",
+      "import": "./dist/wave/index.js"
     }
   },
   "scripts": {

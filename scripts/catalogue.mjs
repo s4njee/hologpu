@@ -1,7 +1,7 @@
 import { format } from 'prettier';
 import { readdir, writeFile, readFile } from 'node:fs/promises';
 const ids = (await readdir('packages/effects/src', { withFileTypes: true }))
-  .filter((d) => d.isDirectory())
+  .filter((d) => d.isDirectory() && !d.name.startsWith('_'))
   .map((d) => d.name)
   .sort();
 const writeSource = async (path, source) =>

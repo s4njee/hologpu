@@ -26,6 +26,26 @@ export interface EffectContext<S extends ParamSchema = ParamSchema> {
   paramsBuffer: GPUBuffer;
   frameBuffer: GPUBuffer;
   format: GPUTextureFormat;
+  /** User/runtime scale for solver iterations; never changes the fixed timestep. */
+  qualitySteps: () => number;
+}
+export interface TextureTap {
+  readonly texture: GPUTexture;
+  readonly format: GPUTextureFormat;
+  readonly width: number;
+  readonly height: number;
+  readonly label?: string;
+  readonly kind: 'float' | 'uint';
+}
+export interface EffectMemory {
+  textureBytes: number;
+  bufferBytes: number;
+}
+export interface BufferTap {
+  readonly buffer: GPUBuffer;
+  readonly label?: string;
+  readonly stride?: number;
+  readonly count?: number;
 }
 export interface EffectInstance {
   resize(size: readonly [number, number]): void;
@@ -35,6 +55,9 @@ export interface EffectInstance {
   dispose(): void;
   readonly sources?: Readonly<Record<string, ComposedWGSL>>;
   readonly diagnostics?: readonly ShaderDiagnostic[];
+  textureTaps?(): Readonly<Record<string, TextureTap>>;
+  bufferTaps?(): Readonly<Record<string, BufferTap>>;
+  memory?(): EffectMemory;
 }
 export interface EffectDefinition<S extends ParamSchema = ParamSchema> {
   readonly id: string;

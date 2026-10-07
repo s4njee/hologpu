@@ -22,7 +22,8 @@
     "predev": "pnpm catalogue",
     "prebuild": "pnpm catalogue",
     "pretypecheck": "pnpm catalogue",
-    "benchmark:m1": "node scripts/benchmark-m1.mjs"
+    "benchmark:m1": "node scripts/benchmark-m1.mjs",
+    "benchmark:m2": "node scripts/benchmark-m2.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

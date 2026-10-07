@@ -1,0 +1,90 @@
+import { gridEffect, gridParam, stepsParam } from '../_feedback/grid.ts';
+export default gridEffect(
+  {
+    id: 'wave',
+    title: 'Wave history and refraction',
+    family: 'feedback',
+    core: true,
+    tags: ['wave-equation', 'history', 'refraction'],
+    inputs: ['pointer'],
+    params: {
+      grid: { ...gridParam, default: 256 },
+      steps: stepsParam,
+      courant: {
+        type: 'f32',
+        default: 0.45,
+        min: 0.05,
+        max: 0.68,
+        step: 0.01,
+        group: 'Simulation',
+        description:
+          'Wave speed × timestep / cell spacing; ≤ 0.68 satisfies c² ≤ (1+damping)/4 throughout the damping range.',
+      },
+      damping: {
+        type: 'f32',
+        default: 0.995,
+        min: 0.9,
+        max: 1,
+        step: 0.001,
+        group: 'Simulation',
+        description: 'Velocity retention per iteration.',
+      },
+      strength: {
+        type: 'f32',
+        default: 0.15,
+        min: 0.01,
+        max: 0.5,
+        step: 0.01,
+        group: 'Interaction',
+        description: 'Pressed-pointer disturbance height per iteration.',
+      },
+      refraction: {
+        type: 'f32',
+        default: 0.06,
+        min: 0,
+        max: 0.2,
+        step: 0.005,
+        group: 'Display',
+        description: 'Gradient distortion of the procedural bottom pattern.',
+      },
+      view: {
+        type: 'enum',
+        default: 'refract',
+        options: ['refract', 'height', 'velocity'],
+        group: 'Display',
+        description: 'Refracted checker, signed height, or two-time-level velocity.',
+      },
+      tint: {
+        type: 'color',
+        default: '#63d6ed',
+        group: 'Palette',
+        description: 'Water surface highlight color.',
+      },
+      background: {
+        type: 'color',
+        default: '#063c68',
+        group: 'Palette',
+        description: 'Dark water color.',
+      },
+    },
+    presets: {
+      pond: {
+        courant: 0.3,
+        damping: 0.99,
+        refraction: 0.1,
+        tint: '#9acf86',
+        background: '#1a4538',
+      },
+      choppy: { courant: 0.65, damping: 0.998, refraction: 0.035, view: 'height' },
+    },
+    quality: { resolutionScale: [0.25, 1] },
+    reducedMotion: { time: 0 },
+    fallback: 'radial-gradient(ellipse,#63d6ed,#063c68)',
+  },
+  {
+    initialize: /* wgsl */ `@compute @workgroup_size(8,8) fn main(@builtin(global_invocation_id) id:vec3u){let n=textureDimensions(next);if(any(id.xy>=n)){return;}let p=vec2i(id.xy);let uv=(vec2f(p)+0.5)/vec2f(n);let center=vec2f(0.35+0.3*random(hash_u32(frame.seed)),0.35+0.3*random(hash_u32(frame.seed+19u)));let h=0.3*exp(-dot(uv-center,uv-center)*450.0);textureStore(next,p,vec4f(h,h,0,1));}`,
+    step: /* wgsl */ `fn height(p:vec2i)->f32{return textureLoad(state,clamp(p,vec2i(0),vec2i(textureDimensions(state))-1),0).x;}
+@compute @workgroup_size(8,8) fn main(@builtin(global_invocation_id) id:vec3u){let n=textureDimensions(next);if(any(id.xy>=n)){return;}let p=vec2i(id.xy);let c=textureLoad(state,p,0).xy;let lap=height(p+vec2i(1,0))+height(p+vec2i(-1,0))+height(p+vec2i(0,1))+height(p+vec2i(0,-1))-4.0*c.x;var h=c.x+params.damping*(c.x-c.y)+params.courant*params.courant*lap;let uv=(vec2f(p)+0.5)/vec2f(n);if(frame.buttons!=0u){h+=params.strength*exp(-dot(uv-frame.pointer,uv-frame.pointer)*3000.0);}textureStore(next,p,vec4f(clamp(h,-4.0,4.0),c.x,0,1));}`,
+    display: /* wgsl */ `@fragment fn fragment(in:VertexOut)->@location(0)vec4f{let n=vec2f(textureDimensions(state));let c=sample_bilinear(state,in.uv).xy;let dx=sample_bilinear(state,in.uv+vec2f(1.0/n.x,0)).x-sample_bilinear(state,in.uv-vec2f(1.0/n.x,0)).x;let dy=sample_bilinear(state,in.uv+vec2f(0,1.0/n.y)).x-sample_bilinear(state,in.uv-vec2f(0,1.0/n.y)).x;var value=clamp(0.5+c.x,0.0,1.0);if(params.view==0u){let uv=in.uv+params.refraction*vec2f(dx,dy);let tile=sin(uv.x*70.0)*sin(uv.y*70.0);value=clamp(0.45+0.15*tile+2.0*(dx+dy),0.0,1.0);}else if(params.view==2u){value=clamp(0.5+5.0*(c.x-c.y),0.0,1.0);}return vec4f(mix(params.background.rgb,params.tint.rgb,value),1);}`,
+  },
+);

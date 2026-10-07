@@ -1,6 +1,6 @@
 # HoloGPU — WebGPU effects library and playground
 
-**Status:** M0 and M1 complete (2026-10-07); all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md) and [T1 stretch validation](docs/t1-stretch.md).
+**Status:** M0 and M1 complete (2026-10-07); all three Family A T1 stretches implemented; M2 implementation and validation in progress. See [M0](docs/m0.md), [M1](docs/m1.md) and [T1 stretch validation](docs/t1-stretch.md).
 **Created:** 2026-10-07
 **Working package name:** `@mk7s/hologpu` (confirm availability before any release)
 **Source:** item 1 of [research.md](../research.md), "WebGPU effects layer for the DOM"
@@ -483,6 +483,8 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 - **Exit:** the 50-line criterion in section 2.4 is met; the effect contract is frozen for T1.
 
 ### M2 — Feedback and fluids
+
+**Completed 2026-10-07.** The T2 helpers, six Family B effects, three Family C material models, pointer/Passes transport and first quality controller are implemented. `pnpm check` and all 92 Chrome/WebKit hardware effect tests pass. Reaction diffusion and fluid meet the actual 1024² state/display refresh gate in all twelve runs. Numerical, lifecycle, production-build and performance evidence is recorded in [M2 validation](docs/m2.md).
 
 - Ping-pong targets, fixed-step updates, the compute dispatch helper, `feedbackEffect`.
 - Family B core, then Family C core except `fluid-obstacles`.

@@ -9,6 +9,7 @@ import {
 } from '@mk7s/hologpu';
 import { catalogue } from '@mk7s/hologpu/effects';
 import './style.css';
+import { passesDrawer } from './passes.ts';
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const canvas = $<HTMLCanvasElement>('canvas');
 const query = new URLSearchParams(location.search);
@@ -37,7 +38,9 @@ function save() {
     seed: String(field.frame.seed),
     params: JSON.stringify(field.store.snapshot()),
     playing: String(field.playing),
-    resolution: String(field.surface?.resolutionScale ?? 1),
+    resolution: String(field.quality.maxResolution),
+    timeScale: String(field.timeScale),
+    quality: field.adaptiveQuality ? 'auto' : 'fixed',
   });
   const preset = $<HTMLSelectElement>('presets').value;
   if (preset) state.set('preset', preset);
@@ -199,7 +202,7 @@ function refreshControls() {
   }
 }
 function renderNote(markdown: string, id: string): DocumentFragment {
-  const references = import.meta.glob('../../../docs/benchmarks/m1-*.json', {
+  const references = import.meta.glob('../../../docs/benchmarks/m*.json', {
     query: '?url',
     import: 'default',
     eager: true,
@@ -353,9 +356,12 @@ async function mount(next: EffectDefinition, initial = false) {
   field = null;
   effect = next;
   $('title').textContent = next.title;
+  $('tier').textContent = `${next.tier} / ${next.family.toUpperCase()}`;
+  canvas.style.touchAction = next.inputs.includes('pointer') ? 'none' : 'auto';
+  $('passes').replaceChildren();
   $('source').textContent = 'Compiling…';
   $('status').dataset['state'] = 'loading';
-  $('status').textContent = 'Compiling fragment pipeline…';
+  $('status').textContent = 'Compiling effect pipelines…';
   $('fallback').hidden = true;
   canvas.hidden = false;
   $('stage').style.background = next.fallback;
@@ -381,6 +387,13 @@ async function mount(next: EffectDefinition, initial = false) {
       seed,
       playing: initial ? query.get('playing') !== 'false' : true,
       resolutionScale: scale,
+      timeScale:
+        initial && [0.25, 0.5, 1, 2].includes(Number(query.get('timeScale')))
+          ? Number(query.get('timeScale'))
+          : Number($<HTMLSelectElement>('time-scale').value),
+      adaptiveQuality: initial
+        ? query.get('quality') === 'auto'
+        : $<HTMLInputElement>('adaptive-quality').checked,
       reducedMotion: $<HTMLInputElement>('motion').checked ? true : undefined,
     });
     if (token !== generation) {
@@ -389,6 +402,9 @@ async function mount(next: EffectDefinition, initial = false) {
     }
     field = mounted;
     inspector();
+    passesDrawer(field, $('passes'));
+    $<HTMLSelectElement>('time-scale').value = String(field.timeScale);
+    $<HTMLInputElement>('adaptive-quality').checked = field.adaptiveQuality;
     if (initial && (query.get('preset') ?? '') in next.presets)
       $<HTMLSelectElement>('presets').value = query.get('preset')!;
     field.store.onChange(refreshControls);
@@ -458,6 +474,14 @@ $('seed').onchange = () => {
   field?.reset(Number($<HTMLInputElement>('seed').value));
   save();
 };
+$('time-scale').onchange = () => {
+  field?.setTimeScale(Number($<HTMLSelectElement>('time-scale').value));
+  save();
+};
+$('adaptive-quality').onchange = () => {
+  field?.setAdaptiveQuality($<HTMLInputElement>('adaptive-quality').checked);
+  save();
+};
 $('resolution').onchange = () => {
   field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
   save();
@@ -506,7 +530,7 @@ window.addEventListener('pagehide', () => field?.destroy());
 setInterval(() => {
   if (field) {
     $('meter').textContent =
-      `CPU encode ${field.session.scheduler.cpuFrameMs.toFixed(2)} ms · ${(field.memory().textureBytes / 1048576).toFixed(1)} MiB target`;
+      `CPU encode ${field.session.scheduler.cpuFrameMs.toFixed(2)} ms · ${(field.memory().textureBytes / 1048576).toFixed(1)} MiB textures · step ${field.frame.index} · ${Math.round((field.surface?.resolutionScale ?? 1) * 100)}% resolution / ${Math.round((field.adaptiveQuality ? field.quality.state.stepScale : 1) * 100)}% work`;
     $('status').textContent =
       `${effect.id} · ${canvas.width} × ${canvas.height} · linear RGBA16 float`;
   }

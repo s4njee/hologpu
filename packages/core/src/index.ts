@@ -7,4 +7,8 @@ export * from './effect.ts';
 export * from './runtime.ts';
 export * from './passes.ts';
 export * from './debug.ts';
+export * from './compute.ts';
+export * from './feedback.ts';
+export * from './quality.ts';
+export * from './texture-readback.ts';
 export * from './wgsl/index.ts';

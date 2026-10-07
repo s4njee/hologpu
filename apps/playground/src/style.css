@@ -488,3 +488,31 @@ footer {
 #notes td:last-child {
   min-width: 240px;
 }
+
+#passes {
+  white-space: normal;
+}
+.tap-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+.tap-controls input[type='number'] {
+  width: 80px;
+}
+.tap-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+#tap-preview {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  image-rendering: pixelated;
+  border: 1px solid #343c4b;
+}
+#canvas {
+  cursor: crosshair;
+}

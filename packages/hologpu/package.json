@@ -64,6 +64,51 @@
       "source": "./src/effects/truchet.ts",
       "types": "./dist/effects/truchet.d.ts",
       "import": "./dist/effects/truchet.js"
+    },
+    "./effects/falling-sand": {
+      "source": "./src/effects/falling-sand.ts",
+      "types": "./dist/effects/falling-sand.d.ts",
+      "import": "./dist/effects/falling-sand.js"
+    },
+    "./effects/fluid": {
+      "source": "./src/effects/fluid.ts",
+      "types": "./dist/effects/fluid.d.ts",
+      "import": "./dist/effects/fluid.js"
+    },
+    "./effects/ink": {
+      "source": "./src/effects/ink.ts",
+      "types": "./dist/effects/ink.d.ts",
+      "import": "./dist/effects/ink.js"
+    },
+    "./effects/lenia": {
+      "source": "./src/effects/lenia.ts",
+      "types": "./dist/effects/lenia.d.ts",
+      "import": "./dist/effects/lenia.js"
+    },
+    "./effects/life": {
+      "source": "./src/effects/life.ts",
+      "types": "./dist/effects/life.d.ts",
+      "import": "./dist/effects/life.js"
+    },
+    "./effects/physarum": {
+      "source": "./src/effects/physarum.ts",
+      "types": "./dist/effects/physarum.d.ts",
+      "import": "./dist/effects/physarum.js"
+    },
+    "./effects/reaction-diffusion": {
+      "source": "./src/effects/reaction-diffusion.ts",
+      "types": "./dist/effects/reaction-diffusion.d.ts",
+      "import": "./dist/effects/reaction-diffusion.js"
+    },
+    "./effects/smoke": {
+      "source": "./src/effects/smoke.ts",
+      "types": "./dist/effects/smoke.d.ts",
+      "import": "./dist/effects/smoke.js"
+    },
+    "./effects/wave": {
+      "source": "./src/effects/wave.ts",
+      "types": "./dist/effects/wave.d.ts",
+      "import": "./dist/effects/wave.js"
     }
   },
   "scripts": {

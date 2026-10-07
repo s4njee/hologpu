@@ -14,6 +14,7 @@ export interface ScheduledSurface {
   dirty: boolean;
   update(frame: Tick): void;
   render(frame: Tick): void;
+  frameCompleted?(stats: { cpuMs: number; intervalMs: number }): void;
 }
 const browserClock: Clock = {
   request: (callback) => requestAnimationFrame(callback),
@@ -91,6 +92,8 @@ export class Scheduler {
     }
     if (active.length) this.#submit();
     this.cpuFrameMs = this.#clock.now() - start;
+    for (const surface of active)
+      surface.frameCompleted?.({ cpuMs: this.cpuFrameMs, intervalMs: delta * 1000 });
     if (active.some((s) => s.playing)) this.invalidate();
     else this.#previous = null;
   };
