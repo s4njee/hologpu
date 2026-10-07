@@ -1,0 +1,977 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "firefox",
+    "browserVersion": "155.0",
+    "headless": false,
+    "softwareAdapter": false
+  },
+  "results": [
+    {
+      "scenario": {
+        "count": 1,
+        "mode": "float"
+      },
+      "run": 1,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:10:48.563Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1095,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 128,
+        "ownedTextureBytes": 3793920,
+        "canvasBytesPerImageEstimate": 1896960,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.1,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 8.331222222222225,
+        "p50": 8.32000000000005,
+        "p95": 9.1400000000001,
+        "max": 9.280000000000086
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 1,
+        "mode": "float"
+      },
+      "run": 2,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:10:50.333Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1095,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 128,
+        "ownedTextureBytes": 3793920,
+        "canvasBytesPerImageEstimate": 1896960,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.08333333333333333,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 7.984666666666666,
+        "p50": 8.260000000000218,
+        "p95": 8.960000000000036,
+        "max": 9.299999999999727
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 1,
+        "mode": "float"
+      },
+      "run": 3,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:10:52.110Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1095,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 128,
+        "ownedTextureBytes": 3793920,
+        "canvasBytesPerImageEstimate": 1896960,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.07222222222222222,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 8.382555555555554,
+        "p50": 8.339999999999236,
+        "p95": 8.900000000000546,
+        "max": 16.76000000000022
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "float"
+      },
+      "run": 1,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:10:54.346Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1708,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 22763520,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.15555555555555556,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 7.688111111111111,
+        "p50": 8.039999999999964,
+        "p95": 8.740000000000009,
+        "max": 9.259999999999991
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "float"
+      },
+      "run": 2,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:10:56.011Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1708,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 22763520,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.1388888888888889,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 7.82611111111111,
+        "p50": 8.199999999999818,
+        "p95": 9.099999999999909,
+        "max": 15.400000000000091
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "float"
+      },
+      "run": 3,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:10:57.775Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1708,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 22763520,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.07222222222222222,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 8.113444444444445,
+        "p50": 8.319999999999709,
+        "p95": 9.099999999999454,
+        "max": 9.239999999999782
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "direct"
+      },
+      "run": 1,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:11:00.128Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1708,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "direct"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 0,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.08888888888888889,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 8.209888888888889,
+        "p50": 8.299999999999955,
+        "p95": 9.080000000000041,
+        "max": 9.799999999999955
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "direct"
+      },
+      "run": 2,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:11:01.788Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1708,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "direct"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 0,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.06666666666666667,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 7.82722222222222,
+        "p50": 8.11999999999989,
+        "p95": 9.159999999999854,
+        "max": 10.179999999999836
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "direct"
+      },
+      "run": 3,
+      "canvasProbe": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "date": "2026-10-07T12:11:03.435Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1708,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "direct"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 0,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.07777777777777778,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 7.694333333333334,
+        "p50": 8.099999999999454,
+        "p95": 8.979999999999563,
+        "max": 9.219999999999345
+      },
+      "errors": [],
+      "diagnostics": []
+    }
+  ]
+}

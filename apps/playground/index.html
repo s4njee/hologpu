@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10141c" />
+    <title>HoloGPU · M0 foundations</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">HOLOGPU / RESEARCH LAB</p>
+        <h1>One device. Six surfaces.</h1>
+        <p class="intro">
+          A foundation study in compute, compositing, and the cost of drawing inside a page.
+        </p>
+      </header>
+      <form id="configuration">
+        <label
+          >Surfaces
+          <select name="count">
+            <option value="1">1 canvas</option>
+            <option value="6" selected>6 canvases</option>
+          </select></label
+        >
+        <label
+          >Render target
+          <select name="mode">
+            <option value="float">RGBA16 float + resolve</option>
+            <option value="direct">Direct to canvas</option>
+          </select></label
+        >
+        <button type="submit">Apply</button>
+      </form>
+      <div class="toolbar">
+        <button id="animate" disabled>Run</button>
+        <button id="step" disabled>Single step</button>
+        <button id="verify" disabled>Verify compute + pixels</button>
+        <button id="benchmark" disabled>Measure 180 frames while scrolling</button>
+        <button id="export" disabled>Export measurements</button>
+      </div>
+      <p id="status" role="status" data-state="loading">Requesting a WebGPU device…</p>
+      <p id="verification" role="status"></p>
+      <section id="surfaces" aria-label="In-flow canvas experiments"></section>
+      <section class="readout">
+        <h2>Measurements</h2>
+        <p>
+          CPU encode time and animation-frame cadence; GPU execution time is not measured. Memory is
+          an estimate of logical allocation sizes.
+        </p>
+        <pre id="report">Waiting for the adapter.</pre>
+      </section>
+      <footer>M0 · Fixed seed 7 · Premultiplied alpha · DPR capped at 2</footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

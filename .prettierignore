@@ -1,0 +1,7 @@
+pnpm-lock.yaml
+dist/
+node_modules/
+test-results/
+playwright-report/
+plan.md
+docs/benchmarks/*.json

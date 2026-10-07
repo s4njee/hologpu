@@ -1,0 +1,1049 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "chrome",
+    "browserVersion": "154.0.8037.98",
+    "headless": true,
+    "softwareAdapter": false
+  },
+  "results": [
+    {
+      "scenario": {
+        "count": 1,
+        "mode": "float"
+      },
+      "run": 1,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:24.844Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1231,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 128,
+        "ownedTextureBytes": 3793920,
+        "canvasBytesPerImageEstimate": 1896960,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.10444444947772556,
+        "p50": 0.09999990463256836,
+        "p95": 0.20000004768371582,
+        "max": 0.20000004768371582
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.666111111111086,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 1,
+        "mode": "float"
+      },
+      "run": 2,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:28.344Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1231,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 128,
+        "ownedTextureBytes": 3793920,
+        "canvasBytesPerImageEstimate": 1896960,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.09777777724795872,
+        "p50": 0.09999990463256836,
+        "p95": 0.20000004768371582,
+        "max": 0.20000004768371582
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.66611111111111,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 1,
+        "mode": "float"
+      },
+      "run": 3,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:31.847Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1231,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 128,
+        "ownedTextureBytes": 3793920,
+        "canvasBytesPerImageEstimate": 1896960,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.16833331055111356,
+        "p50": 0.19999980926513672,
+        "p95": 0.2999999523162842,
+        "max": 0.5999999046325684
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.66611111111111,
+        "p50": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000109
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "float"
+      },
+      "run": 1,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:35.697Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1843,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 22763520,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.19611112011803522,
+        "p50": 0.20000004768371582,
+        "p95": 0.39999985694885254,
+        "max": 0.7999999523162842
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.666111111111086,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "float"
+      },
+      "run": 2,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:39.197Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1843,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 22763520,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.2144444439146254,
+        "p50": 0.19999980926513672,
+        "p95": 0.5,
+        "max": 1.9000000953674316
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.66611111111111,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "float"
+      },
+      "run": 3,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:42.699Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1843,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 22763520,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.13722222381167942,
+        "p50": 0.10000014305114746,
+        "p95": 0.20000004768371582,
+        "max": 0.40000009536743164
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.666111111111114,
+        "p50": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000109
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "direct"
+      },
+      "run": 1,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:46.630Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1843,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "direct"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 0,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.16333334445953368,
+        "p50": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 1.5
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.66611111111108,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999955,
+        "max": 16.800000000000182
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "direct"
+      },
+      "run": 2,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:50.129Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1843,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "direct"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 0,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.11388890080981784,
+        "p50": 0.10000014305114746,
+        "p95": 0.20000004768371582,
+        "max": 0.40000009536743164
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.66611111111111,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182
+      },
+      "errors": [],
+      "diagnostics": []
+    },
+    {
+      "scenario": {
+        "count": 6,
+        "mode": "direct"
+      },
+      "run": 3,
+      "canvasProbe": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "date": "2026-10-07T12:08:53.629Z",
+      "frames": 180,
+      "warmup": 30,
+      "scroll": true,
+      "maxScrollY": 1843,
+      "report": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "direct"
+      },
+      "dpr": 2,
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sizes": [
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        },
+        {
+          "width": 988,
+          "height": 480,
+          "cssWidth": 494,
+          "cssHeight": 240
+        }
+      ],
+      "memory": {
+        "ownedBufferBytes": 208,
+        "ownedTextureBytes": 0,
+        "canvasBytesPerImageEstimate": 11381760,
+        "note": "Logical payload only. Canvas swapchain image count, driver padding, pipelines and browser allocations are unknown."
+      },
+      "cpuEncodeMs": {
+        "count": 180,
+        "mean": 0.12666666507720947,
+        "p50": 0.10000014305114746,
+        "p95": 0.20000004768371582,
+        "max": 0.6999998092651367
+      },
+      "rafIntervalMs": {
+        "count": 180,
+        "mean": 16.666666666666668,
+        "p50": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000109
+      },
+      "errors": [],
+      "diagnostics": []
+    }
+  ]
+}

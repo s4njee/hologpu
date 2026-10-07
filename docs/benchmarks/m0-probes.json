@@ -1,0 +1,220 @@
+{
+  "recordedOn": "2026-10-07",
+  "results": [
+    {
+      "browser": "chrome",
+      "version": "154.0.8037.98",
+      "capabilities": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "canvas": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": false,
+        "error": null
+      },
+      "pressureObserverPresent": true,
+      "htmlInCanvas": {
+        "copyElementImageToTexture": false,
+        "drawElementImageToTexture": false,
+        "layoutsubtree": false
+      },
+      "compatibility": {
+        "adapterReturned": true,
+        "coreFeatureAvailable": true,
+        "coreFeatureEnabled": false,
+        "maxColorAttachments": 4,
+        "maxStorageBuffersPerShaderStage": 8
+      },
+      "wgslLanguageFeatures": [
+        "packed_4x8_integer_dot_product",
+        "subgroup_uniformity",
+        "immediate_address_space",
+        "subgroup_id",
+        "linear_indexing",
+        "readonly_and_readwrite_storage_textures",
+        "swizzle_assignment",
+        "unrestricted_pointer_parameters",
+        "buffer_view",
+        "pointer_composite_access",
+        "texture_formats_tier1",
+        "texture_and_sampler_let",
+        "uniform_buffer_standard_layout"
+      ]
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "capabilities": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "canvas": {
+        "rgba16floatAccepted": false,
+        "extendedConfigurationReported": false,
+        "displayP3Reported": false,
+        "hdrDisplayReported": false,
+        "error": "TypeError: GPUCanvasContext.configure: Canvas texture format `rgba16float` is not yet supported. Subscribe to <https://bugzilla.mozilla.org/show_bug.cgi?id=1834395> for updates on its development in Firefox."
+      },
+      "pressureObserverPresent": false,
+      "htmlInCanvas": {
+        "copyElementImageToTexture": false,
+        "drawElementImageToTexture": false,
+        "layoutsubtree": false
+      },
+      "compatibility": {
+        "adapterReturned": true,
+        "coreFeatureAvailable": true,
+        "coreFeatureEnabled": true,
+        "maxColorAttachments": 8,
+        "maxStorageBuffersPerShaderStage": 8
+      },
+      "wgslLanguageFeatures": [
+        "readonly_and_readwrite_storage_textures",
+        "packed_4x8_integer_dot_product",
+        "pointer_composite_access"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "version": "26.6",
+      "capabilities": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+        "preferredFormat": "bgra8unorm",
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "limits": {
+          "maxTextureDimension2D": 8192,
+          "maxStorageBuffersPerShaderStage": 8
+        },
+        "mode": "float"
+      },
+      "canvas": {
+        "rgba16floatAccepted": true,
+        "extendedConfigurationReported": true,
+        "displayP3Reported": true,
+        "hdrDisplayReported": true,
+        "error": null
+      },
+      "pressureObserverPresent": false,
+      "htmlInCanvas": {
+        "copyElementImageToTexture": false,
+        "drawElementImageToTexture": false,
+        "layoutsubtree": false
+      },
+      "compatibility": {
+        "adapterReturned": true,
+        "coreFeatureAvailable": true,
+        "coreFeatureEnabled": true,
+        "maxColorAttachments": 8,
+        "maxStorageBuffersPerShaderStage": 8
+      },
+      "wgslLanguageFeatures": [
+        "packed_4x8_integer_dot_product",
+        "pointer_composite_access",
+        "readonly_and_readwrite_storage_textures",
+        "subgroup_id",
+        "subgroup_uniformity",
+        "texture_formats_tier1",
+        "unrestricted_pointer_parameters"
+      ]
+    }
+  ]
+}

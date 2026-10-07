@@ -1,0 +1,30 @@
+{
+  "name": "hologpu",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.15.1",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @mk7s/hologpu-playground dev",
+    "build": "pnpm -r --sort build",
+    "typecheck": "pnpm -r typecheck && tsc --noEmit -p tests/tsconfig.json",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "test:hardware": "playwright test --config playwright.hardware.config.ts",
+    "benchmark": "node scripts/benchmark.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm typecheck && pnpm test && pnpm build && pnpm test:browser"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2",
+    "@webgpu/types": "^0.1.69",
+    "prettier": "~3.9.8",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

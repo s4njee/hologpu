@@ -1,0 +1,150 @@
+:root {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: #ecf0f5;
+  background: #10141c;
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 1080px;
+  margin: auto;
+  padding: 64px 32px 24px;
+}
+.eyebrow {
+  color: #84c6c5;
+  font:
+    12px ui-monospace,
+    monospace;
+  letter-spacing: 0.17em;
+}
+h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: -0.045em;
+  margin: 18px 0;
+}
+.intro {
+  color: #9da9bc;
+  max-width: 570px;
+  line-height: 1.65;
+}
+form,
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: end;
+  margin-top: 24px;
+}
+label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  color: #b4bfd0;
+}
+select,
+button {
+  font: inherit;
+  padding: 10px 14px;
+  border: 1px solid #354152;
+  border-radius: 6px;
+  background: #1d2531;
+  color: #ecf0f5;
+}
+button {
+  cursor: pointer;
+}
+button:hover:enabled {
+  background: #2b3b4b;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+:focus-visible {
+  outline: 2px solid #8edbd0;
+  outline-offset: 3px;
+}
+#status {
+  color: #8edbd0;
+  font:
+    13px ui-monospace,
+    monospace;
+  margin: 24px 0;
+}
+#status[data-state='fallback'],
+#status[data-state='error'] {
+  color: #ffc799;
+}
+#surfaces {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.card {
+  margin: 0;
+  min-width: 0;
+}
+.stage {
+  height: 240px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+figcaption {
+  padding: 12px 0;
+  color: #9da9bc;
+  font:
+    12px ui-monospace,
+    monospace;
+}
+.readout {
+  margin-top: 40px;
+  border-top: 1px solid #354152;
+  padding-top: 16px;
+}
+h2 {
+  font-size: 18px;
+}
+.readout p {
+  max-width: 680px;
+  color: #9da9bc;
+  line-height: 1.6;
+  font-size: 14px;
+}
+pre {
+  font:
+    12px/1.6 ui-monospace,
+    monospace;
+  color: #b4d6dd;
+  overflow: auto;
+  padding: 20px;
+  background: #171e29;
+  border-radius: 8px;
+}
+footer {
+  color: #9da9bc;
+  font-size: 12px;
+  padding: 32px 0;
+}
+@media (max-width: 620px) {
+  main {
+    padding: 32px 20px;
+  }
+  #surfaces {
+    grid-template-columns: 1fr;
+  }
+  .stage {
+    height: 220px;
+  }
+}
