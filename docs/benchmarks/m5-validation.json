@@ -1,0 +1,71 @@
+{
+  "recordedOn": "2026-10-07T21:24:08.123124+00:00",
+  "scope": "Every pre-existing and M5 browser spec; excludes independently authored lcd.spec.ts and fluid-dom.spec.ts. Native Firefox was not run.",
+  "unitTests": {
+    "milestone": 64,
+    "workingTree": 66,
+    "additionalIndependentDemoTests": 2
+  },
+  "fullRuns": {
+    "native": {
+      "startTime": "2026-10-07T20:59:21.178Z",
+      "duration": 342561.06200000003,
+      "expected": 408,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "software": {
+      "startTime": "2026-10-07T21:05:04.584Z",
+      "duration": 1029760.466,
+      "expected": 409,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    }
+  },
+  "correctedBridgeRuns": {
+    "bridgeSoftware": {
+      "startTime": "2026-10-07T21:22:40.490Z",
+      "duration": 9964.655,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "bridgeNative": {
+      "startTime": "2026-10-07T21:22:51.150Z",
+      "duration": 7591.1720000000005,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "correction": {
+    "file": "tests/browser/m5-bridges.spec.ts",
+    "initialFailedProject": "swiftshader",
+    "cause": "Eight rAF callbacks can precede the first genuine queue completion under backpressure.",
+    "fix": "Wait for actual scheduled healthy renders and GPU completion; retain progress, error-count, pixel and settled-render assertions. Hold mocked development WebSockets open without forwarding reload messages.",
+    "runtimeChangedDuringFullRuns": false
+  },
+  "verifiedCoverage": {
+    "distinctCases": 818,
+    "byProject": {
+      "chrome-hardware": 204,
+      "swiftshader": 205,
+      "swiftshader-dpr2": 205,
+      "webkit-hardware": 204
+    },
+    "allLatestResultsPassed": true,
+    "basis": "Merge full-run results with the corrected whole bridge file rerun on each project. This does not represent a single clean 410-case software invocation."
+  },
+  "sourceIntegrity": {
+    "runtimeSha256": "17a67e2a27de1ed2be695045146c800581123d972428aa75276ba957cebcf724",
+    "m5StagedSingleLeaseSchedulerSha256": "950464270d3179487a404804f96b7019f0b476b1a9198381464b9f1760d19a4a",
+    "stagedSchedulerIsolatedTestsPassed": 4,
+    "hashedMilestoneSourceAndFixtureFiles": 115,
+    "hashedRuntimeAndShaderFilesUnchangedAcrossFullRuns": true
+  },
+  "remainingDeviceValidation": "SwiftShader is a weaker execution-path proxy on the development host; physical weaker-device validation remains for M8."
+}

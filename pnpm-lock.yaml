@@ -59,6 +59,10 @@ importers:
         version: 6.0.3
 
   packages/dom:
+    dependencies:
+      '@mk7s/hologpu-core':
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       typescript:
         specifier: 'catalog:'
@@ -79,6 +83,9 @@ importers:
       '@mk7s/hologpu-core':
         specifier: workspace:*
         version: link:../core
+      '@mk7s/hologpu-dom':
+        specifier: workspace:*
+        version: link:../dom
       '@mk7s/hologpu-effects':
         specifier: workspace:*
         version: link:../effects

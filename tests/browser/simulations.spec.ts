@@ -221,6 +221,14 @@ test('T2 transport, pointer capture, texture inspection, quality and URL control
   await expect(page.locator('#adaptive-quality')).toBeChecked();
   expect(new URL(url).searchParams.get('quality')).toBe('auto');
   await page.locator('#motion').check();
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const f = window.hologpu.field!;
+        return f.reducedMotion && !f.dirty && !f.session.scheduler.submissionPending;
+      }),
+    )
+    .toBe(true);
   const still = await page.evaluate(async () => {
     const f = window.hologpu.field!;
     f.advance(0);

@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/element.ts",
+    "./dist/element.js"
+  ],
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -214,6 +217,51 @@
       "source": "./src/effects/halftone-ascii.ts",
       "types": "./dist/effects/halftone-ascii.d.ts",
       "import": "./dist/effects/halftone-ascii.js"
+    },
+    "./effects/audio-spectrum": {
+      "source": "./src/effects/audio-spectrum.ts",
+      "types": "./dist/effects/audio-spectrum.d.ts",
+      "import": "./dist/effects/audio-spectrum.js"
+    },
+    "./effects/border-energy": {
+      "source": "./src/effects/border-energy.ts",
+      "types": "./dist/effects/border-energy.d.ts",
+      "import": "./dist/effects/border-energy.js"
+    },
+    "./effects/fluid-obstacles": {
+      "source": "./src/effects/fluid-obstacles.ts",
+      "types": "./dist/effects/fluid-obstacles.d.ts",
+      "import": "./dist/effects/fluid-obstacles.js"
+    },
+    "./effects/image-hover": {
+      "source": "./src/effects/image-hover.ts",
+      "types": "./dist/effects/image-hover.d.ts",
+      "import": "./dist/effects/image-hover.js"
+    },
+    "./effects/scroll-scene": {
+      "source": "./src/effects/scroll-scene.ts",
+      "types": "./dist/effects/scroll-scene.d.ts",
+      "import": "./dist/effects/scroll-scene.js"
+    },
+    "./effects/spotlight": {
+      "source": "./src/effects/spotlight.ts",
+      "types": "./dist/effects/spotlight.d.ts",
+      "import": "./dist/effects/spotlight.js"
+    },
+    "./effects/text-dissolve": {
+      "source": "./src/effects/text-dissolve.ts",
+      "types": "./dist/effects/text-dissolve.d.ts",
+      "import": "./dist/effects/text-dissolve.js"
+    },
+    "./dom": {
+      "source": "./src/dom.ts",
+      "types": "./dist/dom.d.ts",
+      "import": "./dist/dom.js"
+    },
+    "./element": {
+      "source": "./src/element.ts",
+      "types": "./dist/element.d.ts",
+      "import": "./dist/element.js"
     }
   },
   "scripts": {
@@ -222,7 +270,8 @@
   },
   "dependencies": {
     "@mk7s/hologpu-core": "workspace:*",
-    "@mk7s/hologpu-effects": "workspace:*"
+    "@mk7s/hologpu-effects": "workspace:*",
+    "@mk7s/hologpu-dom": "workspace:*"
   },
   "devDependencies": {
     "typescript": "catalog:"

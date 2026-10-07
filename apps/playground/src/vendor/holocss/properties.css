@@ -1,0 +1,30 @@
+/* Opt-in registrations: dedicated animated values, not semantic palette tokens. */
+@property --hcss-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --hcss-number {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --hcss-gradient-start {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #3b82f6;
+}
+
+@property --hcss-gradient-end {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8b5cf6;
+}
+
+@property --hcss-gradient-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}

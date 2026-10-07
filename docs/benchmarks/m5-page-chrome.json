@@ -1,0 +1,9286 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "chrome",
+    "browserVersion": "154.0.8037.98",
+    "headless": true,
+    "dpr": 1,
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "baseURL": "http://127.0.0.1:5176",
+    "competingLoad": "No other benchmark or LCD node job observed at launch; machine-wide background load is not controlled."
+  },
+  "scenario": {
+    "layout": "#stage.dom-mode{height:760px}.m5-cards{grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:1000px}.m5-card{height:220px;min-height:220px}",
+    "seed": 7,
+    "page": "Actual production DOMStage with six independently attached Family H fields; real shared scheduler with scroll-driven uniforms.",
+    "warmup": 30,
+    "samples": 120,
+    "deadline": "110% of per-run idle median rAF; >=95% completed CPU+queue work inside deadline and median workload rAF inside deadline.",
+    "cpuBoundary": "First field custom onBeforeFrame hook to shared queue completion; earlier automatic hooks on that first field are excluded. Capture is asynchronous and does not serialize rAF.",
+    "css": "Public production bindCSSParameters; 0/1/8 selected bindings, 30 warmup +120 manually sampled visible frame hooks, no GPU rendering in timing region."
+  },
+  "results": [
+    {
+      "id": "six-attached-effects",
+      "samples": 120,
+      "warmup": 30,
+      "submissions": 150,
+      "fields": [
+        {
+          "id": "border-energy",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "rect": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "radius": 18,
+            "width": 2,
+            "glow": 14,
+            "speed": 0.4,
+            "intensity": 1.5,
+            "tint": "#92dfe7"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        },
+        {
+          "id": "spotlight",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "pageRect": [
+              565,
+              324.59375,
+              266,
+              220
+            ],
+            "pagePointer": [
+              720,
+              500
+            ],
+            "radius": 180,
+            "softness": 0.55,
+            "intensity": 1.2,
+            "ambient": 0.04,
+            "tint": "#c4c1ff",
+            "background": "#102133"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        },
+        {
+          "id": "image-hover",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0,
+            "amount": 0.055,
+            "frequency": 22,
+            "feather": 0.12,
+            "mode": "wave"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 595712,
+            "bufferBytes": 96,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "defaultImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            },
+            "secondImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            }
+          }
+        },
+        {
+          "id": "text-dissolve",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0,
+            "grid": 128,
+            "spread": 0.75,
+            "size": 1.8,
+            "curl": 0.3,
+            "opacity": 0.85,
+            "tint": "#c5bbf2"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 1439248,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "input:text": {
+              "width": 264,
+              "height": 218,
+              "format": "rgba16float"
+            },
+            "input:text:mip-1": {
+              "width": 132,
+              "height": 109,
+              "format": "rgba16float"
+            },
+            "input:text:mip-2": {
+              "width": 66,
+              "height": 54,
+              "format": "rgba16float"
+            },
+            "input:text:mip-3": {
+              "width": 33,
+              "height": 27,
+              "format": "rgba16float"
+            },
+            "input:text:mip-4": {
+              "width": 16,
+              "height": 13,
+              "format": "rgba16float"
+            },
+            "input:text:mip-5": {
+              "width": 8,
+              "height": 6,
+              "format": "rgba16float"
+            },
+            "input:text:mip-6": {
+              "width": 4,
+              "height": 3,
+              "format": "rgba16float"
+            },
+            "input:text:mip-7": {
+              "width": 2,
+              "height": 1,
+              "format": "rgba16float"
+            },
+            "input:text:mip-8": {
+              "width": 1,
+              "height": 1,
+              "format": "rgba16float"
+            },
+            "textMask": {
+              "width": 512,
+              "height": 256,
+              "format": "r8unorm"
+            }
+          }
+        },
+        {
+          "id": "audio-spectrum",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "mode": "spectrum",
+            "bars": 64,
+            "range": 0.5,
+            "gain": 1.5,
+            "gap": 0.2,
+            "terrainSteps": 48,
+            "lineWidth": 1.5,
+            "tint": "#8fe0db",
+            "background": "#071826"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 538368,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "defaultImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            },
+            "referenceAudio": {
+              "width": 256,
+              "height": 2,
+              "format": "rgba32float"
+            }
+          }
+        },
+        {
+          "id": "scroll-scene",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0.378707,
+            "depth": 1,
+            "turns": 1,
+            "radius": 0.13,
+            "first": "#e5aa8c",
+            "second": "#8aadeb",
+            "background": "#0e1d30"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        }
+      ],
+      "bounds": [
+        {
+          "left": 281,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 565,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 849,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 281,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 565,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 849,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        }
+      ],
+      "pixels": [
+        {
+          "id": "border-energy",
+          "width": 264,
+          "height": 220,
+          "hash": 2244506457,
+          "coloredSamples": 6508
+        },
+        {
+          "id": "spotlight",
+          "width": 264,
+          "height": 220,
+          "hash": 4165949546,
+          "coloredSamples": 174240
+        },
+        {
+          "id": "image-hover",
+          "width": 264,
+          "height": 220,
+          "hash": 2948769626,
+          "coloredSamples": 174240
+        },
+        {
+          "id": "text-dissolve",
+          "width": 264,
+          "height": 220,
+          "hash": 2832532759,
+          "coloredSamples": 6348
+        },
+        {
+          "id": "audio-spectrum",
+          "width": 264,
+          "height": 220,
+          "hash": 3971386949,
+          "coloredSamples": 60320
+        },
+        {
+          "id": "scroll-scene",
+          "width": 264,
+          "height": 220,
+          "hash": 1606668902,
+          "coloredSamples": 132865
+        }
+      ],
+      "contexts": 6,
+      "memory": {
+        "instances": 6,
+        "textureBytes": 3967248,
+        "bufferBytes": 752,
+        "presentationContexts": 6,
+        "overlay": null
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "sampleBoundaries": [
+        {
+          "tick": 31,
+          "renders": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "updates": [
+            29,
+            29,
+            29,
+            29,
+            29,
+            29
+          ]
+        },
+        {
+          "tick": 32,
+          "renders": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "updates": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ]
+        },
+        {
+          "tick": 33,
+          "renders": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ],
+          "updates": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ]
+        },
+        {
+          "tick": 34,
+          "renders": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ],
+          "updates": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "tick": 35,
+          "renders": [
+            35,
+            35,
+            35,
+            35,
+            35,
+            35
+          ],
+          "updates": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ]
+        },
+        {
+          "tick": 36,
+          "renders": [
+            36,
+            36,
+            36,
+            36,
+            36,
+            36
+          ],
+          "updates": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ]
+        },
+        {
+          "tick": 37,
+          "renders": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          "updates": [
+            35,
+            35,
+            35,
+            35,
+            35,
+            35
+          ]
+        },
+        {
+          "tick": 38,
+          "renders": [
+            38,
+            38,
+            38,
+            38,
+            38,
+            38
+          ],
+          "updates": [
+            36,
+            36,
+            36,
+            36,
+            36,
+            36
+          ]
+        },
+        {
+          "tick": 39,
+          "renders": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ],
+          "updates": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ]
+        },
+        {
+          "tick": 40,
+          "renders": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ],
+          "updates": [
+            38,
+            38,
+            38,
+            38,
+            38,
+            38
+          ]
+        },
+        {
+          "tick": 41,
+          "renders": [
+            41,
+            41,
+            41,
+            41,
+            41,
+            41
+          ],
+          "updates": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ]
+        },
+        {
+          "tick": 42,
+          "renders": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ],
+          "updates": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ]
+        },
+        {
+          "tick": 43,
+          "renders": [
+            43,
+            43,
+            43,
+            43,
+            43,
+            43
+          ],
+          "updates": [
+            41,
+            41,
+            41,
+            41,
+            41,
+            41
+          ]
+        },
+        {
+          "tick": 44,
+          "renders": [
+            44,
+            44,
+            44,
+            44,
+            44,
+            44
+          ],
+          "updates": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        {
+          "tick": 45,
+          "renders": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ],
+          "updates": [
+            43,
+            43,
+            43,
+            43,
+            43,
+            43
+          ]
+        },
+        {
+          "tick": 46,
+          "renders": [
+            46,
+            46,
+            46,
+            46,
+            46,
+            46
+          ],
+          "updates": [
+            44,
+            44,
+            44,
+            44,
+            44,
+            44
+          ]
+        },
+        {
+          "tick": 47,
+          "renders": [
+            47,
+            47,
+            47,
+            47,
+            47,
+            47
+          ],
+          "updates": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ]
+        },
+        {
+          "tick": 48,
+          "renders": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ],
+          "updates": [
+            46,
+            46,
+            46,
+            46,
+            46,
+            46
+          ]
+        },
+        {
+          "tick": 49,
+          "renders": [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ],
+          "updates": [
+            47,
+            47,
+            47,
+            47,
+            47,
+            47
+          ]
+        },
+        {
+          "tick": 50,
+          "renders": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "updates": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ]
+        },
+        {
+          "tick": 51,
+          "renders": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ],
+          "updates": [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ]
+        },
+        {
+          "tick": 52,
+          "renders": [
+            52,
+            52,
+            52,
+            52,
+            52,
+            52
+          ],
+          "updates": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ]
+        },
+        {
+          "tick": 53,
+          "renders": [
+            53,
+            53,
+            53,
+            53,
+            53,
+            53
+          ],
+          "updates": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ]
+        },
+        {
+          "tick": 54,
+          "renders": [
+            54,
+            54,
+            54,
+            54,
+            54,
+            54
+          ],
+          "updates": [
+            52,
+            52,
+            52,
+            52,
+            52,
+            52
+          ]
+        },
+        {
+          "tick": 55,
+          "renders": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ],
+          "updates": [
+            53,
+            53,
+            53,
+            53,
+            53,
+            53
+          ]
+        },
+        {
+          "tick": 56,
+          "renders": [
+            56,
+            56,
+            56,
+            56,
+            56,
+            56
+          ],
+          "updates": [
+            54,
+            54,
+            54,
+            54,
+            54,
+            54
+          ]
+        },
+        {
+          "tick": 57,
+          "renders": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ],
+          "updates": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ]
+        },
+        {
+          "tick": 58,
+          "renders": [
+            58,
+            58,
+            58,
+            58,
+            58,
+            58
+          ],
+          "updates": [
+            56,
+            56,
+            56,
+            56,
+            56,
+            56
+          ]
+        },
+        {
+          "tick": 59,
+          "renders": [
+            59,
+            59,
+            59,
+            59,
+            59,
+            59
+          ],
+          "updates": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ]
+        },
+        {
+          "tick": 60,
+          "renders": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "updates": [
+            58,
+            58,
+            58,
+            58,
+            58,
+            58
+          ]
+        },
+        {
+          "tick": 61,
+          "renders": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "updates": [
+            59,
+            59,
+            59,
+            59,
+            59,
+            59
+          ]
+        },
+        {
+          "tick": 62,
+          "renders": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "updates": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ]
+        },
+        {
+          "tick": 63,
+          "renders": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ],
+          "updates": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ]
+        },
+        {
+          "tick": 64,
+          "renders": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ],
+          "updates": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ]
+        },
+        {
+          "tick": 65,
+          "renders": [
+            65,
+            65,
+            65,
+            65,
+            65,
+            65
+          ],
+          "updates": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ]
+        },
+        {
+          "tick": 66,
+          "renders": [
+            66,
+            66,
+            66,
+            66,
+            66,
+            66
+          ],
+          "updates": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ]
+        },
+        {
+          "tick": 67,
+          "renders": [
+            67,
+            67,
+            67,
+            67,
+            67,
+            67
+          ],
+          "updates": [
+            65,
+            65,
+            65,
+            65,
+            65,
+            65
+          ]
+        },
+        {
+          "tick": 68,
+          "renders": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ],
+          "updates": [
+            66,
+            66,
+            66,
+            66,
+            66,
+            66
+          ]
+        },
+        {
+          "tick": 69,
+          "renders": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ],
+          "updates": [
+            67,
+            67,
+            67,
+            67,
+            67,
+            67
+          ]
+        },
+        {
+          "tick": 70,
+          "renders": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "updates": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ]
+        },
+        {
+          "tick": 71,
+          "renders": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ],
+          "updates": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ]
+        },
+        {
+          "tick": 72,
+          "renders": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ],
+          "updates": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ]
+        },
+        {
+          "tick": 73,
+          "renders": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73
+          ],
+          "updates": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ]
+        },
+        {
+          "tick": 74,
+          "renders": [
+            74,
+            74,
+            74,
+            74,
+            74,
+            74
+          ],
+          "updates": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ]
+        },
+        {
+          "tick": 75,
+          "renders": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ],
+          "updates": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73
+          ]
+        },
+        {
+          "tick": 76,
+          "renders": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ],
+          "updates": [
+            74,
+            74,
+            74,
+            74,
+            74,
+            74
+          ]
+        },
+        {
+          "tick": 77,
+          "renders": [
+            77,
+            77,
+            77,
+            77,
+            77,
+            77
+          ],
+          "updates": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ]
+        },
+        {
+          "tick": 78,
+          "renders": [
+            78,
+            78,
+            78,
+            78,
+            78,
+            78
+          ],
+          "updates": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ]
+        },
+        {
+          "tick": 79,
+          "renders": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ],
+          "updates": [
+            77,
+            77,
+            77,
+            77,
+            77,
+            77
+          ]
+        },
+        {
+          "tick": 80,
+          "renders": [
+            80,
+            80,
+            80,
+            80,
+            80,
+            80
+          ],
+          "updates": [
+            78,
+            78,
+            78,
+            78,
+            78,
+            78
+          ]
+        },
+        {
+          "tick": 81,
+          "renders": [
+            81,
+            81,
+            81,
+            81,
+            81,
+            81
+          ],
+          "updates": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ]
+        },
+        {
+          "tick": 82,
+          "renders": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ],
+          "updates": [
+            80,
+            80,
+            80,
+            80,
+            80,
+            80
+          ]
+        },
+        {
+          "tick": 83,
+          "renders": [
+            83,
+            83,
+            83,
+            83,
+            83,
+            83
+          ],
+          "updates": [
+            81,
+            81,
+            81,
+            81,
+            81,
+            81
+          ]
+        },
+        {
+          "tick": 84,
+          "renders": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ],
+          "updates": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ]
+        },
+        {
+          "tick": 85,
+          "renders": [
+            85,
+            85,
+            85,
+            85,
+            85,
+            85
+          ],
+          "updates": [
+            83,
+            83,
+            83,
+            83,
+            83,
+            83
+          ]
+        },
+        {
+          "tick": 86,
+          "renders": [
+            86,
+            86,
+            86,
+            86,
+            86,
+            86
+          ],
+          "updates": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ]
+        },
+        {
+          "tick": 87,
+          "renders": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ],
+          "updates": [
+            85,
+            85,
+            85,
+            85,
+            85,
+            85
+          ]
+        },
+        {
+          "tick": 88,
+          "renders": [
+            88,
+            88,
+            88,
+            88,
+            88,
+            88
+          ],
+          "updates": [
+            86,
+            86,
+            86,
+            86,
+            86,
+            86
+          ]
+        },
+        {
+          "tick": 89,
+          "renders": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ],
+          "updates": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ]
+        },
+        {
+          "tick": 90,
+          "renders": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "updates": [
+            88,
+            88,
+            88,
+            88,
+            88,
+            88
+          ]
+        },
+        {
+          "tick": 91,
+          "renders": [
+            91,
+            91,
+            91,
+            91,
+            91,
+            91
+          ],
+          "updates": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ]
+        },
+        {
+          "tick": 92,
+          "renders": [
+            92,
+            92,
+            92,
+            92,
+            92,
+            92
+          ],
+          "updates": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ]
+        },
+        {
+          "tick": 93,
+          "renders": [
+            93,
+            93,
+            93,
+            93,
+            93,
+            93
+          ],
+          "updates": [
+            91,
+            91,
+            91,
+            91,
+            91,
+            91
+          ]
+        },
+        {
+          "tick": 94,
+          "renders": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ],
+          "updates": [
+            92,
+            92,
+            92,
+            92,
+            92,
+            92
+          ]
+        },
+        {
+          "tick": 95,
+          "renders": [
+            95,
+            95,
+            95,
+            95,
+            95,
+            95
+          ],
+          "updates": [
+            93,
+            93,
+            93,
+            93,
+            93,
+            93
+          ]
+        },
+        {
+          "tick": 96,
+          "renders": [
+            96,
+            96,
+            96,
+            96,
+            96,
+            96
+          ],
+          "updates": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ]
+        },
+        {
+          "tick": 97,
+          "renders": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ],
+          "updates": [
+            95,
+            95,
+            95,
+            95,
+            95,
+            95
+          ]
+        },
+        {
+          "tick": 98,
+          "renders": [
+            98,
+            98,
+            98,
+            98,
+            98,
+            98
+          ],
+          "updates": [
+            96,
+            96,
+            96,
+            96,
+            96,
+            96
+          ]
+        },
+        {
+          "tick": 99,
+          "renders": [
+            99,
+            99,
+            99,
+            99,
+            99,
+            99
+          ],
+          "updates": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ]
+        },
+        {
+          "tick": 100,
+          "renders": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "updates": [
+            98,
+            98,
+            98,
+            98,
+            98,
+            98
+          ]
+        },
+        {
+          "tick": 101,
+          "renders": [
+            101,
+            101,
+            101,
+            101,
+            101,
+            101
+          ],
+          "updates": [
+            99,
+            99,
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "tick": 102,
+          "renders": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ],
+          "updates": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "tick": 103,
+          "renders": [
+            103,
+            103,
+            103,
+            103,
+            103,
+            103
+          ],
+          "updates": [
+            101,
+            101,
+            101,
+            101,
+            101,
+            101
+          ]
+        },
+        {
+          "tick": 104,
+          "renders": [
+            104,
+            104,
+            104,
+            104,
+            104,
+            104
+          ],
+          "updates": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ]
+        },
+        {
+          "tick": 105,
+          "renders": [
+            105,
+            105,
+            105,
+            105,
+            105,
+            105
+          ],
+          "updates": [
+            103,
+            103,
+            103,
+            103,
+            103,
+            103
+          ]
+        },
+        {
+          "tick": 106,
+          "renders": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ],
+          "updates": [
+            104,
+            104,
+            104,
+            104,
+            104,
+            104
+          ]
+        },
+        {
+          "tick": 107,
+          "renders": [
+            107,
+            107,
+            107,
+            107,
+            107,
+            107
+          ],
+          "updates": [
+            105,
+            105,
+            105,
+            105,
+            105,
+            105
+          ]
+        },
+        {
+          "tick": 108,
+          "renders": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ],
+          "updates": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ]
+        },
+        {
+          "tick": 109,
+          "renders": [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109
+          ],
+          "updates": [
+            107,
+            107,
+            107,
+            107,
+            107,
+            107
+          ]
+        },
+        {
+          "tick": 110,
+          "renders": [
+            110,
+            110,
+            110,
+            110,
+            110,
+            110
+          ],
+          "updates": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ]
+        },
+        {
+          "tick": 111,
+          "renders": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ],
+          "updates": [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109
+          ]
+        },
+        {
+          "tick": 112,
+          "renders": [
+            112,
+            112,
+            112,
+            112,
+            112,
+            112
+          ],
+          "updates": [
+            110,
+            110,
+            110,
+            110,
+            110,
+            110
+          ]
+        },
+        {
+          "tick": 113,
+          "renders": [
+            113,
+            113,
+            113,
+            113,
+            113,
+            113
+          ],
+          "updates": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ]
+        },
+        {
+          "tick": 114,
+          "renders": [
+            114,
+            114,
+            114,
+            114,
+            114,
+            114
+          ],
+          "updates": [
+            112,
+            112,
+            112,
+            112,
+            112,
+            112
+          ]
+        },
+        {
+          "tick": 115,
+          "renders": [
+            115,
+            115,
+            115,
+            115,
+            115,
+            115
+          ],
+          "updates": [
+            113,
+            113,
+            113,
+            113,
+            113,
+            113
+          ]
+        },
+        {
+          "tick": 116,
+          "renders": [
+            116,
+            116,
+            116,
+            116,
+            116,
+            116
+          ],
+          "updates": [
+            114,
+            114,
+            114,
+            114,
+            114,
+            114
+          ]
+        },
+        {
+          "tick": 117,
+          "renders": [
+            117,
+            117,
+            117,
+            117,
+            117,
+            117
+          ],
+          "updates": [
+            115,
+            115,
+            115,
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "tick": 118,
+          "renders": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ],
+          "updates": [
+            116,
+            116,
+            116,
+            116,
+            116,
+            116
+          ]
+        },
+        {
+          "tick": 119,
+          "renders": [
+            119,
+            119,
+            119,
+            119,
+            119,
+            119
+          ],
+          "updates": [
+            117,
+            117,
+            117,
+            117,
+            117,
+            117
+          ]
+        },
+        {
+          "tick": 120,
+          "renders": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ],
+          "updates": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ]
+        },
+        {
+          "tick": 121,
+          "renders": [
+            121,
+            121,
+            121,
+            121,
+            121,
+            121
+          ],
+          "updates": [
+            119,
+            119,
+            119,
+            119,
+            119,
+            119
+          ]
+        },
+        {
+          "tick": 122,
+          "renders": [
+            122,
+            122,
+            122,
+            122,
+            122,
+            122
+          ],
+          "updates": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ]
+        },
+        {
+          "tick": 123,
+          "renders": [
+            123,
+            123,
+            123,
+            123,
+            123,
+            123
+          ],
+          "updates": [
+            121,
+            121,
+            121,
+            121,
+            121,
+            121
+          ]
+        },
+        {
+          "tick": 124,
+          "renders": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ],
+          "updates": [
+            122,
+            122,
+            122,
+            122,
+            122,
+            122
+          ]
+        },
+        {
+          "tick": 125,
+          "renders": [
+            125,
+            125,
+            125,
+            125,
+            125,
+            125
+          ],
+          "updates": [
+            123,
+            123,
+            123,
+            123,
+            123,
+            123
+          ]
+        },
+        {
+          "tick": 126,
+          "renders": [
+            126,
+            126,
+            126,
+            126,
+            126,
+            126
+          ],
+          "updates": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ]
+        },
+        {
+          "tick": 127,
+          "renders": [
+            127,
+            127,
+            127,
+            127,
+            127,
+            127
+          ],
+          "updates": [
+            125,
+            125,
+            125,
+            125,
+            125,
+            125
+          ]
+        },
+        {
+          "tick": 128,
+          "renders": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
+          "updates": [
+            126,
+            126,
+            126,
+            126,
+            126,
+            126
+          ]
+        },
+        {
+          "tick": 129,
+          "renders": [
+            129,
+            129,
+            129,
+            129,
+            129,
+            129
+          ],
+          "updates": [
+            127,
+            127,
+            127,
+            127,
+            127,
+            127
+          ]
+        },
+        {
+          "tick": 130,
+          "renders": [
+            130,
+            130,
+            130,
+            130,
+            130,
+            130
+          ],
+          "updates": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ]
+        },
+        {
+          "tick": 131,
+          "renders": [
+            131,
+            131,
+            131,
+            131,
+            131,
+            131
+          ],
+          "updates": [
+            129,
+            129,
+            129,
+            129,
+            129,
+            129
+          ]
+        },
+        {
+          "tick": 132,
+          "renders": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ],
+          "updates": [
+            130,
+            130,
+            130,
+            130,
+            130,
+            130
+          ]
+        },
+        {
+          "tick": 133,
+          "renders": [
+            133,
+            133,
+            133,
+            133,
+            133,
+            133
+          ],
+          "updates": [
+            131,
+            131,
+            131,
+            131,
+            131,
+            131
+          ]
+        },
+        {
+          "tick": 134,
+          "renders": [
+            134,
+            134,
+            134,
+            134,
+            134,
+            134
+          ],
+          "updates": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ]
+        },
+        {
+          "tick": 135,
+          "renders": [
+            135,
+            135,
+            135,
+            135,
+            135,
+            135
+          ],
+          "updates": [
+            133,
+            133,
+            133,
+            133,
+            133,
+            133
+          ]
+        },
+        {
+          "tick": 136,
+          "renders": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ],
+          "updates": [
+            134,
+            134,
+            134,
+            134,
+            134,
+            134
+          ]
+        },
+        {
+          "tick": 137,
+          "renders": [
+            137,
+            137,
+            137,
+            137,
+            137,
+            137
+          ],
+          "updates": [
+            135,
+            135,
+            135,
+            135,
+            135,
+            135
+          ]
+        },
+        {
+          "tick": 138,
+          "renders": [
+            138,
+            138,
+            138,
+            138,
+            138,
+            138
+          ],
+          "updates": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ]
+        },
+        {
+          "tick": 139,
+          "renders": [
+            139,
+            139,
+            139,
+            139,
+            139,
+            139
+          ],
+          "updates": [
+            137,
+            137,
+            137,
+            137,
+            137,
+            137
+          ]
+        },
+        {
+          "tick": 140,
+          "renders": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140
+          ],
+          "updates": [
+            138,
+            138,
+            138,
+            138,
+            138,
+            138
+          ]
+        },
+        {
+          "tick": 141,
+          "renders": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ],
+          "updates": [
+            139,
+            139,
+            139,
+            139,
+            139,
+            139
+          ]
+        },
+        {
+          "tick": 142,
+          "renders": [
+            142,
+            142,
+            142,
+            142,
+            142,
+            142
+          ],
+          "updates": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140
+          ]
+        },
+        {
+          "tick": 143,
+          "renders": [
+            143,
+            143,
+            143,
+            143,
+            143,
+            143
+          ],
+          "updates": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ]
+        },
+        {
+          "tick": 144,
+          "renders": [
+            144,
+            144,
+            144,
+            144,
+            144,
+            144
+          ],
+          "updates": [
+            142,
+            142,
+            142,
+            142,
+            142,
+            142
+          ]
+        },
+        {
+          "tick": 145,
+          "renders": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ],
+          "updates": [
+            143,
+            143,
+            143,
+            143,
+            143,
+            143
+          ]
+        },
+        {
+          "tick": 146,
+          "renders": [
+            146,
+            146,
+            146,
+            146,
+            146,
+            146
+          ],
+          "updates": [
+            144,
+            144,
+            144,
+            144,
+            144,
+            144
+          ]
+        },
+        {
+          "tick": 147,
+          "renders": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ],
+          "updates": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        {
+          "tick": 148,
+          "renders": [
+            148,
+            148,
+            148,
+            148,
+            148,
+            148
+          ],
+          "updates": [
+            146,
+            146,
+            146,
+            146,
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 149,
+          "renders": [
+            149,
+            149,
+            149,
+            149,
+            149,
+            149
+          ],
+          "updates": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ]
+        },
+        {
+          "tick": 150,
+          "renders": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            150
+          ],
+          "updates": [
+            148,
+            148,
+            148,
+            148,
+            148,
+            148
+          ]
+        }
+      ],
+      "idleRafMs": {
+        "count": 39,
+        "mean": 16.666666666666664,
+        "p50": 16.699999999999932,
+        "p95": 16.799999999999955,
+        "max": 16.799999999999955
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333214124,
+        "p50": 16.600000143051147,
+        "p95": 18.399999856948853,
+        "max": 18.90000009536743
+      },
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.44000001152356466,
+        "p50": 0.2999999523162842,
+        "p95": 0.9000000953674316,
+        "max": 2.4000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 3.1408333361148832,
+        "p50": 2.5,
+        "p95": 6.300000190734863,
+        "max": 9.700000047683716
+      },
+      "deadlineMs": 18.369999999999926,
+      "completedWithinDeadline": 1,
+      "gate": true,
+      "run": 1
+    },
+    {
+      "id": "six-attached-effects",
+      "samples": 120,
+      "warmup": 30,
+      "submissions": 150,
+      "fields": [
+        {
+          "id": "border-energy",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "rect": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "radius": 18,
+            "width": 2,
+            "glow": 14,
+            "speed": 0.4,
+            "intensity": 1.5,
+            "tint": "#92dfe7"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        },
+        {
+          "id": "spotlight",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "pageRect": [
+              565,
+              324.59375,
+              266,
+              220
+            ],
+            "pagePointer": [
+              720,
+              500
+            ],
+            "radius": 180,
+            "softness": 0.55,
+            "intensity": 1.2,
+            "ambient": 0.04,
+            "tint": "#c4c1ff",
+            "background": "#102133"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        },
+        {
+          "id": "image-hover",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0,
+            "amount": 0.055,
+            "frequency": 22,
+            "feather": 0.12,
+            "mode": "wave"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 595712,
+            "bufferBytes": 96,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "defaultImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            },
+            "secondImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            }
+          }
+        },
+        {
+          "id": "text-dissolve",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0,
+            "grid": 128,
+            "spread": 0.75,
+            "size": 1.8,
+            "curl": 0.3,
+            "opacity": 0.85,
+            "tint": "#c5bbf2"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 1439248,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "input:text": {
+              "width": 264,
+              "height": 218,
+              "format": "rgba16float"
+            },
+            "input:text:mip-1": {
+              "width": 132,
+              "height": 109,
+              "format": "rgba16float"
+            },
+            "input:text:mip-2": {
+              "width": 66,
+              "height": 54,
+              "format": "rgba16float"
+            },
+            "input:text:mip-3": {
+              "width": 33,
+              "height": 27,
+              "format": "rgba16float"
+            },
+            "input:text:mip-4": {
+              "width": 16,
+              "height": 13,
+              "format": "rgba16float"
+            },
+            "input:text:mip-5": {
+              "width": 8,
+              "height": 6,
+              "format": "rgba16float"
+            },
+            "input:text:mip-6": {
+              "width": 4,
+              "height": 3,
+              "format": "rgba16float"
+            },
+            "input:text:mip-7": {
+              "width": 2,
+              "height": 1,
+              "format": "rgba16float"
+            },
+            "input:text:mip-8": {
+              "width": 1,
+              "height": 1,
+              "format": "rgba16float"
+            },
+            "textMask": {
+              "width": 512,
+              "height": 256,
+              "format": "r8unorm"
+            }
+          }
+        },
+        {
+          "id": "audio-spectrum",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "mode": "spectrum",
+            "bars": 64,
+            "range": 0.5,
+            "gain": 1.5,
+            "gap": 0.2,
+            "terrainSteps": 48,
+            "lineWidth": 1.5,
+            "tint": "#8fe0db",
+            "background": "#071826"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 538368,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "defaultImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            },
+            "referenceAudio": {
+              "width": 256,
+              "height": 2,
+              "format": "rgba32float"
+            }
+          }
+        },
+        {
+          "id": "scroll-scene",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0.378707,
+            "depth": 1,
+            "turns": 1,
+            "radius": 0.13,
+            "first": "#e5aa8c",
+            "second": "#8aadeb",
+            "background": "#0e1d30"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        }
+      ],
+      "bounds": [
+        {
+          "left": 281,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 565,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 849,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 281,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 565,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 849,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        }
+      ],
+      "pixels": [
+        {
+          "id": "border-energy",
+          "width": 264,
+          "height": 220,
+          "hash": 2244506457,
+          "coloredSamples": 6508
+        },
+        {
+          "id": "spotlight",
+          "width": 264,
+          "height": 220,
+          "hash": 4165949546,
+          "coloredSamples": 174240
+        },
+        {
+          "id": "image-hover",
+          "width": 264,
+          "height": 220,
+          "hash": 2948769626,
+          "coloredSamples": 174240
+        },
+        {
+          "id": "text-dissolve",
+          "width": 264,
+          "height": 220,
+          "hash": 2832532759,
+          "coloredSamples": 6348
+        },
+        {
+          "id": "audio-spectrum",
+          "width": 264,
+          "height": 220,
+          "hash": 3971386949,
+          "coloredSamples": 60320
+        },
+        {
+          "id": "scroll-scene",
+          "width": 264,
+          "height": 220,
+          "hash": 1606668902,
+          "coloredSamples": 132865
+        }
+      ],
+      "contexts": 6,
+      "memory": {
+        "instances": 6,
+        "textureBytes": 3967248,
+        "bufferBytes": 752,
+        "presentationContexts": 6,
+        "overlay": null
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "sampleBoundaries": [
+        {
+          "tick": 31,
+          "renders": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "updates": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ]
+        },
+        {
+          "tick": 32,
+          "renders": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "updates": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ]
+        },
+        {
+          "tick": 33,
+          "renders": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ],
+          "updates": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "tick": 34,
+          "renders": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ],
+          "updates": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ]
+        },
+        {
+          "tick": 35,
+          "renders": [
+            35,
+            35,
+            35,
+            35,
+            35,
+            35
+          ],
+          "updates": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ]
+        },
+        {
+          "tick": 36,
+          "renders": [
+            36,
+            36,
+            36,
+            36,
+            36,
+            36
+          ],
+          "updates": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ]
+        },
+        {
+          "tick": 37,
+          "renders": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          "updates": [
+            36,
+            36,
+            36,
+            36,
+            36,
+            36
+          ]
+        },
+        {
+          "tick": 38,
+          "renders": [
+            38,
+            38,
+            38,
+            38,
+            38,
+            38
+          ],
+          "updates": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ]
+        },
+        {
+          "tick": 39,
+          "renders": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ],
+          "updates": [
+            38,
+            38,
+            38,
+            38,
+            38,
+            38
+          ]
+        },
+        {
+          "tick": 40,
+          "renders": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ],
+          "updates": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ]
+        },
+        {
+          "tick": 41,
+          "renders": [
+            41,
+            41,
+            41,
+            41,
+            41,
+            41
+          ],
+          "updates": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ]
+        },
+        {
+          "tick": 42,
+          "renders": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ],
+          "updates": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ]
+        },
+        {
+          "tick": 43,
+          "renders": [
+            43,
+            43,
+            43,
+            43,
+            43,
+            43
+          ],
+          "updates": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        {
+          "tick": 44,
+          "renders": [
+            44,
+            44,
+            44,
+            44,
+            44,
+            44
+          ],
+          "updates": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        {
+          "tick": 45,
+          "renders": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ],
+          "updates": [
+            44,
+            44,
+            44,
+            44,
+            44,
+            44
+          ]
+        },
+        {
+          "tick": 46,
+          "renders": [
+            46,
+            46,
+            46,
+            46,
+            46,
+            46
+          ],
+          "updates": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ]
+        },
+        {
+          "tick": 47,
+          "renders": [
+            47,
+            47,
+            47,
+            47,
+            47,
+            47
+          ],
+          "updates": [
+            46,
+            46,
+            46,
+            46,
+            46,
+            46
+          ]
+        },
+        {
+          "tick": 48,
+          "renders": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ],
+          "updates": [
+            47,
+            47,
+            47,
+            47,
+            47,
+            47
+          ]
+        },
+        {
+          "tick": 49,
+          "renders": [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ],
+          "updates": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ]
+        },
+        {
+          "tick": 50,
+          "renders": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "updates": [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ]
+        },
+        {
+          "tick": 51,
+          "renders": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ],
+          "updates": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ]
+        },
+        {
+          "tick": 52,
+          "renders": [
+            52,
+            52,
+            52,
+            52,
+            52,
+            52
+          ],
+          "updates": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ]
+        },
+        {
+          "tick": 53,
+          "renders": [
+            53,
+            53,
+            53,
+            53,
+            53,
+            53
+          ],
+          "updates": [
+            52,
+            52,
+            52,
+            52,
+            52,
+            52
+          ]
+        },
+        {
+          "tick": 54,
+          "renders": [
+            54,
+            54,
+            54,
+            54,
+            54,
+            54
+          ],
+          "updates": [
+            53,
+            53,
+            53,
+            53,
+            53,
+            53
+          ]
+        },
+        {
+          "tick": 55,
+          "renders": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ],
+          "updates": [
+            54,
+            54,
+            54,
+            54,
+            54,
+            54
+          ]
+        },
+        {
+          "tick": 56,
+          "renders": [
+            56,
+            56,
+            56,
+            56,
+            56,
+            56
+          ],
+          "updates": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ]
+        },
+        {
+          "tick": 57,
+          "renders": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ],
+          "updates": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ]
+        },
+        {
+          "tick": 58,
+          "renders": [
+            58,
+            58,
+            58,
+            58,
+            58,
+            58
+          ],
+          "updates": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ]
+        },
+        {
+          "tick": 59,
+          "renders": [
+            59,
+            59,
+            59,
+            59,
+            59,
+            59
+          ],
+          "updates": [
+            58,
+            58,
+            58,
+            58,
+            58,
+            58
+          ]
+        },
+        {
+          "tick": 60,
+          "renders": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "updates": [
+            59,
+            59,
+            59,
+            59,
+            59,
+            59
+          ]
+        },
+        {
+          "tick": 61,
+          "renders": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "updates": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ]
+        },
+        {
+          "tick": 62,
+          "renders": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "updates": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ]
+        },
+        {
+          "tick": 63,
+          "renders": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ],
+          "updates": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ]
+        },
+        {
+          "tick": 64,
+          "renders": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ],
+          "updates": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ]
+        },
+        {
+          "tick": 65,
+          "renders": [
+            65,
+            65,
+            65,
+            65,
+            65,
+            65
+          ],
+          "updates": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ]
+        },
+        {
+          "tick": 66,
+          "renders": [
+            66,
+            66,
+            66,
+            66,
+            66,
+            66
+          ],
+          "updates": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ]
+        },
+        {
+          "tick": 67,
+          "renders": [
+            67,
+            67,
+            67,
+            67,
+            67,
+            67
+          ],
+          "updates": [
+            66,
+            66,
+            66,
+            66,
+            66,
+            66
+          ]
+        },
+        {
+          "tick": 68,
+          "renders": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ],
+          "updates": [
+            67,
+            67,
+            67,
+            67,
+            67,
+            67
+          ]
+        },
+        {
+          "tick": 69,
+          "renders": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ],
+          "updates": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ]
+        },
+        {
+          "tick": 70,
+          "renders": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "updates": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ]
+        },
+        {
+          "tick": 71,
+          "renders": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ],
+          "updates": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ]
+        },
+        {
+          "tick": 72,
+          "renders": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ],
+          "updates": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ]
+        },
+        {
+          "tick": 73,
+          "renders": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73
+          ],
+          "updates": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ]
+        },
+        {
+          "tick": 74,
+          "renders": [
+            74,
+            74,
+            74,
+            74,
+            74,
+            74
+          ],
+          "updates": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ]
+        },
+        {
+          "tick": 75,
+          "renders": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ],
+          "updates": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73
+          ]
+        },
+        {
+          "tick": 76,
+          "renders": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ],
+          "updates": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ]
+        },
+        {
+          "tick": 77,
+          "renders": [
+            77,
+            77,
+            77,
+            77,
+            77,
+            77
+          ],
+          "updates": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ]
+        },
+        {
+          "tick": 78,
+          "renders": [
+            78,
+            78,
+            78,
+            78,
+            78,
+            78
+          ],
+          "updates": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ]
+        },
+        {
+          "tick": 79,
+          "renders": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ],
+          "updates": [
+            78,
+            78,
+            78,
+            78,
+            78,
+            78
+          ]
+        },
+        {
+          "tick": 80,
+          "renders": [
+            80,
+            80,
+            80,
+            80,
+            80,
+            80
+          ],
+          "updates": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ]
+        },
+        {
+          "tick": 81,
+          "renders": [
+            81,
+            81,
+            81,
+            81,
+            81,
+            81
+          ],
+          "updates": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ]
+        },
+        {
+          "tick": 82,
+          "renders": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ],
+          "updates": [
+            81,
+            81,
+            81,
+            81,
+            81,
+            81
+          ]
+        },
+        {
+          "tick": 83,
+          "renders": [
+            83,
+            83,
+            83,
+            83,
+            83,
+            83
+          ],
+          "updates": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ]
+        },
+        {
+          "tick": 84,
+          "renders": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ],
+          "updates": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ]
+        },
+        {
+          "tick": 85,
+          "renders": [
+            85,
+            85,
+            85,
+            85,
+            85,
+            85
+          ],
+          "updates": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ]
+        },
+        {
+          "tick": 86,
+          "renders": [
+            86,
+            86,
+            86,
+            86,
+            86,
+            86
+          ],
+          "updates": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ]
+        },
+        {
+          "tick": 87,
+          "renders": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ],
+          "updates": [
+            85,
+            85,
+            85,
+            85,
+            85,
+            85
+          ]
+        },
+        {
+          "tick": 88,
+          "renders": [
+            88,
+            88,
+            88,
+            88,
+            88,
+            88
+          ],
+          "updates": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ]
+        },
+        {
+          "tick": 89,
+          "renders": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ],
+          "updates": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ]
+        },
+        {
+          "tick": 90,
+          "renders": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "updates": [
+            88,
+            88,
+            88,
+            88,
+            88,
+            88
+          ]
+        },
+        {
+          "tick": 91,
+          "renders": [
+            91,
+            91,
+            91,
+            91,
+            91,
+            91
+          ],
+          "updates": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ]
+        },
+        {
+          "tick": 92,
+          "renders": [
+            92,
+            92,
+            92,
+            92,
+            92,
+            92
+          ],
+          "updates": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ]
+        },
+        {
+          "tick": 93,
+          "renders": [
+            93,
+            93,
+            93,
+            93,
+            93,
+            93
+          ],
+          "updates": [
+            91,
+            91,
+            91,
+            91,
+            91,
+            91
+          ]
+        },
+        {
+          "tick": 94,
+          "renders": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ],
+          "updates": [
+            93,
+            93,
+            93,
+            93,
+            93,
+            93
+          ]
+        },
+        {
+          "tick": 95,
+          "renders": [
+            95,
+            95,
+            95,
+            95,
+            95,
+            95
+          ],
+          "updates": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ]
+        },
+        {
+          "tick": 96,
+          "renders": [
+            96,
+            96,
+            96,
+            96,
+            96,
+            96
+          ],
+          "updates": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ]
+        },
+        {
+          "tick": 97,
+          "renders": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ],
+          "updates": [
+            96,
+            96,
+            96,
+            96,
+            96,
+            96
+          ]
+        },
+        {
+          "tick": 98,
+          "renders": [
+            98,
+            98,
+            98,
+            98,
+            98,
+            98
+          ],
+          "updates": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ]
+        },
+        {
+          "tick": 99,
+          "renders": [
+            99,
+            99,
+            99,
+            99,
+            99,
+            99
+          ],
+          "updates": [
+            98,
+            98,
+            98,
+            98,
+            98,
+            98
+          ]
+        },
+        {
+          "tick": 100,
+          "renders": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "updates": [
+            99,
+            99,
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "tick": 101,
+          "renders": [
+            101,
+            101,
+            101,
+            101,
+            101,
+            101
+          ],
+          "updates": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "tick": 102,
+          "renders": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ],
+          "updates": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "tick": 103,
+          "renders": [
+            103,
+            103,
+            103,
+            103,
+            103,
+            103
+          ],
+          "updates": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ]
+        },
+        {
+          "tick": 104,
+          "renders": [
+            104,
+            104,
+            104,
+            104,
+            104,
+            104
+          ],
+          "updates": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ]
+        },
+        {
+          "tick": 105,
+          "renders": [
+            105,
+            105,
+            105,
+            105,
+            105,
+            105
+          ],
+          "updates": [
+            103,
+            103,
+            103,
+            103,
+            103,
+            103
+          ]
+        },
+        {
+          "tick": 106,
+          "renders": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ],
+          "updates": [
+            105,
+            105,
+            105,
+            105,
+            105,
+            105
+          ]
+        },
+        {
+          "tick": 107,
+          "renders": [
+            107,
+            107,
+            107,
+            107,
+            107,
+            107
+          ],
+          "updates": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ]
+        },
+        {
+          "tick": 108,
+          "renders": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ],
+          "updates": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ]
+        },
+        {
+          "tick": 109,
+          "renders": [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109
+          ],
+          "updates": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ]
+        },
+        {
+          "tick": 110,
+          "renders": [
+            110,
+            110,
+            110,
+            110,
+            110,
+            110
+          ],
+          "updates": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ]
+        },
+        {
+          "tick": 111,
+          "renders": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ],
+          "updates": [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109
+          ]
+        },
+        {
+          "tick": 112,
+          "renders": [
+            112,
+            112,
+            112,
+            112,
+            112,
+            112
+          ],
+          "updates": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ]
+        },
+        {
+          "tick": 113,
+          "renders": [
+            113,
+            113,
+            113,
+            113,
+            113,
+            113
+          ],
+          "updates": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ]
+        },
+        {
+          "tick": 114,
+          "renders": [
+            114,
+            114,
+            114,
+            114,
+            114,
+            114
+          ],
+          "updates": [
+            112,
+            112,
+            112,
+            112,
+            112,
+            112
+          ]
+        },
+        {
+          "tick": 115,
+          "renders": [
+            115,
+            115,
+            115,
+            115,
+            115,
+            115
+          ],
+          "updates": [
+            113,
+            113,
+            113,
+            113,
+            113,
+            113
+          ]
+        },
+        {
+          "tick": 116,
+          "renders": [
+            116,
+            116,
+            116,
+            116,
+            116,
+            116
+          ],
+          "updates": [
+            114,
+            114,
+            114,
+            114,
+            114,
+            114
+          ]
+        },
+        {
+          "tick": 117,
+          "renders": [
+            117,
+            117,
+            117,
+            117,
+            117,
+            117
+          ],
+          "updates": [
+            115,
+            115,
+            115,
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "tick": 118,
+          "renders": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ],
+          "updates": [
+            116,
+            116,
+            116,
+            116,
+            116,
+            116
+          ]
+        },
+        {
+          "tick": 119,
+          "renders": [
+            119,
+            119,
+            119,
+            119,
+            119,
+            119
+          ],
+          "updates": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ]
+        },
+        {
+          "tick": 120,
+          "renders": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ],
+          "updates": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ]
+        },
+        {
+          "tick": 121,
+          "renders": [
+            121,
+            121,
+            121,
+            121,
+            121,
+            121
+          ],
+          "updates": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ]
+        },
+        {
+          "tick": 122,
+          "renders": [
+            122,
+            122,
+            122,
+            122,
+            122,
+            122
+          ],
+          "updates": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ]
+        },
+        {
+          "tick": 123,
+          "renders": [
+            123,
+            123,
+            123,
+            123,
+            123,
+            123
+          ],
+          "updates": [
+            121,
+            121,
+            121,
+            121,
+            121,
+            121
+          ]
+        },
+        {
+          "tick": 124,
+          "renders": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ],
+          "updates": [
+            122,
+            122,
+            122,
+            122,
+            122,
+            122
+          ]
+        },
+        {
+          "tick": 125,
+          "renders": [
+            125,
+            125,
+            125,
+            125,
+            125,
+            125
+          ],
+          "updates": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ]
+        },
+        {
+          "tick": 126,
+          "renders": [
+            126,
+            126,
+            126,
+            126,
+            126,
+            126
+          ],
+          "updates": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ]
+        },
+        {
+          "tick": 127,
+          "renders": [
+            127,
+            127,
+            127,
+            127,
+            127,
+            127
+          ],
+          "updates": [
+            125,
+            125,
+            125,
+            125,
+            125,
+            125
+          ]
+        },
+        {
+          "tick": 128,
+          "renders": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
+          "updates": [
+            126,
+            126,
+            126,
+            126,
+            126,
+            126
+          ]
+        },
+        {
+          "tick": 129,
+          "renders": [
+            129,
+            129,
+            129,
+            129,
+            129,
+            129
+          ],
+          "updates": [
+            127,
+            127,
+            127,
+            127,
+            127,
+            127
+          ]
+        },
+        {
+          "tick": 130,
+          "renders": [
+            130,
+            130,
+            130,
+            130,
+            130,
+            130
+          ],
+          "updates": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ]
+        },
+        {
+          "tick": 131,
+          "renders": [
+            131,
+            131,
+            131,
+            131,
+            131,
+            131
+          ],
+          "updates": [
+            129,
+            129,
+            129,
+            129,
+            129,
+            129
+          ]
+        },
+        {
+          "tick": 132,
+          "renders": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ],
+          "updates": [
+            130,
+            130,
+            130,
+            130,
+            130,
+            130
+          ]
+        },
+        {
+          "tick": 133,
+          "renders": [
+            133,
+            133,
+            133,
+            133,
+            133,
+            133
+          ],
+          "updates": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ]
+        },
+        {
+          "tick": 134,
+          "renders": [
+            134,
+            134,
+            134,
+            134,
+            134,
+            134
+          ],
+          "updates": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ]
+        },
+        {
+          "tick": 135,
+          "renders": [
+            135,
+            135,
+            135,
+            135,
+            135,
+            135
+          ],
+          "updates": [
+            133,
+            133,
+            133,
+            133,
+            133,
+            133
+          ]
+        },
+        {
+          "tick": 136,
+          "renders": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ],
+          "updates": [
+            134,
+            134,
+            134,
+            134,
+            134,
+            134
+          ]
+        },
+        {
+          "tick": 137,
+          "renders": [
+            137,
+            137,
+            137,
+            137,
+            137,
+            137
+          ],
+          "updates": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ]
+        },
+        {
+          "tick": 138,
+          "renders": [
+            138,
+            138,
+            138,
+            138,
+            138,
+            138
+          ],
+          "updates": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ]
+        },
+        {
+          "tick": 139,
+          "renders": [
+            139,
+            139,
+            139,
+            139,
+            139,
+            139
+          ],
+          "updates": [
+            137,
+            137,
+            137,
+            137,
+            137,
+            137
+          ]
+        },
+        {
+          "tick": 140,
+          "renders": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140
+          ],
+          "updates": [
+            138,
+            138,
+            138,
+            138,
+            138,
+            138
+          ]
+        },
+        {
+          "tick": 141,
+          "renders": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ],
+          "updates": [
+            139,
+            139,
+            139,
+            139,
+            139,
+            139
+          ]
+        },
+        {
+          "tick": 142,
+          "renders": [
+            142,
+            142,
+            142,
+            142,
+            142,
+            142
+          ],
+          "updates": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ]
+        },
+        {
+          "tick": 143,
+          "renders": [
+            143,
+            143,
+            143,
+            143,
+            143,
+            143
+          ],
+          "updates": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ]
+        },
+        {
+          "tick": 144,
+          "renders": [
+            144,
+            144,
+            144,
+            144,
+            144,
+            144
+          ],
+          "updates": [
+            142,
+            142,
+            142,
+            142,
+            142,
+            142
+          ]
+        },
+        {
+          "tick": 145,
+          "renders": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ],
+          "updates": [
+            143,
+            143,
+            143,
+            143,
+            143,
+            143
+          ]
+        },
+        {
+          "tick": 146,
+          "renders": [
+            146,
+            146,
+            146,
+            146,
+            146,
+            146
+          ],
+          "updates": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        {
+          "tick": 147,
+          "renders": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ],
+          "updates": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        {
+          "tick": 148,
+          "renders": [
+            148,
+            148,
+            148,
+            148,
+            148,
+            148
+          ],
+          "updates": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ]
+        },
+        {
+          "tick": 149,
+          "renders": [
+            149,
+            149,
+            149,
+            149,
+            149,
+            149
+          ],
+          "updates": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ]
+        },
+        {
+          "tick": 150,
+          "renders": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            150
+          ],
+          "updates": [
+            148,
+            148,
+            148,
+            148,
+            148,
+            148
+          ]
+        }
+      ],
+      "idleRafMs": {
+        "count": 39,
+        "mean": 16.66410256410256,
+        "p50": 16.699999999999932,
+        "p95": 16.80000000000001,
+        "max": 16.80000000000001
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.672500000397363,
+        "p50": 16.600000143051147,
+        "p95": 18.200000047683716,
+        "max": 20.799999952316284
+      },
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.4649999956289927,
+        "p50": 0.40000009536743164,
+        "p95": 0.8000001907348633,
+        "max": 1
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 3.2449999888737997,
+        "p50": 2.5999999046325684,
+        "p95": 6.200000047683716,
+        "max": 8
+      },
+      "deadlineMs": 18.369999999999926,
+      "completedWithinDeadline": 1,
+      "gate": true,
+      "run": 2
+    },
+    {
+      "id": "six-attached-effects",
+      "samples": 120,
+      "warmup": 30,
+      "submissions": 150,
+      "fields": [
+        {
+          "id": "border-energy",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "rect": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "radius": 18,
+            "width": 2,
+            "glow": 14,
+            "speed": 0.4,
+            "intensity": 1.5,
+            "tint": "#92dfe7"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        },
+        {
+          "id": "spotlight",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "pageRect": [
+              565,
+              324.59375,
+              266,
+              220
+            ],
+            "pagePointer": [
+              720,
+              500
+            ],
+            "radius": 180,
+            "softness": 0.55,
+            "intensity": 1.2,
+            "ambient": 0.04,
+            "tint": "#c4c1ff",
+            "background": "#102133"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        },
+        {
+          "id": "image-hover",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0,
+            "amount": 0.055,
+            "frequency": 22,
+            "feather": 0.12,
+            "mode": "wave"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 595712,
+            "bufferBytes": 96,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "defaultImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            },
+            "secondImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            }
+          }
+        },
+        {
+          "id": "text-dissolve",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0,
+            "grid": 128,
+            "spread": 0.75,
+            "size": 1.8,
+            "curl": 0.3,
+            "opacity": 0.85,
+            "tint": "#c5bbf2"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 1439248,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "input:text": {
+              "width": 264,
+              "height": 218,
+              "format": "rgba16float"
+            },
+            "input:text:mip-1": {
+              "width": 132,
+              "height": 109,
+              "format": "rgba16float"
+            },
+            "input:text:mip-2": {
+              "width": 66,
+              "height": 54,
+              "format": "rgba16float"
+            },
+            "input:text:mip-3": {
+              "width": 33,
+              "height": 27,
+              "format": "rgba16float"
+            },
+            "input:text:mip-4": {
+              "width": 16,
+              "height": 13,
+              "format": "rgba16float"
+            },
+            "input:text:mip-5": {
+              "width": 8,
+              "height": 6,
+              "format": "rgba16float"
+            },
+            "input:text:mip-6": {
+              "width": 4,
+              "height": 3,
+              "format": "rgba16float"
+            },
+            "input:text:mip-7": {
+              "width": 2,
+              "height": 1,
+              "format": "rgba16float"
+            },
+            "input:text:mip-8": {
+              "width": 1,
+              "height": 1,
+              "format": "rgba16float"
+            },
+            "textMask": {
+              "width": 512,
+              "height": 256,
+              "format": "r8unorm"
+            }
+          }
+        },
+        {
+          "id": "audio-spectrum",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "mode": "spectrum",
+            "bars": 64,
+            "range": 0.5,
+            "gain": 1.5,
+            "gap": 0.2,
+            "terrainSteps": 48,
+            "lineWidth": 1.5,
+            "tint": "#8fe0db",
+            "background": "#071826"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 538368,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {
+            "defaultImage": {
+              "width": 64,
+              "height": 64,
+              "format": "rgba32float"
+            },
+            "referenceAudio": {
+              "width": 256,
+              "height": 2,
+              "format": "rgba32float"
+            }
+          }
+        },
+        {
+          "id": "scroll-scene",
+          "state": "ready",
+          "visible": true,
+          "playing": true,
+          "reducedMotion": false,
+          "adaptiveQuality": false,
+          "timeScale": 1,
+          "size": [
+            264,
+            220
+          ],
+          "dpr": 1,
+          "params": {
+            "progress": 0.378707,
+            "depth": 1,
+            "turns": 1,
+            "radius": 0.13,
+            "first": "#e5aa8c",
+            "second": "#8aadeb",
+            "background": "#0e1d30"
+          },
+          "frameIndex": 148,
+          "warmupRenders": 30,
+          "renders": 120,
+          "updates": 120,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "taps": {}
+        }
+      ],
+      "bounds": [
+        {
+          "left": 281,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 565,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 849,
+          "top": 324.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 281,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 565,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        },
+        {
+          "left": 849,
+          "top": 562.59375,
+          "width": 266,
+          "height": 220,
+          "completelyVisible": true
+        }
+      ],
+      "pixels": [
+        {
+          "id": "border-energy",
+          "width": 264,
+          "height": 220,
+          "hash": 2244506457,
+          "coloredSamples": 6508
+        },
+        {
+          "id": "spotlight",
+          "width": 264,
+          "height": 220,
+          "hash": 4165949546,
+          "coloredSamples": 174240
+        },
+        {
+          "id": "image-hover",
+          "width": 264,
+          "height": 220,
+          "hash": 2948769626,
+          "coloredSamples": 174240
+        },
+        {
+          "id": "text-dissolve",
+          "width": 264,
+          "height": 220,
+          "hash": 2832532759,
+          "coloredSamples": 6348
+        },
+        {
+          "id": "audio-spectrum",
+          "width": 264,
+          "height": 220,
+          "hash": 3971386949,
+          "coloredSamples": 60320
+        },
+        {
+          "id": "scroll-scene",
+          "width": 264,
+          "height": 220,
+          "hash": 1606668902,
+          "coloredSamples": 132865
+        }
+      ],
+      "contexts": 6,
+      "memory": {
+        "instances": 6,
+        "textureBytes": 3967248,
+        "bufferBytes": 752,
+        "presentationContexts": 6,
+        "overlay": null
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "sampleBoundaries": [
+        {
+          "tick": 31,
+          "renders": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ],
+          "updates": [
+            29,
+            29,
+            29,
+            29,
+            29,
+            29
+          ]
+        },
+        {
+          "tick": 32,
+          "renders": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "updates": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ]
+        },
+        {
+          "tick": 33,
+          "renders": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ],
+          "updates": [
+            31,
+            31,
+            31,
+            31,
+            31,
+            31
+          ]
+        },
+        {
+          "tick": 34,
+          "renders": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ],
+          "updates": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "tick": 35,
+          "renders": [
+            35,
+            35,
+            35,
+            35,
+            35,
+            35
+          ],
+          "updates": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ]
+        },
+        {
+          "tick": 36,
+          "renders": [
+            36,
+            36,
+            36,
+            36,
+            36,
+            36
+          ],
+          "updates": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ]
+        },
+        {
+          "tick": 37,
+          "renders": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          "updates": [
+            35,
+            35,
+            35,
+            35,
+            35,
+            35
+          ]
+        },
+        {
+          "tick": 38,
+          "renders": [
+            38,
+            38,
+            38,
+            38,
+            38,
+            38
+          ],
+          "updates": [
+            36,
+            36,
+            36,
+            36,
+            36,
+            36
+          ]
+        },
+        {
+          "tick": 39,
+          "renders": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ],
+          "updates": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ]
+        },
+        {
+          "tick": 40,
+          "renders": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ],
+          "updates": [
+            38,
+            38,
+            38,
+            38,
+            38,
+            38
+          ]
+        },
+        {
+          "tick": 41,
+          "renders": [
+            41,
+            41,
+            41,
+            41,
+            41,
+            41
+          ],
+          "updates": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ]
+        },
+        {
+          "tick": 42,
+          "renders": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ],
+          "updates": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ]
+        },
+        {
+          "tick": 43,
+          "renders": [
+            43,
+            43,
+            43,
+            43,
+            43,
+            43
+          ],
+          "updates": [
+            41,
+            41,
+            41,
+            41,
+            41,
+            41
+          ]
+        },
+        {
+          "tick": 44,
+          "renders": [
+            44,
+            44,
+            44,
+            44,
+            44,
+            44
+          ],
+          "updates": [
+            42,
+            42,
+            42,
+            42,
+            42,
+            42
+          ]
+        },
+        {
+          "tick": 45,
+          "renders": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ],
+          "updates": [
+            43,
+            43,
+            43,
+            43,
+            43,
+            43
+          ]
+        },
+        {
+          "tick": 46,
+          "renders": [
+            46,
+            46,
+            46,
+            46,
+            46,
+            46
+          ],
+          "updates": [
+            44,
+            44,
+            44,
+            44,
+            44,
+            44
+          ]
+        },
+        {
+          "tick": 47,
+          "renders": [
+            47,
+            47,
+            47,
+            47,
+            47,
+            47
+          ],
+          "updates": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ]
+        },
+        {
+          "tick": 48,
+          "renders": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ],
+          "updates": [
+            46,
+            46,
+            46,
+            46,
+            46,
+            46
+          ]
+        },
+        {
+          "tick": 49,
+          "renders": [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ],
+          "updates": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ]
+        },
+        {
+          "tick": 50,
+          "renders": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "updates": [
+            48,
+            48,
+            48,
+            48,
+            48,
+            48
+          ]
+        },
+        {
+          "tick": 51,
+          "renders": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ],
+          "updates": [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ]
+        },
+        {
+          "tick": 52,
+          "renders": [
+            52,
+            52,
+            52,
+            52,
+            52,
+            52
+          ],
+          "updates": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ]
+        },
+        {
+          "tick": 53,
+          "renders": [
+            53,
+            53,
+            53,
+            53,
+            53,
+            53
+          ],
+          "updates": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ]
+        },
+        {
+          "tick": 54,
+          "renders": [
+            54,
+            54,
+            54,
+            54,
+            54,
+            54
+          ],
+          "updates": [
+            52,
+            52,
+            52,
+            52,
+            52,
+            52
+          ]
+        },
+        {
+          "tick": 55,
+          "renders": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ],
+          "updates": [
+            53,
+            53,
+            53,
+            53,
+            53,
+            53
+          ]
+        },
+        {
+          "tick": 56,
+          "renders": [
+            56,
+            56,
+            56,
+            56,
+            56,
+            56
+          ],
+          "updates": [
+            54,
+            54,
+            54,
+            54,
+            54,
+            54
+          ]
+        },
+        {
+          "tick": 57,
+          "renders": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ],
+          "updates": [
+            55,
+            55,
+            55,
+            55,
+            55,
+            55
+          ]
+        },
+        {
+          "tick": 58,
+          "renders": [
+            58,
+            58,
+            58,
+            58,
+            58,
+            58
+          ],
+          "updates": [
+            56,
+            56,
+            56,
+            56,
+            56,
+            56
+          ]
+        },
+        {
+          "tick": 59,
+          "renders": [
+            59,
+            59,
+            59,
+            59,
+            59,
+            59
+          ],
+          "updates": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ]
+        },
+        {
+          "tick": 60,
+          "renders": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "updates": [
+            58,
+            58,
+            58,
+            58,
+            58,
+            58
+          ]
+        },
+        {
+          "tick": 61,
+          "renders": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "updates": [
+            59,
+            59,
+            59,
+            59,
+            59,
+            59
+          ]
+        },
+        {
+          "tick": 62,
+          "renders": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "updates": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ]
+        },
+        {
+          "tick": 63,
+          "renders": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ],
+          "updates": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ]
+        },
+        {
+          "tick": 64,
+          "renders": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ],
+          "updates": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ]
+        },
+        {
+          "tick": 65,
+          "renders": [
+            65,
+            65,
+            65,
+            65,
+            65,
+            65
+          ],
+          "updates": [
+            63,
+            63,
+            63,
+            63,
+            63,
+            63
+          ]
+        },
+        {
+          "tick": 66,
+          "renders": [
+            66,
+            66,
+            66,
+            66,
+            66,
+            66
+          ],
+          "updates": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ]
+        },
+        {
+          "tick": 67,
+          "renders": [
+            67,
+            67,
+            67,
+            67,
+            67,
+            67
+          ],
+          "updates": [
+            65,
+            65,
+            65,
+            65,
+            65,
+            65
+          ]
+        },
+        {
+          "tick": 68,
+          "renders": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ],
+          "updates": [
+            66,
+            66,
+            66,
+            66,
+            66,
+            66
+          ]
+        },
+        {
+          "tick": 69,
+          "renders": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ],
+          "updates": [
+            67,
+            67,
+            67,
+            67,
+            67,
+            67
+          ]
+        },
+        {
+          "tick": 70,
+          "renders": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "updates": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ]
+        },
+        {
+          "tick": 71,
+          "renders": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ],
+          "updates": [
+            69,
+            69,
+            69,
+            69,
+            69,
+            69
+          ]
+        },
+        {
+          "tick": 72,
+          "renders": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ],
+          "updates": [
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ]
+        },
+        {
+          "tick": 73,
+          "renders": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73
+          ],
+          "updates": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ]
+        },
+        {
+          "tick": 74,
+          "renders": [
+            74,
+            74,
+            74,
+            74,
+            74,
+            74
+          ],
+          "updates": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ]
+        },
+        {
+          "tick": 75,
+          "renders": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ],
+          "updates": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73
+          ]
+        },
+        {
+          "tick": 76,
+          "renders": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ],
+          "updates": [
+            74,
+            74,
+            74,
+            74,
+            74,
+            74
+          ]
+        },
+        {
+          "tick": 77,
+          "renders": [
+            77,
+            77,
+            77,
+            77,
+            77,
+            77
+          ],
+          "updates": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ]
+        },
+        {
+          "tick": 78,
+          "renders": [
+            78,
+            78,
+            78,
+            78,
+            78,
+            78
+          ],
+          "updates": [
+            76,
+            76,
+            76,
+            76,
+            76,
+            76
+          ]
+        },
+        {
+          "tick": 79,
+          "renders": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ],
+          "updates": [
+            77,
+            77,
+            77,
+            77,
+            77,
+            77
+          ]
+        },
+        {
+          "tick": 80,
+          "renders": [
+            80,
+            80,
+            80,
+            80,
+            80,
+            80
+          ],
+          "updates": [
+            78,
+            78,
+            78,
+            78,
+            78,
+            78
+          ]
+        },
+        {
+          "tick": 81,
+          "renders": [
+            81,
+            81,
+            81,
+            81,
+            81,
+            81
+          ],
+          "updates": [
+            79,
+            79,
+            79,
+            79,
+            79,
+            79
+          ]
+        },
+        {
+          "tick": 82,
+          "renders": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ],
+          "updates": [
+            80,
+            80,
+            80,
+            80,
+            80,
+            80
+          ]
+        },
+        {
+          "tick": 83,
+          "renders": [
+            83,
+            83,
+            83,
+            83,
+            83,
+            83
+          ],
+          "updates": [
+            81,
+            81,
+            81,
+            81,
+            81,
+            81
+          ]
+        },
+        {
+          "tick": 84,
+          "renders": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ],
+          "updates": [
+            82,
+            82,
+            82,
+            82,
+            82,
+            82
+          ]
+        },
+        {
+          "tick": 85,
+          "renders": [
+            85,
+            85,
+            85,
+            85,
+            85,
+            85
+          ],
+          "updates": [
+            83,
+            83,
+            83,
+            83,
+            83,
+            83
+          ]
+        },
+        {
+          "tick": 86,
+          "renders": [
+            86,
+            86,
+            86,
+            86,
+            86,
+            86
+          ],
+          "updates": [
+            84,
+            84,
+            84,
+            84,
+            84,
+            84
+          ]
+        },
+        {
+          "tick": 87,
+          "renders": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ],
+          "updates": [
+            85,
+            85,
+            85,
+            85,
+            85,
+            85
+          ]
+        },
+        {
+          "tick": 88,
+          "renders": [
+            88,
+            88,
+            88,
+            88,
+            88,
+            88
+          ],
+          "updates": [
+            86,
+            86,
+            86,
+            86,
+            86,
+            86
+          ]
+        },
+        {
+          "tick": 89,
+          "renders": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ],
+          "updates": [
+            87,
+            87,
+            87,
+            87,
+            87,
+            87
+          ]
+        },
+        {
+          "tick": 90,
+          "renders": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ],
+          "updates": [
+            88,
+            88,
+            88,
+            88,
+            88,
+            88
+          ]
+        },
+        {
+          "tick": 91,
+          "renders": [
+            91,
+            91,
+            91,
+            91,
+            91,
+            91
+          ],
+          "updates": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ]
+        },
+        {
+          "tick": 92,
+          "renders": [
+            92,
+            92,
+            92,
+            92,
+            92,
+            92
+          ],
+          "updates": [
+            90,
+            90,
+            90,
+            90,
+            90,
+            90
+          ]
+        },
+        {
+          "tick": 93,
+          "renders": [
+            93,
+            93,
+            93,
+            93,
+            93,
+            93
+          ],
+          "updates": [
+            91,
+            91,
+            91,
+            91,
+            91,
+            91
+          ]
+        },
+        {
+          "tick": 94,
+          "renders": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ],
+          "updates": [
+            92,
+            92,
+            92,
+            92,
+            92,
+            92
+          ]
+        },
+        {
+          "tick": 95,
+          "renders": [
+            95,
+            95,
+            95,
+            95,
+            95,
+            95
+          ],
+          "updates": [
+            93,
+            93,
+            93,
+            93,
+            93,
+            93
+          ]
+        },
+        {
+          "tick": 96,
+          "renders": [
+            96,
+            96,
+            96,
+            96,
+            96,
+            96
+          ],
+          "updates": [
+            94,
+            94,
+            94,
+            94,
+            94,
+            94
+          ]
+        },
+        {
+          "tick": 97,
+          "renders": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ],
+          "updates": [
+            95,
+            95,
+            95,
+            95,
+            95,
+            95
+          ]
+        },
+        {
+          "tick": 98,
+          "renders": [
+            98,
+            98,
+            98,
+            98,
+            98,
+            98
+          ],
+          "updates": [
+            96,
+            96,
+            96,
+            96,
+            96,
+            96
+          ]
+        },
+        {
+          "tick": 99,
+          "renders": [
+            99,
+            99,
+            99,
+            99,
+            99,
+            99
+          ],
+          "updates": [
+            97,
+            97,
+            97,
+            97,
+            97,
+            97
+          ]
+        },
+        {
+          "tick": 100,
+          "renders": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "updates": [
+            98,
+            98,
+            98,
+            98,
+            98,
+            98
+          ]
+        },
+        {
+          "tick": 101,
+          "renders": [
+            101,
+            101,
+            101,
+            101,
+            101,
+            101
+          ],
+          "updates": [
+            99,
+            99,
+            99,
+            99,
+            99,
+            99
+          ]
+        },
+        {
+          "tick": 102,
+          "renders": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ],
+          "updates": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "tick": 103,
+          "renders": [
+            103,
+            103,
+            103,
+            103,
+            103,
+            103
+          ],
+          "updates": [
+            101,
+            101,
+            101,
+            101,
+            101,
+            101
+          ]
+        },
+        {
+          "tick": 104,
+          "renders": [
+            104,
+            104,
+            104,
+            104,
+            104,
+            104
+          ],
+          "updates": [
+            102,
+            102,
+            102,
+            102,
+            102,
+            102
+          ]
+        },
+        {
+          "tick": 105,
+          "renders": [
+            105,
+            105,
+            105,
+            105,
+            105,
+            105
+          ],
+          "updates": [
+            103,
+            103,
+            103,
+            103,
+            103,
+            103
+          ]
+        },
+        {
+          "tick": 106,
+          "renders": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ],
+          "updates": [
+            104,
+            104,
+            104,
+            104,
+            104,
+            104
+          ]
+        },
+        {
+          "tick": 107,
+          "renders": [
+            107,
+            107,
+            107,
+            107,
+            107,
+            107
+          ],
+          "updates": [
+            105,
+            105,
+            105,
+            105,
+            105,
+            105
+          ]
+        },
+        {
+          "tick": 108,
+          "renders": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ],
+          "updates": [
+            106,
+            106,
+            106,
+            106,
+            106,
+            106
+          ]
+        },
+        {
+          "tick": 109,
+          "renders": [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109
+          ],
+          "updates": [
+            107,
+            107,
+            107,
+            107,
+            107,
+            107
+          ]
+        },
+        {
+          "tick": 110,
+          "renders": [
+            110,
+            110,
+            110,
+            110,
+            110,
+            110
+          ],
+          "updates": [
+            108,
+            108,
+            108,
+            108,
+            108,
+            108
+          ]
+        },
+        {
+          "tick": 111,
+          "renders": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ],
+          "updates": [
+            109,
+            109,
+            109,
+            109,
+            109,
+            109
+          ]
+        },
+        {
+          "tick": 112,
+          "renders": [
+            112,
+            112,
+            112,
+            112,
+            112,
+            112
+          ],
+          "updates": [
+            110,
+            110,
+            110,
+            110,
+            110,
+            110
+          ]
+        },
+        {
+          "tick": 113,
+          "renders": [
+            113,
+            113,
+            113,
+            113,
+            113,
+            113
+          ],
+          "updates": [
+            111,
+            111,
+            111,
+            111,
+            111,
+            111
+          ]
+        },
+        {
+          "tick": 114,
+          "renders": [
+            114,
+            114,
+            114,
+            114,
+            114,
+            114
+          ],
+          "updates": [
+            112,
+            112,
+            112,
+            112,
+            112,
+            112
+          ]
+        },
+        {
+          "tick": 115,
+          "renders": [
+            115,
+            115,
+            115,
+            115,
+            115,
+            115
+          ],
+          "updates": [
+            113,
+            113,
+            113,
+            113,
+            113,
+            113
+          ]
+        },
+        {
+          "tick": 116,
+          "renders": [
+            116,
+            116,
+            116,
+            116,
+            116,
+            116
+          ],
+          "updates": [
+            114,
+            114,
+            114,
+            114,
+            114,
+            114
+          ]
+        },
+        {
+          "tick": 117,
+          "renders": [
+            117,
+            117,
+            117,
+            117,
+            117,
+            117
+          ],
+          "updates": [
+            115,
+            115,
+            115,
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "tick": 118,
+          "renders": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ],
+          "updates": [
+            116,
+            116,
+            116,
+            116,
+            116,
+            116
+          ]
+        },
+        {
+          "tick": 119,
+          "renders": [
+            119,
+            119,
+            119,
+            119,
+            119,
+            119
+          ],
+          "updates": [
+            117,
+            117,
+            117,
+            117,
+            117,
+            117
+          ]
+        },
+        {
+          "tick": 120,
+          "renders": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ],
+          "updates": [
+            118,
+            118,
+            118,
+            118,
+            118,
+            118
+          ]
+        },
+        {
+          "tick": 121,
+          "renders": [
+            121,
+            121,
+            121,
+            121,
+            121,
+            121
+          ],
+          "updates": [
+            119,
+            119,
+            119,
+            119,
+            119,
+            119
+          ]
+        },
+        {
+          "tick": 122,
+          "renders": [
+            122,
+            122,
+            122,
+            122,
+            122,
+            122
+          ],
+          "updates": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120
+          ]
+        },
+        {
+          "tick": 123,
+          "renders": [
+            123,
+            123,
+            123,
+            123,
+            123,
+            123
+          ],
+          "updates": [
+            121,
+            121,
+            121,
+            121,
+            121,
+            121
+          ]
+        },
+        {
+          "tick": 124,
+          "renders": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ],
+          "updates": [
+            122,
+            122,
+            122,
+            122,
+            122,
+            122
+          ]
+        },
+        {
+          "tick": 125,
+          "renders": [
+            125,
+            125,
+            125,
+            125,
+            125,
+            125
+          ],
+          "updates": [
+            123,
+            123,
+            123,
+            123,
+            123,
+            123
+          ]
+        },
+        {
+          "tick": 126,
+          "renders": [
+            126,
+            126,
+            126,
+            126,
+            126,
+            126
+          ],
+          "updates": [
+            124,
+            124,
+            124,
+            124,
+            124,
+            124
+          ]
+        },
+        {
+          "tick": 127,
+          "renders": [
+            127,
+            127,
+            127,
+            127,
+            127,
+            127
+          ],
+          "updates": [
+            125,
+            125,
+            125,
+            125,
+            125,
+            125
+          ]
+        },
+        {
+          "tick": 128,
+          "renders": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
+          "updates": [
+            126,
+            126,
+            126,
+            126,
+            126,
+            126
+          ]
+        },
+        {
+          "tick": 129,
+          "renders": [
+            129,
+            129,
+            129,
+            129,
+            129,
+            129
+          ],
+          "updates": [
+            127,
+            127,
+            127,
+            127,
+            127,
+            127
+          ]
+        },
+        {
+          "tick": 130,
+          "renders": [
+            130,
+            130,
+            130,
+            130,
+            130,
+            130
+          ],
+          "updates": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ]
+        },
+        {
+          "tick": 131,
+          "renders": [
+            131,
+            131,
+            131,
+            131,
+            131,
+            131
+          ],
+          "updates": [
+            129,
+            129,
+            129,
+            129,
+            129,
+            129
+          ]
+        },
+        {
+          "tick": 132,
+          "renders": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ],
+          "updates": [
+            130,
+            130,
+            130,
+            130,
+            130,
+            130
+          ]
+        },
+        {
+          "tick": 133,
+          "renders": [
+            133,
+            133,
+            133,
+            133,
+            133,
+            133
+          ],
+          "updates": [
+            131,
+            131,
+            131,
+            131,
+            131,
+            131
+          ]
+        },
+        {
+          "tick": 134,
+          "renders": [
+            134,
+            134,
+            134,
+            134,
+            134,
+            134
+          ],
+          "updates": [
+            132,
+            132,
+            132,
+            132,
+            132,
+            132
+          ]
+        },
+        {
+          "tick": 135,
+          "renders": [
+            135,
+            135,
+            135,
+            135,
+            135,
+            135
+          ],
+          "updates": [
+            133,
+            133,
+            133,
+            133,
+            133,
+            133
+          ]
+        },
+        {
+          "tick": 136,
+          "renders": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ],
+          "updates": [
+            134,
+            134,
+            134,
+            134,
+            134,
+            134
+          ]
+        },
+        {
+          "tick": 137,
+          "renders": [
+            137,
+            137,
+            137,
+            137,
+            137,
+            137
+          ],
+          "updates": [
+            135,
+            135,
+            135,
+            135,
+            135,
+            135
+          ]
+        },
+        {
+          "tick": 138,
+          "renders": [
+            138,
+            138,
+            138,
+            138,
+            138,
+            138
+          ],
+          "updates": [
+            136,
+            136,
+            136,
+            136,
+            136,
+            136
+          ]
+        },
+        {
+          "tick": 139,
+          "renders": [
+            139,
+            139,
+            139,
+            139,
+            139,
+            139
+          ],
+          "updates": [
+            137,
+            137,
+            137,
+            137,
+            137,
+            137
+          ]
+        },
+        {
+          "tick": 140,
+          "renders": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140
+          ],
+          "updates": [
+            138,
+            138,
+            138,
+            138,
+            138,
+            138
+          ]
+        },
+        {
+          "tick": 141,
+          "renders": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ],
+          "updates": [
+            139,
+            139,
+            139,
+            139,
+            139,
+            139
+          ]
+        },
+        {
+          "tick": 142,
+          "renders": [
+            142,
+            142,
+            142,
+            142,
+            142,
+            142
+          ],
+          "updates": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140
+          ]
+        },
+        {
+          "tick": 143,
+          "renders": [
+            143,
+            143,
+            143,
+            143,
+            143,
+            143
+          ],
+          "updates": [
+            141,
+            141,
+            141,
+            141,
+            141,
+            141
+          ]
+        },
+        {
+          "tick": 144,
+          "renders": [
+            144,
+            144,
+            144,
+            144,
+            144,
+            144
+          ],
+          "updates": [
+            142,
+            142,
+            142,
+            142,
+            142,
+            142
+          ]
+        },
+        {
+          "tick": 145,
+          "renders": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ],
+          "updates": [
+            143,
+            143,
+            143,
+            143,
+            143,
+            143
+          ]
+        },
+        {
+          "tick": 146,
+          "renders": [
+            146,
+            146,
+            146,
+            146,
+            146,
+            146
+          ],
+          "updates": [
+            144,
+            144,
+            144,
+            144,
+            144,
+            144
+          ]
+        },
+        {
+          "tick": 147,
+          "renders": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ],
+          "updates": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        {
+          "tick": 148,
+          "renders": [
+            148,
+            148,
+            148,
+            148,
+            148,
+            148
+          ],
+          "updates": [
+            146,
+            146,
+            146,
+            146,
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 149,
+          "renders": [
+            149,
+            149,
+            149,
+            149,
+            149,
+            149
+          ],
+          "updates": [
+            147,
+            147,
+            147,
+            147,
+            147,
+            147
+          ]
+        },
+        {
+          "tick": 150,
+          "renders": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            150
+          ],
+          "updates": [
+            148,
+            148,
+            148,
+            148,
+            148,
+            148
+          ]
+        }
+      ],
+      "idleRafMs": {
+        "count": 39,
+        "mean": 16.666666666666668,
+        "p50": 16.69999999999999,
+        "p95": 16.700000000000045,
+        "max": 16.800000000000068
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.670833333333334,
+        "p50": 16.700000047683716,
+        "p95": 17.899999856948853,
+        "max": 19.5
+      },
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.44583333532015484,
+        "p50": 0.2999999523162842,
+        "p95": 1.0999999046325684,
+        "max": 2.5999999046325684
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.9883333245913186,
+        "p50": 2.299999952316284,
+        "p95": 6.799999952316284,
+        "max": 7.799999952316284
+      },
+      "deadlineMs": 18.36999999999999,
+      "completedWithinDeadline": 1,
+      "gate": true,
+      "run": 3
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 0,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0,
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 0,
+        "p6": 0,
+        "p7": 0
+      },
+      "properties": [],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 1,
+      "stats": {
+        "reads": 0,
+        "applied": 0,
+        "styleMs": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "applyMs": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.006666664282480876,
+        "p50": 0,
+        "p95": 0.09999990463256836,
+        "max": 0.10000014305114746
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 0,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0,
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 0,
+        "p6": 0,
+        "p7": 0
+      },
+      "properties": [],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 2,
+      "stats": {
+        "reads": 0,
+        "applied": 0,
+        "styleMs": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "applyMs": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.003333332141240438,
+        "p50": 0,
+        "p95": 0,
+        "max": 0.10000014305114746
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 0,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0,
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 0,
+        "p6": 0,
+        "p7": 0
+      },
+      "properties": [],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 3,
+      "stats": {
+        "reads": 0,
+        "applied": 0,
+        "styleMs": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "applyMs": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.002500001589457194,
+        "p50": 0,
+        "p95": 0,
+        "max": 0.10000014305114746
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 1,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0.243697,
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 0,
+        "p6": 0,
+        "p7": 0
+      },
+      "properties": [
+        "--m5-css-1-p0"
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 1,
+      "stats": {
+        "reads": 120,
+        "applied": 120,
+        "styleMs": {
+          "count": 120,
+          "mean": 0.1008333424727122,
+          "p50": 0.09999990463256836,
+          "p95": 0.20000004768371582,
+          "max": 0.2999999523162842
+        },
+        "applyMs": {
+          "count": 120,
+          "mean": 0.025000001986821493,
+          "p50": 0,
+          "p95": 0.10000014305114746,
+          "max": 0.19999980926513672
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.12833334604899088,
+        "p50": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.39999985694885254
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 1,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0.243697,
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 0,
+        "p6": 0,
+        "p7": 0
+      },
+      "properties": [
+        "--m5-css-1-p0"
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 2,
+      "stats": {
+        "reads": 120,
+        "applied": 120,
+        "styleMs": {
+          "count": 120,
+          "mean": 0.10333335002263387,
+          "p50": 0.09999990463256836,
+          "p95": 0.20000004768371582,
+          "max": 0.5
+        },
+        "applyMs": {
+          "count": 120,
+          "mean": 0.027500001589457194,
+          "p50": 0,
+          "p95": 0.10000014305114746,
+          "max": 0.10000014305114746
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.13333335320154827,
+        "p50": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.5
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 1,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0.243697,
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 0,
+        "p6": 0,
+        "p7": 0
+      },
+      "properties": [
+        "--m5-css-1-p0"
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 3,
+      "stats": {
+        "reads": 120,
+        "applied": 120,
+        "styleMs": {
+          "count": 120,
+          "mean": 0.11666666070620219,
+          "p50": 0.09999990463256836,
+          "p95": 0.20000004768371582,
+          "max": 0.5999999046325684
+        },
+        "applyMs": {
+          "count": 120,
+          "mean": 0.02666667103767395,
+          "p50": 0,
+          "p95": 0.10000014305114746,
+          "max": 0.10000014305114746
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.14583332935969034,
+        "p50": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.5999999046325684
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 8,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0.243697,
+        "p1": 0.252101,
+        "p2": 0.260504,
+        "p3": 0.268908,
+        "p4": 0.277311,
+        "p5": 0.285714,
+        "p6": 0.294118,
+        "p7": 0.302521
+      },
+      "properties": [
+        "--m5-css-8-p0",
+        "--m5-css-8-p1",
+        "--m5-css-8-p2",
+        "--m5-css-8-p3",
+        "--m5-css-8-p4",
+        "--m5-css-8-p5",
+        "--m5-css-8-p6",
+        "--m5-css-8-p7"
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 1,
+      "stats": {
+        "reads": 120,
+        "applied": 960,
+        "styleMs": {
+          "count": 120,
+          "mean": 0.12666667103767396,
+          "p50": 0.10000014305114746,
+          "p95": 0.2999999523162842,
+          "max": 0.5
+        },
+        "applyMs": {
+          "count": 120,
+          "mean": 0.030833329757054648,
+          "p50": 0,
+          "p95": 0.10000014305114746,
+          "max": 0.5999999046325684
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.16499999761581421,
+        "p50": 0.19999980926513672,
+        "p95": 0.2999999523162842,
+        "max": 0.7000000476837158
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 8,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0.243697,
+        "p1": 0.252101,
+        "p2": 0.260504,
+        "p3": 0.268908,
+        "p4": 0.277311,
+        "p5": 0.285714,
+        "p6": 0.294118,
+        "p7": 0.302521
+      },
+      "properties": [
+        "--m5-css-8-p0",
+        "--m5-css-8-p1",
+        "--m5-css-8-p2",
+        "--m5-css-8-p3",
+        "--m5-css-8-p4",
+        "--m5-css-8-p5",
+        "--m5-css-8-p6",
+        "--m5-css-8-p7"
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 2,
+      "stats": {
+        "reads": 120,
+        "applied": 960,
+        "styleMs": {
+          "count": 120,
+          "mean": 0.14166668057441711,
+          "p50": 0.10000014305114746,
+          "p95": 0.2999999523162842,
+          "max": 0.40000009536743164
+        },
+        "applyMs": {
+          "count": 120,
+          "mean": 0.02583333452542623,
+          "p50": 0,
+          "p95": 0.10000014305114746,
+          "max": 0.20000004768371582
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.17333334684371948,
+        "p50": 0.20000004768371582,
+        "p95": 0.2999999523162842,
+        "max": 0.40000009536743164
+      }
+    },
+    {
+      "id": "css-uniform-cost",
+      "bindings": 8,
+      "samples": 120,
+      "warmup": 30,
+      "finalValues": {
+        "p0": 0.243697,
+        "p1": 0.252101,
+        "p2": 0.260504,
+        "p3": 0.268908,
+        "p4": 0.277311,
+        "p5": 0.285714,
+        "p6": 0.294118,
+        "p7": 0.302521
+      },
+      "properties": [
+        "--m5-css-8-p0",
+        "--m5-css-8-p1",
+        "--m5-css-8-p2",
+        "--m5-css-8-p3",
+        "--m5-css-8-p4",
+        "--m5-css-8-p5",
+        "--m5-css-8-p6",
+        "--m5-css-8-p7"
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "errors": [],
+      "run": 3,
+      "stats": {
+        "reads": 120,
+        "applied": 960,
+        "styleMs": {
+          "count": 120,
+          "mean": 0.13000000715255738,
+          "p50": 0.10000014305114746,
+          "p95": 0.20000004768371582,
+          "max": 0.40000009536743164
+        },
+        "applyMs": {
+          "count": 120,
+          "mean": 0.025833316644032798,
+          "p50": 0,
+          "p95": 0.09999990463256836,
+          "max": 0.2999999523162842
+        },
+        "errors": []
+      },
+      "hookMs": {
+        "count": 120,
+        "mean": 0.16083332498868305,
+        "p50": 0.19999980926513672,
+        "p95": 0.2999999523162842,
+        "max": 0.40000009536743164
+      }
+    },
+    {
+      "id": "overlay-scroll",
+      "overlay": false,
+      "samples": 120,
+      "contexts": 6,
+      "memory": {
+        "instances": 6,
+        "textureBytes": 3967248,
+        "bufferBytes": 752,
+        "presentationContexts": 6,
+        "overlay": null
+      },
+      "sourcePixels": 348480,
+      "estimatedSinglePresentationBytes": 1393920,
+      "estimatedTriplePresentationBytes": 4181760,
+      "presentationEstimate": "RGBA8 logical one-image and three-image estimates; browser swap-chain allocation is not observable",
+      "drawnRects": [
+        {
+          "left": 282,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 282,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        }
+      ],
+      "domRects": [
+        {
+          "left": 282,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 282,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        }
+      ],
+      "hostRects": [
+        {
+          "left": 281,
+          "top": 267.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 565,
+          "top": 267.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 849,
+          "top": 267.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 281,
+          "top": 505.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 565,
+          "top": 505.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 849,
+          "top": 505.59375,
+          "width": 266,
+          "height": 220
+        }
+      ],
+      "errors": [],
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "beforeNextRenderDriftPx": {
+        "count": 720,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "afterQueueAndTwoRafDriftPx": {
+        "count": 720,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "scrollSettleMs": {
+        "count": 120,
+        "mean": 33.558333321412405,
+        "p50": 33.59999990463257,
+        "p95": 35.09999990463257,
+        "max": 35.799999952316284
+      },
+      "screenshot": "docs/benchmarks/m5-in-flow-chrome-scroll.png",
+      "samplingLimit": "CPU/layout observations of programmatic scroll before and after two rAF callbacks plus queue completion; this cannot observe compositor-only wheel scrolling or prove zero visual latency."
+    },
+    {
+      "id": "overlay-scroll",
+      "overlay": true,
+      "samples": 120,
+      "contexts": 1,
+      "memory": {
+        "instances": 6,
+        "textureBytes": 3967248,
+        "bufferBytes": 752,
+        "presentationContexts": 1,
+        "overlay": {
+          "sourceFloatBytes": 3967248,
+          "rectBufferBytes": 384,
+          "presentationPixels": 1440000,
+          "contexts": 1
+        }
+      },
+      "sourcePixels": 348480,
+      "estimatedSinglePresentationBytes": 5760000,
+      "estimatedTriplePresentationBytes": 17280000,
+      "presentationEstimate": "RGBA8 logical one-image and three-image estimates; browser swap-chain allocation is not observable",
+      "drawnRects": [
+        {
+          "left": 282,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 282,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        }
+      ],
+      "domRects": [
+        {
+          "left": 282,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 268.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 282,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 566,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        },
+        {
+          "left": 850,
+          "top": 506.59375,
+          "width": 264,
+          "height": 220
+        }
+      ],
+      "hostRects": [
+        {
+          "left": 281,
+          "top": 267.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 565,
+          "top": 267.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 849,
+          "top": 267.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 281,
+          "top": 505.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 565,
+          "top": 505.59375,
+          "width": 266,
+          "height": 220
+        },
+        {
+          "left": 849,
+          "top": 505.59375,
+          "width": 266,
+          "height": 220
+        }
+      ],
+      "errors": [],
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "beforeNextRenderDriftPx": {
+        "count": 720,
+        "mean": 59.5,
+        "p50": 60,
+        "p95": 60,
+        "max": 60
+      },
+      "afterQueueAndTwoRafDriftPx": {
+        "count": 720,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "scrollSettleMs": {
+        "count": 120,
+        "mean": 33.72083334128062,
+        "p50": 33.60000014305115,
+        "p95": 35,
+        "max": 37.299999952316284
+      },
+      "screenshot": "docs/benchmarks/m5-overlay-chrome-scroll.png",
+      "samplingLimit": "CPU/layout observations of programmatic scroll before and after two rAF callbacks plus queue completion; this cannot observe compositor-only wheel scrolling or prove zero visual latency."
+    }
+  ]
+}

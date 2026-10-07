@@ -1,0 +1,992 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "software",
+    "browserVersion": "153.0.8010.12",
+    "headless": true,
+    "dpr": 1,
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "baseURL": "http://127.0.0.1:5176"
+  },
+  "scenario": {
+    "layout": "#stage.dom-mode{height:760px}.m5-cards{grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:1000px}.m5-card{height:220px;min-height:220px}",
+    "seed": 7,
+    "page": "Actual production DOMStage with six independently attached Family H fields; real shared scheduler with scroll-driven uniforms.",
+    "warmup": 30,
+    "samples": 120,
+    "deadline": "110% of per-run idle median rAF; >=95% completed CPU+queue work inside deadline and median workload rAF inside deadline.",
+    "cpuBoundary": "First field custom onBeforeFrame hook to shared queue completion; capture is asynchronous and does not serialize rAF.",
+    "css": "Public production bindCSSParameters; 0/1/8 selected bindings, 30 warmup +120 manually sampled visible frame hooks, no GPU rendering in timing region."
+  },
+  "results": [
+    {
+      "id": "software-adaptive-six-fluids",
+      "stop": "30-second limit",
+      "elapsedMs": 30002,
+      "submissions": 7,
+      "initial": [
+        {
+          "id": "fluid-obstacles",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "grid": 256,
+            "iterations": 32,
+            "boundary": "closed",
+            "viscosity": 0.02,
+            "drag": 0.15,
+            "vorticity": 0.5,
+            "dissipation": 0.1,
+            "source": 0.8,
+            "force": 0.3,
+            "radius": 0.045,
+            "initial": "vortices",
+            "initialVelocity": [
+              0.18,
+              0
+            ],
+            "initialAmount": 1.5,
+            "view": "material",
+            "dyeA": "#35bacf",
+            "dyeB": "#ef795e",
+            "background": "#101623"
+          },
+          "frameIndex": 33
+        },
+        {
+          "id": "fluid-obstacles",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "grid": 256,
+            "iterations": 32,
+            "boundary": "closed",
+            "viscosity": 0.02,
+            "drag": 0.15,
+            "vorticity": 0.5,
+            "dissipation": 0.1,
+            "source": 0.8,
+            "force": 0.3,
+            "radius": 0.045,
+            "initial": "vortices",
+            "initialVelocity": [
+              0.18,
+              0
+            ],
+            "initialAmount": 1.5,
+            "view": "material",
+            "dyeA": "#35bacf",
+            "dyeB": "#ef795e",
+            "background": "#101623"
+          },
+          "frameIndex": 33
+        },
+        {
+          "id": "fluid-obstacles",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "grid": 256,
+            "iterations": 32,
+            "boundary": "closed",
+            "viscosity": 0.02,
+            "drag": 0.15,
+            "vorticity": 0.5,
+            "dissipation": 0.1,
+            "source": 0.8,
+            "force": 0.3,
+            "radius": 0.045,
+            "initial": "vortices",
+            "initialVelocity": [
+              0.18,
+              0
+            ],
+            "initialAmount": 1.5,
+            "view": "material",
+            "dyeA": "#35bacf",
+            "dyeB": "#ef795e",
+            "background": "#101623"
+          },
+          "frameIndex": 33
+        },
+        {
+          "id": "fluid-obstacles",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "grid": 256,
+            "iterations": 32,
+            "boundary": "closed",
+            "viscosity": 0.02,
+            "drag": 0.15,
+            "vorticity": 0.5,
+            "dissipation": 0.1,
+            "source": 0.8,
+            "force": 0.3,
+            "radius": 0.045,
+            "initial": "vortices",
+            "initialVelocity": [
+              0.18,
+              0
+            ],
+            "initialAmount": 1.5,
+            "view": "material",
+            "dyeA": "#35bacf",
+            "dyeB": "#ef795e",
+            "background": "#101623"
+          },
+          "frameIndex": 33
+        },
+        {
+          "id": "fluid-obstacles",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "grid": 256,
+            "iterations": 32,
+            "boundary": "closed",
+            "viscosity": 0.02,
+            "drag": 0.15,
+            "vorticity": 0.5,
+            "dissipation": 0.1,
+            "source": 0.8,
+            "force": 0.3,
+            "radius": 0.045,
+            "initial": "vortices",
+            "initialVelocity": [
+              0.18,
+              0
+            ],
+            "initialAmount": 1.5,
+            "view": "material",
+            "dyeA": "#35bacf",
+            "dyeB": "#ef795e",
+            "background": "#101623"
+          },
+          "frameIndex": 25
+        },
+        {
+          "id": "fluid-obstacles",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "grid": 256,
+            "iterations": 32,
+            "boundary": "closed",
+            "viscosity": 0.02,
+            "drag": 0.15,
+            "vorticity": 0.5,
+            "dissipation": 0.1,
+            "source": 0.8,
+            "force": 0.3,
+            "radius": 0.045,
+            "initial": "vortices",
+            "initialVelocity": [
+              0.18,
+              0
+            ],
+            "initialAmount": 1.5,
+            "view": "material",
+            "dyeA": "#35bacf",
+            "dyeB": "#ef795e",
+            "background": "#101623"
+          },
+          "frameIndex": 25
+        }
+      ],
+      "final": [
+        {
+          "id": "fluid-obstacles",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 58,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 3954440,
+            "bufferBytes": 1632,
+            "shared": {
+              "entries": 116,
+              "references": 216,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 7
+        },
+        {
+          "id": "fluid-obstacles",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 58,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 3954440,
+            "bufferBytes": 1632,
+            "shared": {
+              "entries": 116,
+              "references": 216,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 7
+        },
+        {
+          "id": "fluid-obstacles",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 58,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 3954440,
+            "bufferBytes": 1632,
+            "shared": {
+              "entries": 116,
+              "references": 216,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 7
+        },
+        {
+          "id": "fluid-obstacles",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 58,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 3954440,
+            "bufferBytes": 1632,
+            "shared": {
+              "entries": 116,
+              "references": 216,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 7
+        },
+        {
+          "id": "fluid-obstacles",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 50,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 3954440,
+            "bufferBytes": 1632,
+            "shared": {
+              "entries": 116,
+              "references": 216,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 7
+        },
+        {
+          "id": "fluid-obstacles",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 50,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 3954440,
+            "bufferBytes": 1632,
+            "shared": {
+              "entries": 116,
+              "references": 216,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 7
+        }
+      ],
+      "qualityEvents": [],
+      "actualDownshifts": 0,
+      "framesAfterDownshift": 0,
+      "rows": [
+        {
+          "atMs": 1.2000000476837158,
+          "frameIndex": [
+            33,
+            33,
+            33,
+            33,
+            25,
+            25
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 464.7999999523163,
+          "renders": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "completedAtMs": 465.40000009536743
+        },
+        {
+          "atMs": 5.299999952316284,
+          "frameIndex": [
+            33,
+            33,
+            33,
+            33,
+            25,
+            25
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 659.8000001907349,
+          "renders": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "completedAtMs": 664.6000001430511
+        },
+        {
+          "atMs": 23.100000143051147,
+          "frameIndex": [
+            34,
+            34,
+            34,
+            34,
+            26,
+            26
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 1781,
+          "renders": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "completedAtMs": 1803.1000001430511
+        },
+        {
+          "atMs": 532,
+          "frameIndex": [
+            40,
+            40,
+            40,
+            40,
+            32,
+            32
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 13060.799999952316,
+          "renders": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "completedAtMs": 13589.299999952316
+        },
+        {
+          "atMs": 700.1000001430511,
+          "frameIndex": [
+            46,
+            46,
+            46,
+            46,
+            38,
+            38
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        {
+          "atMs": 1852.9000000953674,
+          "frameIndex": [
+            52,
+            52,
+            52,
+            52,
+            44,
+            44
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "atMs": 13644.700000047684,
+          "frameIndex": [
+            58,
+            58,
+            58,
+            58,
+            50,
+            50
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        }
+      ],
+      "completedRows": 4,
+      "completedRowsAfterDownshift": 0,
+      "maxPendingQueue": 3,
+      "pendingRowsAtCaptureEnd": 3,
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "chromium-experimental-sampling-resource-table",
+          "chromium-experimental-timestamp-query-inside-passes",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-compression-unaligned",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "google",
+          "architecture": "swiftshader",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": true
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "instances": 6,
+        "textureBytes": 23726640,
+        "bufferBytes": 9792,
+        "presentationContexts": 6,
+        "overlay": null
+      },
+      "errors": [],
+      "proxy": "SwiftShader software adapter under six real default 256² fluid-obstacles solvers; a software pressure proxy, not a physical weaker-device validation.",
+      "rafMs": {
+        "count": 6,
+        "mean": 2273.9166666666665,
+        "p50": 168.10000014305115,
+        "p95": 11791.799999952316,
+        "max": 11791.799999952316
+      },
+      "completionMs": {
+        "count": 4,
+        "mean": 3991.600000023842,
+        "p50": 659.8000001907349,
+        "p95": 13060.799999952316,
+        "max": 13060.799999952316
+      },
+      "stallDeadlineMs": 1000,
+      "gate": false
+    }
+  ]
+}

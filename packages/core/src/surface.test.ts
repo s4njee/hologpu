@@ -10,7 +10,7 @@ function deferred() {
   return { promise, resolve };
 }
 
-async function fixture() {
+async function fixture(present = true) {
   const compilation = deferred();
   let modules = 0;
   const texture = { destroy: vi.fn(), createView: () => ({}) };
@@ -48,10 +48,10 @@ async function fixture() {
   const canvas = {
     width: 8,
     height: 8,
-    getContext: () => context,
+    getContext: vi.fn(() => context),
     getBoundingClientRect: () => ({ width: 8, height: 8 }),
   } as unknown as HTMLCanvasElement;
-  const surface = await Surface.create(canvas, session, () => {});
+  const surface = await Surface.create(canvas, session, () => {}, 1, 2, present);
   return { compilation, session, surface, context, texture, device };
 }
 
@@ -70,6 +70,41 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('asynchronous surface restoration', () => {
+  it('allocates a float-only surface without a canvas context or resolve pipeline', async () => {
+    const { surface, session, context, device } = await fixture(false);
+    try {
+      expect(surface.canvas.getContext).not.toHaveBeenCalled();
+      expect(surface.context).toBeNull();
+      expect(context.configure).not.toHaveBeenCalled();
+      expect(surface.size).toEqual([8, 8]);
+      expect(surface.bytes).toBe(512);
+      expect(device.createTexture).toHaveBeenCalledTimes(1);
+      expect(session.resources.stats().references).toBe(0);
+      surface.present({} as GPUCommandEncoder);
+      surface.dispose();
+      expect(context.unconfigure).not.toHaveBeenCalled();
+      expect(surface.bytes).toBe(0);
+    } finally {
+      surface.dispose();
+      session.dispose();
+    }
+  });
+  it('requires restoration before a float-only surface can allocate on a new generation', async () => {
+    const { surface, session, device } = await fixture(false);
+    try {
+      session.generation++;
+      surface.destroyTarget();
+      surface.resize();
+      expect(device.createTexture).toHaveBeenCalledTimes(1);
+      await surface.restore();
+      expect(device.createTexture).toHaveBeenCalledTimes(2);
+      expect(surface.target).not.toBeNull();
+    } finally {
+      surface.dispose();
+      session.dispose();
+    }
+  });
+
   it('ignores observer resize while a new device is ready but this surface still has an old resolve pass', async () => {
     const { surface, session, device } = await fixture();
     try {

@@ -10,6 +10,7 @@ import {
   type ParamSpec,
 } from '@mk7s/hologpu';
 import { catalogue } from '@mk7s/hologpu/effects';
+import { bindCSSParameters } from '@mk7s/hologpu/dom';
 import './style.css';
 import { passesDrawer } from './passes.ts';
 import { sourceEditor } from './source-editor.ts';
@@ -18,6 +19,7 @@ import { morphInputs } from './morph-inputs.ts';
 import { mediaInputs } from './media-inputs.ts';
 import { CompareStage, type CompareState } from './compare.ts';
 import { screenshot, VideoCapture } from './capture.ts';
+import { DOMStage } from './dom-stage.ts';
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const canvas = $<HTMLCanvasElement>('canvas');
 const query = new URLSearchParams(location.search);
@@ -32,7 +34,27 @@ const notes = import.meta.glob('../../../docs/notes/*.md', {
 }) as Record<string, () => Promise<string>>;
 const controls = new Map<string, HTMLElement[]>();
 let removeMedia = () => {};
-let stageMode = query.get('mode') === 'compare' ? 'compare' : 'full';
+let stageMode = ['compare', 'in-page', 'grid'].includes(query.get('mode') ?? '')
+  ? query.get('mode')!
+  : 'full';
+const domStage = new DOMStage($('stage'), catalogue);
+const stageFields = () => (domStage.fields.length ? domStage.fields : field ? [field] : []);
+let stopTimeline = () => {};
+let stopDOMAudio = () => {};
+$<HTMLSelectElement>('grid-count').value = ['4', '6', '12', '24'].includes(
+  query.get('copies') ?? '',
+)
+  ? query.get('copies')!
+  : '6';
+$<HTMLInputElement>('force-fallback').checked = query.get('fallback') === 'true';
+$<HTMLInputElement>('overlay-mode').checked = query.get('overlay') === 'true';
+$<HTMLSelectElement>('quality-tier').value = ['auto', 'high', 'medium', 'low'].includes(
+  query.get('tier') ?? '',
+)
+  ? query.get('tier')!
+  : query.get('quality') === 'auto'
+    ? 'auto'
+    : 'high';
 let compareInitial: CompareState | undefined;
 try {
   const params = JSON.parse(query.get('compareParams') ?? '{}');
@@ -65,17 +87,23 @@ try {
   /* Invalid links use defaults. */
 }
 function save() {
-  if (!field) return;
   const state = new URLSearchParams({
     effect: effect.id,
     mode: stageMode,
-    seed: String(field.frame.seed),
-    params: JSON.stringify(field.store.snapshot()),
-    playing: String(field.playing),
-    resolution: String(field.quality.maxResolution),
-    timeScale: String(field.timeScale),
-    quality: field.adaptiveQuality ? 'auto' : 'fixed',
+    seed: String(field?.frame.seed ?? $<HTMLInputElement>('seed').value),
+    params: JSON.stringify(field?.store.snapshot() ?? {}),
+    playing: String(field?.playing ?? false),
+    resolution: String(field?.quality.maxResolution ?? $<HTMLSelectElement>('resolution').value),
+    timeScale: String(field?.timeScale ?? $<HTMLSelectElement>('time-scale').value),
+    quality:
+      (field?.adaptiveQuality ?? $<HTMLInputElement>('adaptive-quality').checked)
+        ? 'auto'
+        : 'fixed',
   });
+  if (stageMode === 'grid') state.set('copies', $<HTMLSelectElement>('grid-count').value);
+  if ($<HTMLInputElement>('force-fallback').checked) state.set('fallback', 'true');
+  if ($<HTMLInputElement>('overlay-mode').checked) state.set('overlay', 'true');
+  state.set('tier', $<HTMLSelectElement>('quality-tier').value);
   const preset = $<HTMLSelectElement>('presets').value;
   if (preset) state.set('preset', preset);
   if ($<HTMLInputElement>('motion').checked) state.set('motion', 'reduce');
@@ -425,6 +453,9 @@ async function mount(next: EffectDefinition, initial = false) {
   capture.dispose();
   $('record').textContent = 'Record video';
   $('capture-status').textContent = '';
+  stopTimeline();
+  stopDOMAudio();
+  domStage.destroy();
   field?.destroy();
   field = null;
   effect = next;
@@ -439,7 +470,10 @@ async function mount(next: EffectDefinition, initial = false) {
   $('status').textContent = 'Compiling effect pipelines…';
   $('fallback').hidden = true;
   canvas.hidden = false;
-  $('stage').style.background = next.fallback;
+  $('stage').dataset['reducedMotion'] = String($<HTMLInputElement>('motion').checked);
+  $('stage').classList.toggle('dom-mode', stageMode === 'in-page' || stageMode === 'grid');
+  $('stage').style.background =
+    stageMode === 'in-page' || stageMode === 'grid' ? '' : next.fallback;
   renderBrowser();
   void showNotes(next.id);
   try {
@@ -456,7 +490,7 @@ async function mount(next: EffectDefinition, initial = false) {
         startingParams = {};
       }
     }
-    const mounted = await createEffect(canvas, next, {
+    const mountOptions = {
       params: initial ? startingParams : undefined,
       preset: initial ? (query.get('preset') ?? undefined) : undefined,
       seed,
@@ -470,16 +504,50 @@ async function mount(next: EffectDefinition, initial = false) {
         ? query.get('quality') === 'auto'
         : $<HTMLInputElement>('adaptive-quality').checked,
       reducedMotion: $<HTMLInputElement>('motion').checked ? true : undefined,
-    });
+    };
+    const forceFallback = $<HTMLInputElement>('force-fallback').checked;
+    const mounted =
+      stageMode === 'in-page' || stageMode === 'grid'
+        ? await domStage.mount(next, stageMode, {
+            ...mountOptions,
+            count: Number($<HTMLSelectElement>('grid-count').value),
+            forceFallback,
+            overlay: $<HTMLInputElement>('overlay-mode').checked,
+          })
+        : forceFallback
+          ? null
+          : await createEffect(canvas, next, mountOptions);
     if (token !== generation) {
-      mounted.destroy();
+      mounted?.destroy();
       return;
     }
     field = mounted;
+    $<HTMLSelectElement>('stage-mode').value = stageMode;
+    if (!field) {
+      canvas.hidden = true;
+      if (stageMode === 'full' || stageMode === 'compare') {
+        $('fallback').hidden = false;
+        $('fallback').textContent = `${next.title} · CSS fallback`;
+      }
+      $('status').dataset['state'] = 'fallback';
+      $('status').textContent = 'CSS fallback · content and controls remain accessible';
+      $('m5-stage-status').textContent =
+        `${domStage.attachments.length} fallback attachments · no GPU required`;
+      $<HTMLInputElement>('seed').value = String(seed);
+      $<HTMLSelectElement>('resolution').value = String(scale);
+      save();
+      renderBrowser();
+      return;
+    }
+    $('m5-stage-status').textContent = domStage.fields.length
+      ? `${domStage.fields.length} attached fields · ${domStage.memory.presentationContexts} presentation canvases · ${CSS.supports('animation-timeline', 'view()') ? 'CSS view timeline' : 'JS scroll timeline fallback'}`
+      : 'Full stage uses the selected effect.';
     inspector();
     morphInputs(field, $('effect-inputs'));
     removeMedia = mediaInputs(field, $('media-input-controls'));
-    $('media-inputs').hidden = !field.effect.inputs.includes('image');
+    $('media-inputs').hidden = !field.effect.inputs.some((x) =>
+      ['image', 'audio', 'text'].includes(x),
+    );
     $<HTMLSelectElement>('stage-mode').value = stageMode;
     $('compare-panel').hidden = stageMode !== 'compare';
     if (stageMode === 'compare') await compare.enable(field);
@@ -497,6 +565,13 @@ async function mount(next: EffectDefinition, initial = false) {
       if (field?.state === 'error') {
         $('status').textContent = 'Device recovery failed';
         $('status').dataset['state'] = 'error';
+      } else if (field?.state === 'lost' || field?.state === 'building') {
+        $('status').dataset['state'] = 'lost';
+      } else if (field?.state === 'ready') {
+        $('status').dataset['state'] = 'ready';
+        $('m5-stage-status').textContent = domStage.fields.length
+          ? `${domStage.fields.length} attached fields · device ready`
+          : 'Device ready';
       }
     });
     $('source').textContent = Object.entries(field.sources)
@@ -505,7 +580,7 @@ async function mount(next: EffectDefinition, initial = false) {
     $('capabilities').textContent = JSON.stringify(field.session.capabilities, null, 2);
     $('status').dataset['state'] = 'ready';
     $('status').textContent =
-      `${next.id} · ${canvas.width} × ${canvas.height} · linear RGBA16 float`;
+      `${next.id} · ${field.canvas.width} × ${field.canvas.height} · linear RGBA16 float`;
     $<HTMLInputElement>('seed').value = String(seed);
     $<HTMLSelectElement>('resolution').value = String(scale);
     refreshTransport();
@@ -529,23 +604,23 @@ function refreshTransport() {
 }
 $('play').onclick = () => {
   if (field?.playing) {
-    field.pause();
+    for (const item of stageFields()) item.pause();
     compare.field?.pause();
   } else {
-    field?.play();
+    for (const item of stageFields()) item.play();
     compare.field?.play();
   }
   refreshTransport();
   save();
 };
 $('step').onclick = () => {
-  field?.step();
+  for (const item of stageFields()) item.step();
   compare.field?.step();
   refreshTransport();
   save();
 };
 $('reset').onclick = () => {
-  field?.reset();
+  for (const item of stageFields()) item.reset();
   compare.field?.reset();
   save();
 };
@@ -563,28 +638,33 @@ $('presets').onchange = () => {
   save();
 };
 $('seed').onchange = () => {
-  field?.reset(Number($<HTMLInputElement>('seed').value));
+  for (const item of stageFields()) item.reset(Number($<HTMLInputElement>('seed').value));
   compare.field?.reset(field?.frame.seed);
   save();
 };
 $('time-scale').onchange = () => {
-  field?.setTimeScale(Number($<HTMLSelectElement>('time-scale').value));
+  for (const item of stageFields())
+    item.setTimeScale(Number($<HTMLSelectElement>('time-scale').value));
   compare.field?.setTimeScale(Number($<HTMLSelectElement>('time-scale').value));
   save();
 };
 $('adaptive-quality').onchange = () => {
-  field?.setAdaptiveQuality($<HTMLInputElement>('adaptive-quality').checked);
+  for (const item of stageFields())
+    item.setAdaptiveQuality($<HTMLInputElement>('adaptive-quality').checked);
   compare.field?.setAdaptiveQuality($<HTMLInputElement>('adaptive-quality').checked);
   save();
 };
 $('resolution').onchange = () => {
-  field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
+  for (const item of stageFields())
+    item.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
   compare.field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
   save();
 };
 $<HTMLInputElement>('motion').checked = query.get('motion') === 'reduce';
 $('motion').onchange = () => {
-  field?.setReducedMotion($<HTMLInputElement>('motion').checked ? true : undefined);
+  $('stage').dataset['reducedMotion'] = String($<HTMLInputElement>('motion').checked);
+  for (const item of stageFields())
+    item.setReducedMotion($<HTMLInputElement>('motion').checked ? true : undefined);
   compare.field?.setReducedMotion($<HTMLInputElement>('motion').checked ? true : undefined);
   refreshTransport();
   save();
@@ -626,9 +706,123 @@ window.addEventListener('popstate', () => location.reload());
 $('stage-mode').onchange = async () => {
   stageMode = $<HTMLSelectElement>('stage-mode').value;
   $('compare-panel').hidden = stageMode !== 'compare';
+  if (
+    stageMode === 'in-page' ||
+    stageMode === 'grid' ||
+    domStage.fields.length ||
+    domStage.attachments.length
+  ) {
+    void mount(effect);
+    return;
+  }
   if (stageMode === 'compare' && field) await compare.enable(field);
   else compare.disable();
+  $('stage').classList.remove('dom-mode');
   save();
+};
+for (const id of ['grid-count', 'force-fallback', 'overlay-mode'])
+  $(id).onchange = () => void mount(effect);
+$('quality-tier').onchange = () => {
+  const tier = $<HTMLSelectElement>('quality-tier').value;
+  $<HTMLSelectElement>('resolution').value =
+    tier === 'low' ? '0.25' : tier === 'medium' ? '0.5' : '1';
+  $<HTMLInputElement>('adaptive-quality').checked = tier === 'auto';
+  for (const item of stageFields()) {
+    item.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
+    item.setAdaptiveQuality(tier === 'auto');
+  }
+  compare.field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
+  compare.field?.setAdaptiveQuality(tier === 'auto');
+  save();
+};
+$('device-loss').onclick = () => {
+  if (field?.session.state === 'ready') {
+    field.session.device.destroy();
+    $('m5-stage-status').textContent = 'Rebuilding fields after device loss…';
+  }
+};
+$('timeline-demo').onclick = () => {
+  stopTimeline();
+  let canceled = false,
+    raf = 0;
+  const start = performance.now();
+  const tick = (now: number) => {
+    if (canceled) return;
+    const progress = Math.min(1, (now - start) / 3000);
+    for (const item of stageFields()) {
+      if (item.state !== 'ready') continue;
+      item.timeline(progress);
+      if (item.effect.params['progress'])
+        item.params['progress'] = item.reducedMotion ? 0 : progress;
+    }
+    for (const host of domStage.hosts)
+      if (
+        host.dataset['demoEffect'] &&
+        ['image-hover', 'text-dissolve', 'scroll-scene'].includes(host.dataset['demoEffect'])
+      )
+        host.style.setProperty(
+          '--hgpu-progress',
+          String($<HTMLInputElement>('motion').checked ? 0 : progress),
+        );
+    if (progress < 1) raf = requestAnimationFrame(tick);
+    else {
+      $('m5-stage-status').textContent = 'Timeline reached 1 · fixed-step simulation stayed paused';
+      refreshTransport();
+    }
+  };
+  raf = requestAnimationFrame(tick);
+  stopTimeline = () => {
+    canceled = true;
+    cancelAnimationFrame(raf);
+  };
+};
+$('dom-audio').onclick = async () => {
+  stopDOMAudio();
+  const fields = stageFields().filter((item) => item.effect.inputs.includes('audio'));
+  if (!fields.length) {
+    $('m5-stage-status').textContent = 'Choose Audio spectrum or In page to bind an audio source.';
+    return;
+  }
+  const context = new AudioContext();
+  const oscillator = context.createOscillator(),
+    analyser = context.createAnalyser(),
+    gain = context.createGain();
+  analyser.fftSize = 512;
+  oscillator.frequency.value = 440;
+  gain.gain.value = 0;
+  oscillator.connect(analyser);
+  analyser.connect(gain);
+  gain.connect(context.destination);
+  let canceled = false,
+    started = false;
+  const token = generation;
+  const disposeAudio = () => {
+    if (canceled) return;
+    canceled = true;
+    if (started) oscillator.stop();
+    oscillator.disconnect();
+    analyser.disconnect();
+    gain.disconnect();
+    void context.close();
+  };
+  stopDOMAudio = disposeAudio;
+  try {
+    await context.resume();
+    if (canceled || token !== generation) return;
+    oscillator.start();
+    started = true;
+    for (const item of fields) {
+      if (canceled || token !== generation) return;
+      if (item.state === 'ready') await item.bindInput('audio', { kind: 'audio', analyser });
+    }
+    if (canceled || token !== generation) return;
+    $('m5-stage-status').textContent = 'Live 440 Hz FFT and waveform · silent output';
+  } catch (error) {
+    if (!canceled && token === generation) {
+      disposeAudio();
+      $('m5-stage-status').textContent = String(error);
+    }
+  }
 };
 $('screenshot').onclick = async () => {
   if (!field) return;
@@ -659,6 +853,9 @@ window.addEventListener('pagehide', () => {
   removeMedia();
   compare.dispose();
   capture.dispose();
+  stopTimeline();
+  stopDOMAudio();
+  domStage.destroy();
   field?.destroy();
 });
 setInterval(() => {
@@ -666,14 +863,16 @@ setInterval(() => {
     $('meter').textContent =
       `CPU encode ${field.session.scheduler.cpuFrameMs.toFixed(2)} ms · ${(field.memory().textureBytes / 1048576).toFixed(1)} MiB textures · step ${field.frame.index} · ${Math.round((field.surface?.resolutionScale ?? 1) * 100)}% resolution / ${Math.round((field.adaptiveQuality ? field.quality.state.stepScale : 1) * 100)}% work`;
     $('status').textContent =
-      `${effect.id} · ${canvas.width} × ${canvas.height} · linear RGBA16 float`;
+      `${effect.id} · ${field.canvas.width} × ${field.canvas.height} · linear RGBA16 float`;
   }
 }, 500);
 // The test/measurement harness uses the same public runtime as the inspector.
 Object.assign(window, {
   hologpu: {
     catalogue,
+    domStage,
     createEffect,
+    bindCSSParameters,
     ParamStore,
     fragmentEffect,
     filterEffect,

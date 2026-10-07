@@ -5,3 +5,4 @@ test-results/
 playwright-report/
 plan.md
 docs/benchmarks/*.json
+apps/playground/src/vendor/holocss/motion.css

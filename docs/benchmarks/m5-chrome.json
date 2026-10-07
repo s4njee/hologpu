@@ -1,0 +1,4247 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "chrome",
+    "browserVersion": "154.0.8037.98",
+    "headless": true,
+    "dpr": 1
+  },
+  "scenario": {
+    "width": 512,
+    "height": 512,
+    "seed": 7,
+    "warmupFrames": 30,
+    "samples": 120,
+    "runs": 3,
+    "effects": [
+      "border-energy",
+      "spotlight",
+      "image-hover",
+      "text-dissolve",
+      "audio-spectrum",
+      "scroll-scene",
+      "fluid-obstacles"
+    ],
+    "params": "All seven current typed catalogue defaults; no preset or schema overrides.",
+    "inputs": "Owned documented standalone fixtures; no live media, CSS bridge, pointer updates or DOM attachment. The separate M5 attached-field gate measures those DOM costs.",
+    "clock": "one fixed 1/60 s update per rAF; 150 actual updates, queue completion and timestamp readback awaited",
+    "quality": "DPR 1, physical 512-square presentation, resolution scale 1, adaptive quality disabled, timeScale 1",
+    "timing": "CPU encode, encoding-through-queue-completion wall latency, summed actual per-pass GPU timestamps and observed rAF cadence measure separate boundaries. Serialized timestamp readback contributes to cadence. Logical allocation sizes are not VRAM; machine load is uncontrolled.",
+    "gate": null
+  },
+  "definitions": [
+    {
+      "id": "border-energy",
+      "defaults": {
+        "rect": [
+          0.12,
+          0.18,
+          0.76,
+          0.64
+        ],
+        "radius": 24,
+        "width": 2,
+        "glow": 14,
+        "speed": 0.4,
+        "intensity": 1.5,
+        "tint": "#92dfe7"
+      },
+      "tier": "T1",
+      "family": "dom"
+    },
+    {
+      "id": "spotlight",
+      "defaults": {
+        "pageRect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "pagePointer": [
+          256,
+          256
+        ],
+        "radius": 180,
+        "softness": 0.55,
+        "intensity": 1.2,
+        "ambient": 0.04,
+        "tint": "#c4c1ff",
+        "background": "#102133"
+      },
+      "tier": "T1",
+      "family": "dom"
+    },
+    {
+      "id": "image-hover",
+      "defaults": {
+        "progress": 0,
+        "amount": 0.055,
+        "frequency": 22,
+        "feather": 0.12,
+        "mode": "wave"
+      },
+      "tier": "T4",
+      "family": "dom"
+    },
+    {
+      "id": "text-dissolve",
+      "defaults": {
+        "progress": 0,
+        "grid": 128,
+        "spread": 0.75,
+        "size": 1.8,
+        "curl": 0.3,
+        "opacity": 0.85,
+        "tint": "#c5bbf2"
+      },
+      "tier": "T3",
+      "family": "dom"
+    },
+    {
+      "id": "audio-spectrum",
+      "defaults": {
+        "mode": "spectrum",
+        "bars": 64,
+        "range": 0.5,
+        "gain": 1.5,
+        "gap": 0.2,
+        "terrainSteps": 48,
+        "lineWidth": 1.5,
+        "tint": "#8fe0db",
+        "background": "#071826"
+      },
+      "tier": "T4",
+      "family": "input"
+    },
+    {
+      "id": "scroll-scene",
+      "defaults": {
+        "progress": 0,
+        "depth": 1,
+        "turns": 1,
+        "radius": 0.13,
+        "first": "#e5aa8c",
+        "second": "#8aadeb",
+        "background": "#0e1d30"
+      },
+      "tier": "T1",
+      "family": "dom"
+    },
+    {
+      "id": "fluid-obstacles",
+      "defaults": {
+        "grid": 256,
+        "iterations": 32,
+        "boundary": "closed",
+        "viscosity": 0.02,
+        "drag": 0.15,
+        "vorticity": 0.5,
+        "dissipation": 0.1,
+        "source": 0.8,
+        "force": 0.3,
+        "radius": 0.045,
+        "initial": "vortices",
+        "initialVelocity": [
+          0.18,
+          0
+        ],
+        "initialAmount": 1.5,
+        "view": "material",
+        "dyeA": "#35bacf",
+        "dyeB": "#ef795e",
+        "background": "#101623"
+      },
+      "tier": "T2",
+      "family": "fluids"
+    }
+  ],
+  "results": [
+    {
+      "id": "border-energy",
+      "recordedAt": "2026-10-07T20:20:47.729Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "rect": [
+          0.12,
+          0.18,
+          0.76,
+          0.64
+        ],
+        "radius": 24,
+        "width": 2,
+        "glow": 14,
+        "speed": 0.4,
+        "intensity": 1.5,
+        "tint": "#92dfe7"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.2283333440621694,
+        "p50": 0.20000004768371582,
+        "p95": 0.40000009536743164,
+        "max": 0.7000000476837158
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.1275000055631,
+        "p50": 1.4000000953674316,
+        "p95": 4.3999998569488525,
+        "max": 19.5
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333333,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.1605631999999997,
+        "p50": 0.131072,
+        "p95": 0.262144,
+        "max": 0.5242880000000001
+      },
+      "passes": {
+        "hgpu-border-energy": {
+          "count": 120,
+          "mean": 0.0879274666666665,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.32768
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.0726357333333332,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 1,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Analytic rounded rectangle at schema defaults; no DOM geometry bridge.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "border-energy",
+      "recordedAt": "2026-10-07T20:20:50.277Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "rect": [
+          0.12,
+          0.18,
+          0.76,
+          0.64
+        ],
+        "radius": 24,
+        "width": 2,
+        "glow": 14,
+        "speed": 0.4,
+        "intensity": 1.5,
+        "tint": "#92dfe7"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.3033333500226339,
+        "p50": 0.20000004768371582,
+        "p95": 0.40000009536743164,
+        "max": 6.599999904632568
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.282500022649765,
+        "p50": 1.7000000476837158,
+        "p95": 4,
+        "max": 8.5
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333335,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.16820906666666643,
+        "p50": 0.131072,
+        "p95": 0.32767999999999997,
+        "max": 0.393216
+      },
+      "passes": {
+        "hgpu-border-energy": {
+          "count": 120,
+          "mean": 0.09229653333333314,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.0759125333333332,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.196608
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 2,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Analytic rounded rectangle at schema defaults; no DOM geometry bridge.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "border-energy",
+      "recordedAt": "2026-10-07T20:20:52.809Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "rect": [
+          0.12,
+          0.18,
+          0.76,
+          0.64
+        ],
+        "radius": 24,
+        "width": 2,
+        "glow": 14,
+        "speed": 0.4,
+        "intensity": 1.5,
+        "tint": "#92dfe7"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.2699999968210856,
+        "p50": 0.20000004768371582,
+        "p95": 0.6000001430511475,
+        "max": 3.1000001430511475
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.304999993244807,
+        "p50": 1.5999999046325684,
+        "p95": 5.200000047683716,
+        "max": 7.199999809265137
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333333,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.16493226666666638,
+        "p50": 0.131072,
+        "p95": 0.32767999999999997,
+        "max": 0.393216
+      },
+      "passes": {
+        "hgpu-border-energy": {
+          "count": 120,
+          "mean": 0.0917503999999998,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.07318186666666654,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.196608
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 3,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Analytic rounded rectangle at schema defaults; no DOM geometry bridge.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "spotlight",
+      "recordedAt": "2026-10-07T20:20:55.461Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "pageRect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "pagePointer": [
+          256,
+          256
+        ],
+        "radius": 180,
+        "softness": 0.55,
+        "intensity": 1.2,
+        "ambient": 0.04,
+        "tint": "#c4c1ff",
+        "background": "#102133"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.23583334287007648,
+        "p50": 0.20000004768371582,
+        "p95": 0.40000009536743164,
+        "max": 1.1000001430511475
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 1.9175000011920929,
+        "p50": 1.4000000953674316,
+        "p95": 4.099999904632568,
+        "max": 7.200000047683716
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333328,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.12233386666666646,
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "max": 0.393216
+      },
+      "passes": {
+        "hgpu-spotlight": {
+          "count": 120,
+          "mean": 0.06171306666666655,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.0606207999999999,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 144,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 1,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Schema-default shared viewport rectangle and page pointer; no pointer movement.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "spotlight",
+      "recordedAt": "2026-10-07T20:20:57.994Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "pageRect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "pagePointer": [
+          256,
+          256
+        ],
+        "radius": 180,
+        "softness": 0.55,
+        "intensity": 1.2,
+        "ambient": 0.04,
+        "tint": "#c4c1ff",
+        "background": "#102133"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.27749998768170675,
+        "p50": 0.20000004768371582,
+        "p95": 0.5999999046325684,
+        "max": 2.4000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.2466666638851165,
+        "p50": 1.5,
+        "p95": 5,
+        "max": 8
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333335,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.13544106666666644,
+        "p50": 0.131072,
+        "p95": 0.262144,
+        "max": 0.5242880000000001
+      },
+      "passes": {
+        "hgpu-spotlight": {
+          "count": 120,
+          "mean": 0.07099733333333322,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.32768
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.06444373333333324,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 144,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 2,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Schema-default shared viewport rectangle and page pointer; no pointer movement.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "spotlight",
+      "recordedAt": "2026-10-07T20:21:00.525Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "pageRect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "pagePointer": [
+          256,
+          256
+        ],
+        "radius": 180,
+        "softness": 0.55,
+        "intensity": 1.2,
+        "ambient": 0.04,
+        "tint": "#c4c1ff",
+        "background": "#102133"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.26750000516573585,
+        "p50": 0.20000004768371582,
+        "p95": 0.8000001907348633,
+        "max": 2.4000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.004166672627131,
+        "p50": 1.2999999523162842,
+        "p95": 4.900000095367432,
+        "max": 7.800000190734863
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333333,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.12124159999999982,
+        "p50": 0.131072,
+        "p95": 0.262144,
+        "max": 0.524288
+      },
+      "passes": {
+        "hgpu-spotlight": {
+          "count": 120,
+          "mean": 0.06225919999999991,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.0589823999999999,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 144,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 3,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Schema-default shared viewport rectangle and page pointer; no pointer movement.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "image-hover",
+      "recordedAt": "2026-10-07T20:21:03.158Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "amount": 0.055,
+        "frequency": 22,
+        "feather": 0.12,
+        "mode": "wave"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.2900000035762787,
+        "p50": 0.20000004768371582,
+        "p95": 0.7999999523162842,
+        "max": 2.5999999046325684
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 1.9833333353201548,
+        "p50": 1.3999998569488525,
+        "p95": 4.599999904632568,
+        "max": 7.200000047683716
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333328,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999955,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.1523711999999997,
+        "p50": 0.131072,
+        "p95": 0.393216,
+        "max": 0.458752
+      },
+      "passes": {
+        "image-hover": {
+          "count": 120,
+          "mean": 0.09229653333333314,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.060074666666666596,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2228224,
+        "bufferBytes": 96,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "secondImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        }
+      },
+      "run": 1,
+      "gate": null,
+      "tier": "T4",
+      "family": "dom",
+      "fixture": "Two independent owned 64-square linear HDR cards; progress remains its schema default.",
+      "fixtureAudit": {
+        "taps": {
+          "defaultImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16384,
+            "min": 0.05000000074505806,
+            "max": 3,
+            "hash": 2624270458
+          },
+          "secondImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16320,
+            "min": 0,
+            "max": 1,
+            "hash": 3159119477
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "image-hover",
+      "recordedAt": "2026-10-07T20:21:05.691Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "amount": 0.055,
+        "frequency": 22,
+        "feather": 0.12,
+        "mode": "wave"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.2700000047683716,
+        "p50": 0.20000004768371582,
+        "p95": 0.5,
+        "max": 1.2999999523162842
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.131666670242945,
+        "p50": 1.3999998569488525,
+        "p95": 4.299999952316284,
+        "max": 6.5
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333334,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.1463637333333331,
+        "p50": 0.131072,
+        "p95": 0.262144,
+        "max": 0.393216
+      },
+      "passes": {
+        "image-hover": {
+          "count": 120,
+          "mean": 0.08956586666666648,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.05679786666666658,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2228224,
+        "bufferBytes": 96,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "secondImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        }
+      },
+      "run": 2,
+      "gate": null,
+      "tier": "T4",
+      "family": "dom",
+      "fixture": "Two independent owned 64-square linear HDR cards; progress remains its schema default.",
+      "fixtureAudit": {
+        "taps": {
+          "defaultImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16384,
+            "min": 0.05000000074505806,
+            "max": 3,
+            "hash": 2624270458
+          },
+          "secondImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16320,
+            "min": 0,
+            "max": 1,
+            "hash": 3159119477
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "image-hover",
+      "recordedAt": "2026-10-07T20:21:08.227Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "amount": 0.055,
+        "frequency": 22,
+        "feather": 0.12,
+        "mode": "wave"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.3133333265781403,
+        "p50": 0.20000004768371582,
+        "p95": 0.7999999523162842,
+        "max": 2.4000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.313333334525426,
+        "p50": 1.5,
+        "p95": 5.6000001430511475,
+        "max": 8.5
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333334,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.15073279999999975,
+        "p50": 0.131072,
+        "p95": 0.32767999999999997,
+        "max": 0.589824
+      },
+      "passes": {
+        "image-hover": {
+          "count": 120,
+          "mean": 0.09011199999999982,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.32768
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.060620799999999926,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2228224,
+        "bufferBytes": 96,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "secondImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        }
+      },
+      "run": 3,
+      "gate": null,
+      "tier": "T4",
+      "family": "dom",
+      "fixture": "Two independent owned 64-square linear HDR cards; progress remains its schema default.",
+      "fixtureAudit": {
+        "taps": {
+          "defaultImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16384,
+            "min": 0.05000000074505806,
+            "max": 3,
+            "hash": 2624270458
+          },
+          "secondImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16320,
+            "min": 0,
+            "max": 1,
+            "hash": 3159119477
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "text-dissolve",
+      "recordedAt": "2026-10-07T20:21:10.878Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "grid": 128,
+        "spread": 0.75,
+        "size": 1.8,
+        "curl": 0.3,
+        "opacity": 0.85,
+        "tint": "#c5bbf2"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.2699999968210856,
+        "p50": 0.20000004768371582,
+        "p95": 0.5999999046325684,
+        "max": 1.6999998092651367
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.110000006357829,
+        "p50": 1.5,
+        "p95": 4.5,
+        "max": 6.200000047683716
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.664999999999996,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.21790719999999986,
+        "p50": 0.196608,
+        "p95": 0.458752,
+        "max": 0.524288
+      },
+      "passes": {
+        "text-dissolve-particles": {
+          "count": 120,
+          "mean": 0.12451839999999975,
+          "p50": 0.131072,
+          "p95": 0.262144,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.09338879999999981,
+          "p50": 0.065536,
+          "p95": 0.262144,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2228224,
+        "bufferBytes": 112,
+        "shared": {
+          "entries": 3,
+          "references": 3,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "textMask": {
+          "width": 512,
+          "height": 256,
+          "format": "r8unorm"
+        }
+      },
+      "run": 1,
+      "gate": null,
+      "tier": "T3",
+      "family": "dom",
+      "fixture": "One-time 512x256 GPU text coverage mask; mask-gated instanced quads at schema defaults.",
+      "fixtureAudit": {
+        "taps": {
+          "textMask": {
+            "width": 512,
+            "height": 256,
+            "format": "r8unorm",
+            "channels": 1,
+            "count": 131072,
+            "nonzero": 17993,
+            "min": 0,
+            "max": 1,
+            "hash": 2211046671
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "text-dissolve",
+      "recordedAt": "2026-10-07T20:21:13.407Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "grid": 128,
+        "spread": 0.75,
+        "size": 1.8,
+        "curl": 0.3,
+        "opacity": 0.85,
+        "tint": "#c5bbf2"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.3275000035762787,
+        "p50": 0.2999999523162842,
+        "p95": 1,
+        "max": 2.299999952316284
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.151666671037674,
+        "p50": 1.5,
+        "p95": 4,
+        "max": 6
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333335,
+        "p50": 16.699999999999818,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.2162687999999998,
+        "p50": 0.196608,
+        "p95": 0.458752,
+        "max": 0.524288
+      },
+      "passes": {
+        "text-dissolve-particles": {
+          "count": 120,
+          "mean": 0.12506453333333306,
+          "p50": 0.131072,
+          "p95": 0.262144,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.09120426666666652,
+          "p50": 0.065536,
+          "p95": 0.262144,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2228224,
+        "bufferBytes": 112,
+        "shared": {
+          "entries": 3,
+          "references": 3,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "textMask": {
+          "width": 512,
+          "height": 256,
+          "format": "r8unorm"
+        }
+      },
+      "run": 2,
+      "gate": null,
+      "tier": "T3",
+      "family": "dom",
+      "fixture": "One-time 512x256 GPU text coverage mask; mask-gated instanced quads at schema defaults.",
+      "fixtureAudit": {
+        "taps": {
+          "textMask": {
+            "width": 512,
+            "height": 256,
+            "format": "r8unorm",
+            "channels": 1,
+            "count": 131072,
+            "nonzero": 17993,
+            "min": 0,
+            "max": 1,
+            "hash": 2211046671
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "text-dissolve",
+      "recordedAt": "2026-10-07T20:21:15.940Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "grid": 128,
+        "spread": 0.75,
+        "size": 1.8,
+        "curl": 0.3,
+        "opacity": 0.85,
+        "tint": "#c5bbf2"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.2949999988079071,
+        "p50": 0.20000004768371582,
+        "p95": 0.7000000476837158,
+        "max": 2.9000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.068333327770233,
+        "p50": 1.3999998569488525,
+        "p95": 4.700000047683716,
+        "max": 6.400000095367432
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333334,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.20534613333333304,
+        "p50": 0.196608,
+        "p95": 0.458752,
+        "max": 0.524288
+      },
+      "passes": {
+        "text-dissolve-particles": {
+          "count": 120,
+          "mean": 0.11578026666666642,
+          "p50": 0.131072,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.08956586666666648,
+          "p50": 0.065536,
+          "p95": 0.262144,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2228224,
+        "bufferBytes": 112,
+        "shared": {
+          "entries": 3,
+          "references": 3,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "textMask": {
+          "width": 512,
+          "height": 256,
+          "format": "r8unorm"
+        }
+      },
+      "run": 3,
+      "gate": null,
+      "tier": "T3",
+      "family": "dom",
+      "fixture": "One-time 512x256 GPU text coverage mask; mask-gated instanced quads at schema defaults.",
+      "fixtureAudit": {
+        "taps": {
+          "textMask": {
+            "width": 512,
+            "height": 256,
+            "format": "r8unorm",
+            "channels": 1,
+            "count": 131072,
+            "nonzero": 17993,
+            "min": 0,
+            "max": 1,
+            "hash": 2211046671
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "audio-spectrum",
+      "recordedAt": "2026-10-07T20:21:18.590Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "mode": "spectrum",
+        "bars": 64,
+        "range": 0.5,
+        "gain": 1.5,
+        "gap": 0.2,
+        "terrainSteps": 48,
+        "lineWidth": 1.5,
+        "tint": "#8fe0db",
+        "background": "#071826"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.3041666766007741,
+        "p50": 0.2999999523162842,
+        "p95": 0.5999999046325684,
+        "max": 1.4000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.570833349227905,
+        "p50": 1.6999998092651367,
+        "p95": 5.799999952316284,
+        "max": 8.200000047683716
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333333,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999955,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.16274773333333306,
+        "p50": 0.131072,
+        "p95": 0.393216,
+        "max": 0.524288
+      },
+      "passes": {
+        "audio-spectrum": {
+          "count": 120,
+          "mean": 0.09065813333333314,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.0720895999999999,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2170880,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "referenceAudio": {
+          "width": 256,
+          "height": 2,
+          "format": "rgba32float"
+        }
+      },
+      "run": 1,
+      "gate": null,
+      "tier": "T4",
+      "family": "input",
+      "fixture": "Owned 256x2 two-sine waveform and its actual one-time DFT; no microphone or live analyser.",
+      "fixtureAudit": {
+        "taps": {
+          "defaultImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16384,
+            "min": 0.05000000074505806,
+            "max": 3,
+            "hash": 2624270458
+          },
+          "referenceAudio": {
+            "width": 256,
+            "height": 2,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 2048,
+            "nonzero": 895,
+            "min": -0.8451963067054749,
+            "max": 1,
+            "hash": 1721843638
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "audio-spectrum",
+      "recordedAt": "2026-10-07T20:21:21.124Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "mode": "spectrum",
+        "bars": 64,
+        "range": 0.5,
+        "gain": 1.5,
+        "gap": 0.2,
+        "terrainSteps": 48,
+        "lineWidth": 1.5,
+        "tint": "#8fe0db",
+        "background": "#071826"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.310833336909612,
+        "p50": 0.2999999523162842,
+        "p95": 0.7000000476837158,
+        "max": 1
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.486666669448217,
+        "p50": 1.6000001430511475,
+        "p95": 4.900000095367432,
+        "max": 8.099999904632568
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333334,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.16220159999999978,
+        "p50": 0.131072,
+        "p95": 0.393216,
+        "max": 0.524288
+      },
+      "passes": {
+        "audio-spectrum": {
+          "count": 120,
+          "mean": 0.09557333333333312,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.0666282666666666,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2170880,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "referenceAudio": {
+          "width": 256,
+          "height": 2,
+          "format": "rgba32float"
+        }
+      },
+      "run": 2,
+      "gate": null,
+      "tier": "T4",
+      "family": "input",
+      "fixture": "Owned 256x2 two-sine waveform and its actual one-time DFT; no microphone or live analyser.",
+      "fixtureAudit": {
+        "taps": {
+          "defaultImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16384,
+            "min": 0.05000000074505806,
+            "max": 3,
+            "hash": 2624270458
+          },
+          "referenceAudio": {
+            "width": 256,
+            "height": 2,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 2048,
+            "nonzero": 895,
+            "min": -0.8451963067054749,
+            "max": 1,
+            "hash": 1721843638
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "audio-spectrum",
+      "recordedAt": "2026-10-07T20:21:23.660Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "mode": "spectrum",
+        "bars": 64,
+        "range": 0.5,
+        "gain": 1.5,
+        "gap": 0.2,
+        "terrainSteps": 48,
+        "lineWidth": 1.5,
+        "tint": "#8fe0db",
+        "background": "#071826"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.3241666595141093,
+        "p50": 0.2999999523162842,
+        "p95": 0.7999999523162842,
+        "max": 1.5999999046325684
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.6633333285649616,
+        "p50": 1.7000000476837158,
+        "p95": 5.700000047683716,
+        "max": 8.900000095367432
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665000000000003,
+        "p50": 16.699999999999818,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.14199466666666644,
+        "p50": 0.131072,
+        "p95": 0.32767999999999997,
+        "max": 0.524288
+      },
+      "passes": {
+        "audio-spectrum": {
+          "count": 120,
+          "mean": 0.08683519999999983,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.393216
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.05515946666666659,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2170880,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {
+        "defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "referenceAudio": {
+          "width": 256,
+          "height": 2,
+          "format": "rgba32float"
+        }
+      },
+      "run": 3,
+      "gate": null,
+      "tier": "T4",
+      "family": "input",
+      "fixture": "Owned 256x2 two-sine waveform and its actual one-time DFT; no microphone or live analyser.",
+      "fixtureAudit": {
+        "taps": {
+          "defaultImage": {
+            "width": 64,
+            "height": 64,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 16384,
+            "nonzero": 16384,
+            "min": 0.05000000074505806,
+            "max": 3,
+            "hash": 2624270458
+          },
+          "referenceAudio": {
+            "width": 256,
+            "height": 2,
+            "format": "rgba32float",
+            "channels": 4,
+            "count": 2048,
+            "nonzero": 895,
+            "min": -0.8451963067054749,
+            "max": 1,
+            "hash": 1721843638
+          }
+        },
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "scroll-scene",
+      "recordedAt": "2026-10-07T20:21:26.309Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "depth": 1,
+        "turns": 1,
+        "radius": 0.13,
+        "first": "#e5aa8c",
+        "second": "#8aadeb",
+        "background": "#0e1d30"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.25250001152356466,
+        "p50": 0.20000004768371582,
+        "p95": 0.5,
+        "max": 2.299999952316284
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 2.0883333404858906,
+        "p50": 1.4000000953674316,
+        "p95": 4.799999952316284,
+        "max": 7.900000095367432
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333328,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.15237119999999973,
+        "p50": 0.131072,
+        "p95": 0.32767999999999997,
+        "max": 0.589824
+      },
+      "passes": {
+        "hgpu-scroll-scene": {
+          "count": 120,
+          "mean": 0.09557333333333312,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.056797866666666634,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.32768
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 1,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Schema-default progress; no CSS scroll timeline or computed-style bridge in this single-field measurement.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "scroll-scene",
+      "recordedAt": "2026-10-07T20:21:28.838Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "depth": 1,
+        "turns": 1,
+        "radius": 0.13,
+        "first": "#e5aa8c",
+        "second": "#8aadeb",
+        "background": "#0e1d30"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.25083332260449726,
+        "p50": 0.20000004768371582,
+        "p95": 0.5999999046325684,
+        "max": 1.5
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 1.996666673819224,
+        "p50": 1.4000000953674316,
+        "p95": 4.5,
+        "max": 6.6000001430511475
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333335,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.16110933333333313,
+        "p50": 0.131072,
+        "p95": 0.393216,
+        "max": 0.524288
+      },
+      "passes": {
+        "hgpu-scroll-scene": {
+          "count": 120,
+          "mean": 0.09939626666666644,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.06171306666666663,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 2,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Schema-default progress; no CSS scroll timeline or computed-style bridge in this single-field measurement.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "scroll-scene",
+      "recordedAt": "2026-10-07T20:21:31.377Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "progress": 0,
+        "depth": 1,
+        "turns": 1,
+        "radius": 0.13,
+        "first": "#e5aa8c",
+        "second": "#8aadeb",
+        "background": "#0e1d30"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.23333333532015482,
+        "p50": 0.20000004768371582,
+        "p95": 0.5,
+        "max": 0.9000000953674316
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 1.895833319425583,
+        "p50": 1.3999998569488525,
+        "p95": 3.9000000953674316,
+        "max": 5.8999998569488525
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333333,
+        "p50": 16.699999999999818,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 0.14581759999999971,
+        "p50": 0.131072,
+        "p95": 0.32767999999999997,
+        "max": 0.393216
+      },
+      "passes": {
+        "hgpu-scroll-scene": {
+          "count": 120,
+          "mean": 0.09557333333333312,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.262144
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 0.050244266666666614,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 2097152,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {},
+      "taps": {},
+      "run": 3,
+      "gate": null,
+      "tier": "T1",
+      "family": "dom",
+      "fixture": "Schema-default progress; no CSS scroll timeline or computed-style bridge in this single-field measurement.",
+      "fixtureAudit": {
+        "taps": {},
+        "obstacleBuffer": null,
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "fluid-obstacles",
+      "recordedAt": "2026-10-07T20:21:34.113Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "grid": 256,
+        "iterations": 32,
+        "boundary": "closed",
+        "viscosity": 0.02,
+        "drag": 0.15,
+        "vorticity": 0.5,
+        "dissipation": 0.1,
+        "source": 0.8,
+        "force": 0.3,
+        "radius": 0.045,
+        "initial": "vortices",
+        "initialVelocity": [
+          0.18,
+          0
+        ],
+        "initialAmount": 1.5,
+        "view": "material",
+        "dyeA": "#35bacf",
+        "dyeB": "#ef795e",
+        "background": "#101623"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.5008333305517833,
+        "p50": 0.3000001907348633,
+        "p95": 1,
+        "max": 3.3000001907348633
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 6.320833325386047,
+        "p50": 6.099999904632568,
+        "p95": 8.799999952316284,
+        "max": 10
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333328,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 9.143364266666664,
+        "p50": 9.764864,
+        "p95": 11.534336,
+        "max": 12.910592
+      },
+      "passes": {
+        "hgpu-fluid-advectVelocity": {
+          "count": 120,
+          "mean": 0.09666559999999978,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        },
+        "hgpu-fluid-copy": {
+          "count": 120,
+          "mean": 0.02512213333333333,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.131072
+        },
+        "hgpu-fluid-diffuse": {
+          "count": 120,
+          "mean": 0.19715413333333304,
+          "p50": 0.196608,
+          "p95": 0.32767999999999997,
+          "max": 0.39321599999999995
+        },
+        "hgpu-fluid-curl": {
+          "count": 120,
+          "mean": 0.04587519999999993,
+          "p50": 0.065536,
+          "p95": 0.065536,
+          "max": 0.196608
+        },
+        "hgpu-fluid-force": {
+          "count": 120,
+          "mean": 0.07591253333333318,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.131072
+        },
+        "hgpu-fluid-divergence": {
+          "count": 120,
+          "mean": 0.22773759999999982,
+          "p50": 0.196608,
+          "p95": 0.32767999999999997,
+          "max": 0.393216
+        },
+        "hgpu-fluid-pressure": {
+          "count": 120,
+          "mean": 2.1856255999999994,
+          "p50": 2.162688,
+          "p95": 2.818047999999999,
+          "max": 3.2768
+        },
+        "hgpu-fluid-project": {
+          "count": 120,
+          "mean": 0.07700479999999987,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.32768
+        },
+        "hgpu-fluid-advectMaterial": {
+          "count": 120,
+          "mean": 0.07263573333333322,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-fluid-obstacleMask": {
+          "count": 120,
+          "mean": 0.03276799999999998,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.262144
+        },
+        "hgpu-fluid-enforceVelocity": {
+          "count": 120,
+          "mean": 0.03932159999999994,
+          "p50": 0.065536,
+          "p95": 0.065536,
+          "max": 0.131072
+        },
+        "hgpu-fluid-clearMaterial": {
+          "count": 120,
+          "mean": 0.028398933333333317,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.196608
+        },
+        "hgpu-fluid-display": {
+          "count": 120,
+          "mean": 3.059985066666663,
+          "p50": 3.342336,
+          "p95": 4.194304,
+          "max": 4.58752
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 2.9791573333333337,
+          "p50": 3.211264,
+          "p95": 4.194304,
+          "max": 4.58752
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 6291464,
+        "bufferBytes": 576,
+        "shared": {
+          "entries": 36,
+          "references": 36,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {
+        "obstacles": {
+          "count": 3,
+          "stride": 16,
+          "bytes": 48
+        }
+      },
+      "taps": {
+        "velocity": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "dye": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "pressure": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "curl": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "divergence": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "projectedDivergence": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "diffusionRhs": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "obstacleMask": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        }
+      },
+      "run": 1,
+      "gate": null,
+      "tier": "T2",
+      "family": "fluids",
+      "fixture": "Two owned default normalized obstacle rectangles; actual default grid and pressure iterations.",
+      "fixtureAudit": {
+        "taps": {
+          "velocity": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 118372,
+            "min": -0.262451171875,
+            "max": 0.29833984375,
+            "hash": 884319011
+          },
+          "dye": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 177378,
+            "min": 0,
+            "max": 1.294921875,
+            "hash": 2168550061
+          },
+          "pressure": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 59580,
+            "min": -0.42364591360092163,
+            "max": 0.5194965600967407,
+            "hash": 984897042
+          },
+          "curl": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 60061,
+            "min": -31.82421875,
+            "max": 14.70703125,
+            "hash": 1045062498
+          },
+          "divergence": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 38879,
+            "min": -0.1790771484375,
+            "max": 0.145263671875,
+            "hash": 768014527
+          },
+          "projectedDivergence": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 48359,
+            "min": -0.0325469970703125,
+            "max": 0.0268402099609375,
+            "hash": 399258091
+          },
+          "diffusionRhs": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 0,
+            "min": 0,
+            "max": 0,
+            "hash": 4125924805
+          },
+          "obstacleMask": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 5956,
+            "min": 0,
+            "max": 1,
+            "hash": 3054993105
+          }
+        },
+        "obstacleBuffer": {
+          "bytes": 48,
+          "rectangles": 2,
+          "boxes": [
+            0.23999999463558197,
+            0.30000001192092896,
+            0.7599999904632568,
+            0.4099999964237213,
+            0.3499999940395355,
+            0.5799999833106995,
+            0.6499999761581421,
+            0.6899999976158142
+          ]
+        },
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "fluid-obstacles",
+      "recordedAt": "2026-10-07T20:21:36.645Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "grid": 256,
+        "iterations": 32,
+        "boundary": "closed",
+        "viscosity": 0.02,
+        "drag": 0.15,
+        "vorticity": 0.5,
+        "dissipation": 0.1,
+        "source": 0.8,
+        "force": 0.3,
+        "radius": 0.045,
+        "initial": "vortices",
+        "initialVelocity": [
+          0.18,
+          0
+        ],
+        "initialAmount": 1.5,
+        "view": "material",
+        "dyeA": "#35bacf",
+        "dyeB": "#ef795e",
+        "background": "#101623"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.4808333377043406,
+        "p50": 0.2999999523162842,
+        "p95": 1.2000000476837158,
+        "max": 2.700000047683716
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 6.590000007549921,
+        "p50": 6.099999904632568,
+        "p95": 9.200000047683716,
+        "max": 13.799999952316284
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.665833333333335,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 9.6436224,
+        "p50": 10.092543999999997,
+        "p95": 11.862015999999997,
+        "max": 12.255232
+      },
+      "passes": {
+        "hgpu-fluid-advectVelocity": {
+          "count": 120,
+          "mean": 0.11687253333333314,
+          "p50": 0.131072,
+          "p95": 0.196608,
+          "max": 0.32768
+        },
+        "hgpu-fluid-copy": {
+          "count": 120,
+          "mean": 0.021845333333333338,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.196608
+        },
+        "hgpu-fluid-diffuse": {
+          "count": 120,
+          "mean": 0.22063786666666643,
+          "p50": 0.262144,
+          "p95": 0.32767999999999997,
+          "max": 0.65536
+        },
+        "hgpu-fluid-curl": {
+          "count": 120,
+          "mean": 0.04642133333333325,
+          "p50": 0.065536,
+          "p95": 0.065536,
+          "max": 0.131072
+        },
+        "hgpu-fluid-force": {
+          "count": 120,
+          "mean": 0.07700479999999985,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.131072
+        },
+        "hgpu-fluid-divergence": {
+          "count": 120,
+          "mean": 0.2550442666666665,
+          "p50": 0.262144,
+          "p95": 0.45875199999999994,
+          "max": 0.589824
+        },
+        "hgpu-fluid-pressure": {
+          "count": 120,
+          "mean": 2.2467925333333336,
+          "p50": 2.1626880000000006,
+          "p95": 2.8180479999999988,
+          "max": 3.014656000000001
+        },
+        "hgpu-fluid-project": {
+          "count": 120,
+          "mean": 0.07809706666666652,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.32768
+        },
+        "hgpu-fluid-advectMaterial": {
+          "count": 120,
+          "mean": 0.07918933333333321,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.32768
+        },
+        "hgpu-fluid-obstacleMask": {
+          "count": 120,
+          "mean": 0.03932159999999998,
+          "p50": 0,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-fluid-enforceVelocity": {
+          "count": 120,
+          "mean": 0.05515946666666659,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.458752
+        },
+        "hgpu-fluid-clearMaterial": {
+          "count": 120,
+          "mean": 0.03276799999999998,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.32768
+        },
+        "hgpu-fluid-display": {
+          "count": 120,
+          "mean": 3.2210943999999992,
+          "p50": 3.407872,
+          "p95": 4.194304,
+          "max": 4.456448
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 3.153373866666664,
+          "p50": 3.342336,
+          "p95": 4.128768,
+          "max": 4.325376
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 6291464,
+        "bufferBytes": 576,
+        "shared": {
+          "entries": 36,
+          "references": 36,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {
+        "obstacles": {
+          "count": 3,
+          "stride": 16,
+          "bytes": 48
+        }
+      },
+      "taps": {
+        "velocity": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "dye": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "pressure": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "curl": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "divergence": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "projectedDivergence": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "diffusionRhs": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "obstacleMask": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        }
+      },
+      "run": 2,
+      "gate": null,
+      "tier": "T2",
+      "family": "fluids",
+      "fixture": "Two owned default normalized obstacle rectangles; actual default grid and pressure iterations.",
+      "fixtureAudit": {
+        "taps": {
+          "velocity": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 118372,
+            "min": -0.262451171875,
+            "max": 0.29833984375,
+            "hash": 884319011
+          },
+          "dye": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 177378,
+            "min": 0,
+            "max": 1.294921875,
+            "hash": 2168550061
+          },
+          "pressure": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 59580,
+            "min": -0.42364591360092163,
+            "max": 0.5194965600967407,
+            "hash": 984897042
+          },
+          "curl": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 60061,
+            "min": -31.82421875,
+            "max": 14.70703125,
+            "hash": 1045062498
+          },
+          "divergence": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 38879,
+            "min": -0.1790771484375,
+            "max": 0.145263671875,
+            "hash": 768014527
+          },
+          "projectedDivergence": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 48359,
+            "min": -0.0325469970703125,
+            "max": 0.0268402099609375,
+            "hash": 399258091
+          },
+          "diffusionRhs": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 0,
+            "min": 0,
+            "max": 0,
+            "hash": 4125924805
+          },
+          "obstacleMask": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 5956,
+            "min": 0,
+            "max": 1,
+            "hash": 3054993105
+          }
+        },
+        "obstacleBuffer": {
+          "bytes": 48,
+          "rectangles": 2,
+          "boxes": [
+            0.23999999463558197,
+            0.30000001192092896,
+            0.7599999904632568,
+            0.4099999964237213,
+            0.3499999940395355,
+            0.5799999833106995,
+            0.6499999761581421,
+            0.6899999976158142
+          ]
+        },
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    },
+    {
+      "id": "fluid-obstacles",
+      "recordedAt": "2026-10-07T20:21:39.177Z",
+      "seed": 7,
+      "size": [
+        512,
+        512
+      ],
+      "params": {
+        "grid": 256,
+        "iterations": 32,
+        "boundary": "closed",
+        "viscosity": 0.02,
+        "drag": 0.15,
+        "vorticity": 0.5,
+        "dissipation": 0.1,
+        "source": 0.8,
+        "force": 0.3,
+        "radius": 0.045,
+        "initial": "vortices",
+        "initialVelocity": [
+          0.18,
+          0
+        ],
+        "initialAmount": 1.5,
+        "view": "material",
+        "dyeA": "#35bacf",
+        "dyeB": "#ef795e",
+        "background": "#101623"
+      },
+      "samples": 120,
+      "warmup": 30,
+      "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+      "cpuMs": {
+        "count": 120,
+        "mean": 0.531666652361552,
+        "p50": 0.39999985694885254,
+        "p95": 1.4000000953674316,
+        "max": 2.5
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 6.873333332935969,
+        "p50": 6.200000047683716,
+        "p95": 9.900000095367432,
+        "max": 11.299999952316284
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 16.66583333333333,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 9.966387200000002,
+        "p50": 10.289152,
+        "p95": 12.124159999999998,
+        "max": 12.976128
+      },
+      "passes": {
+        "hgpu-fluid-advectVelocity": {
+          "count": 120,
+          "mean": 0.11086506666666644,
+          "p50": 0.131072,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-fluid-copy": {
+          "count": 120,
+          "mean": 0.02075306666666666,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.065536
+        },
+        "hgpu-fluid-diffuse": {
+          "count": 120,
+          "mean": 0.21135359999999975,
+          "p50": 0.196608,
+          "p95": 0.39321599999999995,
+          "max": 0.589824
+        },
+        "hgpu-fluid-curl": {
+          "count": 120,
+          "mean": 0.04969813333333325,
+          "p50": 0.065536,
+          "p95": 0.065536,
+          "max": 0.131072
+        },
+        "hgpu-fluid-force": {
+          "count": 120,
+          "mean": 0.08301226666666649,
+          "p50": 0.065536,
+          "p95": 0.131072,
+          "max": 0.196608
+        },
+        "hgpu-fluid-divergence": {
+          "count": 120,
+          "mean": 0.2621439999999998,
+          "p50": 0.262144,
+          "p95": 0.393216,
+          "max": 0.5242880000000001
+        },
+        "hgpu-fluid-pressure": {
+          "count": 120,
+          "mean": 2.290483199999999,
+          "p50": 2.228224,
+          "p95": 2.883583999999999,
+          "max": 3.2112639999999995
+        },
+        "hgpu-fluid-project": {
+          "count": 120,
+          "mean": 0.08574293333333317,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.524288
+        },
+        "hgpu-fluid-advectMaterial": {
+          "count": 120,
+          "mean": 0.08738133333333316,
+          "p50": 0.065536,
+          "p95": 0.196608,
+          "max": 0.65536
+        },
+        "hgpu-fluid-obstacleMask": {
+          "count": 120,
+          "mean": 0.04205226666666665,
+          "p50": 0,
+          "p95": 0.196608,
+          "max": 0.262144
+        },
+        "hgpu-fluid-enforceVelocity": {
+          "count": 120,
+          "mean": 0.03986773333333327,
+          "p50": 0.065536,
+          "p95": 0.065536,
+          "max": 0.131072
+        },
+        "hgpu-fluid-clearMaterial": {
+          "count": 120,
+          "mean": 0.036044799999999974,
+          "p50": 0,
+          "p95": 0.065536,
+          "max": 0.196608
+        },
+        "hgpu-fluid-display": {
+          "count": 120,
+          "mean": 3.3581738666666636,
+          "p50": 3.473408,
+          "p95": 4.128768,
+          "max": 4.456448
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 3.2888149333333345,
+          "p50": 3.407872,
+          "p95": 4.194304,
+          "max": 4.390912
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "dual-source-blending",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "textureBytes": 6291464,
+        "bufferBytes": 576,
+        "shared": {
+          "entries": 36,
+          "references": 36,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "errors": [],
+      "frameIndex": 150,
+      "buffers": {
+        "obstacles": {
+          "count": 3,
+          "stride": 16,
+          "bytes": 48
+        }
+      },
+      "taps": {
+        "velocity": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "dye": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "pressure": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "curl": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "divergence": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "projectedDivergence": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        },
+        "diffusionRhs": {
+          "width": 256,
+          "height": 256,
+          "format": "rgba16float"
+        },
+        "obstacleMask": {
+          "width": 256,
+          "height": 256,
+          "format": "r32float"
+        }
+      },
+      "run": 3,
+      "gate": null,
+      "tier": "T2",
+      "family": "fluids",
+      "fixture": "Two owned default normalized obstacle rectangles; actual default grid and pressure iterations.",
+      "fixtureAudit": {
+        "taps": {
+          "velocity": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 118372,
+            "min": -0.262451171875,
+            "max": 0.29833984375,
+            "hash": 884319011
+          },
+          "dye": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 177378,
+            "min": 0,
+            "max": 1.294921875,
+            "hash": 2168550061
+          },
+          "pressure": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 59580,
+            "min": -0.42364591360092163,
+            "max": 0.5194965600967407,
+            "hash": 984897042
+          },
+          "curl": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 60061,
+            "min": -31.82421875,
+            "max": 14.70703125,
+            "hash": 1045062498
+          },
+          "divergence": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 38879,
+            "min": -0.1790771484375,
+            "max": 0.145263671875,
+            "hash": 768014527
+          },
+          "projectedDivergence": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 48359,
+            "min": -0.0325469970703125,
+            "max": 0.0268402099609375,
+            "hash": 399258091
+          },
+          "diffusionRhs": {
+            "width": 256,
+            "height": 256,
+            "format": "rgba16float",
+            "channels": 4,
+            "count": 262144,
+            "nonzero": 0,
+            "min": 0,
+            "max": 0,
+            "hash": 4125924805
+          },
+          "obstacleMask": {
+            "width": 256,
+            "height": 256,
+            "format": "r32float",
+            "channels": 1,
+            "count": 65536,
+            "nonzero": 5956,
+            "min": 0,
+            "max": 1,
+            "hash": 3054993105
+          }
+        },
+        "obstacleBuffer": {
+          "bytes": 48,
+          "rectangles": 2,
+          "boxes": [
+            0.23999999463558197,
+            0.30000001192092896,
+            0.7599999904632568,
+            0.4099999964237213,
+            0.3499999940395355,
+            0.5799999833106995,
+            0.6499999761581421,
+            0.6899999976158142
+          ]
+        },
+        "diagnostics": [],
+        "inputMediaPath": "external",
+        "actualMediaBound": false,
+        "inputBindings": []
+      }
+    }
+  ]
+}

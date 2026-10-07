@@ -6,9 +6,11 @@ M3 adds six particle effects, four compute primitive demos, timestamp profiling,
 
 M4 adds eight image filters, three distance/light effects, media inputs, filter chains, texture-backed parameters, Compare, screenshots and recording. M4 is complete on the development target: Chrome passes the 1080p video refresh gate in all three runs; WebKit passes correctness checks but misses that performance gate. See [M4 validation](docs/m4.md).
 
+M5 adds DOM attachments and custom elements, six Family H effects, fluid obstacles, CSS/property/timeline drivers, and In page and Grid modes. Implementation and local validation are complete: the native six-effect refresh gate and matched software-adapter adaptation pass. Physical weaker-device validation remains for M8; see [M5 validation](docs/m5.md).
+
 ## Run
 
-Requires Node 22.12+ and pnpm 11.15.1. The playground uses a local stylesheet while the HoloCSS linking decision remains open.
+Requires Node 22.12+ and pnpm 11.15.1. The DOM demo includes a small vendored MIT-licensed HoloCSS motion stylesheet; its [provenance](apps/playground/src/vendor/holocss/README.md) is retained alongside the source.
 
 ```sh
 pnpm install
@@ -37,7 +39,32 @@ T2 uses `feedbackEffect({ setup(context) })` with a program owning initializatio
 
 T3 uses `particleEffect` with the same fixed-step ownership contract and storage buffers. The [particle ADR](docs/adr/008-particle-storage-and-hdr.md) covers point/quad rendering, indirect draws and HDR histories; the [primitive ADR](docs/adr/009-compute-primitives.md) documents reusable scans, stable sorts, grids and mip generation. The Source drawer can compile, restore and export edits while keeping the last good pipeline on errors. Morph particles accept local custom text and image targets.
 
-Schemas support scalars, vectors, booleans, enums, CSS colours, named texture inputs, curves and gradients. Curves and gradients bake into linear texture LUTs; texture selectors resolve named bound inputs. DOM attachment and `<hgpu-field>` are M5. The [contract ADR](docs/adr/005-t1-effect-contract.md) specifies alignment, coordinate conventions, lifecycle and limitations. The [facade ADR](docs/adr/006-public-package-facade.md) explains public package paths and internal dependency boundaries.
+Schemas support scalars, vectors, booleans, enums, CSS colours, named texture inputs, curves and gradients. Curves and gradients bake into linear texture LUTs; texture selectors resolve named bound inputs. The [contract ADR](docs/adr/005-t1-effect-contract.md) specifies alignment, coordinate conventions, lifecycle and limitations. The [facade ADR](docs/adr/006-public-package-facade.md) explains public package paths and internal dependency boundaries.
+
+## DOM fields (M5)
+
+```ts
+import { attach } from '@mk7s/hologpu/dom';
+import border from '@mk7s/hologpu/effects/border-energy';
+
+const attached = await attach(element, border, { layer: 'behind', seed: 7 });
+attached.params.speed = 0.3;
+attached.timeline(0.5); // external normalized clock; simulation stays paused
+attached.destroy();
+```
+
+Import `@mk7s/hologpu/element` to register `<hgpu-field>` with the lazy catalogue resolver, or call `registerHGPUField()` from the DOM entry to supply a resolver or a custom tag name. The canvas lives in a shadow root; accessible text and controls remain slotted light-DOM children. Attachments share a device, resize with their hosts, sleep offscreen and in background tabs, respect reduced motion, and restore after device loss. They dispatch `hgpu-ready`, `hgpu-fallback`, `hgpu-lost`, `hgpu-restored` and `hgpu-quality`. An optional `poster` takes precedence over the effect's CSS fallback. `attachment.field` is nullable when GPU setup fails; the attachment and authored content remain usable.
+
+```html
+<hgpu-field effect="image-hover" style="--hgpu-progress: 0.4">
+  <h2>Accessible content stays here</h2>
+  <button>Still interactive</button>
+</hgpu-field>
+```
+
+Uniforms can be driven through plain `params` assignments, opted-in typed non-inheriting `--hgpu-*` properties, or `timeline(progress)` with a finite 0–1 value. The CSS bridge reads one computed-style object per visible frame and caps each field at eight scalar, boolean or color bindings. Unset CSS leaves schema defaults and presets intact. Author explicit numeric endpoints for CSS transitions; CSS vectors, texture selectors and allocation controls are not supported. `bindProperties`, `bindCSSParameters` and `bindTimeline` expose disposable drivers for imperative fields. Property and timeline drivers report counters; failed author sources emit bounded `hgpu-error` events while healthy fields continue. An unchanged external clock preserves its settled image.
+
+`fluid-obstacles` automatically consumes tagged `[data-hgpu-obstacle]` descendants through packed DOM rectangles. `DomRectsInput` is also available for explicit bindings; the caller owns and disposes that descriptor. Rectangles use transformed axis-aligned bounds rather than arbitrary DOM silhouettes. In page combines six effects with actual content, a HoloCSS image transition and a CSS view timeline. Grid makes repeated attachments; page conditions expose reduced motion, fallback, quality tiers and real device loss. The fixed overlay remains a research option; ordinary attachments use one in-flow canvas per element.
 
 ## Inputs and filter chains (M4)
 
@@ -159,6 +186,8 @@ M0 scenarios remain available with `pnpm benchmark chrome`, `pnpm benchmark fire
 - [M1 validation](docs/m1.md)
 - [M2 validation](docs/m2.md)
 - [M3 validation](docs/m3.md)
+- [M4 validation](docs/m4.md)
+- [M5 validation](docs/m5.md)
 - [T1 stretch validation](docs/t1-stretch.md)
 - [Effect notes and template](docs/notes/_template.md)
 

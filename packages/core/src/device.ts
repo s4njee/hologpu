@@ -43,7 +43,14 @@ export class DeviceSession {
   constructor(gpu: GPU, features: readonly GPUFeatureName[]) {
     this.#gpu = gpu;
     features.forEach((f) => this.#requested.add(f));
-    this.scheduler = new Scheduler(() => this.submit());
+    this.scheduler = new Scheduler(
+      () => this.submit(),
+      undefined,
+      () => this.device.queue.onSubmittedWorkDone(),
+    );
+    this.onState((event) => {
+      if (event === 'lost') this.scheduler.resetSubmission();
+    });
     this.#pending = this.#initialize();
   }
   get device() {

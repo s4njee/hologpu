@@ -3,12 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/register.ts",
+    "./dist/register.js"
+  ],
   "exports": {
     ".": {
       "source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./register": {
+      "source": "./src/register.ts",
+      "types": "./dist/register.d.ts",
+      "import": "./dist/register.js"
     }
   },
   "scripts": {
@@ -17,5 +25,8 @@
   },
   "devDependencies": {
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@mk7s/hologpu-core": "workspace:*"
   }
 }

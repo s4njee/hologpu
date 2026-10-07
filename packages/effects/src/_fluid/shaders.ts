@@ -1,11 +1,42 @@
 export type FluidKind = 'fluid' | 'ink' | 'smoke';
 /** MAC storage: x is the right face, y is the bottom face of each cell. */
-export function solverCommon(kind: FluidKind) {
+export function solverCommon(kind: FluidKind, obstacles = false) {
   return /* wgsl */ `
 @group(1) @binding(0) var src: texture_2d<f32>;
 @group(1) @binding(1) var vel: texture_2d<f32>;
 @group(1) @binding(2) var aux: texture_2d<f32>;
 @group(1) @binding(3) var material: texture_2d<f32>;
+${
+  obstacles
+    ? `struct Rects {count:u32,pad0:u32,pad1:u32,pad2:u32,rects:array<vec4f>};
+@group(2) @binding(0) var<storage,read> obstacles:Rects;
+fn solid(i:vec2i,n:vec2i)->bool {
+  let cell=select(i,((i%n)+n)%n,params.boundary==1u);
+  let q=(vec2f(cell)+0.5)/vec2f(n);
+  for(var j=0u;j<min(obstacles.count,arrayLength(&obstacles.rects));j++) {
+    let r=obstacles.rects[j]; if(all(q>=r.xy) && all(q<r.zw)) {return true;}
+  }
+  return false;
+}
+// Slab intersection stops semi-Lagrangian characteristics at the first solid rectangle;
+// even a backtrace spanning multiple cells cannot tunnel through a thin heading.
+fn obstacle_backtrace(start:vec2f,end:vec2f,n:vec2f)->vec2f {
+  let a=start/n;let b=end/n;let d=b-a;var hit=1.0;
+  for(var j=0u;j<min(obstacles.count,arrayLength(&obstacles.rects));j++) {
+    let radius=select(0,1,params.boundary==1u);
+    for(var oy=-radius;oy<=radius;oy++) {for(var ox=-radius;ox<=radius;ox++) {
+    let r=obstacles.rects[j]+vec4f(f32(ox),f32(oy),f32(ox),f32(oy));
+    let safe=select(select(vec2f(-1e-8),vec2f(1e-8),d>=vec2f(0)),d,abs(d)>vec2f(1e-8));
+    let t0=(r.xy-a)/safe;let t1=(r.zw-a)/safe;
+    let near=min(t0,t1);let far=max(t0,t1);
+    let enter=max(near.x,near.y);let exit=min(far.x,far.y);
+    if(enter>=0.0 && enter<=exit && enter<=hit) {hit=max(0.0,enter-0.0001);}
+    }}
+  }
+  return mix(start,end,hit);
+}`
+    : ''
+}
 fn wrap_cell(i: vec2i,n: vec2i) -> vec2i { return ((i%n)+n)%n; }
 fn load_cell(image: texture_2d<f32>,i: vec2i) -> vec4f {
   let n=vec2i(textureDimensions(image));
@@ -19,6 +50,7 @@ fn bilerp(image: texture_2d<f32>,p: vec2f) -> vec4f {
 fn face_velocity(i: vec2i) -> vec2f {
   let n=vec2i(textureDimensions(vel));var v=load_cell(vel,i).xy;
   if(params.boundary==0u) { if(i.x<0 || i.x>=n.x-1) {v.x=0.0;}if(i.y<0 || i.y>=n.y-1) {v.y=0.0;} }
+  ${obstacles ? 'if(solid(i,n) || solid(i+vec2i(1,0),n)) {v.x=0.0;} if(solid(i,n) || solid(i+vec2i(0,1),n)) {v.y=0.0;}' : ''}
   return v;
 }
 fn velocity_at(p: vec2f) -> vec2f {
@@ -27,6 +59,7 @@ fn velocity_at(p: vec2f) -> vec2f {
 fn wall_velocity(v: vec2f,i: vec2i,n: vec2i) -> vec2f {
   var result=v;
   if(params.boundary==0u) { if(i.x==n.x-1) {result.x=0.0;}if(i.y==n.y-1) {result.y=0.0;} }
+  ${obstacles ? 'if(solid(i,n) || solid(i+vec2i(1,0),n)) {result.x=0.0;} if(solid(i,n) || solid(i+vec2i(0,1),n)) {result.y=0.0;}' : ''}
   return result;
 }
 fn gaussian(p: vec2f,c: vec2f,r: f32) -> f32 { let d=(p-c)/max(r,0.001);return exp(-dot(d,d)*0.5); }
@@ -51,7 +84,8 @@ ${
 `;
 }
 export function storageFormat(kind: FluidKind, name: string): GPUTextureFormat {
-  if (['divergence', 'curl', 'pressure', 'zero', 'shadow'].includes(name)) return 'r32float';
+  if (['divergence', 'curl', 'pressure', 'zero', 'shadow', 'obstacleMask'].includes(name))
+    return 'r32float';
   // Pigment history must not undergo another half-float narrowing at every transfer.
   if (
     kind === 'ink' &&
@@ -60,13 +94,17 @@ export function storageFormat(kind: FluidKind, name: string): GPUTextureFormat {
     return 'rgba32float';
   return 'rgba16float';
 }
-export function computeShader(kind: FluidKind, name: string) {
+export function computeShader(kind: FluidKind, name: string, obstacles = false) {
   const output = `@group(1) @binding(4) var destination: texture_storage_2d<${storageFormat(kind, name)},write>;`;
   const start = `@compute @workgroup_size(8,8) fn main(@builtin(global_invocation_id) gid:vec3u) {
   let n=vec2i(textureDimensions(destination));let i=vec2i(gid.xy);if(any(i>=n)) {return;}
   let nf=vec2f(n);let cell=vec2f(i)+0.5;let uv=cell/nf;let p=cell/nf.y;`;
   const end = '\n}';
   const bodies: Record<string, string> = {
+    obstacleMask: 'textureStore(destination,i,vec4f(select(0.0,1.0,solid(i,n)),0,0,0));',
+    enforceVelocity:
+      'textureStore(destination,i,vec4f(wall_velocity(load_cell(src,i).xy,i,n),0,0));',
+    clearMaterial: 'textureStore(destination,i,select(load_cell(src,i),vec4f(0),solid(i,n)));',
     initVelocity: /* wgsl */ `
   var v=vec2f(0.0);
   if(params.initial==2u) { v=params.initialVelocity; }
@@ -88,7 +126,7 @@ export function computeShader(kind: FluidKind, name: string) {
   let b=gaussian(p,vec2f(nf.x/nf.y*0.66,${kind === 'smoke' ? '0.8' : '0.57'}-shift),0.1);
   let weights=select(vec2f(a,b),vec2f(0.5),params.initial==2u)*params.initialAmount;
   ${kind === 'fluid' ? 'let m=vec4f(params.dyeA.rgb*weights.x+params.dyeB.rgb*weights.y,0);' : kind === 'ink' ? 'let m=vec4f(weights,weights.x+weights.y,0);' : 'let m=vec4f(weights.x+weights.y,(weights.x+weights.y)*params.heat,0,0);'}
-  textureStore(destination,i,m);`,
+  textureStore(destination,i,${obstacles ? 'select(m,vec4f(0),solid(i,n))' : 'm'});`,
     zero: 'textureStore(destination,i,vec4f(0));',
     zeroRgba: 'textureStore(destination,i,vec4f(0));',
     zeroMaterial: 'textureStore(destination,i,vec4f(0));',
@@ -124,14 +162,16 @@ export function computeShader(kind: FluidKind, name: string) {
   let v=face_velocity(i)+force*frame.delta;
   textureStore(destination,i,vec4f(wall_velocity(clamp(v,vec2f(-2),vec2f(2)),i,n),0,0));`,
     divergence: /* wgsl */ `
+  ${obstacles ? 'if(solid(i,n)) {textureStore(destination,i,vec4f(0));return;}' : ''}
   let v=face_velocity(i);let l=face_velocity(i-vec2i(1,0));let t=face_velocity(i-vec2i(0,1));
   textureStore(destination,i,vec4f(v.x-l.x+v.y-t.y,0,0,0));`,
     pressure: /* wgsl */ `
+  ${obstacles ? 'if(solid(i,n)) {textureStore(destination,i,vec4f(0));return;}' : ''}
   var sum=0.0;var count=0.0;
   let offsets=array<vec2i,4>(vec2i(-1,0),vec2i(1,0),vec2i(0,-1),vec2i(0,1));
   for(var j=0u;j<4u;j++) {
     let q=i+offsets[j];
-    if(params.boundary==1u || (all(q>=vec2i(0)) && all(q<n))) {sum+=load_cell(src,q).x;count+=1.0;}
+    if((params.boundary==1u || (all(q>=vec2i(0)) && all(q<n))) ${obstacles ? '&& !solid(q,n)' : ''}) {sum+=load_cell(src,q).x;count+=1.0;}
   }
   // Neumann walls omit absent neighbours. Pressure is defined up to an additive constant.
   let pNew=(sum-load_cell(aux,i).x)/max(count,1.0);
@@ -141,7 +181,9 @@ export function computeShader(kind: FluidKind, name: string) {
   let grad=vec2f(load_cell(aux,i+vec2i(1,0)).x-p0,load_cell(aux,i+vec2i(0,1)).x-p0);
   textureStore(destination,i,vec4f(wall_velocity(face_velocity(i)-grad,i,n),0,0));`,
     advectMaterial: /* wgsl */ `
-  let q=cell-velocity_at(cell)*frame.delta*nf.y;
+  ${obstacles ? 'if(solid(i,n)) {textureStore(destination,i,vec4f(0));return;}' : ''}
+  let back=cell-velocity_at(cell)*frame.delta*nf.y;
+  let q=${obstacles ? 'obstacle_backtrace(cell,back,nf)' : 'back'};
   var m=bilerp(src,q);let fade=exp(-params.dissipation*frame.delta);
   ${kind === 'fluid' ? 'm*=fade;' : kind === 'ink' ? 'm=vec4f(m.xy*fade,m.z*exp(-params.evaporation*frame.delta),0);' : 'm=vec4f(m.x*fade,m.y*exp(-params.cooling*frame.delta),0,0);'}
   let emitter=gaussian(p,source_position()*vec2f(nf.x/nf.y,1),params.radius);
@@ -169,7 +211,7 @@ export function computeShader(kind: FluidKind, name: string) {
   }`,
   };
   if (!(name in bodies)) throw new Error(`Unknown solver pass ${name}`);
-  return solverCommon(kind) + '\n' + output + '\n' + start + bodies[name] + end;
+  return solverCommon(kind, obstacles) + '\n' + output + '\n' + start + bodies[name] + end;
 }
 export function displayShader(kind: FluidKind) {
   return /* wgsl */ `

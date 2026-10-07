@@ -204,6 +204,41 @@
       "source": "./src/halftone-ascii/index.ts",
       "types": "./dist/halftone-ascii/index.d.ts",
       "import": "./dist/halftone-ascii/index.js"
+    },
+    "./audio-spectrum": {
+      "source": "./src/audio-spectrum/index.ts",
+      "types": "./dist/audio-spectrum/index.d.ts",
+      "import": "./dist/audio-spectrum/index.js"
+    },
+    "./border-energy": {
+      "source": "./src/border-energy/index.ts",
+      "types": "./dist/border-energy/index.d.ts",
+      "import": "./dist/border-energy/index.js"
+    },
+    "./fluid-obstacles": {
+      "source": "./src/fluid-obstacles/index.ts",
+      "types": "./dist/fluid-obstacles/index.d.ts",
+      "import": "./dist/fluid-obstacles/index.js"
+    },
+    "./image-hover": {
+      "source": "./src/image-hover/index.ts",
+      "types": "./dist/image-hover/index.d.ts",
+      "import": "./dist/image-hover/index.js"
+    },
+    "./scroll-scene": {
+      "source": "./src/scroll-scene/index.ts",
+      "types": "./dist/scroll-scene/index.d.ts",
+      "import": "./dist/scroll-scene/index.js"
+    },
+    "./spotlight": {
+      "source": "./src/spotlight/index.ts",
+      "types": "./dist/spotlight/index.d.ts",
+      "import": "./dist/spotlight/index.js"
+    },
+    "./text-dissolve": {
+      "source": "./src/text-dissolve/index.ts",
+      "types": "./dist/text-dissolve/index.d.ts",
+      "import": "./dist/text-dissolve/index.js"
     }
   },
   "scripts": {

@@ -28,6 +28,25 @@ export class QualityController {
     if (!Number.isFinite(workMs) || workMs < 0) return null;
     this.#average = this.#samples ? this.#average * 0.9 + workMs * 0.1 : workMs;
     this.#samples++;
+    // A real multi-frame queue stall cannot wait for 42 additional completions.
+    // Pixel work scales with area; choose a bounded scale from measured overload.
+    if (workMs > this.budgetMs * 8) {
+      const next = {
+        stepScale: Math.max(0.25, this.state.stepScale * 0.25),
+        resolutionScale: Math.max(
+          this.minResolution,
+          this.state.resolutionScale * Math.sqrt(this.budgetMs / workMs),
+        ),
+      };
+      if (
+        next.stepScale !== this.state.stepScale ||
+        next.resolutionScale !== this.state.resolutionScale
+      ) {
+        this.state = next;
+        this.#samples = this.#slow = this.#fast = 0;
+        return { ...next };
+      }
+    }
     // Warm up after every change; separate thresholds and streak lengths avoid oscillation.
     if (this.#samples <= 30) return null;
     this.#slow = this.#average > this.budgetMs * 1.15 ? this.#slow + 1 : 0;

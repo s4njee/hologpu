@@ -50,7 +50,9 @@ aside {
   display: flex;
   flex-direction: column;
   align-self: start;
-  max-height: calc(100dvh - 76px);
+  position: sticky;
+  top: 20px;
+  max-height: calc(100dvh - 116px);
 }
 .browser > :not(#effects) {
   flex-shrink: 0;
@@ -126,6 +128,7 @@ select {
   display: grid;
   grid-auto-rows: max-content;
   gap: 7px;
+  flex: 0 1 auto;
   min-height: 0;
   max-height: min(65dvh, 720px);
   overflow-y: auto;
@@ -466,6 +469,7 @@ footer {
   .browser {
     border-right: 0;
     border-bottom: 1px solid #2a2e38;
+    position: static;
   }
   h1,
   .browser .muted,
@@ -712,4 +716,148 @@ footer {
 #effect-inputs input {
   width: 100%;
   margin-top: 6px;
+}
+#stage.dom-mode {
+  height: 560px;
+  background: #151c27;
+}
+#stage.dom-mode > #canvas {
+  display: none;
+}
+.m5-stage {
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 20px;
+}
+.m5-article-heading {
+  margin: 0 0 22px;
+}
+.m5-article-heading h3 {
+  font-size: 24px;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+.m5-article-heading p {
+  color: #b3c0d2;
+  line-height: 1.5;
+  max-width: 48ch;
+  font-size: 12px;
+}
+.m5-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-bottom: 180px;
+}
+.m5-card {
+  display: block;
+  position: relative;
+  min-height: 260px;
+  border: 1px solid #687990;
+  border-radius: 18px;
+  background: #162335;
+  overflow: hidden;
+}
+.m5-card h4,
+.m5-card p,
+.m5-card button,
+.m5-card label {
+  position: relative;
+  z-index: 3;
+}
+.m5-card h4 {
+  margin: 22px;
+  max-width: 22ch;
+  font-size: 18px;
+  color: #eff4ff;
+  text-shadow: 0 1px 8px #000;
+}
+.m5-card p {
+  margin: 22px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #c8d7e9;
+}
+.m5-card button {
+  margin: 0 22px 22px;
+}
+.m5-holo-control {
+  display: block;
+  margin: 0 22px 22px;
+  font-size: 11px;
+}
+.m5-holo-control input {
+  width: auto;
+}
+.holo-uniform {
+  --hgpu-progress: var(--hcss-number);
+  transition: --hcss-number var(--hcss-duration-slow) var(--hcss-ease-standard);
+}
+.scroll-uniform {
+  --hgpu-progress: 0;
+}
+@supports (animation-timeline: view()) {
+  .scroll-uniform {
+    animation: m5-scroll-progress 1s linear both;
+    animation-timeline: view(block);
+  }
+}
+@keyframes m5-scroll-progress {
+  from {
+    --hgpu-progress: 0;
+  }
+  to {
+    --hgpu-progress: 1;
+  }
+}
+#m5-tools {
+  margin-top: 22px;
+  border-top: 1px solid #343b49;
+  padding-top: 12px;
+}
+#m5-tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  margin: 12px 0;
+}
+#m5-tools input[type='checkbox'] {
+  width: auto;
+}
+#m5-tools select {
+  max-width: 130px;
+  margin-left: auto;
+}
+#m5-tools button {
+  width: 100%;
+  margin-top: 8px;
+}
+#m5-stage-status {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #a8b9cf;
+}
+@media (max-width: 700px) {
+  .m5-cards {
+    grid-template-columns: 1fr;
+  }
+  #stage.dom-mode {
+    height: 620px;
+  }
+}
+#stage[data-reduced-motion='true'] .holo-uniform {
+  transition: none;
+}
+#stage[data-reduced-motion='true'] .scroll-uniform {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .holo-uniform {
+    transition: none;
+  }
+  .scroll-uniform {
+    animation: none;
+  }
 }

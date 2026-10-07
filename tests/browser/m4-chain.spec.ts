@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { existsSync, readdirSync } from 'node:fs';
 import type {} from './effects.spec.ts';
 
 test('chains parameter LUTs, edits individual duplicate stages, rejects cycles and frees borrowed inputs', async ({
@@ -143,8 +144,38 @@ test('chains parameter LUTs, edits individual duplicate stages, rejects cycles a
   expect(result.after).toBe(result.base - 2);
 });
 
+// Inspect the source tree independently of the generated runtime catalogue: a dropped
+// export must not silently shrink the Cartesian-product compatibility check.
+const effectDirectory = new URL('../../packages/effects/src/', import.meta.url);
+const expectedSources = readdirSync(effectDirectory, { withFileTypes: true })
+  .filter(
+    (entry) =>
+      entry.isDirectory() &&
+      !entry.name.startsWith('_') &&
+      existsSync(new URL(`${entry.name}/index.ts`, effectDirectory)),
+  )
+  .map((entry) => entry.name)
+  .sort();
+// M4's ten core filters plus the two M5 effects implemented with the T4 contract.
+const expectedFilters = [
+  'blur',
+  'bloom',
+  'color-grade',
+  'lens',
+  'dither',
+  'halftone-ascii',
+  'edges',
+  'displace',
+  'shadows-2d',
+  'radiance-cascades',
+  'image-hover',
+  'audio-spectrum',
+].sort();
+
 test('every T4 filter accepts every current effect output', async ({ page }) => {
   test.setTimeout(180_000);
+  // Long GPU inventories must not be navigated by development-server hot reloads.
+  await page.routeWebSocket(/.*/, () => {});
   await page.goto('/?effect=gradient-oklch&playing=false');
   await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
   const result = await page.evaluate(async () => {
@@ -179,7 +210,16 @@ test('every T4 filter accepts every current effect output', async ({ page }) => 
           source.drawAt(0.5);
           output.drawAt(0.5);
           const pixels = await output.readPixels();
-          if (pixels.width !== 80 || pixels.height !== 56 || !output.textureTaps['input:image'])
+          const input = output.textureTaps['input:image'];
+          if (
+            pixels.width !== 80 ||
+            pixels.height !== 56 ||
+            !input ||
+            input.width !== 80 ||
+            input.height !== 56 ||
+            input.format !== 'rgba16float' ||
+            input.texture === source.output?.texture
+          )
             throw new Error(`Wrong output/input ${definition.id}→${filter.id}`);
           cases.push(`${definition.id}→${filter.id}`);
         } finally {
@@ -193,17 +233,21 @@ test('every T4 filter accepts every current effect output', async ({ page }) => 
     await session.device.queue.onSubmittedWorkDone();
     return {
       cases,
-      filters: filters.length,
-      sources: api.catalogue.length,
+      filters: filters.map((filter) => filter.id).sort(),
+      sources: api.catalogue.map((source) => source.id).sort(),
       after: session.scheduler.surfaceCount,
       baseline,
       errors: session.errors.slice(errorStart),
     };
   });
-  expect(result.filters).toBe(10);
-  expect(result.sources).toBe(39);
-  expect(result.cases).toHaveLength(390);
-  expect(new Set(result.cases).size).toBe(390);
+  expect(result.filters).toEqual(expectedFilters);
+  expect(result.sources).toEqual(expectedSources);
+  const expectedCases = expectedSources
+    .flatMap((source) => expectedFilters.map((filter) => `${source}→${filter}`))
+    .sort();
+  expect(result.cases).toHaveLength(expectedCases.length);
+  expect(new Set(result.cases).size).toBe(expectedCases.length);
+  expect([...result.cases].sort()).toEqual(expectedCases);
   expect(result.errors).toEqual([]);
   expect(result.after).toBe(result.baseline);
 });

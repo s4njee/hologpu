@@ -1,6 +1,8 @@
 import { test, expect, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 async function start(page: Page, id = 'gradient-oklch') {
+  // Keep the test's editor and resized stage stable while the shared checkout changes.
+  await page.routeWebSocket(/.*/, () => {});
   await page.goto(
     `/?effect=${id}&playing=false&quality=fixed&params=${encodeURIComponent(JSON.stringify(id === 'reaction-diffusion' ? { grid: 32 } : id === 'morph-particles' ? { count: 256 } : {}))}`,
   );

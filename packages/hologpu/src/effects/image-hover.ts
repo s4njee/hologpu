@@ -1,0 +1,1 @@
+export { default } from '@mk7s/hologpu-effects/image-hover';

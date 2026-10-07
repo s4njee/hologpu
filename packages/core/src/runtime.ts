@@ -21,6 +21,11 @@ export interface MountOptions {
   reducedMotion?: boolean;
   timeScale?: number;
   adaptiveQuality?: boolean;
+  /** Render an internal target without owning a canvas swap chain (overlay experiments). */
+  present?: boolean;
+  /** DOM attachments keep the decorative canvas out of hit testing. */
+  pointerTarget?: HTMLElement;
+  observeTarget?: Element;
 }
 /** Owns instance resources; effect definitions own only pipelines and custom allocations. */
 export class EffectField<S extends ParamSchema = ParamSchema> implements ScheduledSurface {
@@ -32,13 +37,16 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   surface: Surface | null = null;
   instance: EffectInstance | null = null;
   visible = true;
+  polling = false;
+  readonly #beforeFrameListeners = new Set<() => void>();
+  readonly #pointerTarget: HTMLElement;
   playing: boolean;
   dirty = true;
   timeScale = 1;
   adaptiveQuality = false;
   quality: QualityController;
   #rateAccumulator = 0;
-  #qualityPending = false;
+  #qualityPending: object | null = null;
   readonly frameTimings: { cpuMs: number; intervalMs: number }[] = [];
   #editRevision = 0;
   #baseSources: Readonly<Record<string, ComposedWGSL>> = {};
@@ -78,6 +86,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   #generation = 0;
   #wasPlaying: boolean;
   #motionOverride: boolean | undefined;
+  #deviceGeneration = 0;
   #lastPointer: readonly [number, number] = [0, 0];
   #lastPointerTime = 0;
   #listeners = new Set<(field: EffectField<S>) => void>();
@@ -90,6 +99,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     options: MountOptions,
   ) {
     this.canvas = canvas;
+    this.#pointerTarget = options.pointerTarget ?? canvas;
     this.quality = new QualityController(
       options.resolutionScale ?? 1,
       effect.quality.resolutionScale[0],
@@ -166,15 +176,15 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
         },
         { rootMargin: '64px' },
       );
-      field.#intersection.observe(canvas);
+      field.#intersection.observe(options.observeTarget ?? canvas);
       field.#motion.addEventListener('change', field.#motionChanged);
       document.addEventListener('visibilitychange', field.#visibilityChanged);
-      canvas.addEventListener('pointermove', field.#pointer);
-      canvas.addEventListener('pointerdown', field.#pointer);
-      canvas.addEventListener('pointerup', field.#pointer);
-      canvas.addEventListener('pointerleave', field.#leave);
-      canvas.addEventListener('pointercancel', field.#cancelPointer);
-      canvas.addEventListener('lostpointercapture', field.#cancelPointer);
+      field.#pointerTarget.addEventListener('pointermove', field.#pointer);
+      field.#pointerTarget.addEventListener('pointerdown', field.#pointer);
+      field.#pointerTarget.addEventListener('pointerup', field.#pointer);
+      field.#pointerTarget.addEventListener('pointerleave', field.#leave);
+      field.#pointerTarget.addEventListener('pointercancel', field.#cancelPointer);
+      field.#pointerTarget.addEventListener('lostpointercapture', field.#cancelPointer);
       return field;
     } catch (error) {
       if (field) field.destroy();
@@ -183,24 +193,54 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     }
   }
   async #initialize(options: MountOptions) {
-    this.surface = await Surface.create(
-      this.canvas,
-      this.session,
-      () => {
-        this.frame.resolution = this.surface?.size ?? [this.canvas.width, this.canvas.height];
-        this.instance?.resize(this.frame.resolution);
-        this.invalidate();
-      },
-      options.resolutionScale ?? 1,
-      options.dprCap ?? 2,
-    );
-    await this.#restore(false);
+    // Initial creation has no state listener yet. Follow a replacement device explicitly
+    // rather than returning a permanently building field after missing its ready event.
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const deadline = performance.now() + 30000;
+      while (this.session.state !== 'ready') {
+        if (this.#disposed || this.session.state === 'closed' || this.session.state === 'error')
+          throw new Error('GPU session cannot initialize a field');
+        if (performance.now() > deadline)
+          throw new Error('GPU session did not recover during initialization');
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      }
+      await this.session.ready;
+      if (this.#disposed) throw new Error('Field was disposed during initialization');
+      const generation = this.session.generation;
+      try {
+        if (!this.surface) {
+          this.surface = await Surface.create(
+            this.canvas,
+            this.session,
+            () => {
+              this.frame.resolution = this.surface?.size ?? [this.canvas.width, this.canvas.height];
+              this.instance?.resize(this.frame.resolution);
+              this.invalidate();
+            },
+            options.resolutionScale ?? 1,
+            options.dprCap ?? 2,
+            options.present ?? true,
+          );
+          await this.#restore(this.session.generation !== generation);
+        } else await this.#restore();
+      } catch (error) {
+        if (this.session.generation === generation && this.session.state === 'ready') throw error;
+      }
+      if (this.#readyForGPU()) return;
+    }
+    throw new Error('GPU device changed repeatedly during field initialization');
   }
   async #restore(restoreSurface = true) {
     if (this.#disposed) return;
+    this.#qualityPending = null;
     this.state = 'building';
-    const generation = ++this.#generation;
-    const active = () => !this.#disposed && generation === this.#generation;
+    const generation = ++this.#generation,
+      deviceGeneration = this.session.generation;
+    const active = () =>
+      !this.#disposed &&
+      generation === this.#generation &&
+      deviceGeneration === this.session.generation &&
+      this.session.state === 'ready';
     try {
       if (restoreSurface) await this.surface!.restore();
       if (!active()) return;
@@ -215,6 +255,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     const inputRevision = this.#inputRevision;
     if (!active()) return;
     const device = this.session.device;
+    this.#frameBuffer?.destroy();
+    this.#paramsBuffer?.destroy();
     this.#frameBuffer = device.createBuffer({
       label: `hgpu-${this.effect.id}-frame`,
       size: 64,
@@ -225,9 +267,14 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       size: this.store.layout.byteLength,
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     });
-    const instance = await this.effect.create(this.#context());
-    const current = () =>
-      !this.#disposed && generation === this.#generation && inputRevision === this.#inputRevision;
+    let instance: EffectInstance;
+    try {
+      instance = await this.effect.create(this.#context());
+    } catch (error) {
+      if (!active()) return;
+      throw error;
+    }
+    const current = () => active() && inputRevision === this.#inputRevision;
     try {
       if (!current()) {
         instance.dispose();
@@ -250,6 +297,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     }
     if (!Object.keys(this.#baseSources).length) this.#baseSources = instance.sources ?? {};
     this.instance = instance;
+    this.#deviceGeneration = deviceGeneration;
     device.queue.writeBuffer(this.#paramsBuffer, 0, this.store.pack());
     this.#applyMotion();
     this.state = 'ready';
@@ -295,7 +343,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   }
   /** Compile off to the side; failed or superseded builds leave the running instance intact. */
   async editSource(name: string, code: string) {
-    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     if (!this.#baseSources[name]) throw new Error(`Unknown shader stage: ${name}`);
     const revision = ++this.#editRevision,
       generation = this.#generation,
@@ -333,7 +381,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.notify();
   }
   async setInput(name: string, value: unknown) {
-    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     if (isInputSource(value) || value instanceof EffectField || !this.instance?.setInput) {
       const source = value instanceof EffectField ? value : normalizeInputSource(value);
       if (source === null && value !== null) throw new TypeError('Unsupported input source');
@@ -391,7 +439,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     name: string,
     source: InputSource | EffectField<T> | null,
   ) {
-    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     const request = ++this.#inputRequestRevision;
     const version = (this.#bindingVersions.get(name) ?? 0) + 1;
     let remove: (() => void) | undefined;
@@ -405,7 +453,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
           ({ field: child }) => reaches(child, seen),
         );
       };
-      if (source.state !== 'ready' || source.session.device !== this.session.device)
+      if (!source.#readyForGPU() || source.session.device !== this.session.device)
         throw new TypeError('Input field must be ready and share this GPUDevice');
       if (reaches(source as unknown as EffectField)) throw new TypeError('Effect input cycle');
       descriptor = { kind: 'texture', source: () => source.output, session: source.session };
@@ -535,7 +583,52 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.dirty = true;
     this.session.scheduler.invalidate();
   }
+  /** Runs once per scheduled visible frame, before fixed steps and uniform upload. */
+  beforeFrame() {
+    if (!this.visible || document.hidden || !this.#readyForGPU()) return;
+    for (const listener of this.#beforeFrameListeners) listener();
+  }
+  onBeforeFrame(listener: () => void) {
+    this.#beforeFrameListeners.add(listener);
+    return () => {
+      this.#beforeFrameListeners.delete(listener);
+    };
+  }
+  /** Keep uniform drivers awake without advancing a paused simulation. */
+  setFramePolling(enabled: boolean) {
+    this.polling = enabled;
+    this.invalidate();
+  }
+  /** A normalized external clock; scrub procedural time without a hidden rAF clock. */
+  timeline(progress: number) {
+    if (!Number.isFinite(progress) || progress < 0 || progress > 1)
+      throw new RangeError('Timeline progress must be in [0, 1]');
+    const time = this.reducedMotion ? this.effect.reducedMotion.time : progress,
+      index = Math.round(time * 60);
+    if (
+      !this.playing &&
+      !this.#wasPlaying &&
+      this.frame.time === time &&
+      this.frame.delta === 0 &&
+      this.frame.index === index
+    )
+      return;
+    this.pause();
+    this.frame.time = time;
+    this.frame.delta = 0;
+    this.frame.index = index;
+    this.invalidate();
+  }
+  #readyForGPU() {
+    return (
+      !this.#disposed &&
+      this.state === 'ready' &&
+      this.session.state === 'ready' &&
+      this.#deviceGeneration === this.session.generation
+    );
+  }
   update(frame: import('./scheduler.ts').Tick) {
+    if (!this.#readyForGPU()) return;
     this.#rateAccumulator += frame.delta * this.timeScale;
     while (this.#rateAccumulator + 1e-10 >= 1 / 60) {
       this.#simulationStep();
@@ -552,7 +645,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   advance(steps = 1) {
     if (!Number.isInteger(steps) || steps < 0 || steps > 4096)
       throw new RangeError('Steps must be an integer in [0, 4096]');
-    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     this.pause();
     for (let i = 0; i < steps; i++) if (!this.reducedMotion) this.#simulationStep();
     this.render();
@@ -568,6 +661,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   setAdaptiveQuality(enabled: boolean) {
     const ceiling = this.quality.maxResolution;
     this.adaptiveQuality = enabled;
+    this.#qualityPending = null;
     this.quality = new QualityController(ceiling, this.effect.quality.resolutionScale[0]);
     if (!enabled && this.surface && this.surface.resolutionScale !== ceiling) {
       this.surface.resolutionScale = ceiling;
@@ -578,9 +672,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   frameCompleted(stats: { cpuMs: number; intervalMs: number }) {
     this.frameTimings.push(stats);
     if (this.frameTimings.length > 240) this.frameTimings.shift();
-    if (!this.adaptiveQuality || !this.playing || this.#qualityPending || this.state !== 'ready')
-      return;
-    this.#qualityPending = true;
+    if (!this.adaptiveQuality || this.#qualityPending || !this.#readyForGPU()) return;
+    const sampling = (this.#qualityPending = {});
     const start = performance.now(),
       instance = this.instance;
     void this.session.device.queue
@@ -588,9 +681,10 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       .then(() => {
         if (
           this.#disposed ||
+          this.#qualityPending !== sampling ||
           !this.adaptiveQuality ||
           this.instance !== instance ||
-          this.state !== 'ready'
+          !this.#readyForGPU()
         )
           return;
         const change = this.quality.observe(stats.cpuMs + performance.now() - start);
@@ -602,7 +696,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       })
       .catch(() => {})
       .finally(() => {
-        this.#qualityPending = false;
+        if (this.#qualityPending === sampling) this.#qualityPending = null;
       });
   }
   get textureTaps() {
@@ -617,18 +711,32 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     return this.instance?.bufferTaps?.() ?? {};
   }
   async readTap(name: string) {
-    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     if (this.dirty) {
       this.render();
       this.dirty = false;
     }
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     this.session.submit();
     const tap = this.textureTaps[name];
     if (!tap) throw new Error(`Unknown texture tap: ${name}`);
-    return readTextureTap(this.session.device, tap);
+    const device = this.session.device,
+      generation = this.session.generation;
+    const result = await readTextureTap(device, tap);
+    if (!this.#readyForGPU() || generation !== this.session.generation)
+      throw new Error('Field is not ready');
+    return result;
   }
   render() {
-    if (this.#disposed || this.state !== 'ready' || !this.surface?.target || !this.instance) return;
+    if (
+      this.#disposed ||
+      this.state !== 'ready' ||
+      this.session.state !== 'ready' ||
+      this.#deviceGeneration !== this.session.generation ||
+      !this.surface?.target ||
+      !this.instance
+    )
+      return;
     this.surface.ensureDpr();
     this.frame.resolution = this.surface.size;
     this.frame.dpr = this.surface.dpr;
@@ -695,6 +803,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.invalidate();
   }
   step() {
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
     this.pause();
     if (!this.reducedMotion) {
       this.#simulationStep();
@@ -746,9 +855,9 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     ];
     const dt = Math.max(0.001, (event.timeStamp - this.#lastPointerTime) / 1000);
     const intensity = this.#lastPointerTime === 0 ? 0 : this.reducedMotion ? 0.25 : 1;
-    if (event.type === 'pointerdown') {
+    if (event.type === 'pointerdown' && this.#pointerTarget === this.canvas) {
       try {
-        this.canvas.setPointerCapture(event.pointerId);
+        this.#pointerTarget.setPointerCapture(event.pointerId);
       } catch {
         /* Synthetic events need no capture. */
       }
@@ -772,7 +881,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.invalidate();
   };
   #leave = (event: PointerEvent) => {
-    if (this.canvas.hasPointerCapture(event.pointerId)) return;
+    if (this.#pointerTarget.hasPointerCapture(event.pointerId)) return;
     this.frame.velocity = [0, 0];
     this.frame.buttons = 0;
     this.invalidate();
@@ -802,37 +911,62 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     };
   }
   async readPixels() {
-    if (this.#disposed || !this.surface?.target) throw new Error('No rendered target');
-    const device = this.session.device;
-    const [width, height] = this.surface.size;
-    const bytesPerRow = Math.ceil((width * 4) / 256) * 256;
-    const pass = await createFullscreenPass(
-      this.session,
-      resolveSource,
-      'rgba8unorm',
-      'hgpu-readback',
-    );
-    const texture = device.createTexture({
-      label: 'hgpu-readback',
-      size: [width, height],
-      format: 'rgba8unorm',
-      usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
-    });
-    const buffer = device.createBuffer({
-      label: 'hgpu-readback-staging',
-      size: bytesPerRow * height,
-      usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
-    });
+    if (!this.#readyForGPU()) throw new Error('Field is not ready');
+    if (!this.surface?.target) throw new Error('No rendered target');
+    this.session.submit();
+    const device = this.session.device,
+      generation = this.session.generation;
+    const current = () => this.#readyForGPU() && generation === this.session.generation;
+    let pass: Awaited<ReturnType<typeof createFullscreenPass>>;
     try {
+      pass = await createFullscreenPass(this.session, resolveSource, 'rgba8unorm', 'hgpu-readback');
+    } catch (error) {
+      if (!current()) throw new Error('Field is not ready');
+      throw error;
+    }
+    let texture: GPUTexture | undefined, buffer: GPUBuffer | undefined;
+    try {
+      if (!current()) throw new Error('Field is not ready');
+      // Pipeline creation can outlive an ordinary resize/adaptive downshift. Paint
+      // the current pose before selecting the target and snapshot dimensions.
+      if (this.dirty) {
+        this.render();
+        this.session.submit();
+      }
+      if (!current() || !this.surface?.target) {
+        throw new Error('Field is not ready');
+      }
+      const target = this.surface.target,
+        [width, height] = this.surface.size,
+        bytesPerRow = Math.ceil((width * 4) / 256) * 256;
+      texture = device.createTexture({
+        label: 'hgpu-readback',
+        size: [width, height],
+        format: 'rgba8unorm',
+        usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
+      });
+      buffer = device.createBuffer({
+        label: 'hgpu-readback-staging',
+        size: bytesPerRow * height,
+        usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
+      });
       const group = device.createBindGroup({
         layout: pass.pipeline.getBindGroupLayout(0),
-        entries: [{ binding: 0, resource: this.surface.target.createView() }],
+        entries: [{ binding: 0, resource: target.createView() }],
       });
       const encoder = device.createCommandEncoder();
       pass.draw(encoder, texture.createView(), [group]);
       encoder.copyTextureToBuffer({ texture }, { buffer, bytesPerRow }, [width, height]);
       this.session.submitEncoder(encoder);
-      await buffer.mapAsync(GPUMapMode.READ);
+      try {
+        await buffer.mapAsync(GPUMapMode.READ);
+      } catch (error) {
+        if (!current()) throw new Error('Field is not ready');
+        throw error;
+      }
+      // The submitted resolve/copy owns its staging allocations. A same-device
+      // surface resize cannot invalidate those already submitted snapshot bytes.
+      if (!current()) throw new Error('Field is not ready');
       const mapped = new Uint8Array(buffer.getMappedRange());
       const pixels = new Uint8Array(width * height * 4);
       for (let row = 0; row < height; row++)
@@ -842,16 +976,20 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
         );
       return { width, height, pixels };
     } finally {
-      buffer.destroy();
-      texture.destroy();
+      buffer?.destroy();
+      texture?.destroy();
       pass.dispose();
     }
   }
   destroy() {
     if (this.#disposed) return;
+    // Submit the shared batch while its referenced textures/buffers still exist.
+    // Destruction is also legal from an onRendered callback before the scheduler submits.
+    if (this.session.state === 'ready') this.session.submit();
     this.#disposed = true;
     this.#generation++;
     this.state = 'disposed';
+    this.#beforeFrameListeners.clear();
     this.#removeScheduled();
     this.#removeState();
     this.#removeParams();
@@ -859,10 +997,10 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#motion.removeEventListener('change', this.#motionChanged);
     document.removeEventListener('visibilitychange', this.#visibilityChanged);
     for (const name of ['pointermove', 'pointerdown', 'pointerup'] as const)
-      this.canvas.removeEventListener(name, this.#pointer);
-    this.canvas.removeEventListener('pointerleave', this.#leave);
-    this.canvas.removeEventListener('pointercancel', this.#cancelPointer);
-    this.canvas.removeEventListener('lostpointercapture', this.#cancelPointer);
+      this.#pointerTarget.removeEventListener(name, this.#pointer);
+    this.#pointerTarget.removeEventListener('pointerleave', this.#leave);
+    this.#pointerTarget.removeEventListener('pointercancel', this.#cancelPointer);
+    this.#pointerTarget.removeEventListener('lostpointercapture', this.#cancelPointer);
     this.instance?.dispose();
     this.instance = null;
     this.surface?.dispose();

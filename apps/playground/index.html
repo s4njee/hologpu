@@ -45,6 +45,8 @@
             >Mode<select id="stage-mode">
               <option value="full">Full</option>
               <option value="compare">Compare</option>
+              <option value="in-page">In page</option>
+              <option value="grid">Grid</option>
             </select></label
           >
           <button id="play">Pause</button><button id="step" title="Single step (.)">Step</button
@@ -107,6 +109,31 @@
         <details id="compare-panel" open hidden>
           <summary>Right parameters</summary>
           <div id="compare-panel-controls"></div>
+        </details>
+        <details id="m5-tools" open>
+          <summary>Page conditions</summary>
+          <label
+            >Grid copies<select id="grid-count">
+              <option value="4">4</option>
+              <option value="6" selected>6</option>
+              <option value="12">12</option>
+              <option value="24">24</option>
+            </select></label
+          >
+          <label><input id="force-fallback" type="checkbox" />Force fallback</label>
+          <label
+            >Quality<select id="quality-tier">
+              <option value="auto">Automatic</option>
+              <option value="high" selected>High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select></label
+          >
+          <label><input id="overlay-mode" type="checkbox" />Fixed overlay experiment</label>
+          <button id="device-loss" type="button">Simulate device loss</button>
+          <button id="timeline-demo" type="button">Run timeline</button>
+          <button id="dom-audio" type="button">Start silent audio source</button>
+          <p id="m5-stage-status" role="status">Choose In page or Grid to study attached fields.</p>
         </details>
         <button id="defaults">Reset parameters</button>
         <p class="muted">

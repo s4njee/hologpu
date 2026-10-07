@@ -4,7 +4,7 @@ import { format } from 'prettier';
 const records = [];
 for (const filename of (await readdir('docs/benchmarks')).sort()) {
   if (
-    !/^m(?:1(?:-stretch)?|2(?:-gate)?|3(?:-gate)?|4(?:-gate)?)-(chrome|firefox|webkit)\.json$/.test(
+    !/^m(?:1(?:-stretch)?|2(?:-gate)?|3(?:-gate)?|4(?:-gate)?|5)-(chrome|firefox|webkit)\.json$/.test(
       filename,
     )
   )
@@ -33,7 +33,7 @@ for (const effect of catalogue) {
       return `| ${record.environment.browser} ${record.environment.browserVersion} | ${rows.map((r) => (r.cpuEncodeMs ?? r.cpuMs).mean.toFixed(3)).join(' / ')} | ${rows.map((r) => (r.rafIntervalMs ?? r.rafMs).mean.toFixed(3)).join(' / ')} | [JSON](../benchmarks/${record.filename}) |`;
     });
     let text = `Recorded 2026-10-07 on Apple M1 Max / macOS 26.6.2. Default parameters, seed 7, 512×320 physical pixels, DPR 1, resolution scale 1. Three runs; each discards 30 warm-up frames then measures 120 explicit encode/submit calls at fixed 1/60 s in rAF. CPU timings exclude GPU execution; rAF cadence is not a GPU timer. Device state and load are uncontrolled. Logical allocation sizes are not VRAM.\n\n| Browser | CPU mean ms (three runs) | rAF mean ms (three runs) | Record |\n| --- | --- | --- | --- |\n${rows.join('\n')}\n\nShader compilation is excluded. Optional GPU timestamp queries are deferred to M3. The SwiftShader pixel tests verify repeatability and disposal at DPR 1 and 2, both presets, every enum mode, and no compilation warnings. Hardware engines use the same compile/readback/disposal tests without cross-device image comparison.`;
-    if (effect.tier === 'T2' && !measurements.some((r) => /^m[34]/.test(r.filename))) {
+    if (effect.tier === 'T2' && !measurements.some((r) => /^m[345]/.test(r.filename))) {
       const stateRows = measurements.map((record) => {
         const samples = record.results.filter((r) => r.id === effect.id);
         const first = samples[0],
@@ -90,6 +90,19 @@ GPU columns use actual pass-boundary timestamp queries when available; values ar
 ${rows.join('\n')}
 
 CPU encode, queue-completion wall latency and rAF cadence measure different boundaries. GPU columns are sums of actual pass timestamps when supported; quantization and overlapping intervals can make their sum exceed completion latency. They are a diagnostic rather than whole-frame elapsed time. Initialization and compilation are excluded, machine load is uncontrolled, and allocation sizes are logical rather than VRAM. The separate [M4 video-chain gate](../m4.md) uses a genuinely decoded 1920×1080 clip, four filters and full-size intermediates, with a measured idle-refresh baseline. Small software snapshots and CPU-reference hardware tests verify numerical/lifecycle properties separately from speed.`;
+    }
+    if (measurements.some((record) => record.filename.startsWith('m5'))) {
+      const rows = measurements.map((record) => {
+        const samples = record.results.filter((r) => r.id === effect.id);
+        return `| ${record.environment.browser} ${record.environment.browserVersion} | ${samples.map((r) => r.cpuMs.mean.toFixed(3)).join(' / ')} | ${samples.map((r) => r.completionMs.p95.toFixed(3)).join(' / ')} | ${samples.map((r) => r.gpuMs?.p95.toFixed(3) ?? 'unavailable').join(' / ')} | ${samples.map((r) => r.rafMs.p50.toFixed(3)).join(' / ')} | [JSON](../benchmarks/${record.filename}) |`;
+      });
+      text = `Recorded on the development Apple M1 Max / macOS 26.6.2 using the production preview. All current typed defaults, seed 7, physical 512² display, DPR 1 and fixed resolution/work quality. Each of three runs discards 30 warm-up updates then measures 120 fixed 1/60 s updates, one per rAF, awaiting queue completion and timestamp readback. Standalone image, text and audio effects use their documented owned fixtures: two HDR cards, a text coverage mask, and a two-sine waveform with its actual DFT. Fluid obstacles uses two packed rectangles with its default 256² grid and 32 pressure iterations.
+
+| Browser | CPU mean ms | Completion p95 ms | Summed GPU pass p95 ms | rAF median ms | Record |
+| --- | --- | --- | --- | --- | --- |
+${rows.join('\n')}
+
+CPU encode, encoding-through-queue-completion wall latency, summed pass timestamps and rAF cadence measure different boundaries. Timestamp precision and overlapping intervals limit interpretation; the summed GPU column is not whole-frame elapsed time. Compilation and initialization are excluded, machine load is uncontrolled, and allocation sizes are logical rather than VRAM. These standalone measurements exclude live media, DOM geometry, CSS polling and attachment costs. The separate [M5 page measurements](../m5.md) cover six actual DOM attachments, visible uniform bridges and the overlay experiment. Numerical references, deterministic software snapshots and device-loss tests establish correctness separately from performance.`;
     }
     note = note.replace(
       /<!-- measurements:start -->[\s\S]*?<!-- measurements:end -->/,

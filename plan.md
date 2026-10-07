@@ -513,6 +513,8 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 
 ### M5 — DOM layer
 
+**Implementation and local validation completed 2026-10-07.** DOM attachments, all seven effects, the three bridges, In page/Grid conditions, overlay research and device-loss recovery are implemented. Chrome/WebKit pass all six attached-page refresh runs; actual software-adapter adaptation passes the matched six-effect workload. All milestone browser cases have passing final results after correcting one driver-test wait assumption. Physical weaker-device validation remains for M8. See [M5 validation](docs/m5.md).
+
 - `attach()` and `<hgpu-field>`: shadow-root canvas, observers, lazy effect loading, lifecycle events, fallback and poster handling, reduced motion.
 - DOM-rects input and `fluid-obstacles`; Family H core.
 - The three uniform bridges (section 5.8), with a HoloCSS demo and a CSS scroll-timeline demo.

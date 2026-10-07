@@ -148,6 +148,8 @@ export async function createParticleDraw(
     layouts: readonly GPUBindGroupLayout[];
     mode: 'point' | 'quad';
     additive?: boolean;
+    /** Replace alpha for trail targets, or composite coverage for overlapping translucent quads. */
+    additiveAlpha?: 'replace' | 'over';
   },
 ): Promise<ParticleDraw> {
   source = session.shaderSource(options.label, source);
@@ -176,7 +178,8 @@ export async function createParticleDraw(
                       } as GPUBlendComponent,
                       alpha: {
                         srcFactor: 'one',
-                        dstFactor: 'zero',
+                        dstFactor:
+                          options.additiveAlpha === 'over' ? 'one-minus-src-alpha' : 'zero',
                         operation: 'add',
                       } as GPUBlendComponent,
                     },

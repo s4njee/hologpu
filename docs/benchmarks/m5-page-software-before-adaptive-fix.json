@@ -1,0 +1,1389 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "software",
+    "browserVersion": "153.0.8010.12",
+    "headless": true,
+    "dpr": 1,
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "baseURL": "http://127.0.0.1:5176",
+    "concurrentLoad": {
+      "controlled": false,
+      "description": "Independent user LCD task SwiftShader/GPU browser processes remained active during this capture; not an uncontended benchmark.",
+      "observedProcesses": [
+        {
+          "pid": 94841,
+          "role": "other SwiftShader browser"
+        },
+        {
+          "pid": 94843,
+          "role": "other SwiftShader GPU process"
+        },
+        {
+          "pid": 96041,
+          "role": "newer other Chromium browser"
+        },
+        {
+          "pid": 96050,
+          "role": "newer other Chromium browser"
+        }
+      ],
+      "benchmarkNodePid": 95087
+    }
+  },
+  "scenario": {
+    "layout": "#stage.dom-mode{height:760px}.m5-cards{grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:1000px}.m5-card{height:220px;min-height:220px}",
+    "seed": 7,
+    "page": "Actual production DOMStage with six independently attached Family H fields; real shared scheduler with scroll-driven uniforms.",
+    "warmup": 30,
+    "samples": 120,
+    "deadline": "110% of per-run idle median rAF; >=95% completed CPU+queue work inside deadline and median workload rAF inside deadline.",
+    "cpuBoundary": "First field custom onBeforeFrame hook to shared queue completion; capture is asynchronous and does not serialize rAF.",
+    "css": "Public production bindCSSParameters; 0/1/8 selected bindings, 30 warmup +120 manually sampled visible frame hooks, no GPU rendering in timing region."
+  },
+  "results": [
+    {
+      "id": "software-adaptive-six-family-h",
+      "stop": "30-second limit",
+      "elapsedMs": 30001.200000047684,
+      "submissions": 13,
+      "initial": [
+        {
+          "id": "border-energy",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "rect": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "radius": 18,
+            "width": 2,
+            "glow": 14,
+            "speed": 0.4,
+            "intensity": 1.5,
+            "tint": "#92dfe7"
+          },
+          "frameIndex": 0
+        },
+        {
+          "id": "spotlight",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "pageRect": [
+              565,
+              327.59375,
+              266,
+              220
+            ],
+            "pagePointer": [
+              720,
+              500
+            ],
+            "radius": 180,
+            "softness": 0.55,
+            "intensity": 1.2,
+            "ambient": 0.04,
+            "tint": "#c4c1ff",
+            "background": "#102133"
+          },
+          "frameIndex": 0
+        },
+        {
+          "id": "image-hover",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "progress": 0,
+            "amount": 0.055,
+            "frequency": 22,
+            "feather": 0.12,
+            "mode": "wave"
+          },
+          "frameIndex": 0
+        },
+        {
+          "id": "text-dissolve",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "progress": 0,
+            "grid": 128,
+            "spread": 0.75,
+            "size": 1.8,
+            "curl": 0.3,
+            "opacity": 0.85,
+            "tint": "#c5bbf2"
+          },
+          "frameIndex": 0
+        },
+        {
+          "id": "audio-spectrum",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "mode": "spectrum",
+            "bars": 64,
+            "range": 0.5,
+            "gain": 1.5,
+            "gap": 0.2,
+            "terrainSteps": 48,
+            "lineWidth": 1.5,
+            "tint": "#8fe0db",
+            "background": "#071826"
+          },
+          "frameIndex": 0
+        },
+        {
+          "id": "scroll-scene",
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "params": {
+            "progress": 0.376662,
+            "depth": 1,
+            "turns": 1,
+            "radius": 0.13,
+            "first": "#e5aa8c",
+            "second": "#8aadeb",
+            "background": "#0e1d30"
+          },
+          "frameIndex": 0
+        }
+      ],
+      "final": [
+        {
+          "id": "border-energy",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 57,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 13
+        },
+        {
+          "id": "spotlight",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 57,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 13
+        },
+        {
+          "id": "image-hover",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 57,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 595712,
+            "bufferBytes": 96,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 13
+        },
+        {
+          "id": "text-dissolve",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 57,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 1439248,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 13
+        },
+        {
+          "id": "audio-spectrum",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 57,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 538368,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 13
+        },
+        {
+          "id": "scroll-scene",
+          "state": "ready",
+          "visible": true,
+          "frameIndex": 57,
+          "size": [
+            264,
+            220
+          ],
+          "quality": {
+            "resolutionScale": 1,
+            "stepScale": 1
+          },
+          "adaptiveQuality": true,
+          "memory": {
+            "textureBytes": 464640,
+            "bufferBytes": 128,
+            "shared": {
+              "entries": 21,
+              "references": 34,
+              "bytes": 0
+            },
+            "profilingBytes": 0
+          },
+          "renders": 13
+        }
+      ],
+      "qualityEvents": [],
+      "actualDownshifts": 0,
+      "framesAfterDownshift": 0,
+      "rows": [
+        {
+          "atMs": 1.2000000476837158,
+          "frameIndex": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 2360.2999999523163,
+          "renders": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "completedAtMs": 2360.899999856949
+        },
+        {
+          "atMs": 14.200000047683716,
+          "frameIndex": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 5176.700000047684,
+          "renders": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "completedAtMs": 5190.599999904633
+        },
+        {
+          "atMs": 31.09999990463257,
+          "frameIndex": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 8143.799999952316,
+          "renders": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "completedAtMs": 8174.399999856949
+        },
+        {
+          "atMs": 2479.7999999523163,
+          "frameIndex": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 8372.299999952316,
+          "renders": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "completedAtMs": 10851.599999904633
+        },
+        {
+          "atMs": 2481.0999999046326,
+          "frameIndex": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 11585.900000095367,
+          "renders": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "completedAtMs": 14066.700000047684
+        },
+        {
+          "atMs": 5403.299999952316,
+          "frameIndex": [
+            15,
+            15,
+            15,
+            15,
+            15,
+            15
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 10883.5,
+          "renders": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "completedAtMs": 16286.5
+        },
+        {
+          "atMs": 8307.700000047684,
+          "frameIndex": [
+            21,
+            21,
+            21,
+            21,
+            21,
+            21
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 11018.599999904633,
+          "renders": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "completedAtMs": 19325.89999985695
+        },
+        {
+          "atMs": 11060.399999856949,
+          "frameIndex": [
+            27,
+            27,
+            27,
+            27,
+            27,
+            27
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 11934.600000143051,
+          "renders": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+          ],
+          "completedAtMs": 22994.5
+        },
+        {
+          "atMs": 14145.599999904633,
+          "frameIndex": [
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": 12830,
+          "renders": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "completedAtMs": 26975.200000047684
+        },
+        {
+          "atMs": 16405.700000047684,
+          "frameIndex": [
+            39,
+            39,
+            39,
+            39,
+            39,
+            39
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ]
+        },
+        {
+          "atMs": 19681.599999904633,
+          "frameIndex": [
+            45,
+            45,
+            45,
+            45,
+            45,
+            45
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            11,
+            11,
+            11,
+            11,
+            11,
+            11
+          ]
+        },
+        {
+          "atMs": 23470.200000047684,
+          "frameIndex": [
+            51,
+            51,
+            51,
+            51,
+            51,
+            51
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            12,
+            12,
+            12,
+            12,
+            12,
+            12
+          ]
+        },
+        {
+          "atMs": 27065.099999904633,
+          "frameIndex": [
+            57,
+            57,
+            57,
+            57,
+            57,
+            57
+          ],
+          "quality": [
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            },
+            {
+              "resolutionScale": 1,
+              "stepScale": 1
+            }
+          ],
+          "size": [
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ],
+            [
+              264,
+              220
+            ]
+          ],
+          "completionMs": null,
+          "renders": [
+            13,
+            13,
+            13,
+            13,
+            13,
+            13
+          ]
+        }
+      ],
+      "completedRows": 9,
+      "completedRowsAfterDownshift": 0,
+      "maxPendingQueue": 4,
+      "pendingRowsAtCaptureEnd": 4,
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "chromium-experimental-sampling-resource-table",
+          "chromium-experimental-timestamp-query-inside-passes",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float32-blendable",
+          "float32-filterable",
+          "indirect-first-instance",
+          "rg11b10ufloat-renderable",
+          "subgroup-size-control",
+          "subgroups",
+          "texture-component-swizzle",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-compression-unaligned",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "google",
+          "architecture": "swiftshader",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": true
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "memory": {
+        "instances": 6,
+        "textureBytes": 3967248,
+        "bufferBytes": 752,
+        "presentationContexts": 6,
+        "overlay": null
+      },
+      "errors": [],
+      "proxy": "SwiftShader software adapter with the same six Family H hosts, initial params/pixels and real scroll driver as native gates; a software pressure proxy, not physical weaker-device validation.",
+      "rafMs": {
+        "count": 12,
+        "mean": 2255.324999988079,
+        "p50": 2752.699999809265,
+        "p95": 3788.600000143051,
+        "max": 3788.600000143051
+      },
+      "completionMs": {
+        "count": 9,
+        "mean": 9145.077777783075,
+        "p50": 10883.5,
+        "p95": 12830,
+        "max": 12830
+      },
+      "stallDeadlineMs": 1000,
+      "gate": false
+    }
+  ],
+  "measurementRevision": "Before adaptive warmup/backpressure correction. Matched six Family H workload. Preserved failed outcome under recorded concurrent load."
+}

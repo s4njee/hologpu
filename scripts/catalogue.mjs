@@ -41,6 +41,14 @@ await writeFile(
   'packages/hologpu/src/effects.ts',
   `export { catalogue } from '@mk7s/hologpu-effects';\n`,
 );
+await writeSource(
+  'packages/hologpu/src/effect-loaders.ts',
+  `// Generated lazy effect resolver. No effect implementation loads until selected.
+import type { EffectDefinition } from '@mk7s/hologpu-core';
+const loaders: Record<string, () => Promise<{default: EffectDefinition}>> = {${ids.map((id) => `'${id}': () => import('@mk7s/hologpu-effects/${id}')`).join(',\n')}};
+export async function loadEffect(id: string): Promise<EffectDefinition> { const load = loaders[id]; if (!load) throw new Error('Unknown effect: '+id); return (await load()).default; }
+`,
+);
 await writeFile('packages/hologpu/package.json', JSON.stringify(p, null, 2) + '\n');
 await writeFile('packages/effects/package.json', JSON.stringify(e, null, 2) + '\n');
 console.log(`Generated catalogue and public exports for ${ids.length} effects.`);

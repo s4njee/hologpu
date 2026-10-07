@@ -23,3 +23,13 @@ it('ignores invalid samples and rejects invalid bounds', () => {
   expect(() => new QualityController(0.1, 0.25)).toThrow();
   expect(() => new QualityController(1, 0.25, 0)).toThrow();
 });
+it('responds to the first actual severe completion within bounds and retains cautious recovery', () => {
+  const q = new QualityController(1, 0.25, 16);
+  expect(q.observe(10000)).toEqual({ resolutionScale: 0.25, stepScale: 0.25 });
+  expect(q.averageMs).toBe(10000);
+  for (let i = 0; i < 149; i++) expect(q.observe(1)).toBeNull();
+  expect(q.state).toEqual({ resolutionScale: 0.25, stepScale: 0.25 });
+  expect(q.observe(1)).toEqual({ resolutionScale: 0.5, stepScale: 0.25 });
+  const bounded = new QualityController(0.75, 0.5, 16);
+  expect(bounded.observe(10000)).toEqual({ resolutionScale: 0.5, stepScale: 0.25 });
+});

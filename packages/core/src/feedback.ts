@@ -267,6 +267,8 @@ export class UniformSnapshots {
   }
 }
 export interface FeedbackProgram {
+  /** Optional borrowed input; caller retains ownership. */
+  setInput?(name: string, value: unknown): void | Promise<void>;
   /** Return false when the internal grid is unchanged, preserving the simulation. */
   resize(size: readonly [number, number]): boolean | void;
   /** Deterministically initializes every state side and clears custom counters/buffers. */
@@ -332,6 +334,14 @@ export function feedbackEffect<const S extends ParamSchema>(
       let seed = 7;
       let disposed = false;
       return {
+        ...(program.setInput
+          ? {
+              setInput: (name: string, value: unknown) => {
+                if (disposed) throw new Error('Feedback effect is disposed');
+                return program.setInput!(name, value);
+              },
+            }
+          : {}),
         resize(size) {
           if (disposed) return;
           if (program.resize(size) !== false) {

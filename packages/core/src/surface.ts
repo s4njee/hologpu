@@ -6,7 +6,7 @@ const owners = new WeakMap<HTMLCanvasElement, Surface>();
 export class Surface {
   readonly canvas: HTMLCanvasElement;
   readonly session: DeviceSession;
-  readonly context: GPUCanvasContext;
+  readonly context: GPUCanvasContext | null;
   target: GPUTexture | null = null;
   #resolve: FullscreenPass | null = null;
   #resolveGeneration = -1;
@@ -26,14 +26,15 @@ export class Surface {
     onResize: () => void,
     scale: number,
     dprCap: number,
+    present: boolean,
   ) {
     this.canvas = canvas;
     this.session = session;
     this.onResize = onResize;
     this.resolutionScale = scale;
     this.dprCap = dprCap;
-    const context = canvas.getContext('webgpu');
-    if (!context) throw new Error('Canvas WebGPU context unavailable');
+    const context = present ? canvas.getContext('webgpu') : null;
+    if (present && !context) throw new Error('Canvas WebGPU context unavailable');
     this.context = context;
     owners.set(canvas, this);
     this.#observer = new ResizeObserver((entries) => {
@@ -60,8 +61,9 @@ export class Surface {
     onResize: () => void,
     scale = 1,
     dprCap = 2,
+    present = true,
   ) {
-    const surface = new Surface(canvas, session, onResize, scale, dprCap);
+    const surface = new Surface(canvas, session, onResize, scale, dprCap, present);
     try {
       await surface.restore();
       return surface;
@@ -82,6 +84,13 @@ export class Surface {
   async restore() {
     const device = this.session.device;
     const generation = this.session.generation;
+    if (!this.context) {
+      if (this.#disposed || owners.get(this.canvas) !== this) return;
+      this.#resolveGeneration = generation;
+      this.destroyTarget();
+      this.resize();
+      return;
+    }
     const format = this.session.capabilities.preferredFormat;
     this.#resolve?.dispose();
     this.#resolve = null;
@@ -119,7 +128,7 @@ export class Surface {
       this.#disposed ||
       owners.get(this.canvas) !== this ||
       this.session.state !== 'ready' ||
-      !this.#resolve ||
+      (this.context !== null && !this.#resolve) ||
       this.#resolveGeneration !== this.session.generation
     )
       return;
@@ -144,11 +153,13 @@ export class Surface {
       format: 'rgba16float',
       usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING,
     });
-    this.#group = this.session.device.createBindGroup({
-      label: 'hgpu-resolve-texture',
-      layout: this.#resolve.pipeline.getBindGroupLayout(0),
-      entries: [{ binding: 0, resource: this.target.createView() }],
-    });
+    this.#group = this.#resolve
+      ? this.session.device.createBindGroup({
+          label: 'hgpu-resolve-texture',
+          layout: this.#resolve.pipeline.getBindGroupLayout(0),
+          entries: [{ binding: 0, resource: this.target.createView() }],
+        })
+      : null;
     this.onResize();
   }
   ensureDpr() {
@@ -160,6 +171,7 @@ export class Surface {
   present(encoder: GPUCommandEncoder) {
     if (
       this.#disposed ||
+      !this.context ||
       owners.get(this.canvas) !== this ||
       this.#resolveGeneration !== this.session.generation
     )
@@ -176,7 +188,7 @@ export class Surface {
     this.#disposed = true;
     this.#observer.disconnect();
     if (owners.get(this.canvas) === this) {
-      this.context.unconfigure();
+      this.context?.unconfigure();
       owners.delete(this.canvas);
     }
     this.destroyTarget();
