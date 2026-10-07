@@ -11,13 +11,18 @@
     "dev": "pnpm --filter @mk7s/hologpu-playground dev",
     "build": "pnpm -r --sort build",
     "typecheck": "pnpm -r typecheck && tsc --noEmit -p tests/tsconfig.json",
-    "test": "vitest run",
+    "test": "vitest run && node scripts/check-catalogue.mjs",
     "test:browser": "playwright test",
     "test:hardware": "playwright test --config playwright.hardware.config.ts",
     "benchmark": "node scripts/benchmark.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "pnpm format:check && pnpm typecheck && pnpm test && pnpm build && pnpm test:browser"
+    "check": "pnpm format:check && pnpm typecheck && pnpm test && pnpm build && pnpm test:browser",
+    "catalogue": "node scripts/catalogue.mjs",
+    "predev": "pnpm catalogue",
+    "prebuild": "pnpm catalogue",
+    "pretypecheck": "pnpm catalogue",
+    "benchmark:m1": "node scripts/benchmark-m1.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

@@ -10,7 +10,7 @@ for (const [name, engine, options] of [
   const browser = await engine.launch(options);
   try {
     const page = await browser.newPage();
-    await page.goto('http://127.0.0.1:5175/?count=1');
+    await page.goto('http://127.0.0.1:5175/m0.html?count=1');
     await page.locator('#status[data-state="ready"]').waitFor();
     const probes = await page.evaluate(async () => {
       let compatibility;

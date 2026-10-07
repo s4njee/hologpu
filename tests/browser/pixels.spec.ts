@@ -8,7 +8,7 @@ declare global {
 }
 
 test('seeded float resolve readback is repeatable and alpha is premultiplied', async ({ page }) => {
-  await page.goto('/?count=1');
+  await page.goto('/m0.html?count=1');
   await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
   const adapter = await page.evaluate(() => window.m0!.report.adapter);
   expect(`${adapter.architecture} ${adapter.description}`).toMatch(/swiftshader/i);

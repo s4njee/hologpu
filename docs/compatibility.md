@@ -82,3 +82,7 @@ Adapter exposure is not device enablement. Check `adapter.features`, request exa
 ## What remains for later milestones
 
 M0 establishes a baseline, not a complete hardware survey. Windows/Edge, Linux, phones, HDR appearance, worker rendering, and the HTML-in-canvas integration remain later validation work. The shipped browser matrix should be rechecked before release and when new devices are added.
+
+## M1 runtime validation
+
+On 2026-10-07, all six Family A effects passed compile, deterministic readback, preset/enum, resize, shared-device, fallback, alpha and disposal tests on Chrome 154 / Metal and Playwright WebKit 26.6 / Apple. Paired-fractal arithmetic uses explicit intermediate rounding after the tests exposed Metal reassociation; bounded add/multiply cases now agree with a CPU f64 reference. These results are recorded in [M1 validation](m1.md), [Chrome measurements](benchmarks/m1-chrome.json) and [WebKit measurements](benchmarks/m1-webkit.json). Full native Safari/Firefox catalogue passes remain M8 work. The M0 engine/native results above retain their original scope.

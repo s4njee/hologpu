@@ -9,6 +9,36 @@
       "source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./gradient-oklch": {
+      "source": "./src/gradient-oklch/index.ts",
+      "types": "./dist/gradient-oklch/index.d.ts",
+      "import": "./dist/gradient-oklch/index.js"
+    },
+    "./noise-lab": {
+      "source": "./src/noise-lab/index.ts",
+      "types": "./dist/noise-lab/index.d.ts",
+      "import": "./dist/noise-lab/index.js"
+    },
+    "./voronoi": {
+      "source": "./src/voronoi/index.ts",
+      "types": "./dist/voronoi/index.d.ts",
+      "import": "./dist/voronoi/index.js"
+    },
+    "./sdf-2d": {
+      "source": "./src/sdf-2d/index.ts",
+      "types": "./dist/sdf-2d/index.d.ts",
+      "import": "./dist/sdf-2d/index.js"
+    },
+    "./raymarch": {
+      "source": "./src/raymarch/index.ts",
+      "types": "./dist/raymarch/index.d.ts",
+      "import": "./dist/raymarch/index.js"
+    },
+    "./fractal": {
+      "source": "./src/fractal/index.ts",
+      "types": "./dist/fractal/index.d.ts",
+      "import": "./dist/fractal/index.js"
     }
   },
   "scripts": {
@@ -17,5 +47,8 @@
   },
   "devDependencies": {
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@mk7s/hologpu-core": "workspace:*"
   }
 }

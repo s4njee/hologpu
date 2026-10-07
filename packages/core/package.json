@@ -1,5 +1,5 @@
 {
-  "name": "@mk7s/hologpu",
+  "name": "@mk7s/hologpu-core",
   "version": "0.0.0",
   "private": true,
   "type": "module",

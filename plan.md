@@ -474,6 +474,8 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 
 ### M1 — Core runtime, T1 tier, playground shell
 
+**Completed 2026-10-07.** The shared runtime, six Family A effects and Full-stage shell are implemented. The [frozen T1 contract](docs/adr/005-t1-effect-contract.md), [19-line authoring example](examples/bands.ts), research notes and Chrome/WebKit measurements are linked from the [M1 validation record](docs/m1.md). `pnpm check` and both hardware-engine effect suites pass. Texture-backed schema types are reserved for M4's input/binding layer.
+
 - `core`: device, surface, scheduler, resources, params with WGSL generation, the wgsl composer and the hash, noise, colour and SDF chunks, the fullscreen pass.
 - `fragmentEffect` helper and the six Family A core effects.
 - Playground: browser, Full stage, generated inspector, URL state, Source drawer (read-only), Capabilities drawer, CPU frame time.

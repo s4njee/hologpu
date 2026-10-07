@@ -43,7 +43,7 @@ importers:
     dependencies:
       '@mk7s/hologpu':
         specifier: workspace:*
-        version: link:../../packages/core
+        version: link:../../packages/hologpu
     devDependencies:
       typescript:
         specifier: 'catalog:'
@@ -65,6 +65,23 @@ importers:
         version: 6.0.3
 
   packages/effects:
+    dependencies:
+      '@mk7s/hologpu-core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
+  packages/hologpu:
+    dependencies:
+      '@mk7s/hologpu-core':
+        specifier: workspace:*
+        version: link:../core
+      '@mk7s/hologpu-effects':
+        specifier: workspace:*
+        version: link:../effects
     devDependencies:
       typescript:
         specifier: 'catalog:'

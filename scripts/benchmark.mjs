@@ -23,7 +23,7 @@ try {
       viewport: { width: 1200, height: 900 },
       deviceScaleFactor: 2,
     });
-    await page.goto(`http://127.0.0.1:5175/?count=${scenario.count}&mode=${scenario.mode}`);
+    await page.goto(`http://127.0.0.1:5175/m0.html?count=${scenario.count}&mode=${scenario.mode}`);
     await page.locator('#status[data-state="ready"]').waitFor();
     const canvasProbe = await page.evaluate(() => window.m0.probeCanvas());
     for (let run = 1; run <= 3; run++) {

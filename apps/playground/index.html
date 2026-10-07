@@ -2,56 +2,92 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#10141c" />
-    <title>HoloGPU · M0 foundations</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#11141b" />
+    <title>HoloGPU · Procedural studies</title>
   </head>
   <body>
+    <header>
+      <a class="brand" href="/">HOLOGPU <span>RESEARCH LAB</span></a
+      ><a href="/m0.html">Foundations lab ↗</a>
+    </header>
     <main>
-      <header>
-        <p class="eyebrow">HOLOGPU / RESEARCH LAB</p>
-        <h1>One device. Six surfaces.</h1>
-        <p class="intro">
-          A foundation study in compute, compositing, and the cost of drawing inside a page.
-        </p>
-      </header>
-      <form id="configuration">
-        <label
-          >Surfaces
-          <select name="count">
-            <option value="1">1 canvas</option>
-            <option value="6" selected>6 canvases</option>
+      <aside class="browser">
+        <p class="eyebrow">01 / EFFECTS</p>
+        <h1>Procedural studies</h1>
+        <p class="muted">Six ways to build an image from mathematics.</p>
+        <input
+          id="search"
+          type="search"
+          placeholder="Search effects or techniques"
+          aria-label="Search effects"
+        /><label class="filter"
+          >Family<select id="family">
+            <option value="all">All families</option>
           </select></label
         >
-        <label
-          >Render target
-          <select name="mode">
-            <option value="float">RGBA16 float + resolve</option>
-            <option value="direct">Direct to canvas</option>
-          </select></label
-        >
-        <button type="submit">Apply</button>
-      </form>
-      <div class="toolbar">
-        <button id="animate" disabled>Run</button>
-        <button id="step" disabled>Single step</button>
-        <button id="verify" disabled>Verify compute + pixels</button>
-        <button id="benchmark" disabled>Measure 180 frames while scrolling</button>
-        <button id="export" disabled>Export measurements</button>
-      </div>
-      <p id="status" role="status" data-state="loading">Requesting a WebGPU device…</p>
-      <p id="verification" role="status"></p>
-      <section id="surfaces" aria-label="In-flow canvas experiments"></section>
-      <section class="readout">
-        <h2>Measurements</h2>
-        <p>
-          CPU encode time and animation-frame cadence; GPU execution time is not measured. Memory is
-          an estimate of logical allocation sizes.
-        </p>
-        <pre id="report">Waiting for the adapter.</pre>
+        <nav id="effects" aria-label="Effects"></nav>
+      </aside>
+      <section class="workspace">
+        <div class="stage-heading">
+          <div>
+            <p class="eyebrow">02 / FULL STAGE</p>
+            <h2 id="title">Loading…</h2>
+          </div>
+          <span id="tier">T1 / FRAGMENT</span>
+        </div>
+        <div id="stage">
+          <canvas id="canvas" aria-label="Procedural effect preview"></canvas>
+          <p id="fallback" hidden></p>
+        </div>
+        <div class="transport">
+          <button id="play">Pause</button><button id="step" title="Single step (.)">Step</button
+          ><button id="reset" title="Reset (r)">Reset</button
+          ><label>Seed <input id="seed" type="number" value="7" min="0" max="4294967295" /></label
+          ><label
+            >Resolution
+            <select id="resolution">
+              <option value="1">100%</option>
+              <option value="0.75">75%</option>
+              <option value="0.5">50%</option>
+              <option value="0.25">25%</option>
+            </select></label
+          ><label><input id="motion" type="checkbox" />Reduced motion</label>
+        </div>
+        <div class="readout">
+          <p id="status" role="status" data-state="loading">Requesting WebGPU…</p>
+          <span id="meter">CPU encode —</span>
+        </div>
+        <section class="drawer">
+          <div role="tablist" aria-label="Research drawers">
+            <button role="tab" aria-selected="true" data-drawer="notes">Notes</button
+            ><button role="tab" aria-selected="false" data-drawer="source">Source</button
+            ><button role="tab" aria-selected="false" data-drawer="capabilities">
+              Capabilities
+            </button>
+          </div>
+          <div id="notes" class="drawer-panel"></div>
+          <pre id="source" class="drawer-panel" hidden></pre>
+          <pre id="capabilities" class="drawer-panel" hidden></pre>
+        </section>
       </section>
-      <footer>M0 · Fixed seed 7 · Premultiplied alpha · DPR capped at 2</footer>
+      <aside class="inspector">
+        <p class="eyebrow">03 / PARAMETERS</p>
+        <label
+          >Preset<select id="presets">
+            <option value="">Defaults</option>
+          </select></label
+        >
+        <div id="controls"></div>
+        <button id="defaults">Reset parameters</button>
+        <p class="muted">
+          Every control comes from the effect schema. Your state is saved in the URL.
+        </p>
+      </aside>
     </main>
+    <footer>
+      Linear colour · Float targets · One shared device · CPU timing excludes GPU execution
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

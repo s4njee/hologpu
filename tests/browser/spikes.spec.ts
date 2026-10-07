@@ -8,7 +8,7 @@ declare global {
 }
 
 async function ready(page: import('@playwright/test').Page, query = '') {
-  await page.goto(`/${query}`);
+  await page.goto(`/m0.html${query}`);
   await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
 }
 
@@ -91,7 +91,7 @@ test('direct target mode works without owned float textures', async ({ page }) =
 
 test('missing WebGPU keeps DOM content available', async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(navigator, 'gpu', { value: undefined }));
-  await page.goto('/');
+  await page.goto('/m0.html');
   await expect(page.locator('#status')).toHaveAttribute('data-state', 'fallback');
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('#animate')).toBeDisabled();

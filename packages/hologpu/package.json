@@ -1,0 +1,65 @@
+{
+  "name": "@mk7s/hologpu",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./spikes": {
+      "source": "./src/spikes.ts",
+      "types": "./dist/spikes.d.ts",
+      "import": "./dist/spikes.js"
+    },
+    "./effects/gradient-oklch": {
+      "source": "./src/effects/gradient-oklch.ts",
+      "types": "./dist/effects/gradient-oklch.d.ts",
+      "import": "./dist/effects/gradient-oklch.js"
+    },
+    "./effects/noise-lab": {
+      "source": "./src/effects/noise-lab.ts",
+      "types": "./dist/effects/noise-lab.d.ts",
+      "import": "./dist/effects/noise-lab.js"
+    },
+    "./effects/voronoi": {
+      "source": "./src/effects/voronoi.ts",
+      "types": "./dist/effects/voronoi.d.ts",
+      "import": "./dist/effects/voronoi.js"
+    },
+    "./effects/sdf-2d": {
+      "source": "./src/effects/sdf-2d.ts",
+      "types": "./dist/effects/sdf-2d.d.ts",
+      "import": "./dist/effects/sdf-2d.js"
+    },
+    "./effects/raymarch": {
+      "source": "./src/effects/raymarch.ts",
+      "types": "./dist/effects/raymarch.d.ts",
+      "import": "./dist/effects/raymarch.js"
+    },
+    "./effects/fractal": {
+      "source": "./src/effects/fractal.ts",
+      "types": "./dist/effects/fractal.d.ts",
+      "import": "./dist/effects/fractal.js"
+    },
+    "./effects": {
+      "source": "./src/effects.ts",
+      "types": "./dist/effects.d.ts",
+      "import": "./dist/effects.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@mk7s/hologpu-core": "workspace:*",
+    "@mk7s/hologpu-effects": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}
