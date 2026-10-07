@@ -1,6 +1,6 @@
 # HoloGPU — WebGPU effects library and playground
 
-**Status:** M0 complete (2026-10-07); M1 not started. See [validation record](docs/m0.md).
+**Status:** M0 and M1 complete (2026-10-07); all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md) and [T1 stretch validation](docs/t1-stretch.md).
 **Created:** 2026-10-07
 **Working package name:** `@mk7s/hologpu` (confirm availability before any release)
 **Source:** item 1 of [research.md](../research.md), "WebGPU effects layer for the DOM"
@@ -237,9 +237,9 @@ Organised by GPU technique, not by look. **Core** effects are the first-pass tar
 | `sdf-2d` | Metaballs and boolean SDF shapes with smooth union | SDF chunk library, analytic anti-aliasing | Core |
 | `raymarch` | Sphere-traced 3D SDF scene with soft shadows and ambient occlusion | Per-pixel iteration budget, resolution scaling | Core |
 | `fractal` | Julia and Mandelbrot with smooth colouring and zoom | Precision limits of `f32`; emulated double precision | Core |
-| `truchet` | Truchet, hex and quasi-crystal tilings | Integer and bit operations in WGSL | Stretch |
-| `caustics` | Procedural water caustics | Derivative functions | Stretch |
-| `starfield` | Layered parallax star and nebula field | Hash quality, temporal stability | Stretch |
+| `truchet` | Truchet and hex arc tilings; quasi-crystal interference contours | Integer and bit operations in WGSL | Stretch — implemented |
+| `caustics` | Procedural water caustics | Derivative functions | Stretch — implemented |
+| `starfield` | Layered parallax star and nebula field | Hash quality, temporal stability | Stretch — implemented |
 
 ### 6.2 Family B — Feedback and cellular simulation (T2)
 
@@ -522,6 +522,8 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 - **Exit:** every row of the capability matrix that does not depend on an optional feature is covered.
 
 ### M7 — Stretch effects
+
+Family A’s three T1 stretches are implemented early at the user’s request; see [validation](docs/t1-stretch.md). Other stretch families remain outstanding.
 
 - Stretch effects, chosen by which open research question they answer. Suggested first picks: `mpm`, `path-tracer`, `lattice-boltzmann`, `pbf-fluid`, `splats`, `backdrop-glass`.
 - Remaining Family I primitives as their dependants need them.

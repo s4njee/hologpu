@@ -16,9 +16,14 @@ const page = await browser.newPage({
   viewport: { width: 1200, height: 900 },
   deviceScaleFactor: 1,
 });
+const ids = process.argv.slice(3);
+const label = process.env.HOLOGPU_BENCHMARK_LABEL ?? 'm1';
+if (!/^[a-z][a-z0-9-]*$/.test(label)) throw new Error('Invalid benchmark label');
 const results = [];
 try {
-  for (const id of ['gradient-oklch', 'noise-lab', 'voronoi', 'sdf-2d', 'raymarch', 'fractal']) {
+  for (const id of ids.length
+    ? ids
+    : ['gradient-oklch', 'noise-lab', 'voronoi', 'sdf-2d', 'raymarch', 'fractal']) {
     await page.goto(
       `${process.env.HOLOGPU_URL ?? 'http://127.0.0.1:5175'}/?effect=${id}&playing=false`,
     );
@@ -74,7 +79,7 @@ try {
     }
   }
   await writeFile(
-    `docs/benchmarks/m1-${name}.json`,
+    `docs/benchmarks/${label}-${name}.json`,
     JSON.stringify(
       {
         recordedOn: '2026-10-07',

@@ -49,6 +49,21 @@
       "source": "./src/effects.ts",
       "types": "./dist/effects.d.ts",
       "import": "./dist/effects.js"
+    },
+    "./effects/caustics": {
+      "source": "./src/effects/caustics.ts",
+      "types": "./dist/effects/caustics.d.ts",
+      "import": "./dist/effects/caustics.js"
+    },
+    "./effects/starfield": {
+      "source": "./src/effects/starfield.ts",
+      "types": "./dist/effects/starfield.d.ts",
+      "import": "./dist/effects/starfield.js"
+    },
+    "./effects/truchet": {
+      "source": "./src/effects/truchet.ts",
+      "types": "./dist/effects/truchet.d.ts",
+      "import": "./dist/effects/truchet.js"
     }
   },
   "scripts": {

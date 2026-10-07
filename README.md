@@ -1,6 +1,6 @@
 # HoloGPU
 
-A native WebGPU effects library and playground research project. M0 foundations and M1's shared runtime, six procedural effects and Full-stage playground are implemented. See the [plan](plan.md), [M1 validation record](docs/m1.md) and [frozen T1 contract](docs/adr/005-t1-effect-contract.md).
+A native WebGPU effects library and playground research project. M0 foundations, M1's shared runtime and Full-stage playground, and all nine Family A procedural effects are implemented. See the [plan](plan.md), [M1 validation record](docs/m1.md), [T1 stretch validation](docs/t1-stretch.md) and [frozen T1 contract](docs/adr/005-t1-effect-contract.md).
 
 ## Run
 
@@ -53,6 +53,8 @@ Then in another:
 ```sh
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m1 chrome
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m1 webkit
+HOLOGPU_URL=http://127.0.0.1:5176 HOLOGPU_BENCHMARK_LABEL=m1-stretch pnpm benchmark:m1 chrome truchet caustics starfield
+HOLOGPU_URL=http://127.0.0.1:5176 HOLOGPU_BENCHMARK_LABEL=m1-stretch pnpm benchmark:m1 webkit truchet caustics starfield
 node scripts/notes.mjs
 ```
 
@@ -65,6 +67,7 @@ M0 scenarios remain available with `pnpm benchmark chrome`, `pnpm benchmark fire
 - [Compatibility and verified assumptions](docs/compatibility.md)
 - [M0 validation and ADRs](docs/m0.md)
 - [M1 validation](docs/m1.md)
+- [T1 stretch validation](docs/t1-stretch.md)
 - [Effect notes and template](docs/notes/_template.md)
 
 `pnpm build` emits package JS/types and the deployable static app in `apps/playground/dist`. Packages are private; remote hosting and registry publication are not configured.

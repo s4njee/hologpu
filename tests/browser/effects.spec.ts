@@ -11,7 +11,17 @@ declare global {
     };
   }
 }
-const ids = ['gradient-oklch', 'noise-lab', 'voronoi', 'sdf-2d', 'raymarch', 'fractal'];
+const ids = [
+  'gradient-oklch',
+  'noise-lab',
+  'voronoi',
+  'sdf-2d',
+  'raymarch',
+  'fractal',
+  'truchet',
+  'caustics',
+  'starfield',
+];
 for (const id of ids)
   test(`${id}: deterministic pixels, two presets, all enum branches and disposal`, async ({
     page,
@@ -321,4 +331,182 @@ test('paired arithmetic agrees with a CPU f64 reference for bounded values and c
   });
   expect(errors.add).toBeLessThan(1e-10);
   expect(errors.mul).toBeLessThan(1e-10);
+});
+
+for (const id of ['truchet', 'caustics', 'starfield'])
+  test(`${id} preserves temporal continuity and a zero-speed pose`, async ({ page }) => {
+    await page.goto(`/?effect=${id}&playing=false&resolution=0.5`);
+    await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
+    await page.locator('#stage').evaluate((node: HTMLElement) => {
+      node.style.width = '258px';
+      node.style.height = '194px';
+    });
+    await expect
+      .poll(() => page.evaluate(() => window.hologpu.field!.surface!.size[0]))
+      .toBe(await page.evaluate(() => 128 * devicePixelRatio));
+    const results = await page.evaluate(async () => {
+      const field = window.hologpu.field!;
+      const capture = async (time: number) => {
+        field.drawAt(time, 7);
+        return (await field.readPixels()).pixels;
+      };
+      const a = await capture(2),
+        b = await capture(2.0001),
+        c = await capture(3);
+      const difference = (x: Uint8Array, y: Uint8Array) => {
+        let total = 0,
+          max = 0;
+        for (let i = 0; i < x.length; i++)
+          if (i % 4 !== 3) {
+            const d = Math.abs(x[i]! - y[i]!);
+            total += d;
+            max = Math.max(max, d);
+          }
+        return { mean: total / (x.length * 0.75), max };
+      };
+      field.store.set('speed', 0);
+      if (field.effect.id === 'starfield') field.store.set('twinkle', 0);
+      const still = await capture(4),
+        later = await capture(5);
+      return {
+        near: difference(a, b),
+        far: difference(a, c),
+        still: difference(still, later),
+        errors: field.session.errors,
+      };
+    });
+    expect(results.near.mean).toBeLessThan(0.5);
+    expect(results.near.max).toBeLessThanOrEqual(20);
+    expect(results.far.mean).toBeGreaterThan(results.near.mean + 0.01);
+    expect(results.still).toEqual({ mean: 0, max: 0 });
+    expect(results.errors).toEqual([]);
+  });
+
+test('caustics flat water and zero receiver depth have unit Jacobian', async ({ page }) => {
+  await page.goto('/?effect=caustics&playing=false&resolution=0.5');
+  await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
+  const results = await page.evaluate(async () => {
+    const field = window.hologpu.field!;
+    const verify = async (amplitude: number, depth: number) => {
+      field.store.patch({ view: 'jacobian', amplitude, depth });
+      field.drawAt(3.25);
+      const { pixels } = await field.readPixels();
+      const reference = [0.1, 0.3, 0.8].map((v) =>
+        Math.round((1.055 * v ** (1 / 2.4) - 0.055) * 255),
+      );
+      let max = 0;
+      for (let i = 0; i < pixels.length; i++)
+        max = Math.max(max, Math.abs(pixels[i]! - (i % 4 === 3 ? 255 : reference[i % 4]!)));
+      return max;
+    };
+    return { flat: await verify(0, 5), zeroDepth: await verify(1.5, 0) };
+  });
+  expect(results.flat).toBeLessThanOrEqual(1);
+  expect(results.zeroDepth).toBeLessThanOrEqual(1);
+});
+
+test('starfield integer hashing matches a CPU reference and exposes the XOR diagonal weakness', async ({
+  page,
+}) => {
+  await page.goto('/?effect=starfield&playing=false');
+  await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
+  const results = await page.evaluate(async () => {
+    const field = window.hologpu.field!,
+      device = field.session.device;
+    const composed = field.sources['fragment']!.code;
+    const shader =
+      composed +
+      `@group(1) @binding(0) var<storage,read_write> keys:array<u32>; @compute @workgroup_size(64) fn key_probe(@builtin(global_invocation_id) id:vec3u){let i=i32(id.x)-32;keys[id.x]=star_key(vec2f(f32(i)),0u);}`;
+    const module = device.createShaderModule({ code: shader });
+    const info = await module.getCompilationInfo();
+    if (info.messages.length) throw new Error(info.messages.map((m) => m.message).join('\n'));
+    const uniformLayout = device.createBindGroupLayout({
+      entries: [
+        { binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' } },
+        { binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' } },
+      ],
+    });
+    const outputLayout = device.createBindGroupLayout({
+      entries: [{ binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }],
+    });
+    const pipeline = await device.createComputePipelineAsync({
+      layout: device.createPipelineLayout({ bindGroupLayouts: [uniformLayout, outputLayout] }),
+      compute: { module, entryPoint: 'key_probe' },
+    });
+    const frame = device.createBuffer({ size: 64, usage: GPUBufferUsage.UNIFORM });
+    const params = device.createBuffer({
+      size: field.store.layout.byteLength,
+      usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+    });
+    const output = device.createBuffer({
+      size: 256,
+      usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
+    });
+    const staging = device.createBuffer({
+      size: 256,
+      usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
+    });
+    try {
+      const uniforms = device.createBindGroup({
+        layout: uniformLayout,
+        entries: [
+          { binding: 0, resource: { buffer: frame } },
+          { binding: 1, resource: { buffer: params } },
+        ],
+      });
+      const group = device.createBindGroup({
+        layout: outputLayout,
+        entries: [{ binding: 0, resource: { buffer: output } }],
+      });
+      const capture = async (mode: string) => {
+        field.store.set('hashMode', mode);
+        device.queue.writeBuffer(params, 0, field.store.pack());
+        const encoder = device.createCommandEncoder();
+        const pass = encoder.beginComputePass();
+        pass.setPipeline(pipeline);
+        pass.setBindGroup(0, uniforms);
+        pass.setBindGroup(1, group);
+        pass.dispatchWorkgroups(1);
+        pass.end();
+        encoder.copyBufferToBuffer(output, 0, staging, 0, 256);
+        device.queue.submit([encoder.finish()]);
+        await staging.mapAsync(GPUMapMode.READ);
+        const values = Array.from(new Uint32Array(staging.getMappedRange()));
+        staging.unmap();
+        return values;
+      };
+      const folded = await capture('folded'),
+        xor = await capture('xor');
+      const hash = (value: number) => {
+        let h = value >>> 0;
+        h = (h ^ (h >>> 16)) >>> 0;
+        h = Math.imul(h, 0x7feb352d) >>> 0;
+        h = (h ^ (h >>> 15)) >>> 0;
+        h = Math.imul(h, 0x846ca68b) >>> 0;
+        return (h ^ (h >>> 16)) >>> 0;
+      };
+      const reference = Array.from({ length: 64 }, (_, i) => {
+        const coordinate = (i - 32) >>> 0;
+        return hash(
+          (Math.imul(coordinate, 0x9e3779b9) ^
+            hash((Math.imul(coordinate, 0x85ebca6b) + 0xc2b2ae35) >>> 0)) >>>
+            0,
+        );
+      });
+      return {
+        folded,
+        reference,
+        foldedUnique: new Set(folded).size,
+        xorUnique: new Set(xor).size,
+      };
+    } finally {
+      frame.destroy();
+      params.destroy();
+      output.destroy();
+      staging.destroy();
+    }
+  });
+  expect(results.folded).toEqual(results.reference);
+  expect(results.foldedUnique).toBe(64);
+  expect(results.xorUnique).toBe(1);
 });

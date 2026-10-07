@@ -39,6 +39,21 @@
       "source": "./src/fractal/index.ts",
       "types": "./dist/fractal/index.d.ts",
       "import": "./dist/fractal/index.js"
+    },
+    "./caustics": {
+      "source": "./src/caustics/index.ts",
+      "types": "./dist/caustics/index.d.ts",
+      "import": "./dist/caustics/index.js"
+    },
+    "./starfield": {
+      "source": "./src/starfield/index.ts",
+      "types": "./dist/starfield/index.d.ts",
+      "import": "./dist/starfield/index.js"
+    },
+    "./truchet": {
+      "source": "./src/truchet/index.ts",
+      "types": "./dist/truchet/index.d.ts",
+      "import": "./dist/truchet/index.js"
     }
   },
   "scripts": {

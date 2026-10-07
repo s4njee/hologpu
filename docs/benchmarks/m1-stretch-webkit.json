@@ -1,0 +1,885 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "webkit",
+    "browserVersion": "26.6",
+    "headless": true,
+    "softwareAdapter": false,
+    "dpr": 1
+  },
+  "scenario": {
+    "width": 512,
+    "height": 320,
+    "seed": 7,
+    "warmupFrames": 30,
+    "samples": 120,
+    "runs": 3,
+    "params": "defaults",
+    "clock": "fixed 1/60 s; explicit encoding in each requestAnimationFrame",
+    "timing": "CPU encode/submit only; rAF cadence is not GPU execution time",
+    "memory": "logical target/buffer byte counts, not VRAM"
+  },
+  "results": [
+    {
+      "id": "truchet",
+      "run": 1,
+      "params": {
+        "mode": "truchet",
+        "waves": "five",
+        "scale": 14,
+        "width": 0.065,
+        "level": 0,
+        "grid": false,
+        "speed": 0.15,
+        "ink": "#f1b987",
+        "ground": "#172333"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.26666666666666666,
+        "p50": 0,
+        "p95": 1,
+        "max": 4
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 16.15,
+        "p50": 16,
+        "p95": 18,
+        "max": 21
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "truchet",
+      "run": 2,
+      "params": {
+        "mode": "truchet",
+        "waves": "five",
+        "scale": 14,
+        "width": 0.065,
+        "level": 0,
+        "grid": false,
+        "speed": 0.15,
+        "ink": "#f1b987",
+        "ground": "#172333"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.11666666666666667,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.633333333333333,
+        "p50": 16,
+        "p95": 17,
+        "max": 18
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "truchet",
+      "run": 3,
+      "params": {
+        "mode": "truchet",
+        "waves": "five",
+        "scale": 14,
+        "width": 0.065,
+        "level": 0,
+        "grid": false,
+        "speed": 0.15,
+        "ink": "#f1b987",
+        "ground": "#172333"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.25833333333333336,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.733333333333333,
+        "p50": 16,
+        "p95": 18,
+        "max": 20
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "caustics",
+      "run": 1,
+      "params": {
+        "view": "light",
+        "scale": 7,
+        "amplitude": 1.3,
+        "depth": 5,
+        "softness": 0.06,
+        "exposure": 0.25,
+        "speed": 0.6,
+        "tint": "#99e8ec",
+        "background": "#062d4b"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.35,
+        "p50": 0,
+        "p95": 2,
+        "max": 3
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.766666666666667,
+        "p50": 16,
+        "p95": 18,
+        "max": 20
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "caustics",
+      "run": 2,
+      "params": {
+        "view": "light",
+        "scale": 7,
+        "amplitude": 1.3,
+        "depth": 5,
+        "softness": 0.06,
+        "exposure": 0.25,
+        "speed": 0.6,
+        "tint": "#99e8ec",
+        "background": "#062d4b"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.23333333333333334,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.733333333333333,
+        "p50": 16,
+        "p95": 18,
+        "max": 23
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "caustics",
+      "run": 3,
+      "params": {
+        "view": "light",
+        "scale": 7,
+        "amplitude": 1.3,
+        "depth": 5,
+        "softness": 0.06,
+        "exposure": 0.25,
+        "speed": 0.6,
+        "tint": "#99e8ec",
+        "background": "#062d4b"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.24166666666666667,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.9,
+        "p50": 16,
+        "p95": 19,
+        "max": 20
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "starfield",
+      "run": 1,
+      "params": {
+        "layers": 3,
+        "density": 26,
+        "size": 1.15,
+        "hashMode": "folded",
+        "speed": 0.045,
+        "twinkle": 0.25,
+        "nebula": 0.7,
+        "cloudScale": 2.8,
+        "cool": "#438ddb",
+        "warm": "#da62ad"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.24166666666666667,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.816666666666666,
+        "p50": 16,
+        "p95": 18,
+        "max": 25
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "starfield",
+      "run": 2,
+      "params": {
+        "layers": 3,
+        "density": 26,
+        "size": 1.15,
+        "hashMode": "folded",
+        "speed": 0.045,
+        "twinkle": 0.25,
+        "nebula": 0.7,
+        "cloudScale": 2.8,
+        "cool": "#438ddb",
+        "warm": "#da62ad"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.31666666666666665,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.691666666666666,
+        "p50": 16,
+        "p95": 18,
+        "max": 19
+      },
+      "gpuMs": null
+    },
+    {
+      "id": "starfield",
+      "run": 3,
+      "params": {
+        "layers": 3,
+        "density": 26,
+        "size": 1.15,
+        "hashMode": "folded",
+        "speed": 0.045,
+        "twinkle": 0.25,
+        "nebula": 0.7,
+        "cloudScale": 2.8,
+        "cool": "#438ddb",
+        "warm": "#da62ad"
+      },
+      "size": [
+        512,
+        320
+      ],
+      "memory": {
+        "textureBytes": 1310720,
+        "bufferBytes": 128,
+        "shared": {
+          "entries": 5,
+          "references": 5,
+          "bytes": 0
+        }
+      },
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "cpuEncodeMs": {
+        "count": 120,
+        "mean": 0.24166666666666667,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "rafIntervalMs": {
+        "count": 120,
+        "mean": 15.75,
+        "p50": 16,
+        "p95": 18,
+        "max": 20
+      },
+      "gpuMs": null
+    }
+  ]
+}
