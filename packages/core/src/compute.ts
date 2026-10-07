@@ -16,7 +16,7 @@ export function simulationUniformLayout(device: GPUDevice): GPUBindGroupLayout {
       label: 'hgpu-simulation-uniforms',
       entries: [0, 1].map((binding) => ({
         binding,
-        visibility: GPUShaderStage.COMPUTE | GPUShaderStage.FRAGMENT,
+        visibility: GPUShaderStage.COMPUTE | GPUShaderStage.FRAGMENT | GPUShaderStage.VERTEX,
         buffer: { type: 'uniform' as const },
       })),
     });
@@ -70,8 +70,9 @@ export async function createComputePass(
   layouts: readonly GPUBindGroupLayout[],
   entryPoint = 'main',
 ): Promise<ComputePass> {
+  source = session.shaderSource?.(label, source) ?? source;
   const module = await session.resources.acquireAsync(`shader:${source.code}`, () =>
-    compileShader(session.device, source, label),
+    session.validate(() => compileShader(session.device, source, label)),
   );
   try {
     const pipeline = await session.resources.acquireAsync(
@@ -103,7 +104,10 @@ export async function createComputePass(
           )
         )
           throw new RangeError('Compute dispatch dimensions exceed device limits');
-        const pass = encoder.beginComputePass({ label });
+        const pass = encoder.beginComputePass({
+          label,
+          timestampWrites: session.profiler?.timestampWrites(encoder, label),
+        });
         pass.setPipeline(pipeline.value);
         groups.forEach((group, index) => pass.setBindGroup(index, group));
         pass.dispatchWorkgroups(x, y, z);
@@ -127,8 +131,9 @@ export async function createSimulationDisplay(
   label: string,
   layouts: readonly GPUBindGroupLayout[],
 ): Promise<FullscreenPass> {
+  source = session.shaderSource?.(label, source) ?? source;
   const module = await session.resources.acquireAsync(`shader:${source.code}`, () =>
-    compileShader(session.device, source, label),
+    session.validate(() => compileShader(session.device, source, label)),
   );
   try {
     const pipeline = await session.resources.acquireAsync(
@@ -158,6 +163,7 @@ export async function createSimulationDisplay(
       draw(encoder, target, groups, clear = [0, 0, 0, 0]) {
         const pass = encoder.beginRenderPass({
           label,
+          timestampWrites: session.profiler?.timestampWrites(encoder, label),
           colorAttachments: [
             { view: target, clearValue: clear, loadOp: 'clear', storeOp: 'store' },
           ],

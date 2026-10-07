@@ -1,5 +1,7 @@
 import { Resources, TexturePool } from './resources.ts';
 import { Scheduler } from './scheduler.ts';
+import { GPUProfiler } from './profiler.ts';
+import type { ComposedWGSL } from './wgsl/composer.ts';
 export interface Capabilities {
   features: readonly string[];
   enabledFeatures: readonly string[];
@@ -33,6 +35,7 @@ export class DeviceSession {
   #pending: Promise<void>;
   resources = new Resources();
   pool: TexturePool | null = null;
+  profiler!: GPUProfiler;
   readonly scheduler: Scheduler;
   readonly errors: string[] = [];
   generation = 0;
@@ -120,18 +123,31 @@ export class DeviceSession {
     if (!this.#encoder) return;
     const encoder = this.#encoder;
     this.#encoder = null;
+    this.submitEncoder(encoder);
+  }
+  submitEncoder(encoder: GPUCommandEncoder) {
+    const read = this.profiler.resolve(encoder);
     this.device.queue.submit([encoder.finish()]);
+    read?.();
+  }
+  /** Instance-local editing uses a bound session proxy to substitute composed sources. */
+  shaderSource(_label: string, source: ComposedWGSL): ComposedWGSL {
+    return source;
   }
   async validate<T>(create: () => Promise<T>): Promise<T> {
     let result!: T;
     const run = this.#validation.then(async () => {
       const device = this.device;
       device.pushErrorScope('validation');
+      let failed = false;
       try {
         result = await create();
+      } catch (error) {
+        failed = true;
+        throw error;
       } finally {
         const error = await device.popErrorScope();
-        if (error) throw new Error(error.message);
+        if (error && !failed) throw new Error(error.message);
       }
     });
     this.#validation = run.then(
@@ -149,7 +165,12 @@ export class DeviceSession {
         throw new WebGPUUnavailableError(`Required GPU feature missing: ${feature}`);
     const device = await adapter.requestDevice({
       label: 'hgpu-shared-device',
-      requiredFeatures: [...this.#requested],
+      requiredFeatures: [
+        ...new Set([
+          ...this.#requested,
+          ...(adapter.features.has('timestamp-query') ? ['timestamp-query' as const] : []),
+        ]),
+      ],
     });
     if (this.#closed) {
       device.destroy();
@@ -158,6 +179,7 @@ export class DeviceSession {
     this.#adapter = adapter;
     this.#device = device;
     this.pool = new TexturePool(device);
+    this.profiler = new GPUProfiler(device);
     this.generation++;
     this.state = 'ready';
     device.addEventListener('uncapturederror', this.#error);
@@ -185,6 +207,7 @@ export class DeviceSession {
     this.resources.dispose();
     this.resources = new Resources();
     this.pool?.dispose();
+    this.profiler?.dispose();
     try {
       await this.#initialize();
       if (this.#closed) return;
@@ -210,6 +233,7 @@ export class DeviceSession {
     this.#encoder = null;
     this.resources.dispose();
     this.pool?.dispose();
+    this.profiler?.dispose();
     this.#device?.removeEventListener('uncapturederror', this.#error);
     this.#device?.destroy();
     this.#device = null;

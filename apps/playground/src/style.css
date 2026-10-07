@@ -47,6 +47,13 @@ aside {
 }
 .browser {
   border-right: 1px solid #2a2e38;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  max-height: calc(100dvh - 76px);
+}
+.browser > :not(#effects) {
+  flex-shrink: 0;
 }
 .inspector {
   border-left: 1px solid #2a2e38;
@@ -116,7 +123,12 @@ select {
 }
 #effects {
   display: grid;
+  grid-auto-rows: max-content;
   gap: 7px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 #effects button {
   text-align: left;
@@ -378,6 +390,7 @@ footer {
   }
   #effects {
     grid-template-columns: repeat(2, 1fr);
+    max-height: 35dvh;
   }
   .workspace {
     padding: 22px 16px;
@@ -515,4 +528,101 @@ footer {
 }
 #canvas {
   cursor: crosshair;
+}
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.editor-toolbar select {
+  width: auto;
+  margin: 0;
+}
+#source-panel,
+#profiler {
+  white-space: normal;
+  max-height: 550px;
+}
+#shader-editor {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  resize: vertical;
+  padding: 12px;
+  font:
+    12px/1.6 ui-monospace,
+    monospace;
+  color: transparent;
+  caret-color: #d2deff;
+  background: transparent;
+  border: 1px solid #343c4b;
+  border-radius: 5px;
+  tab-size: 2;
+  white-space: pre;
+}
+.source-edit-stack {
+  position: relative;
+  background: #141b27;
+}
+.shader-highlights {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid transparent;
+  overflow: hidden;
+  pointer-events: none;
+  white-space: pre;
+  font:
+    12px/1.6 ui-monospace,
+    monospace;
+  color: #d2deff;
+  tab-size: 2;
+}
+.wgsl-comment {
+  color: #8391a7;
+}
+.wgsl-keyword {
+  color: #cbb2ff;
+}
+.wgsl-attribute {
+  color: #81d6d0;
+}
+.wgsl-number {
+  color: #efbd8f;
+}
+#shader-diagnostics,
+#source {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#shader-diagnostics[data-state='error'] {
+  color: #ffc0a0;
+}
+#profile-histogram {
+  width: 100%;
+  height: auto;
+  max-width: 480px;
+}
+#profiler table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#profiler th,
+#profiler td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #343c4b;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+#effect-inputs {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+#effect-inputs input {
+  width: 100%;
+  margin-top: 6px;
 }

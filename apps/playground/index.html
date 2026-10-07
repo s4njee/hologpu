@@ -69,15 +69,17 @@
         <section class="drawer">
           <div role="tablist" aria-label="Research drawers">
             <button role="tab" aria-selected="true" data-drawer="notes">Notes</button
-            ><button role="tab" aria-selected="false" data-drawer="source">Source</button
+            ><button role="tab" aria-selected="false" data-drawer="source-panel">Source</button
             ><button role="tab" aria-selected="false" data-drawer="passes">Passes</button
+            ><button role="tab" aria-selected="false" data-drawer="profiler">Profiler</button
             ><button role="tab" aria-selected="false" data-drawer="capabilities">
               Capabilities
             </button>
           </div>
           <div id="notes" class="drawer-panel"></div>
-          <pre id="source" class="drawer-panel" hidden></pre>
+          <div id="source-panel" class="drawer-panel" hidden><pre id="source"></pre></div>
           <div id="passes" class="drawer-panel" hidden></div>
+          <div id="profiler" class="drawer-panel" hidden></div>
           <pre id="capabilities" class="drawer-panel" hidden></pre>
         </section>
       </section>
@@ -88,6 +90,7 @@
             <option value="">Defaults</option>
           </select></label
         >
+        <div id="effect-inputs" hidden></div>
         <div id="controls"></div>
         <button id="defaults">Reset parameters</button>
         <p class="muted">

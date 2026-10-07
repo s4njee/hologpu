@@ -1,6 +1,6 @@
 # HoloGPU — WebGPU effects library and playground
 
-**Status:** M0 and M1 complete (2026-10-07); all three Family A T1 stretches implemented; M2 implementation and validation in progress. See [M0](docs/m0.md), [M1](docs/m1.md) and [T1 stretch validation](docs/t1-stretch.md).
+**Status:** M0–M3 complete (2026-10-07); all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md), [M2](docs/m2.md), [M3](docs/m3.md) and [T1 stretch validation](docs/t1-stretch.md).
 **Created:** 2026-10-07
 **Working package name:** `@mk7s/hologpu` (confirm availability before any release)
 **Source:** item 1 of [research.md](../research.md), "WebGPU effects layer for the DOM"
@@ -493,6 +493,8 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 - **Exit:** `reaction-diffusion` and `fluid` run at display refresh rate at 1024² on the development machine; pixel tests are deterministic for a fixed seed and step count.
 
 ### M3 — Compute particles and primitives
+
+**Completed 2026-10-07.** All six Family D effects, four Family I primitives, the T3 contract and the profiler/benchmark/live-source tools are implemented. `pnpm check` passes 32 unit and 180 software browser tests; all 178 Chrome/WebKit hardware tests pass. The twelve exact-million-particle point/quad runs pass, and boid neighbors match the small-N CPU reference. Seventy-two measurement rows, generated effect notes, production-build checks and timing limitations are recorded in [M3 validation](docs/m3.md).
 
 - `particleEffect`, storage buffer layouts, point and instanced-quad drawing, additive HDR accumulation and tone mapping.
 - Family I core (`prefix-sum`, `sort`, `spatial-hash`, `mipgen`), each with unit-style GPU tests that compare against a CPU reference.

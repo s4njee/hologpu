@@ -109,6 +109,56 @@
       "source": "./src/effects/wave.ts",
       "types": "./dist/effects/wave.d.ts",
       "import": "./dist/effects/wave.js"
+    },
+    "./effects/attractors": {
+      "source": "./src/effects/attractors.ts",
+      "types": "./dist/effects/attractors.d.ts",
+      "import": "./dist/effects/attractors.js"
+    },
+    "./effects/boids": {
+      "source": "./src/effects/boids.ts",
+      "types": "./dist/effects/boids.d.ts",
+      "import": "./dist/effects/boids.js"
+    },
+    "./effects/emitters": {
+      "source": "./src/effects/emitters.ts",
+      "types": "./dist/effects/emitters.d.ts",
+      "import": "./dist/effects/emitters.js"
+    },
+    "./effects/flow-particles": {
+      "source": "./src/effects/flow-particles.ts",
+      "types": "./dist/effects/flow-particles.d.ts",
+      "import": "./dist/effects/flow-particles.js"
+    },
+    "./effects/morph-particles": {
+      "source": "./src/effects/morph-particles.ts",
+      "types": "./dist/effects/morph-particles.d.ts",
+      "import": "./dist/effects/morph-particles.js"
+    },
+    "./effects/n-body": {
+      "source": "./src/effects/n-body.ts",
+      "types": "./dist/effects/n-body.d.ts",
+      "import": "./dist/effects/n-body.js"
+    },
+    "./effects/mipgen": {
+      "source": "./src/effects/mipgen.ts",
+      "types": "./dist/effects/mipgen.d.ts",
+      "import": "./dist/effects/mipgen.js"
+    },
+    "./effects/prefix-sum": {
+      "source": "./src/effects/prefix-sum.ts",
+      "types": "./dist/effects/prefix-sum.d.ts",
+      "import": "./dist/effects/prefix-sum.js"
+    },
+    "./effects/sort": {
+      "source": "./src/effects/sort.ts",
+      "types": "./dist/effects/sort.d.ts",
+      "import": "./dist/effects/sort.js"
+    },
+    "./effects/spatial-hash": {
+      "source": "./src/effects/spatial-hash.ts",
+      "types": "./dist/effects/spatial-hash.d.ts",
+      "import": "./dist/effects/spatial-hash.js"
     }
   },
   "scripts": {

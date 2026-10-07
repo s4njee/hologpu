@@ -23,8 +23,9 @@ export async function createFullscreenPass(
   label: string,
   bindings?: readonly GPUBindGroupLayoutEntry[],
 ): Promise<FullscreenPass> {
+  source = session.shaderSource?.(label, source) ?? source;
   const moduleLease = await session.resources.acquireAsync(`shader:${source.code}`, () =>
-    compileShader(session.device, source, label),
+    session.validate(() => compileShader(session.device, source, label)),
   );
   const layoutLease = bindings
     ? session.resources.acquire(`bindings:${JSON.stringify(bindings)}`, () =>
@@ -70,6 +71,7 @@ export async function createFullscreenPass(
     draw(encoder, target, groups, clear = [0, 0, 0, 0]) {
       const pass = encoder.beginRenderPass({
         label,
+        timestampWrites: session.profiler?.timestampWrites(encoder, label),
         colorAttachments: [{ view: target, clearValue: clear, loadOp: 'clear', storeOp: 'store' }],
       });
       pass.setPipeline(pipelineLease.value);

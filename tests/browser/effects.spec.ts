@@ -8,6 +8,7 @@ declare global {
       catalogue: readonly EffectDefinition[];
       field: EffectField | null;
       mount(effect: EffectDefinition): Promise<void>;
+      runBenchmark: typeof import('../../apps/playground/src/profiler.ts').runBenchmark;
     };
   }
 }

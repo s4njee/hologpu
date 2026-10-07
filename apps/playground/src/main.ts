@@ -10,6 +10,9 @@ import {
 import { catalogue } from '@mk7s/hologpu/effects';
 import './style.css';
 import { passesDrawer } from './passes.ts';
+import { sourceEditor } from './source-editor.ts';
+import { profilerDrawer, runBenchmark } from './profiler.ts';
+import { morphInputs } from './morph-inputs.ts';
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const canvas = $<HTMLCanvasElement>('canvas');
 const query = new URLSearchParams(location.search);
@@ -359,6 +362,8 @@ async function mount(next: EffectDefinition, initial = false) {
   $('tier').textContent = `${next.tier} / ${next.family.toUpperCase()}`;
   canvas.style.touchAction = next.inputs.includes('pointer') ? 'none' : 'auto';
   $('passes').replaceChildren();
+  $('source-panel').replaceChildren(Object.assign(document.createElement('pre'), { id: 'source' }));
+  $('profiler').replaceChildren();
   $('source').textContent = 'Compiling…';
   $('status').dataset['state'] = 'loading';
   $('status').textContent = 'Compiling effect pipelines…';
@@ -402,7 +407,12 @@ async function mount(next: EffectDefinition, initial = false) {
     }
     field = mounted;
     inspector();
+    morphInputs(field, $('effect-inputs'));
     passesDrawer(field, $('passes'));
+    sourceEditor(field, $('source-panel'), () => {
+      if (field) passesDrawer(field, $('passes'));
+    });
+    profilerDrawer(field, $('profiler'));
     $<HTMLSelectElement>('time-scale').value = String(field.timeScale);
     $<HTMLInputElement>('adaptive-quality').checked = field.adaptiveQuality;
     if (initial && (query.get('preset') ?? '') in next.presets)
@@ -546,6 +556,7 @@ Object.assign(window, {
       return field;
     },
     mount,
+    runBenchmark,
   },
 });
 void mount(effect, true);

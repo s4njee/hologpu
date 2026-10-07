@@ -41,10 +41,11 @@ export async function readTextureTap(device: GPUDevice, tap: TextureTap): Promis
   });
   try {
     const encoder = device.createCommandEncoder();
-    encoder.copyTextureToBuffer({ texture: tap.texture }, { buffer, bytesPerRow }, [
-      tap.width,
-      tap.height,
-    ]);
+    encoder.copyTextureToBuffer(
+      { texture: tap.texture, mipLevel: tap.mipLevel ?? 0, origin: [0, 0, tap.arrayLayer ?? 0] },
+      { buffer, bytesPerRow },
+      [tap.width, tap.height],
+    );
     device.queue.submit([encoder.finish()]);
     await buffer.mapAsync(GPUMapMode.READ);
     const view = new DataView(buffer.getMappedRange()),

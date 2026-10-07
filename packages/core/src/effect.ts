@@ -35,6 +35,8 @@ export interface TextureTap {
   readonly width: number;
   readonly height: number;
   readonly label?: string;
+  readonly mipLevel?: number;
+  readonly arrayLayer?: number;
   readonly kind: 'float' | 'uint';
 }
 export interface EffectMemory {
@@ -58,6 +60,7 @@ export interface EffectInstance {
   textureTaps?(): Readonly<Record<string, TextureTap>>;
   bufferTaps?(): Readonly<Record<string, BufferTap>>;
   memory?(): EffectMemory;
+  setInput?(name: string, value: unknown): void | Promise<void>;
 }
 export interface EffectDefinition<S extends ParamSchema = ParamSchema> {
   readonly id: string;

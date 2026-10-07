@@ -11,4 +11,7 @@ export * from './compute.ts';
 export * from './feedback.ts';
 export * from './quality.ts';
 export * from './texture-readback.ts';
+export * from './profiler.ts';
+export * from './primitives/index.ts';
+export * from './particles.ts';
 export * from './wgsl/index.ts';

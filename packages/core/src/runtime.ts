@@ -7,6 +7,7 @@ import type { ScheduledSurface } from './scheduler.ts';
 import { Surface } from './surface.ts';
 import { QualityController } from './quality.ts';
 import { readTextureTap } from './texture-readback.ts';
+import type { ComposedWGSL } from './wgsl/composer.ts';
 import { createFullscreenPass, resolveSource } from './passes.ts';
 export interface MountOptions {
   params?: ParamValues;
@@ -36,6 +37,13 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   quality: QualityController;
   #rateAccumulator = 0;
   #qualityPending = false;
+  readonly frameTimings: { cpuMs: number; intervalMs: number }[] = [];
+  #editRevision = 0;
+  #baseSources: Readonly<Record<string, ComposedWGSL>> = {};
+  #sourceOverrides = new Map<string, string>();
+  #inputs = new Map<string, unknown>();
+  #inputRevision = 0;
+  #inputRequestRevision = 0;
   state: 'building' | 'ready' | 'lost' | 'error' | 'disposed' = 'building';
   frame: FrameInfo = {
     time: 0,
@@ -179,7 +187,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     await this.#restore(false);
   }
   async #restore(restoreSurface = true) {
-    const generation = ++this.#generation;
+    const generation = ++this.#generation,
+      inputRevision = this.#inputRevision;
     if (restoreSurface) await this.surface!.restore();
     if (this.#disposed) return;
     const device = this.session.device;
@@ -193,28 +202,166 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       size: this.store.layout.byteLength,
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     });
-    const instance = await this.effect.create({
-      session: this.session,
-      device,
-      params: this.store,
-      paramsBuffer: this.#paramsBuffer,
-      frameBuffer: this.#frameBuffer,
-      format: 'rgba16float',
-      qualitySteps: () => (this.adaptiveQuality ? this.quality.state.stepScale : 1),
-    });
-    if (this.#disposed || generation !== this.#generation) {
+    const instance = await this.effect.create(this.#context());
+    const current = () =>
+      !this.#disposed && generation === this.#generation && inputRevision === this.#inputRevision;
+    try {
+      if (!current()) {
+        instance.dispose();
+        return;
+      }
+      this.frame.resolution = this.surface!.size;
+      instance.resize(this.frame.resolution);
+      for (const [name, value] of this.#inputs) {
+        if (!instance.setInput) throw new Error('Restored effect cannot replay its inputs');
+        await instance.setInput(name, value);
+        if (!current()) {
+          instance.dispose();
+          return;
+        }
+      }
+      instance.reset(this.frame.seed);
+    } catch (error) {
       instance.dispose();
-      return;
+      throw error;
     }
+    if (!Object.keys(this.#baseSources).length) this.#baseSources = instance.sources ?? {};
     this.instance = instance;
-    this.frame.resolution = this.surface!.size;
-    this.instance.resize(this.frame.resolution);
-    this.instance.reset(this.frame.seed);
     device.queue.writeBuffer(this.#paramsBuffer, 0, this.store.pack());
     this.#applyMotion();
     this.state = 'ready';
     this.invalidate();
     this.notify();
+  }
+  #context(overrides = this.#sourceOverrides) {
+    const byCode = new Map<string, ComposedWGSL>();
+    for (const [name, code] of overrides) {
+      const source = this.#baseSources[name];
+      if (source)
+        byCode.set(source.code, {
+          code,
+          regions: [{ id: `edited:${name}`, startLine: 1, endLine: code.split('\n').length }],
+        });
+    }
+    const session = byCode.size
+      ? new Proxy(this.session, {
+          get(target, key) {
+            if (key === 'shaderSource')
+              return (_label: string, source: ComposedWGSL) => byCode.get(source.code) ?? source;
+            const value: unknown = Reflect.get(target, key, target);
+            return typeof value === 'function' ? value.bind(target) : value;
+          },
+        })
+      : this.session;
+    return {
+      session,
+      device: this.session.device,
+      params: this.store,
+      paramsBuffer: this.#paramsBuffer!,
+      frameBuffer: this.#frameBuffer!,
+      format: 'rgba16float' as const,
+      qualitySteps: () => (this.adaptiveQuality ? this.quality.state.stepScale : 1),
+    };
+  }
+  /** Compile off to the side; failed or superseded builds leave the running instance intact. */
+  async editSource(name: string, code: string) {
+    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.#baseSources[name]) throw new Error(`Unknown shader stage: ${name}`);
+    const revision = ++this.#editRevision,
+      generation = this.#generation,
+      inputRevision = this.#inputRevision,
+      inputRequestRevision = this.#inputRequestRevision;
+    const overrides = new Map(this.#sourceOverrides);
+    if (code === this.#baseSources[name]!.code) overrides.delete(name);
+    else overrides.set(name, code);
+    const candidate = await this.effect.create(this.#context(overrides));
+    const current = () =>
+      !this.#disposed &&
+      revision === this.#editRevision &&
+      generation === this.#generation &&
+      inputRevision === this.#inputRevision &&
+      inputRequestRevision === this.#inputRequestRevision &&
+      this.state === 'ready';
+    try {
+      if (!current()) throw new Error('Shader build was superseded');
+      candidate.resize(this.frame.resolution);
+      for (const [input, value] of this.#inputs) {
+        if (!candidate.setInput) throw new Error('Edited effect cannot replay its inputs');
+        await candidate.setInput(input, value);
+        if (!current()) throw new Error('Shader build was superseded');
+      }
+      candidate.reset(this.frame.seed);
+    } catch (error) {
+      candidate.dispose();
+      throw error;
+    }
+    const previous = this.instance;
+    this.instance = candidate;
+    this.#sourceOverrides = overrides;
+    previous?.dispose();
+    this.reset();
+    this.notify();
+  }
+  async setInput(name: string, value: unknown) {
+    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (!this.instance?.setInput) throw new Error('This effect does not accept editable inputs');
+    const instance = this.instance,
+      generation = this.#generation,
+      durable = name === 'image' ? this.#snapshotImage(value) : value;
+    this.#inputRequestRevision++;
+    try {
+      await instance.setInput!(name, durable);
+      if (this.#disposed || generation !== this.#generation || instance !== this.instance)
+        throw new Error('Input update was superseded');
+    } catch (error) {
+      this.#releaseInput(name, durable);
+      throw error;
+    }
+    this.#releaseInput(name, this.#inputs.get(name));
+    this.#inputs.set(name, durable);
+    this.#inputRevision++;
+    this.invalidate();
+  }
+  #snapshotImage(value: unknown): HTMLCanvasElement {
+    if (!value || typeof value !== 'object')
+      throw new TypeError('Image input requires a CanvasImageSource');
+    const source = value as CanvasImageSource;
+    const side = (dimension: 'Width' | 'Height') => {
+      const object = value as Record<string, unknown>;
+      const raw =
+        object[`natural${dimension}`] ??
+        object[`video${dimension}`] ??
+        object[`display${dimension}`] ??
+        object[dimension.toLowerCase()];
+      const size =
+        typeof raw === 'number' ? raw : (raw as SVGAnimatedLength | undefined)?.baseVal?.value;
+      if (!Number.isFinite(size) || !size || size < 1)
+        throw new TypeError('Image input has no decoded dimensions');
+      return Math.floor(size);
+    };
+    const copy = document.createElement('canvas');
+    copy.width = side('Width');
+    copy.height = side('Height');
+    try {
+      const context = copy.getContext('2d');
+      if (!context) throw new Error('Image snapshot canvas is unavailable');
+      context.imageSmoothingEnabled = false;
+      context.drawImage(source, 0, 0, copy.width, copy.height);
+      return copy;
+    } catch (error) {
+      copy.width = copy.height = 0;
+      throw error;
+    }
+  }
+  #releaseInput(name: string, value: unknown) {
+    if (name === 'image' && value instanceof HTMLCanvasElement) value.width = value.height = 0;
+  }
+  get inputRevision() {
+    return this.#inputRevision;
+  }
+  setProfiling(enabled: boolean) {
+    this.session.profiler.enabled = enabled;
+    this.invalidate();
   }
   onChange(listener: (field: EffectField<S>) => void) {
     this.#listeners.add(listener);
@@ -271,6 +418,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.invalidate();
   }
   frameCompleted(stats: { cpuMs: number; intervalMs: number }) {
+    this.frameTimings.push(stats);
+    if (this.frameTimings.length > 240) this.frameTimings.shift();
     if (!this.adaptiveQuality || !this.playing || this.#qualityPending || this.state !== 'ready')
       return;
     this.#qualityPending = true;
@@ -396,6 +545,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   get reducedMotion() {
     return this.#motionOverride ?? this.#motion.matches;
   }
+  get reducedMotionOverride() {
+    return this.#motionOverride;
+  }
+  get requestedPlaying() {
+    return this.#wasPlaying;
+  }
   setReducedMotion(value: boolean | undefined) {
     this.#motionOverride = value;
     this.#applyMotion();
@@ -456,7 +611,13 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.invalidate();
   };
   get sources() {
-    return this.instance?.sources ?? {};
+    const sources = { ...(this.instance?.sources ?? {}) };
+    for (const [name, code] of this.#sourceOverrides)
+      sources[name] = {
+        code,
+        regions: [{ id: `edited:${name}`, startLine: 1, endLine: code.split('\n').length }],
+      };
+    return sources;
   }
   get diagnostics() {
     return this.instance?.diagnostics ?? [];
@@ -469,6 +630,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
         ? 0
         : 64 + this.store.layout.byteLength + (owned?.bufferBytes ?? 0),
       shared: this.session.resources.stats(),
+      profilingBytes: this.session.profiler.bytes,
     };
   }
   async readPixels() {
@@ -501,7 +663,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       const encoder = device.createCommandEncoder();
       pass.draw(encoder, texture.createView(), [group]);
       encoder.copyTextureToBuffer({ texture }, { buffer, bytesPerRow }, [width, height]);
-      device.queue.submit([encoder.finish()]);
+      this.session.submitEncoder(encoder);
       await buffer.mapAsync(GPUMapMode.READ);
       const mapped = new Uint8Array(buffer.getMappedRange());
       const pixels = new Uint8Array(width * height * 4);
@@ -539,6 +701,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.surface = null;
     this.#frameBuffer?.destroy();
     this.#paramsBuffer?.destroy();
+    for (const [name, value] of this.#inputs) this.#releaseInput(name, value);
+    this.#inputs.clear();
     this.#listeners.clear();
     this.#releaseDevice();
   }

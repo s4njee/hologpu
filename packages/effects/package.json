@@ -99,6 +99,56 @@
       "source": "./src/wave/index.ts",
       "types": "./dist/wave/index.d.ts",
       "import": "./dist/wave/index.js"
+    },
+    "./attractors": {
+      "source": "./src/attractors/index.ts",
+      "types": "./dist/attractors/index.d.ts",
+      "import": "./dist/attractors/index.js"
+    },
+    "./boids": {
+      "source": "./src/boids/index.ts",
+      "types": "./dist/boids/index.d.ts",
+      "import": "./dist/boids/index.js"
+    },
+    "./emitters": {
+      "source": "./src/emitters/index.ts",
+      "types": "./dist/emitters/index.d.ts",
+      "import": "./dist/emitters/index.js"
+    },
+    "./flow-particles": {
+      "source": "./src/flow-particles/index.ts",
+      "types": "./dist/flow-particles/index.d.ts",
+      "import": "./dist/flow-particles/index.js"
+    },
+    "./morph-particles": {
+      "source": "./src/morph-particles/index.ts",
+      "types": "./dist/morph-particles/index.d.ts",
+      "import": "./dist/morph-particles/index.js"
+    },
+    "./n-body": {
+      "source": "./src/n-body/index.ts",
+      "types": "./dist/n-body/index.d.ts",
+      "import": "./dist/n-body/index.js"
+    },
+    "./mipgen": {
+      "source": "./src/mipgen/index.ts",
+      "types": "./dist/mipgen/index.d.ts",
+      "import": "./dist/mipgen/index.js"
+    },
+    "./prefix-sum": {
+      "source": "./src/prefix-sum/index.ts",
+      "types": "./dist/prefix-sum/index.d.ts",
+      "import": "./dist/prefix-sum/index.js"
+    },
+    "./sort": {
+      "source": "./src/sort/index.ts",
+      "types": "./dist/sort/index.d.ts",
+      "import": "./dist/sort/index.js"
+    },
+    "./spatial-hash": {
+      "source": "./src/spatial-hash/index.ts",
+      "types": "./dist/spatial-hash/index.d.ts",
+      "import": "./dist/spatial-hash/index.js"
     }
   },
   "scripts": {
