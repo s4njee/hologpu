@@ -1,0 +1,1929 @@
+{
+  "recordedOn": "2026-10-07",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "webkit",
+    "browserVersion": "26.6",
+    "headless": true,
+    "dpr": 1
+  },
+  "scenario": {
+    "width": 1920,
+    "height": 1080,
+    "seed": 7,
+    "warmupFrames": 30,
+    "samples": 120,
+    "runs": 3,
+    "params": "Four filters at defaults: Gaussian radius-8 blur, lens, color-grade, dither; actual 1920×1080 60fps decoded video",
+    "clock": "one fixed 1/60 s update per rAF; queue completion and timestamp readback awaited",
+    "quality": "fixed physical dimensions, no adaptive scaling, timeScale 1",
+    "timing": "CPU encode, encoding-through-queue-completion wall latency, actual summed per-pass GPU timestamps and observed rAF cadence are separate. Serialized timestamp readback contributes to cadence. Machine load is uncontrolled; allocations are logical sizes, not VRAM.",
+    "gate": "Actual 1080p video and physical chain output; 150 updates, 120 measured completions and all four filter pass timestamps when supported; at least 95% completions and median cadence within 110% measured idle rAF period"
+  },
+  "results": [
+    {
+      "id": "chain-blur-lens-color-grade-dither",
+      "seed": 7,
+      "params": {
+        "s0_algorithm": "gaussian",
+        "s0_radius": 8,
+        "s0_passes": 3,
+        "s1_barrel": 0.12,
+        "s1_aberration": 0.002,
+        "s1_vignette": 0.3,
+        "s1_grain": 0.025,
+        "s2_toneMap": "aces",
+        "s2_exposure": 0,
+        "s2_lift": [
+          0,
+          0,
+          0
+        ],
+        "s2_gamma": [
+          1,
+          1,
+          1
+        ],
+        "s2_gain": [
+          1,
+          1,
+          1
+        ],
+        "s2_toneCurve": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "s2_curveAmount": 0,
+        "s2_look": "identity",
+        "s2_lutAmount": 1,
+        "s3_mode": "blue-noise",
+        "s3_levels": 6,
+        "s3_amount": 1,
+        "s3_scanline": 0.3,
+        "s3_paletteGradient": [
+          {
+            "offset": 0,
+            "color": "#16233a"
+          },
+          {
+            "offset": 0.3333333333333333,
+            "color": "#7d647d"
+          },
+          {
+            "offset": 0.6666666666666666,
+            "color": "#efcea1"
+          },
+          {
+            "offset": 1,
+            "color": "#619bb2"
+          }
+        ]
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "samples": 120,
+      "warmup": 30,
+      "frameIndex": 150,
+      "taps": {
+        "input:s2_toneCurve": {
+          "width": 256,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-1": {
+          "width": 128,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-2": {
+          "width": 64,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-3": {
+          "width": 32,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-4": {
+          "width": 16,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-5": {
+          "width": 8,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-6": {
+          "width": 4,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-7": {
+          "width": 2,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-8": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient": {
+          "width": 256,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-1": {
+          "width": 128,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-2": {
+          "width": 64,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-3": {
+          "width": 32,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-4": {
+          "width": 16,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-5": {
+          "width": 8,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-6": {
+          "width": 4,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-7": {
+          "width": 2,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-8": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:image": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "input:image:mip-1": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "input:image:mip-2": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "input:image:mip-3": {
+          "width": 240,
+          "height": 135,
+          "format": "rgba16float"
+        },
+        "input:image:mip-4": {
+          "width": 120,
+          "height": 67,
+          "format": "rgba16float"
+        },
+        "input:image:mip-5": {
+          "width": 60,
+          "height": 33,
+          "format": "rgba16float"
+        },
+        "input:image:mip-6": {
+          "width": 30,
+          "height": 16,
+          "format": "rgba16float"
+        },
+        "input:image:mip-7": {
+          "width": 15,
+          "height": 8,
+          "format": "rgba16float"
+        },
+        "input:image:mip-8": {
+          "width": 7,
+          "height": 4,
+          "format": "rgba16float"
+        },
+        "input:image:mip-9": {
+          "width": 3,
+          "height": 2,
+          "format": "rgba16float"
+        },
+        "input:image:mip-10": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "s0:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s1:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s2:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s0:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s0:blur0": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s0:blur1": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "s0:blur2": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "s0:blur3": {
+          "width": 240,
+          "height": 135,
+          "format": "rgba16float"
+        },
+        "s0:blur4": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "s0:blur5": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "s1:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s2:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice0": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice1": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice2": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice3": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice4": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice5": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice6": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice7": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice8": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice9": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice10": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice11": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice12": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice13": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice14": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice15": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice16": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s3:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s3:blueNoise": {
+          "width": 32,
+          "height": 32,
+          "format": "r8unorm"
+        }
+      },
+      "memory": {
+        "textureBytes": 124340984,
+        "bufferBytes": 432,
+        "shared": {
+          "entries": 26,
+          "references": 29,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "inputMediaPath": "canvas-copy",
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "video": {
+        "source": "http://127.0.0.1:5176/media/sample-1080p60.mp4",
+        "width": 1920,
+        "height": 1080,
+        "duration": 3,
+        "startTime": 0.8294132089645203,
+        "endTime": 1.529771915931246,
+        "decodedCallbacks": 160,
+        "presentedFramesDelta": 203,
+        "startMetadata": {
+          "width": 1920,
+          "height": 1080,
+          "mediaTime": 0.7166666666666667,
+          "presentedFrames": 39
+        },
+        "inputHashBefore": 915989360,
+        "inputHashAfter": 594807416,
+        "lastMetadata": {
+          "width": 1920,
+          "height": 1080,
+          "mediaTime": 1.4833333333333334,
+          "presentedFrames": 242
+        }
+      },
+      "stages": [
+        {
+          "id": "blur",
+          "params": {
+            "algorithm": "gaussian",
+            "radius": 8,
+            "passes": 3
+          }
+        },
+        {
+          "id": "lens",
+          "params": {
+            "barrel": 0.12,
+            "aberration": 0.002,
+            "vignette": 0.3,
+            "grain": 0.025
+          }
+        },
+        {
+          "id": "color-grade",
+          "params": {
+            "toneMap": "aces",
+            "exposure": 0,
+            "lift": [
+              0,
+              0,
+              0
+            ],
+            "gamma": [
+              1,
+              1,
+              1
+            ],
+            "gain": [
+              1,
+              1,
+              1
+            ],
+            "toneCurve": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "curveAmount": 0,
+            "look": "identity",
+            "lutAmount": 1
+          }
+        },
+        {
+          "id": "dither",
+          "params": {
+            "mode": "blue-noise",
+            "levels": 6,
+            "amount": 1,
+            "scanline": 0.3,
+            "paletteGradient": [
+              {
+                "offset": 0,
+                "color": "#16233a"
+              },
+              {
+                "offset": 0.3333333333333333,
+                "color": "#7d647d"
+              },
+              {
+                "offset": 0.6666666666666666,
+                "color": "#efcea1"
+              },
+              {
+                "offset": 1,
+                "color": "#619bb2"
+              }
+            ]
+          }
+        }
+      ],
+      "run": 1,
+      "idleRafMs": {
+        "count": 39,
+        "mean": 16.46153846153846,
+        "p50": 17,
+        "p95": 20,
+        "max": 22
+      },
+      "cpuMs": {
+        "count": 120,
+        "mean": 10.616666666666667,
+        "p50": 11,
+        "p95": 12,
+        "max": 14
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 22.05,
+        "p50": 23,
+        "p95": 27,
+        "max": 28
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 24.966666666666665,
+        "p50": 24,
+        "p95": 34,
+        "max": 43
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 38.443770324999974,
+        "p50": 37.327791999999995,
+        "p95": 55.647625,
+        "max": 58.23895800000001
+      },
+      "passes": {
+        "hgpu-input-normalize": {
+          "count": 115,
+          "mean": 0.12049928695652172,
+          "p50": 0.109834,
+          "p95": 0.228125,
+          "max": 0.444709
+        },
+        "hgpu-mipgen": {
+          "count": 115,
+          "mean": 0.8950786869565219,
+          "p50": 0.8771260000000001,
+          "p95": 1.5345839999999997,
+          "max": 2.2516249999999998
+        },
+        "blur-horizontal": {
+          "count": 120,
+          "mean": 3.628037458333333,
+          "p50": 3.589625,
+          "p95": 5.176958,
+          "max": 5.591458
+        },
+        "blur-vertical": {
+          "count": 120,
+          "mean": 6.168445433333333,
+          "p50": 6.025542,
+          "p95": 8.852291,
+          "max": 9.376458
+        },
+        "hgpu-lens": {
+          "count": 120,
+          "mean": 6.416620825000001,
+          "p50": 6.25875,
+          "p95": 9.265875,
+          "max": 9.668625
+        },
+        "color-grade": {
+          "count": 120,
+          "mean": 6.867084341666668,
+          "p50": 6.654667,
+          "p95": 10.03725,
+          "max": 10.478666
+        },
+        "dither": {
+          "count": 120,
+          "mean": 7.172488874999998,
+          "p50": 6.994375,
+          "p95": 10.447792,
+          "max": 10.977
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 7.217831166666668,
+          "p50": 7.056666,
+          "p95": 10.464375,
+          "max": 10.783208
+        }
+      },
+      "deadlineMs": 18.700000000000003,
+      "completedWithinDeadline": 0.06666666666666667,
+      "gate": false
+    },
+    {
+      "id": "chain-blur-lens-color-grade-dither",
+      "seed": 7,
+      "params": {
+        "s0_algorithm": "gaussian",
+        "s0_radius": 8,
+        "s0_passes": 3,
+        "s1_barrel": 0.12,
+        "s1_aberration": 0.002,
+        "s1_vignette": 0.3,
+        "s1_grain": 0.025,
+        "s2_toneMap": "aces",
+        "s2_exposure": 0,
+        "s2_lift": [
+          0,
+          0,
+          0
+        ],
+        "s2_gamma": [
+          1,
+          1,
+          1
+        ],
+        "s2_gain": [
+          1,
+          1,
+          1
+        ],
+        "s2_toneCurve": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "s2_curveAmount": 0,
+        "s2_look": "identity",
+        "s2_lutAmount": 1,
+        "s3_mode": "blue-noise",
+        "s3_levels": 6,
+        "s3_amount": 1,
+        "s3_scanline": 0.3,
+        "s3_paletteGradient": [
+          {
+            "offset": 0,
+            "color": "#16233a"
+          },
+          {
+            "offset": 0.3333333333333333,
+            "color": "#7d647d"
+          },
+          {
+            "offset": 0.6666666666666666,
+            "color": "#efcea1"
+          },
+          {
+            "offset": 1,
+            "color": "#619bb2"
+          }
+        ]
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "samples": 120,
+      "warmup": 30,
+      "frameIndex": 150,
+      "taps": {
+        "input:s2_toneCurve": {
+          "width": 256,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-1": {
+          "width": 128,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-2": {
+          "width": 64,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-3": {
+          "width": 32,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-4": {
+          "width": 16,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-5": {
+          "width": 8,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-6": {
+          "width": 4,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-7": {
+          "width": 2,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-8": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient": {
+          "width": 256,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-1": {
+          "width": 128,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-2": {
+          "width": 64,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-3": {
+          "width": 32,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-4": {
+          "width": 16,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-5": {
+          "width": 8,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-6": {
+          "width": 4,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-7": {
+          "width": 2,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-8": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:image": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "input:image:mip-1": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "input:image:mip-2": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "input:image:mip-3": {
+          "width": 240,
+          "height": 135,
+          "format": "rgba16float"
+        },
+        "input:image:mip-4": {
+          "width": 120,
+          "height": 67,
+          "format": "rgba16float"
+        },
+        "input:image:mip-5": {
+          "width": 60,
+          "height": 33,
+          "format": "rgba16float"
+        },
+        "input:image:mip-6": {
+          "width": 30,
+          "height": 16,
+          "format": "rgba16float"
+        },
+        "input:image:mip-7": {
+          "width": 15,
+          "height": 8,
+          "format": "rgba16float"
+        },
+        "input:image:mip-8": {
+          "width": 7,
+          "height": 4,
+          "format": "rgba16float"
+        },
+        "input:image:mip-9": {
+          "width": 3,
+          "height": 2,
+          "format": "rgba16float"
+        },
+        "input:image:mip-10": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "s0:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s1:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s2:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s0:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s0:blur0": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s0:blur1": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "s0:blur2": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "s0:blur3": {
+          "width": 240,
+          "height": 135,
+          "format": "rgba16float"
+        },
+        "s0:blur4": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "s0:blur5": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "s1:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s2:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice0": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice1": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice2": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice3": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice4": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice5": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice6": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice7": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice8": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice9": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice10": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice11": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice12": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice13": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice14": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice15": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice16": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s3:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s3:blueNoise": {
+          "width": 32,
+          "height": 32,
+          "format": "r8unorm"
+        }
+      },
+      "memory": {
+        "textureBytes": 124340984,
+        "bufferBytes": 432,
+        "shared": {
+          "entries": 26,
+          "references": 29,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "inputMediaPath": "canvas-copy",
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "video": {
+        "source": "http://127.0.0.1:5176/media/sample-1080p60.mp4",
+        "width": 1920,
+        "height": 1080,
+        "duration": 3,
+        "startTime": 0.8047675833650827,
+        "endTime": 1.3014568332918137,
+        "decodedCallbacks": 160,
+        "presentedFramesDelta": 190,
+        "startMetadata": {
+          "width": 1920,
+          "height": 1080,
+          "mediaTime": 0.7,
+          "presentedFrames": 37
+        },
+        "inputHashBefore": 915989360,
+        "inputHashAfter": 2019332289,
+        "lastMetadata": {
+          "width": 1920,
+          "height": 1080,
+          "mediaTime": 1.25,
+          "presentedFrames": 227
+        }
+      },
+      "stages": [
+        {
+          "id": "blur",
+          "params": {
+            "algorithm": "gaussian",
+            "radius": 8,
+            "passes": 3
+          }
+        },
+        {
+          "id": "lens",
+          "params": {
+            "barrel": 0.12,
+            "aberration": 0.002,
+            "vignette": 0.3,
+            "grain": 0.025
+          }
+        },
+        {
+          "id": "color-grade",
+          "params": {
+            "toneMap": "aces",
+            "exposure": 0,
+            "lift": [
+              0,
+              0,
+              0
+            ],
+            "gamma": [
+              1,
+              1,
+              1
+            ],
+            "gain": [
+              1,
+              1,
+              1
+            ],
+            "toneCurve": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "curveAmount": 0,
+            "look": "identity",
+            "lutAmount": 1
+          }
+        },
+        {
+          "id": "dither",
+          "params": {
+            "mode": "blue-noise",
+            "levels": 6,
+            "amount": 1,
+            "scanline": 0.3,
+            "paletteGradient": [
+              {
+                "offset": 0,
+                "color": "#16233a"
+              },
+              {
+                "offset": 0.3333333333333333,
+                "color": "#7d647d"
+              },
+              {
+                "offset": 0.6666666666666666,
+                "color": "#efcea1"
+              },
+              {
+                "offset": 1,
+                "color": "#619bb2"
+              }
+            ]
+          }
+        }
+      ],
+      "run": 2,
+      "idleRafMs": {
+        "count": 39,
+        "mean": 16.641025641025642,
+        "p50": 17,
+        "p95": 19,
+        "max": 19
+      },
+      "cpuMs": {
+        "count": 120,
+        "mean": 10.458333333333334,
+        "p50": 11,
+        "p95": 12,
+        "max": 13
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 21.525,
+        "p50": 22,
+        "p95": 26,
+        "max": 27
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 23.341666666666665,
+        "p50": 23,
+        "p95": 34,
+        "max": 39
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 37.42570377500001,
+        "p50": 35.85754,
+        "p95": 54.930249,
+        "max": 57.130376999999996
+      },
+      "passes": {
+        "hgpu-input-normalize": {
+          "count": 114,
+          "mean": 0.12929316666666665,
+          "p50": 0.106,
+          "p95": 0.300083,
+          "max": 0.57
+        },
+        "hgpu-mipgen": {
+          "count": 114,
+          "mean": 0.8609130877192981,
+          "p50": 0.846626,
+          "p95": 1.4428750000000001,
+          "max": 1.733959
+        },
+        "blur-horizontal": {
+          "count": 120,
+          "mean": 3.534459675,
+          "p50": 3.33175,
+          "p95": 5.161417,
+          "max": 5.271333
+        },
+        "blur-vertical": {
+          "count": 120,
+          "mean": 6.050723283333334,
+          "p50": 5.778292,
+          "p95": 8.847917,
+          "max": 9.130083
+        },
+        "hgpu-lens": {
+          "count": 120,
+          "mean": 6.273740924999997,
+          "p50": 6.042292,
+          "p95": 9.267958,
+          "max": 9.530417
+        },
+        "color-grade": {
+          "count": 120,
+          "mean": 6.687902033333334,
+          "p50": 6.529959,
+          "p95": 9.883375,
+          "max": 10.245625
+        },
+        "dither": {
+          "count": 120,
+          "mean": 6.940337158333334,
+          "p50": 6.769417,
+          "p95": 10.252833,
+          "max": 10.660542
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 6.997844758333332,
+          "p50": 6.835625,
+          "p95": 10.427041,
+          "max": 11.060125
+        }
+      },
+      "deadlineMs": 18.700000000000003,
+      "completedWithinDeadline": 0.075,
+      "gate": false
+    },
+    {
+      "id": "chain-blur-lens-color-grade-dither",
+      "seed": 7,
+      "params": {
+        "s0_algorithm": "gaussian",
+        "s0_radius": 8,
+        "s0_passes": 3,
+        "s1_barrel": 0.12,
+        "s1_aberration": 0.002,
+        "s1_vignette": 0.3,
+        "s1_grain": 0.025,
+        "s2_toneMap": "aces",
+        "s2_exposure": 0,
+        "s2_lift": [
+          0,
+          0,
+          0
+        ],
+        "s2_gamma": [
+          1,
+          1,
+          1
+        ],
+        "s2_gain": [
+          1,
+          1,
+          1
+        ],
+        "s2_toneCurve": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "s2_curveAmount": 0,
+        "s2_look": "identity",
+        "s2_lutAmount": 1,
+        "s3_mode": "blue-noise",
+        "s3_levels": 6,
+        "s3_amount": 1,
+        "s3_scanline": 0.3,
+        "s3_paletteGradient": [
+          {
+            "offset": 0,
+            "color": "#16233a"
+          },
+          {
+            "offset": 0.3333333333333333,
+            "color": "#7d647d"
+          },
+          {
+            "offset": 0.6666666666666666,
+            "color": "#efcea1"
+          },
+          {
+            "offset": 1,
+            "color": "#619bb2"
+          }
+        ]
+      },
+      "size": [
+        1920,
+        1080
+      ],
+      "samples": 120,
+      "warmup": 30,
+      "frameIndex": 150,
+      "taps": {
+        "input:s2_toneCurve": {
+          "width": 256,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-1": {
+          "width": 128,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-2": {
+          "width": 64,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-3": {
+          "width": 32,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-4": {
+          "width": 16,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-5": {
+          "width": 8,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-6": {
+          "width": 4,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-7": {
+          "width": 2,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s2_toneCurve:mip-8": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient": {
+          "width": 256,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-1": {
+          "width": 128,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-2": {
+          "width": 64,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-3": {
+          "width": 32,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-4": {
+          "width": 16,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-5": {
+          "width": 8,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-6": {
+          "width": 4,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-7": {
+          "width": 2,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:s3_paletteGradient:mip-8": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "input:image": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "input:image:mip-1": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "input:image:mip-2": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "input:image:mip-3": {
+          "width": 240,
+          "height": 135,
+          "format": "rgba16float"
+        },
+        "input:image:mip-4": {
+          "width": 120,
+          "height": 67,
+          "format": "rgba16float"
+        },
+        "input:image:mip-5": {
+          "width": 60,
+          "height": 33,
+          "format": "rgba16float"
+        },
+        "input:image:mip-6": {
+          "width": 30,
+          "height": 16,
+          "format": "rgba16float"
+        },
+        "input:image:mip-7": {
+          "width": 15,
+          "height": 8,
+          "format": "rgba16float"
+        },
+        "input:image:mip-8": {
+          "width": 7,
+          "height": 4,
+          "format": "rgba16float"
+        },
+        "input:image:mip-9": {
+          "width": 3,
+          "height": 2,
+          "format": "rgba16float"
+        },
+        "input:image:mip-10": {
+          "width": 1,
+          "height": 1,
+          "format": "rgba16float"
+        },
+        "s0:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s1:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s2:output": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s0:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s0:blur0": {
+          "width": 1920,
+          "height": 1080,
+          "format": "rgba16float"
+        },
+        "s0:blur1": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "s0:blur2": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "s0:blur3": {
+          "width": 240,
+          "height": 135,
+          "format": "rgba16float"
+        },
+        "s0:blur4": {
+          "width": 960,
+          "height": 540,
+          "format": "rgba16float"
+        },
+        "s0:blur5": {
+          "width": 480,
+          "height": 270,
+          "format": "rgba16float"
+        },
+        "s1:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s2:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice0": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice1": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice2": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice3": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice4": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice5": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice6": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice7": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice8": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice9": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice10": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice11": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice12": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice13": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice14": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice15": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s2:lutSlice16": {
+          "width": 17,
+          "height": 17,
+          "format": "rgba32float"
+        },
+        "s3:defaultImage": {
+          "width": 64,
+          "height": 64,
+          "format": "rgba32float"
+        },
+        "s3:blueNoise": {
+          "width": 32,
+          "height": 32,
+          "format": "r8unorm"
+        }
+      },
+      "memory": {
+        "textureBytes": 124340984,
+        "bufferBytes": 432,
+        "shared": {
+          "entries": 26,
+          "references": 29,
+          "bytes": 0
+        },
+        "profilingBytes": 16384
+      },
+      "inputMediaPath": "canvas-copy",
+      "capabilities": {
+        "features": [
+          "bgra8unorm-storage",
+          "clip-distances",
+          "core-features-and-limits",
+          "depth-clip-control",
+          "depth32float-stencil8",
+          "float16-renderable",
+          "float32-blendable",
+          "float32-filterable",
+          "float32-renderable",
+          "indirect-first-instance",
+          "primitive-index",
+          "rg11b10ufloat-renderable",
+          "shader-f16",
+          "subgroups",
+          "texture-compression-astc",
+          "texture-compression-astc-sliced-3d",
+          "texture-compression-bc",
+          "texture-compression-bc-sliced-3d",
+          "texture-compression-etc2",
+          "texture-formats-tier1",
+          "texture-formats-tier2",
+          "timestamp-query"
+        ],
+        "enabledFeatures": [
+          "core-features-and-limits",
+          "timestamp-query"
+        ],
+        "limits": {
+          "maxTextureDimension1D": 8192,
+          "maxTextureDimension2D": 8192,
+          "maxTextureDimension3D": 2048,
+          "maxTextureArrayLayers": 256,
+          "maxBindGroups": 4,
+          "maxUniformBufferBindingSize": 65536,
+          "maxStorageBufferBindingSize": 134217728,
+          "maxBufferSize": 268435456,
+          "minUniformBufferOffsetAlignment": 256,
+          "maxComputeWorkgroupSizeX": 256,
+          "maxComputeInvocationsPerWorkgroup": 256,
+          "maxColorAttachments": 8
+        },
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "apple",
+          "device": "apple",
+          "description": "apple",
+          "isFallbackAdapter": false
+        },
+        "preferredFormat": "bgra8unorm"
+      },
+      "errors": [],
+      "video": {
+        "source": "http://127.0.0.1:5176/media/sample-1080p60.mp4",
+        "width": 1920,
+        "height": 1080,
+        "duration": 3,
+        "startTime": 0.7979096663129733,
+        "endTime": 1.4494093333667963,
+        "decodedCallbacks": 146,
+        "presentedFramesDelta": 197,
+        "startMetadata": {
+          "width": 1920,
+          "height": 1080,
+          "mediaTime": 0.7,
+          "presentedFrames": 38
+        },
+        "inputHashBefore": 1395380635,
+        "inputHashAfter": 3117997972,
+        "lastMetadata": {
+          "width": 1920,
+          "height": 1080,
+          "mediaTime": 1.4,
+          "presentedFrames": 235
+        }
+      },
+      "stages": [
+        {
+          "id": "blur",
+          "params": {
+            "algorithm": "gaussian",
+            "radius": 8,
+            "passes": 3
+          }
+        },
+        {
+          "id": "lens",
+          "params": {
+            "barrel": 0.12,
+            "aberration": 0.002,
+            "vignette": 0.3,
+            "grain": 0.025
+          }
+        },
+        {
+          "id": "color-grade",
+          "params": {
+            "toneMap": "aces",
+            "exposure": 0,
+            "lift": [
+              0,
+              0,
+              0
+            ],
+            "gamma": [
+              1,
+              1,
+              1
+            ],
+            "gain": [
+              1,
+              1,
+              1
+            ],
+            "toneCurve": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "curveAmount": 0,
+            "look": "identity",
+            "lutAmount": 1
+          }
+        },
+        {
+          "id": "dither",
+          "params": {
+            "mode": "blue-noise",
+            "levels": 6,
+            "amount": 1,
+            "scanline": 0.3,
+            "paletteGradient": [
+              {
+                "offset": 0,
+                "color": "#16233a"
+              },
+              {
+                "offset": 0.3333333333333333,
+                "color": "#7d647d"
+              },
+              {
+                "offset": 0.6666666666666666,
+                "color": "#efcea1"
+              },
+              {
+                "offset": 1,
+                "color": "#619bb2"
+              }
+            ]
+          }
+        }
+      ],
+      "run": 3,
+      "idleRafMs": {
+        "count": 39,
+        "mean": 16.666666666666668,
+        "p50": 17,
+        "p95": 19,
+        "max": 21
+      },
+      "cpuMs": {
+        "count": 120,
+        "mean": 10.25,
+        "p50": 11,
+        "p95": 12,
+        "max": 13
+      },
+      "completionMs": {
+        "count": 120,
+        "mean": 21.658333333333335,
+        "p50": 23,
+        "p95": 26,
+        "max": 29
+      },
+      "rafMs": {
+        "count": 120,
+        "mean": 23.941666666666666,
+        "p50": 23,
+        "p95": 34,
+        "max": 37
+      },
+      "gpuMs": {
+        "count": 120,
+        "mean": 39.167265983333344,
+        "p50": 40.316126000000004,
+        "p95": 54.647208,
+        "max": 57.141459
+      },
+      "passes": {
+        "hgpu-input-normalize": {
+          "count": 112,
+          "mean": 0.13005135714285715,
+          "p50": 0.112375,
+          "p95": 0.249208,
+          "max": 0.653833
+        },
+        "hgpu-mipgen": {
+          "count": 112,
+          "mean": 0.8702708928571427,
+          "p50": 0.8781249999999999,
+          "p95": 1.1591250000000002,
+          "max": 1.5412940000000002
+        },
+        "blur-horizontal": {
+          "count": 120,
+          "mean": 3.705198991666665,
+          "p50": 3.738708,
+          "p95": 5.097167,
+          "max": 5.2705
+        },
+        "blur-vertical": {
+          "count": 120,
+          "mean": 6.314471483333333,
+          "p50": 6.163625,
+          "p95": 8.864416,
+          "max": 9.192666
+        },
+        "hgpu-lens": {
+          "count": 120,
+          "mean": 6.564968041666665,
+          "p50": 6.616209,
+          "p95": 9.288291,
+          "max": 9.554334
+        },
+        "color-grade": {
+          "count": 120,
+          "mean": 6.999629866666668,
+          "p50": 7.340584,
+          "p95": 9.8505,
+          "max": 10.343417
+        },
+        "dither": {
+          "count": 120,
+          "mean": 7.295597899999996,
+          "p50": 7.600792,
+          "p95": 10.298083,
+          "max": 11.018417
+        },
+        "hgpu-resolve": {
+          "count": 120,
+          "mean": 7.353765599999997,
+          "p50": 7.637625,
+          "p95": 10.401542,
+          "max": 11.093916
+        }
+      },
+      "deadlineMs": 18.700000000000003,
+      "completedWithinDeadline": 0.08333333333333333,
+      "gate": false
+    }
+  ]
+}

@@ -159,6 +159,61 @@
       "source": "./src/effects/spatial-hash.ts",
       "types": "./dist/effects/spatial-hash.d.ts",
       "import": "./dist/effects/spatial-hash.js"
+    },
+    "./effects/bloom": {
+      "source": "./src/effects/bloom.ts",
+      "types": "./dist/effects/bloom.d.ts",
+      "import": "./dist/effects/bloom.js"
+    },
+    "./effects/blur": {
+      "source": "./src/effects/blur.ts",
+      "types": "./dist/effects/blur.d.ts",
+      "import": "./dist/effects/blur.js"
+    },
+    "./effects/color-grade": {
+      "source": "./src/effects/color-grade.ts",
+      "types": "./dist/effects/color-grade.d.ts",
+      "import": "./dist/effects/color-grade.js"
+    },
+    "./effects/dither": {
+      "source": "./src/effects/dither.ts",
+      "types": "./dist/effects/dither.d.ts",
+      "import": "./dist/effects/dither.js"
+    },
+    "./effects/jump-flood": {
+      "source": "./src/effects/jump-flood.ts",
+      "types": "./dist/effects/jump-flood.d.ts",
+      "import": "./dist/effects/jump-flood.js"
+    },
+    "./effects/lens": {
+      "source": "./src/effects/lens.ts",
+      "types": "./dist/effects/lens.d.ts",
+      "import": "./dist/effects/lens.js"
+    },
+    "./effects/radiance-cascades": {
+      "source": "./src/effects/radiance-cascades.ts",
+      "types": "./dist/effects/radiance-cascades.d.ts",
+      "import": "./dist/effects/radiance-cascades.js"
+    },
+    "./effects/shadows-2d": {
+      "source": "./src/effects/shadows-2d.ts",
+      "types": "./dist/effects/shadows-2d.d.ts",
+      "import": "./dist/effects/shadows-2d.js"
+    },
+    "./effects/displace": {
+      "source": "./src/effects/displace.ts",
+      "types": "./dist/effects/displace.d.ts",
+      "import": "./dist/effects/displace.js"
+    },
+    "./effects/edges": {
+      "source": "./src/effects/edges.ts",
+      "types": "./dist/effects/edges.d.ts",
+      "import": "./dist/effects/edges.js"
+    },
+    "./effects/halftone-ascii": {
+      "source": "./src/effects/halftone-ascii.ts",
+      "types": "./dist/effects/halftone-ascii.d.ts",
+      "import": "./dist/effects/halftone-ascii.js"
     }
   },
   "scripts": {

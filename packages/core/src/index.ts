@@ -14,4 +14,7 @@ export * from './texture-readback.ts';
 export * from './profiler.ts';
 export * from './primitives/index.ts';
 export * from './particles.ts';
+export * from './inputs.ts';
+export * from './filters.ts';
+export * from './distance-fields.ts';
 export * from './wgsl/index.ts';

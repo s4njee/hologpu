@@ -14,6 +14,7 @@ export interface ScheduledSurface {
   dirty: boolean;
   update(frame: Tick): void;
   render(frame: Tick): void;
+  dependencies?(): readonly ScheduledSurface[];
   frameCompleted?(stats: { cpuMs: number; intervalMs: number }): void;
 }
 const browserClock: Clock = {
@@ -76,7 +77,16 @@ export class Scheduler {
       this.#previous === null ? 0 : Math.min(0.1, Math.max(0, (now - this.#previous) / 1000));
     this.#previous = now;
     this.#accumulator += delta;
-    const active = [...this.#surfaces].filter((s) => s.visible && (s.dirty || s.playing));
+    const active: ScheduledSurface[] = [],
+      seen = new Set<ScheduledSurface>();
+    const visit = (surface: ScheduledSurface) => {
+      if (seen.has(surface)) return;
+      seen.add(surface);
+      for (const source of surface.dependencies?.() ?? []) visit(source);
+      active.push(surface);
+    };
+    for (const surface of this.#surfaces)
+      if (surface.visible && (surface.dirty || surface.playing)) visit(surface);
     let steps = 0;
     while (this.#accumulator >= 1 / 60 && steps < 6) {
       this.#time += 1 / 60;

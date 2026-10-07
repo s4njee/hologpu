@@ -84,7 +84,8 @@ h2 {
 }
 input,
 select,
-button {
+button,
+textarea {
   font: inherit;
   font-size: 12px;
   color: inherit;
@@ -126,6 +127,7 @@ select {
   grid-auto-rows: max-content;
   gap: 7px;
   min-height: 0;
+  max-height: min(65dvh, 720px);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
@@ -300,9 +302,94 @@ legend {
   color: #c4ccdc;
 }
 .param input,
-.param select {
+.param select,
+.param textarea {
   width: 100%;
   margin: 0;
+}
+.param:has(textarea) {
+  grid-template-columns: 1fr;
+}
+.param textarea {
+  resize: vertical;
+  font:
+    11px/1.5 ui-monospace,
+    monospace;
+}
+#media-inputs,
+#compare-panel {
+  margin-top: 22px;
+  border-top: 1px solid #343b49;
+  padding-top: 12px;
+}
+summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #c4ccdc;
+  margin-bottom: 12px;
+}
+#media-input-controls {
+  display: grid;
+  gap: 10px;
+}
+#media-input-controls input {
+  width: 100%;
+}
+#media-input-controls video,
+#media-input-controls canvas {
+  width: 100%;
+  height: auto;
+  max-height: 130px;
+  object-fit: contain;
+}
+#compare-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+#compare-split {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  pointer-events: none;
+}
+#compare-split::-webkit-slider-thumb {
+  appearance: none;
+  height: 42px;
+  width: 14px;
+  border: 2px solid #cad6ff;
+  border-radius: 7px;
+  background: #1e2b49;
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+#compare-split::-moz-range-thumb {
+  height: 42px;
+  width: 12px;
+  border: 2px solid #cad6ff;
+  border-radius: 7px;
+  background: #1e2b49;
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+.compare-mode::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--compare-split, 50%);
+  border-left: 1px solid #cad6ff;
+  pointer-events: none;
+}
+#capture-status {
+  font-size: 11px;
+  color: #aab8d0;
 }
 .param input[type='range'] {
   grid-column: 1/-1;

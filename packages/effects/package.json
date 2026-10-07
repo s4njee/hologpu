@@ -149,6 +149,61 @@
       "source": "./src/spatial-hash/index.ts",
       "types": "./dist/spatial-hash/index.d.ts",
       "import": "./dist/spatial-hash/index.js"
+    },
+    "./bloom": {
+      "source": "./src/bloom/index.ts",
+      "types": "./dist/bloom/index.d.ts",
+      "import": "./dist/bloom/index.js"
+    },
+    "./blur": {
+      "source": "./src/blur/index.ts",
+      "types": "./dist/blur/index.d.ts",
+      "import": "./dist/blur/index.js"
+    },
+    "./color-grade": {
+      "source": "./src/color-grade/index.ts",
+      "types": "./dist/color-grade/index.d.ts",
+      "import": "./dist/color-grade/index.js"
+    },
+    "./dither": {
+      "source": "./src/dither/index.ts",
+      "types": "./dist/dither/index.d.ts",
+      "import": "./dist/dither/index.js"
+    },
+    "./jump-flood": {
+      "source": "./src/jump-flood/index.ts",
+      "types": "./dist/jump-flood/index.d.ts",
+      "import": "./dist/jump-flood/index.js"
+    },
+    "./lens": {
+      "source": "./src/lens/index.ts",
+      "types": "./dist/lens/index.d.ts",
+      "import": "./dist/lens/index.js"
+    },
+    "./radiance-cascades": {
+      "source": "./src/radiance-cascades/index.ts",
+      "types": "./dist/radiance-cascades/index.d.ts",
+      "import": "./dist/radiance-cascades/index.js"
+    },
+    "./shadows-2d": {
+      "source": "./src/shadows-2d/index.ts",
+      "types": "./dist/shadows-2d/index.d.ts",
+      "import": "./dist/shadows-2d/index.js"
+    },
+    "./displace": {
+      "source": "./src/displace/index.ts",
+      "types": "./dist/displace/index.d.ts",
+      "import": "./dist/displace/index.js"
+    },
+    "./edges": {
+      "source": "./src/edges/index.ts",
+      "types": "./dist/edges/index.d.ts",
+      "import": "./dist/edges/index.js"
+    },
+    "./halftone-ascii": {
+      "source": "./src/halftone-ascii/index.ts",
+      "types": "./dist/halftone-ascii/index.d.ts",
+      "import": "./dist/halftone-ascii/index.js"
     }
   },
   "scripts": {

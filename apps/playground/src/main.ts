@@ -2,6 +2,8 @@ import {
   createEffect,
   ParamStore,
   fragmentEffect,
+  filterEffect,
+  chain,
   type EffectField,
   type EffectDefinition,
   type ParamValue,
@@ -13,6 +15,9 @@ import { passesDrawer } from './passes.ts';
 import { sourceEditor } from './source-editor.ts';
 import { profilerDrawer, runBenchmark } from './profiler.ts';
 import { morphInputs } from './morph-inputs.ts';
+import { mediaInputs } from './media-inputs.ts';
+import { CompareStage, type CompareState } from './compare.ts';
+import { screenshot, VideoCapture } from './capture.ts';
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const canvas = $<HTMLCanvasElement>('canvas');
 const query = new URLSearchParams(location.search);
@@ -26,6 +31,32 @@ const notes = import.meta.glob('../../../docs/notes/*.md', {
   import: 'default',
 }) as Record<string, () => Promise<string>>;
 const controls = new Map<string, HTMLElement[]>();
+let removeMedia = () => {};
+let stageMode = query.get('mode') === 'compare' ? 'compare' : 'full';
+let compareInitial: CompareState | undefined;
+try {
+  const params = JSON.parse(query.get('compareParams') ?? '{}');
+  const split = Number(query.get('split') ?? 50);
+  if (params && typeof params === 'object' && !Array.isArray(params))
+    compareInitial = {
+      effect: query.get('compareEffect') ?? effect.id,
+      params,
+      split: Number.isFinite(split) ? Math.max(0, Math.min(100, split)) : 50,
+    };
+} catch {
+  /*Invalid comparisons start with defaults.*/
+}
+const compare = new CompareStage(
+  $('stage'),
+  $('compare-panel-controls'),
+  catalogue,
+  save,
+  compareInitial,
+);
+const capture = new VideoCapture((recording, message) => {
+  $('record').textContent = recording ? 'Stop recording' : 'Record video';
+  $('capture-status').textContent = message;
+});
 let startingParams: Record<string, ParamValue> = {};
 try {
   const parsed = JSON.parse(query.get('params') ?? '{}');
@@ -37,7 +68,7 @@ function save() {
   if (!field) return;
   const state = new URLSearchParams({
     effect: effect.id,
-    mode: 'full',
+    mode: stageMode,
     seed: String(field.frame.seed),
     params: JSON.stringify(field.store.snapshot()),
     playing: String(field.playing),
@@ -48,6 +79,12 @@ function save() {
   const preset = $<HTMLSelectElement>('presets').value;
   if (preset) state.set('preset', preset);
   if ($<HTMLInputElement>('motion').checked) state.set('motion', 'reduce');
+  const comparison = compare.snapshot();
+  if (stageMode === 'compare' && comparison) {
+    state.set('compareEffect', comparison.effect);
+    state.set('compareParams', JSON.stringify(comparison.params));
+    state.set('split', String(comparison.split));
+  }
   history.replaceState(null, '', `?${state}`);
 }
 function renderBrowser() {
@@ -151,6 +188,33 @@ function inspector() {
       };
       inputs.push(select);
       row.append(select);
+    } else if (spec.type === 'curve' || spec.type === 'gradient') {
+      const input = document.createElement('textarea');
+      input.id = `param-${name}`;
+      input.rows = 3;
+      input.dataset['param'] = name;
+      input.setAttribute('aria-label', name);
+      input.onchange = () => {
+        try {
+          field?.store.set(name, JSON.parse(input.value) as ParamValue);
+          save();
+        } catch (error) {
+          $('status').textContent = String(error);
+        }
+      };
+      inputs.push(input);
+      row.append(input);
+    } else if (spec.type === 'texture') {
+      const input = document.createElement('input');
+      input.id = `param-${name}`;
+      input.type = 'text';
+      input.dataset['param'] = name;
+      input.onchange = () => {
+        field?.store.set(name, input.value);
+        save();
+      };
+      inputs.push(input);
+      row.append(input);
     } else if (spec.type.startsWith('vec')) {
       const vector = document.createElement('div');
       vector.className = 'vector';
@@ -197,6 +261,7 @@ function refreshControls() {
     inputs.forEach((control, index) => {
       if (control instanceof HTMLInputElement && control.type === 'checkbox')
         control.checked = value as boolean;
+      else if (control instanceof HTMLTextAreaElement) control.value = JSON.stringify(value);
       else
         (control as HTMLInputElement).value = Array.isArray(value)
           ? String(value[index])
@@ -355,6 +420,11 @@ async function showNotes(id: string) {
 }
 async function mount(next: EffectDefinition, initial = false) {
   const token = ++generation;
+  removeMedia();
+  compare.disable();
+  capture.dispose();
+  $('record').textContent = 'Record video';
+  $('capture-status').textContent = '';
   field?.destroy();
   field = null;
   effect = next;
@@ -408,6 +478,11 @@ async function mount(next: EffectDefinition, initial = false) {
     field = mounted;
     inspector();
     morphInputs(field, $('effect-inputs'));
+    removeMedia = mediaInputs(field, $('media-input-controls'));
+    $('media-inputs').hidden = !field.effect.inputs.includes('image');
+    $<HTMLSelectElement>('stage-mode').value = stageMode;
+    $('compare-panel').hidden = stageMode !== 'compare';
+    if (stageMode === 'compare') await compare.enable(field);
     passesDrawer(field, $('passes'));
     sourceEditor(field, $('source-panel'), () => {
       if (field) passesDrawer(field, $('passes'));
@@ -453,18 +528,25 @@ function refreshTransport() {
   $('play').textContent = field?.playing ? 'Pause' : 'Play';
 }
 $('play').onclick = () => {
-  if (field?.playing) field.pause();
-  else field?.play();
+  if (field?.playing) {
+    field.pause();
+    compare.field?.pause();
+  } else {
+    field?.play();
+    compare.field?.play();
+  }
   refreshTransport();
   save();
 };
 $('step').onclick = () => {
   field?.step();
+  compare.field?.step();
   refreshTransport();
   save();
 };
 $('reset').onclick = () => {
   field?.reset();
+  compare.field?.reset();
   save();
 };
 $('defaults').onclick = () => {
@@ -482,23 +564,28 @@ $('presets').onchange = () => {
 };
 $('seed').onchange = () => {
   field?.reset(Number($<HTMLInputElement>('seed').value));
+  compare.field?.reset(field?.frame.seed);
   save();
 };
 $('time-scale').onchange = () => {
   field?.setTimeScale(Number($<HTMLSelectElement>('time-scale').value));
+  compare.field?.setTimeScale(Number($<HTMLSelectElement>('time-scale').value));
   save();
 };
 $('adaptive-quality').onchange = () => {
   field?.setAdaptiveQuality($<HTMLInputElement>('adaptive-quality').checked);
+  compare.field?.setAdaptiveQuality($<HTMLInputElement>('adaptive-quality').checked);
   save();
 };
 $('resolution').onchange = () => {
   field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
+  compare.field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
   save();
 };
 $<HTMLInputElement>('motion').checked = query.get('motion') === 'reduce';
 $('motion').onchange = () => {
   field?.setReducedMotion($<HTMLInputElement>('motion').checked ? true : undefined);
+  compare.field?.setReducedMotion($<HTMLInputElement>('motion').checked ? true : undefined);
   refreshTransport();
   save();
 };
@@ -536,7 +623,44 @@ window.addEventListener('keydown', (event) => {
   }
 });
 window.addEventListener('popstate', () => location.reload());
-window.addEventListener('pagehide', () => field?.destroy());
+$('stage-mode').onchange = async () => {
+  stageMode = $<HTMLSelectElement>('stage-mode').value;
+  $('compare-panel').hidden = stageMode !== 'compare';
+  if (stageMode === 'compare' && field) await compare.enable(field);
+  else compare.disable();
+  save();
+};
+$('screenshot').onclick = async () => {
+  if (!field) return;
+  try {
+    await screenshot(field, stageMode === 'compare' ? compare : undefined);
+    $('capture-status').textContent = 'PNG saved.';
+  } catch (error) {
+    $('capture-status').textContent = String(error);
+  }
+};
+$('record').onclick = async () => {
+  if (!field) return;
+  const button = $('record') as HTMLButtonElement;
+  try {
+    if (capture.recorder) capture.stop();
+    else {
+      button.disabled = true;
+      $('capture-status').textContent = 'Preparing recording…';
+      await capture.start(field, stageMode === 'compare' ? compare : undefined);
+    }
+  } catch (error) {
+    $('capture-status').textContent = String(error);
+  } finally {
+    button.disabled = false;
+  }
+};
+window.addEventListener('pagehide', () => {
+  removeMedia();
+  compare.dispose();
+  capture.dispose();
+  field?.destroy();
+});
 setInterval(() => {
   if (field) {
     $('meter').textContent =
@@ -552,6 +676,11 @@ Object.assign(window, {
     createEffect,
     ParamStore,
     fragmentEffect,
+    filterEffect,
+    chain,
+    get compareField() {
+      return compare.field;
+    },
     get field() {
       return field;
     },

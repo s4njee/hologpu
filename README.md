@@ -4,6 +4,8 @@ A native WebGPU effects library and playground research project. M0 foundations,
 
 M3 adds six particle effects, four compute primitive demos, timestamp profiling, fixed-scenario benchmark exports and a live WGSL editor. See [M3 validation](docs/m3.md) for the implementation and current evidence.
 
+M4 adds eight image filters, three distance/light effects, media inputs, filter chains, texture-backed parameters, Compare, screenshots and recording. M4 is complete on the development target: Chrome passes the 1080p video refresh gate in all three runs; WebKit passes correctness checks but misses that performance gate. See [M4 validation](docs/m4.md).
+
 ## Run
 
 Requires Node 22.12+ and pnpm 11.15.1. The playground uses a local stylesheet while the HoloCSS linking decision remains open.
@@ -35,7 +37,71 @@ T2 uses `feedbackEffect({ setup(context) })` with a program owning initializatio
 
 T3 uses `particleEffect` with the same fixed-step ownership contract and storage buffers. The [particle ADR](docs/adr/008-particle-storage-and-hdr.md) covers point/quad rendering, indirect draws and HDR histories; the [primitive ADR](docs/adr/009-compute-primitives.md) documents reusable scans, stable sorts, grids and mip generation. The Source drawer can compile, restore and export edits while keeping the last good pipeline on errors. Morph particles accept local custom text and image targets.
 
-T1 supports scalars, vectors, booleans, enums and CSS colours. Texture-backed schemas and input binding are later M4 work; DOM attachment and `<hgpu-field>` are M5. The [contract ADR](docs/adr/005-t1-effect-contract.md) specifies alignment, coordinate conventions, lifecycle and limitations. The [facade ADR](docs/adr/006-public-package-facade.md) explains public package paths and internal dependency boundaries.
+Schemas support scalars, vectors, booleans, enums, CSS colours, named texture inputs, curves and gradients. Curves and gradients bake into linear texture LUTs; texture selectors resolve named bound inputs. DOM attachment and `<hgpu-field>` are M5. The [contract ADR](docs/adr/005-t1-effect-contract.md) specifies alignment, coordinate conventions, lifecycle and limitations. The [facade ADR](docs/adr/006-public-package-facade.md) explains public package paths and internal dependency boundaries.
+
+## Inputs and filter chains (M4)
+
+`bindInput` accepts a media descriptor or another `EffectField`. Connecting a field borrows its latest linear, premultiplied HDR output, subscribes to changes, and orders the shared scheduler so the source renders before its consumer. The fields must share a GPU device; cycles are rejected. The source remains owned by its caller.
+
+```ts
+import { createEffect, chain, inputSource } from '@mk7s/hologpu';
+import gradient from '@mk7s/hologpu/effects/gradient-oklch';
+import blur from '@mk7s/hologpu/effects/blur';
+import lens from '@mk7s/hologpu/effects/lens';
+import colorGrade from '@mk7s/hologpu/effects/color-grade';
+import dither from '@mk7s/hologpu/effects/dither';
+
+const source = await createEffect(sourceCanvas, gradient, { playing: true });
+const filtered = await createEffect(filterCanvas, blur);
+await filtered.bindInput('image', source);
+filtered.params.radius = 6;
+
+const fourFilters = chain(blur, lens, colorGrade, dither);
+const videoField = await createEffect(videoCanvas, fourFilters, {
+  params: { s0_radius: 4, s1_grain: 0, s2_exposure: 0.25, s3_levels: 8 },
+});
+await videoField.bindInput('image', inputSource({ kind: 'video', source: videoElement }));
+
+// Chain parameter names use the zero-based stage prefix s0_, s1_, and so on.
+// Each intermediate stays linear HDR; the display resolves only the final output.
+```
+
+`chain` takes variadic definitions, beginning with a source effect or an image filter; subsequent stages must be T4 filters. Stage-local curve, gradient and texture parameters retain the same prefix as scalar controls. A Family E image filter without an image uses its private test card; distance and light effects use built-in mask scenes.
+
+Media descriptors also accept owned image snapshots, live canvases, text masks and audio data:
+
+```ts
+await imageElement.decode();
+const bitmap = await createImageBitmap(imageElement);
+await filtered.bindInput('image', { kind: 'image', source: bitmap });
+bitmap.close(); // bindInput has already retained its own snapshot.
+await filtered.bindInput('image', { kind: 'canvas', source: canvasElement });
+await filtered.bindInput('image', {
+  kind: 'text',
+  text: 'GPU',
+  width: 512,
+  height: 256,
+  font: 'bold 96px sans-serif',
+});
+await filtered.bindInput('audio', { kind: 'audio', analyser });
+// Deterministic fixtures can provide mutable FFT amplitude and signed waveform arrays.
+await filtered.bindInput('audio', {
+  kind: 'audio',
+  fft: new Float32Array(512),
+  waveform: new Float32Array(512),
+});
+await filtered.bindInput('image', null); // release this binding and use the effect fallback.
+
+videoField.destroy();
+filtered.destroy();
+source.destroy();
+```
+
+Audio textures place FFT amplitude in row zero and the full signed waveform in row one; analyser textures use `fftSize` columns and zero-pad FFT bins beyond `frequencyBinCount`. Red stores the signal and alpha is one. Media become owned RGBA16 linear-premultiplied textures with complete mip chains. Video-frame callbacks avoid uploading a decoded frame twice and update paused consumers. Canvas callers invalidate after changes; the playground's animated canvas does this automatically.
+
+The core does not request camera or microphone permission, stop caller tracks, pause caller video, or close caller audio contexts. Applications own those resources and release them after removing their bindings. The playground requests capture only from explicit start buttons and cleans up its tracks, audio contexts, object URLs, animation callbacks and secondary fields on switching sources or unmounting.
+
+Chromium hardware samples actual external video textures. Current WebKit uses a canvas upload to correct an observed YUV external-texture color discrepancy; SwiftShader uses a CPU upload because browser media interop fails on that software adapter. `field.inputMediaPath` reports `external`, `canvas-copy` or `software-copy`, and measurements retain that distinction. See the [input ownership and color contract](docs/adr/013-texture-inputs.md), [filter-chain contract](docs/adr/011-filter-chain.md) and [distance/light contract](docs/adr/012-distance-fields-and-radiance-cascades.md).
 
 ## Verify and measure
 
@@ -69,6 +135,10 @@ HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 chrome
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 webkit
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 chrome --gate
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 webkit --gate
+HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 chrome
+HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 webkit
+HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 chrome --gate
+HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 webkit --gate
 node scripts/notes.mjs
 ```
 
@@ -77,6 +147,8 @@ M1 records three runs per effect at 512×320, DPR 1, defaults and seed 7, with 3
 M2 measures one fixed update per rAF at a 512² display with default simulation grids; `--gate` measures actual 1024² simulation and display for reaction diffusion and fluids. It awaits queue completion each frame and records wall latency separately from CPU encoding. [M2 validation](docs/m2.md) describes the numerical checks and gate.
 
 M3 uses the Profiler drawer's runner, adding optional GPU pass timestamps and checking that all 150 fixed updates complete. Its gate draws exactly one million flow particles through both point and instanced-quad paths. Benchmarks temporarily enable motion and restore the original preference; changing the measured scenario cancels the run. [M3 validation](docs/m3.md) records actual buffer counts and timing limitations.
+
+M4 records three runs per new effect. Its gate uses an actual decoded 1920×1080 60fps video through blur, lens, color grade and dither, preserving the media upload path in the record. Chrome passes all three refresh-rate runs; WebKit’s canvas-upload path misses the gate. [M4 validation](docs/m4.md) records the workload, measurements and compatibility limit.
 
 M0 scenarios remain available with `pnpm benchmark chrome`, `pnpm benchmark firefox --headed`, `pnpm benchmark webkit` and `node scripts/probe.mjs` against the development server. They record one/six float or direct canvases, DPR 2 and scrolling.
 

@@ -2,12 +2,14 @@ import { backingSize } from './measure.ts';
 import { createFullscreenPass, resolveSource } from './passes.ts';
 import type { FullscreenPass } from './passes.ts';
 import type { DeviceSession } from './device.ts';
+const owners = new WeakMap<HTMLCanvasElement, Surface>();
 export class Surface {
   readonly canvas: HTMLCanvasElement;
   readonly session: DeviceSession;
   readonly context: GPUCanvasContext;
   target: GPUTexture | null = null;
   #resolve: FullscreenPass | null = null;
+  #resolveGeneration = -1;
   #group: GPUBindGroup | null = null;
   #observer: ResizeObserver;
   #disposed = false;
@@ -33,6 +35,7 @@ export class Surface {
     const context = canvas.getContext('webgpu');
     if (!context) throw new Error('Canvas WebGPU context unavailable');
     this.context = context;
+    owners.set(canvas, this);
     this.#observer = new ResizeObserver((entries) => {
       const entry = entries[0];
       if (!entry || this.#disposed) return;
@@ -87,6 +90,10 @@ export class Surface {
       resolve.dispose();
       return;
     }
+    if (owners.get(this.canvas) !== this) {
+      resolve.dispose();
+      throw new Error('Surface was superseded');
+    }
     if (
       this.session.state !== 'ready' ||
       this.session.generation !== generation ||
@@ -96,6 +103,7 @@ export class Surface {
       throw new Error('GPU device changed during surface restoration');
     }
     this.#resolve = resolve;
+    this.#resolveGeneration = generation;
     this.context.configure({
       device,
       format,
@@ -107,7 +115,14 @@ export class Surface {
     this.resize();
   }
   resize() {
-    if (this.#disposed || this.session.state !== 'ready' || !this.#resolve) return;
+    if (
+      this.#disposed ||
+      owners.get(this.canvas) !== this ||
+      this.session.state !== 'ready' ||
+      !this.#resolve ||
+      this.#resolveGeneration !== this.session.generation
+    )
+      return;
     this.#dpr = window.devicePixelRatio;
     const effectiveDpr = Math.min(this.#dpr, this.dprCap);
     const raw = backingSize(
@@ -143,6 +158,12 @@ export class Surface {
     }
   }
   present(encoder: GPUCommandEncoder) {
+    if (
+      this.#disposed ||
+      owners.get(this.canvas) !== this ||
+      this.#resolveGeneration !== this.session.generation
+    )
+      return;
     this.#resolve!.draw(encoder, this.context.getCurrentTexture().createView(), [this.#group!]);
   }
   destroyTarget() {
@@ -154,7 +175,10 @@ export class Surface {
     if (this.#disposed) return;
     this.#disposed = true;
     this.#observer.disconnect();
-    this.context.unconfigure();
+    if (owners.get(this.canvas) === this) {
+      this.context.unconfigure();
+      owners.delete(this.canvas);
+    }
     this.destroyTarget();
     this.#resolve?.dispose();
     this.#resolve = null;

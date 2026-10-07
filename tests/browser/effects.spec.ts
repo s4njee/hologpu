@@ -5,6 +5,9 @@ declare global {
     hologpu: {
       createEffect: typeof import('../../packages/core/src/index.ts').createEffect;
       fragmentEffect: typeof import('../../packages/core/src/index.ts').fragmentEffect;
+      filterEffect: typeof import('../../packages/core/src/index.ts').filterEffect;
+      chain: typeof import('../../packages/core/src/index.ts').chain;
+      compareField: EffectField | null;
       catalogue: readonly EffectDefinition[];
       field: EffectField | null;
       mount(effect: EffectDefinition): Promise<void>;

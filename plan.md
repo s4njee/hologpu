@@ -1,6 +1,6 @@
 # HoloGPU — WebGPU effects library and playground
 
-**Status:** M0–M3 complete (2026-10-07); all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md), [M2](docs/m2.md), [M3](docs/m3.md) and [T1 stretch validation](docs/t1-stretch.md).
+**Status:** M0–M4 complete (2026-10-07); all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md), [M2](docs/m2.md), [M3](docs/m3.md), [M4](docs/m4.md) and [T1 stretch validation](docs/t1-stretch.md).
 **Created:** 2026-10-07
 **Working package name:** `@mk7s/hologpu` (confirm availability before any release)
 **Source:** item 1 of [research.md](../research.md), "WebGPU effects layer for the DOM"
@@ -503,6 +503,8 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 - **Exit:** one million particles in `flow-particles` on the development machine; `boids` neighbour search verified against a CPU reference at small N.
 
 ### M4 — Inputs and filters
+
+**Completed 2026-10-07.** Media inputs, eight Family E filters, three Family F effects, filter chains, texture/curve/gradient parameters, Compare and capture are implemented. All 390 source/filter combinations pass across software DPR 1/2, Chrome and WebKit. Chrome passes all three actual 1080p video refresh runs on the development machine; WebKit misses the performance gate on its canvas-upload compatibility path. See [M4 validation](docs/m4.md) for the complete checks and measured limitation.
 
 - Image, video, webcam, canvas, text-mask and audio inputs; mip generation for inputs.
 - `filterEffect` and `chain`; Family E core; Family F core.

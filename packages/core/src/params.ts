@@ -1,4 +1,8 @@
-export type ParamValue = number | boolean | string | readonly number[];
+export interface GradientStop {
+  readonly offset: number;
+  readonly color: string;
+}
+export type ParamValue = number | boolean | string | readonly number[] | readonly GradientStop[];
 interface Metadata {
   group?: string;
   description?: string;
@@ -19,16 +23,21 @@ export type ParamSpec = Metadata &
       }
     | { type: 'color'; default: string }
     | { type: 'enum'; default: string; options: readonly string[] }
+    | { type: 'texture'; default: string }
+    | { type: 'curve'; default: readonly number[]; min?: number; max?: number; resolution?: number }
+    | { type: 'gradient'; default: readonly GradientStop[]; resolution?: number }
   );
 export type ParamSchema = Readonly<Record<string, ParamSpec>>;
 export type ParamValues = Record<string, ParamValue>;
 type ValueOf<T extends ParamSpec> = T extends { type: 'bool' }
   ? boolean
-  : T extends { type: 'color' | 'enum' }
+  : T extends { type: 'color' | 'enum' | 'texture' }
     ? string
-    : T extends { type: 'vec2' | 'vec3' | 'vec4' }
-      ? readonly number[]
-      : number;
+    : T extends { type: 'gradient' }
+      ? readonly GradientStop[]
+      : T extends { type: 'vec2' | 'vec3' | 'vec4' | 'curve' }
+        ? readonly number[]
+        : number;
 export type ValuesOf<S extends ParamSchema> = { -readonly [K in keyof S]: ValueOf<S[K]> };
 export interface ParamField {
   name: string;
@@ -38,6 +47,9 @@ export interface ParamField {
   spec: ParamSpec;
 }
 const align = (n: number, a: number) => Math.ceil(n / a) * a;
+export function isTextureParam(spec: ParamSpec) {
+  return spec.type === 'texture' || spec.type === 'curve' || spec.type === 'gradient';
+}
 const identifier = /^[a-zA-Z][a-zA-Z0-9_]*$/;
 // WGSL 16.1/16.2 (2026-10-07): reject reserved names before generating a struct.
 const reserved = new Set([
@@ -225,7 +237,7 @@ export function paramLayout(schema: ParamSchema) {
   for (const [name, spec] of Object.entries(schema)) {
     if (!identifier.test(name) || reserved.has(name) || name.startsWith('__'))
       throw new Error(`Invalid WGSL parameter name: ${name}`);
-    if (spec.uniform === false) continue;
+    if (spec.uniform === false || isTextureParam(spec)) continue;
     const components =
       spec.type === 'color' ? 4 : spec.type.startsWith('vec') ? Number(spec.type.slice(3)) : 1;
     const alignment = components === 1 ? 4 : components === 2 ? 8 : 16;
@@ -247,6 +259,27 @@ export function paramLayout(schema: ParamSchema) {
   };
 }
 export function normalizeParam(spec: ParamSpec, value: ParamValue): ParamValue {
+  if (spec.type === 'texture') {
+    if (typeof value !== 'string' || !value.trim())
+      throw new TypeError('Texture binding name expected');
+    return value;
+  }
+  if (spec.type === 'gradient') {
+    if (!Array.isArray(value) || value.length < 2)
+      throw new TypeError('Gradient needs at least two stops');
+    let previous = -Infinity;
+    return value.map((item) => {
+      if (!item || typeof item !== 'object' || !('offset' in item) || !('color' in item))
+        throw new TypeError('Gradient stop requires offset and color');
+      const { offset, color } = item as GradientStop;
+      if (!Number.isFinite(offset) || offset < 0 || offset > 1 || offset <= previous)
+        throw new RangeError('Gradient stops must increase within [0, 1]');
+      if (typeof color !== 'string') throw new TypeError('Gradient color must be a CSS string');
+      parseColor(color);
+      previous = offset;
+      return Object.freeze({ offset, color });
+    });
+  }
   if (spec.type === 'color') {
     if (typeof value !== 'string') throw new TypeError('Color must be a CSS string');
     parseColor(value);
@@ -271,6 +304,15 @@ export function normalizeParam(spec: ParamSpec, value: ParamValue): ParamValue {
       throw new RangeError('Parameter exceeds f32 range');
     return n as number;
   };
+  if (spec.type === 'curve') {
+    if (!Array.isArray(value) || value.length < 2)
+      throw new TypeError('Curve needs at least two samples');
+    return value.map((sample) => {
+      const n = number(sample);
+      if (Math.abs(n) > 65504) throw new RangeError('Curve exceeds float16 LUT range');
+      return n;
+    });
+  }
   if (spec.type.startsWith('vec')) {
     const length = Number(spec.type.slice(3));
     if (!Array.isArray(value) || value.length !== length)
@@ -281,6 +323,44 @@ export function normalizeParam(spec: ParamSpec, value: ParamValue): ParamValue {
 }
 export function srgbToLinear(n: number) {
   return n <= 0.04045 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4;
+}
+/** Uniformly sampled 1D LUTs use texel centres, linear color and premultiplied alpha. */
+export function bakeParamTexture(spec: ParamSpec, value: ParamValue) {
+  if (spec.type !== 'curve' && spec.type !== 'gradient')
+    throw new TypeError('LUT parameter expected');
+  const width = spec.resolution ?? 256;
+  if (!Number.isInteger(width) || width < 2 || width > 4096)
+    throw new RangeError('LUT resolution must be in [2, 4096]');
+  const normalized = normalizeParam(spec, value);
+  const data = new Float32Array(width * 4);
+  if (spec.type === 'curve') {
+    const samples = normalized as readonly number[];
+    for (let i = 0; i < width; i++) {
+      const position = (i / (width - 1)) * (samples.length - 1),
+        left = Math.min(samples.length - 2, Math.floor(position)),
+        t = position - left;
+      data[i * 4] = samples[left]! * (1 - t) + samples[left + 1]! * t;
+      data[i * 4 + 3] = 1;
+    }
+  } else {
+    const stops = normalized as readonly GradientStop[];
+    const colors = stops.map((s) => {
+      const c = parseColor(s.color);
+      return [c[0]! * c[3]!, c[1]! * c[3]!, c[2]! * c[3]!, c[3]!];
+    });
+    let left = 0;
+    for (let i = 0; i < width; i++) {
+      const x = i / (width - 1);
+      while (left < stops.length - 2 && x > stops[left + 1]!.offset) left++;
+      const t = Math.max(
+        0,
+        Math.min(1, (x - stops[left]!.offset) / (stops[left + 1]!.offset - stops[left]!.offset)),
+      );
+      for (let c = 0; c < 4; c++)
+        data[i * 4 + c] = colors[left]![c]! * (1 - t) + colors[left + 1]![c]! * t;
+    }
+  }
+  return { kind: 'data' as const, data, width, height: 1 };
 }
 /** CSS parsing delegates to Canvas2D for browser colors beyond the portable hex/rgb forms. */
 export function parseColor(value: string): number[] {
@@ -352,7 +432,7 @@ export class ParamStore<S extends ParamSchema = ParamSchema> {
     const next = normalizeParam(spec, value);
     if (JSON.stringify(this.#values[name]) === JSON.stringify(next)) return;
     this.#values[name] = next;
-    if (spec.uniform !== false) this.#dirty = true;
+    if (spec.uniform !== false && !isTextureParam(spec)) this.#dirty = true;
     for (const listener of this.#listeners) listener(name, next);
   }
   patch(values: ParamValues) {

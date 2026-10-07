@@ -15,7 +15,7 @@
       <aside class="browser">
         <p class="eyebrow">01 / EFFECTS</p>
         <h1>Effects research</h1>
-        <p class="muted">Procedural fields, feedback simulations and fluids.</p>
+        <p class="muted">Fields, simulations, particles, filters and light.</p>
         <input
           id="search"
           type="search"
@@ -41,6 +41,12 @@
           <p id="fallback" hidden></p>
         </div>
         <div class="transport">
+          <label
+            >Mode<select id="stage-mode">
+              <option value="full">Full</option>
+              <option value="compare">Compare</option>
+            </select></label
+          >
           <button id="play">Pause</button><button id="step" title="Single step (.)">Step</button
           ><button id="reset" title="Reset (r)">Reset</button
           ><label>Seed <input id="seed" type="number" value="7" min="0" max="4294967295" /></label
@@ -61,6 +67,8 @@
             </select></label
           ><label><input id="adaptive-quality" type="checkbox" />Adaptive quality</label
           ><label><input id="motion" type="checkbox" />Reduced motion</label>
+          <button id="screenshot">Save PNG</button><button id="record">Record video</button
+          ><span id="capture-status" role="status"></span>
         </div>
         <div class="readout">
           <p id="status" role="status" data-state="loading">Requesting WebGPU…</p>
@@ -91,7 +99,15 @@
           </select></label
         >
         <div id="effect-inputs" hidden></div>
+        <details id="media-inputs">
+          <summary>Input sources</summary>
+          <div id="media-input-controls"></div>
+        </details>
         <div id="controls"></div>
+        <details id="compare-panel" open hidden>
+          <summary>Right parameters</summary>
+          <div id="compare-panel-controls"></div>
+        </details>
         <button id="defaults">Reset parameters</button>
         <p class="muted">
           Every control comes from the effect schema. Your state is saved in the URL.

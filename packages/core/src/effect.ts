@@ -28,6 +28,11 @@ export interface EffectContext<S extends ParamSchema = ParamSchema> {
   format: GPUTextureFormat;
   /** User/runtime scale for solver iterations; never changes the fixed timestep. */
   qualitySteps: () => number;
+  /** Borrowed linear-premultiplied inputs; the field owns GPU adapters, callers own media. */
+  inputs?: InputProvider;
+}
+export interface InputProvider {
+  get(name: string): TextureTap | undefined;
 }
 export interface TextureTap {
   readonly texture: GPUTexture;
@@ -37,6 +42,8 @@ export interface TextureTap {
   readonly label?: string;
   readonly mipLevel?: number;
   readonly arrayLayer?: number;
+  /** One z plane of a 3D texture, exposed only for raw readback/inspection. */
+  readonly depthSlice?: number;
   readonly kind: 'float' | 'uint';
 }
 export interface EffectMemory {

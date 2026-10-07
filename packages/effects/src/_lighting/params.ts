@@ -1,0 +1,47 @@
+export const lightingParams = {
+  grid: {
+    type: 'u32',
+    default: 128,
+    min: 32,
+    max: 256,
+    step: 32,
+    uniform: false,
+    group: 'Quality',
+    description: 'Square pixel-space mask and distance-field resolution.',
+  },
+  scene: {
+    type: 'enum',
+    default: 'text',
+    options: ['text', 'blocks', 'empty', 'solid'],
+    group: 'Scene',
+    description: 'Built-in deterministic mask when no image or text-mask input is connected.',
+  },
+  channel: {
+    type: 'enum',
+    default: 'alpha',
+    options: ['alpha', 'luminance'],
+    group: 'Scene',
+    description: 'Connected mask occupancy from alpha or premultiplied linear luminance.',
+  },
+  threshold: {
+    type: 'f32',
+    default: 0.5,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    group: 'Scene',
+    description: 'Mask occupancy threshold after input resampling.',
+  },
+  tint: {
+    type: 'color',
+    default: '#efb77b',
+    group: 'Palette',
+    description: 'Linear light or outline colour.',
+  },
+  background: {
+    type: 'color',
+    default: '#101829',
+    group: 'Palette',
+    description: 'Linear unlit background colour.',
+  },
+} as const;

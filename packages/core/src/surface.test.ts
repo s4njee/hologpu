@@ -70,6 +70,36 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('asynchronous surface restoration', () => {
+  it('ignores observer resize while a new device is ready but this surface still has an old resolve pass', async () => {
+    const { surface, session, device } = await fixture();
+    try {
+      session.generation++;
+      surface.destroyTarget();
+      surface.resize();
+      expect(surface.target).toBeNull();
+      expect(device.createTexture).toHaveBeenCalledTimes(1);
+    } finally {
+      surface.dispose();
+      session.dispose();
+    }
+  });
+  it('prevents superseded surfaces from unconfiguring or resizing a newer mount on the same canvas', async () => {
+    const { surface, session, compilation, context } = await fixture();
+    const older = surface.restore();
+    const replacement = Surface.create(surface.canvas, session, () => {});
+    compilation.resolve();
+    await expect(older).rejects.toThrow('superseded');
+    const newer = await replacement;
+    const width = newer.canvas.width;
+    surface.resolutionScale = 0.5;
+    surface.resize();
+    expect(newer.canvas.width).toBe(width);
+    surface.dispose();
+    expect(context.unconfigure).not.toHaveBeenCalled();
+    newer.dispose();
+    expect(context.unconfigure).toHaveBeenCalledTimes(1);
+    session.dispose();
+  });
   it('ignores resize while the replacement resolve pass is still compiling', async () => {
     const { surface, session, compilation, device } = await fixture();
     try {

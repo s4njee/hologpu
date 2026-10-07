@@ -26,6 +26,20 @@ export function passesDrawer(field: EffectField, node: HTMLElement) {
   summary();
   node.append(resources);
   const names = Object.keys(field.textureTaps);
+  const checkTaps = () => {
+    if (!node.contains(list)) {
+      removeChange();
+      removeFrame();
+      return;
+    }
+    if (Object.keys(field.textureTaps).join('\n') !== names.join('\n')) {
+      removeChange();
+      removeFrame();
+      passesDrawer(field, node);
+    }
+  };
+  const removeChange = field.onChange(checkTaps),
+    removeFrame = field.onRendered(checkTaps);
   if (!names.length) return;
   const toolbar = document.createElement('div');
   toolbar.className = 'tap-controls';

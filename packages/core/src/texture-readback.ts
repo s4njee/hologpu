@@ -20,6 +20,7 @@ export function halfToFloat(bits: number) {
 /** Raw intermediate values, without SDR resolve or colour transforms. */
 export async function readTextureTap(device: GPUDevice, tap: TextureTap): Promise<TextureReadback> {
   const formats: Partial<Record<GPUTextureFormat, readonly [number, number, string]>> = {
+    r8unorm: [1, 1, 'unorm'],
     r32float: [1, 4, 'float'],
     rg32float: [2, 4, 'float'],
     rgba32float: [4, 4, 'float'],
@@ -42,7 +43,11 @@ export async function readTextureTap(device: GPUDevice, tap: TextureTap): Promis
   try {
     const encoder = device.createCommandEncoder();
     encoder.copyTextureToBuffer(
-      { texture: tap.texture, mipLevel: tap.mipLevel ?? 0, origin: [0, 0, tap.arrayLayer ?? 0] },
+      {
+        texture: tap.texture,
+        mipLevel: tap.mipLevel ?? 0,
+        origin: [0, 0, tap.depthSlice ?? tap.arrayLayer ?? 0],
+      },
       { buffer, bytesPerRow },
       [tap.width, tap.height],
     );
@@ -59,9 +64,11 @@ export async function readTextureTap(device: GPUDevice, tap: TextureTap): Promis
         values[y * tap.width * channels + x] =
           kind === 'half'
             ? halfToFloat(view.getUint16(offset, true))
-            : kind === 'uint'
-              ? view.getUint32(offset, true)
-              : view.getFloat32(offset, true);
+            : kind === 'unorm'
+              ? view.getUint8(offset) / 255
+              : kind === 'uint'
+                ? view.getUint32(offset, true)
+                : view.getFloat32(offset, true);
       }
     return { width: tap.width, height: tap.height, channels, values };
   } finally {

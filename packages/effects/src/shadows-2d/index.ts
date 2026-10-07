@@ -1,0 +1,77 @@
+import { defineEffect } from '@mk7s/hologpu-core';
+import { lightingParams } from '../_lighting/params.ts';
+import { createLighting } from '../_lighting/program.ts';
+export default defineEffect({
+  id: 'shadows-2d',
+  title: 'SDF soft shadows',
+  family: 'lighting',
+  tier: 'T4',
+  core: true,
+  tags: ['distance', 'lighting', 'shadows', 'rects'],
+  features: [],
+  inputs: ['image', 'text-mask', 'rects'],
+  params: {
+    ...lightingParams,
+    view: {
+      type: 'enum',
+      default: 'light',
+      options: ['light', 'visibility', 'distance'],
+      group: 'Display',
+      description:
+        'Tone-mapped point light, unoccluded soft-shadow factor, or signed-distance diagnostic.',
+    },
+    light: {
+      type: 'vec2',
+      default: [0.2, 0.18],
+      min: 0,
+      max: 1,
+      step: 0.01,
+      group: 'Light',
+      description: 'Normalized point-light position in the mask.',
+    },
+    intensity: {
+      type: 'f32',
+      default: 3,
+      min: 0,
+      max: 12,
+      step: 0.1,
+      group: 'Light',
+      description: 'Linear radiance of the point light.',
+    },
+    falloff: {
+      type: 'f32',
+      default: 5,
+      min: 0,
+      max: 30,
+      step: 0.1,
+      group: 'Light',
+      description: 'Inverse-quadratic normalized distance attenuation.',
+    },
+    softness: {
+      type: 'f32',
+      default: 8,
+      min: 1,
+      max: 64,
+      step: 1,
+      group: 'Light',
+      description: 'Distance-to-ray ratio shadow bound; larger values give a sharper penumbra.',
+    },
+    steps: {
+      type: 'u32',
+      default: 128,
+      min: 32,
+      max: 256,
+      step: 16,
+      group: 'Quality',
+      description: 'Maximum clamped SDF ray-march iterations per receiver pixel.',
+    },
+  },
+  presets: {
+    warm: { light: [0.18, 0.3], softness: 4, intensity: 4 },
+    cool: { scene: 'blocks', light: [0.8, 0.15], softness: 16, tint: '#8ac4ff' },
+  },
+  quality: { resolutionScale: [0.25, 1] },
+  reducedMotion: { time: 0 },
+  fallback: 'linear-gradient(135deg,#efb77b,#101829)',
+  create: (ctx) => createLighting(ctx, 'shadows'),
+});

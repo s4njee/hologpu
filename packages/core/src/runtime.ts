@@ -1,8 +1,10 @@
 import { acquireDevice } from './device.ts';
 import type { DeviceSession } from './device.ts';
-import { ParamStore } from './params.ts';
+import { ParamStore, bakeParamTexture } from './params.ts';
+import { InputManager, isInputSource, normalizeInputSource } from './inputs.ts';
+import type { InputSource } from './inputs.ts';
 import type { ParamSchema, ParamValues, ValuesOf } from './params.ts';
-import type { EffectDefinition, EffectInstance, FrameInfo } from './effect.ts';
+import type { EffectDefinition, EffectInstance, FrameInfo, TextureTap } from './effect.ts';
 import type { ScheduledSurface } from './scheduler.ts';
 import { Surface } from './surface.ts';
 import { QualityController } from './quality.ts';
@@ -42,6 +44,11 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   #baseSources: Readonly<Record<string, ComposedWGSL>> = {};
   #sourceOverrides = new Map<string, string>();
   #inputs = new Map<string, unknown>();
+  readonly #inputManager: InputManager;
+  readonly #inputFields = new Map<string, { field: EffectField; remove: () => void }>();
+  readonly #pendingInputFields = new Map<string, { field: EffectField; version: number }>();
+  readonly #lutJobs = new Map<string, Promise<void>>();
+  readonly #bindingVersions = new Map<string, number>();
   #inputRevision = 0;
   #inputRequestRevision = 0;
   state: 'building' | 'ready' | 'lost' | 'error' | 'disposed' = 'building';
@@ -74,6 +81,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   #lastPointer: readonly [number, number] = [0, 0];
   #lastPointerTime = 0;
   #listeners = new Set<(field: EffectField<S>) => void>();
+  readonly #renderListeners = new Set<() => void>();
   private constructor(
     canvas: HTMLCanvasElement,
     effect: EffectDefinition<S>,
@@ -90,6 +98,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.setTimeScale(options.timeScale ?? 1);
     this.effect = effect;
     this.session = session;
+    this.#inputManager = new InputManager(session, () => this.invalidate());
     this.#releaseDevice = release;
     this.store = new ParamStore(effect.params, {
       ...effect.presets[options.preset ?? ''],
@@ -102,6 +111,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#motion = matchMedia('(prefers-reduced-motion: reduce)');
     this.#motionOverride = options.reducedMotion;
     this.#removeParams = this.store.onChange((name) => {
+      this.#refreshParamInput(name);
       if (this.effect.params[name]?.uniform === false) this.instance?.resize(this.frame.resolution);
       this.invalidate();
     });
@@ -187,10 +197,23 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     await this.#restore(false);
   }
   async #restore(restoreSurface = true) {
-    const generation = ++this.#generation,
-      inputRevision = this.#inputRevision;
-    if (restoreSurface) await this.surface!.restore();
     if (this.#disposed) return;
+    this.state = 'building';
+    const generation = ++this.#generation;
+    const active = () => !this.#disposed && generation === this.#generation;
+    try {
+      if (restoreSurface) await this.surface!.restore();
+      if (!active()) return;
+      if (restoreSurface) await this.#inputManager.restore();
+      if (!active()) return;
+      for (const name of Object.keys(this.effect.params)) this.#refreshParamInput(name);
+      await Promise.all(this.#lutJobs.values());
+    } catch (error) {
+      if (!active()) return;
+      throw error;
+    }
+    const inputRevision = this.#inputRevision;
+    if (!active()) return;
     const device = this.session.device;
     this.#frameBuffer = device.createBuffer({
       label: `hgpu-${this.effect.id}-frame`,
@@ -261,6 +284,13 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       frameBuffer: this.#frameBuffer!,
       format: 'rgba16float' as const,
       qualitySteps: () => (this.adaptiveQuality ? this.quality.state.stepScale : 1),
+      inputs: {
+        get: (name: string) => {
+          const spec = this.effect.params[name];
+          const binding = spec?.type === 'texture' ? String(this.store.values[name]) : name;
+          return this.#inputManager.get(binding);
+        },
+      },
     };
   }
   /** Compile off to the side; failed or superseded builds leave the running instance intact. */
@@ -304,6 +334,11 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   }
   async setInput(name: string, value: unknown) {
     if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    if (isInputSource(value) || value instanceof EffectField || !this.instance?.setInput) {
+      const source = value instanceof EffectField ? value : normalizeInputSource(value);
+      if (source === null && value !== null) throw new TypeError('Unsupported input source');
+      return this.bindInput(name, source);
+    }
     if (!this.instance?.setInput) throw new Error('This effect does not accept editable inputs');
     const instance = this.instance,
       generation = this.#generation,
@@ -321,6 +356,123 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#inputs.set(name, durable);
     this.#inputRevision++;
     this.invalidate();
+  }
+  #refreshParamInput(name: string) {
+    if (this.#disposed || this.state === 'lost') return;
+    const spec = this.effect.params[name];
+    if (!spec || (spec.type !== 'curve' && spec.type !== 'gradient')) return;
+    const generation = this.#generation,
+      deviceGeneration = this.session.generation;
+    const job = this.#inputManager.set(name, bakeParamTexture(spec, this.store.values[name]!));
+    this.#lutJobs.set(name, job);
+    const current = () =>
+      !this.#disposed &&
+      this.state !== 'lost' &&
+      generation === this.#generation &&
+      deviceGeneration === this.session.generation &&
+      this.#lutJobs.get(name) === job;
+    void job
+      .then(() => {
+        if (!current()) return;
+        this.#lutJobs.delete(name);
+        this.#inputRevision++;
+        this.invalidate();
+      })
+      .catch(() => {
+        const failedCurrent = current();
+        if (this.#lutJobs.get(name) === job) this.#lutJobs.delete(name);
+        if (!failedCurrent) return;
+        this.state = 'error';
+        this.notify();
+      });
+  }
+  /** Bind media or borrow another field's current linear output. Caller owns media lifetime. */
+  async bindInput<T extends ParamSchema = ParamSchema>(
+    name: string,
+    source: InputSource | EffectField<T> | null,
+  ) {
+    if (this.#disposed || this.state !== 'ready') throw new Error('Field is not ready');
+    const request = ++this.#inputRequestRevision;
+    const version = (this.#bindingVersions.get(name) ?? 0) + 1;
+    let remove: (() => void) | undefined;
+    let descriptor: InputSource | null;
+    if (source instanceof EffectField) {
+      const reaches = (field: EffectField, seen = new Set<EffectField>()): boolean => {
+        if ((field as unknown) === this) return true;
+        if (seen.has(field)) return false;
+        seen.add(field);
+        return [...field.#inputFields.values(), ...field.#pendingInputFields.values()].some(
+          ({ field: child }) => reaches(child, seen),
+        );
+      };
+      if (source.state !== 'ready' || source.session.device !== this.session.device)
+        throw new TypeError('Input field must be ready and share this GPUDevice');
+      if (reaches(source as unknown as EffectField)) throw new TypeError('Effect input cycle');
+      descriptor = { kind: 'texture', source: () => source.output, session: source.session };
+      const invalidate = () => this.invalidate();
+      const stop = source.onChange(invalidate);
+      source.#outputListeners.add(invalidate);
+      remove = () => {
+        stop();
+        source.#outputListeners.delete(invalidate);
+      };
+    } else descriptor = source;
+    this.#bindingVersions.set(name, version);
+    if (source instanceof EffectField)
+      this.#pendingInputFields.set(name, { field: source as unknown as EffectField, version });
+    else this.#pendingInputFields.delete(name);
+    try {
+      await this.#inputManager.set(name, descriptor);
+      if (this.#disposed) throw new Error('Field was disposed during input binding');
+    } catch (error) {
+      remove?.();
+      throw error;
+    } finally {
+      if (this.#pendingInputFields.get(name)?.version === version)
+        this.#pendingInputFields.delete(name);
+    }
+    if (version !== this.#bindingVersions.get(name)) {
+      remove?.();
+      return;
+    }
+    // InputManager serializes each binding independently, so other names can finish concurrently.
+    const old = this.#inputFields.get(name);
+    old?.remove();
+    if (source instanceof EffectField && remove)
+      this.#inputFields.set(name, { field: source as unknown as EffectField, remove });
+    else this.#inputFields.delete(name);
+    this.#inputRequestRevision = Math.max(this.#inputRequestRevision, request);
+    this.#inputRevision++;
+    this.invalidate();
+    this.notify();
+  }
+  /** Borrowed; remains valid only until this field resizes, rebuilds or is destroyed. */
+  get output(): TextureTap | undefined {
+    const texture = this.surface?.target;
+    return this.state === 'ready' && texture
+      ? {
+          texture,
+          width: texture.width,
+          height: texture.height,
+          format: 'rgba16float',
+          kind: 'float',
+          label: `${this.effect.id}:output`,
+        }
+      : undefined;
+  }
+  dependencies() {
+    return [...this.#inputFields.values()]
+      .map(({ field }) => field)
+      .filter((field) => field.state !== 'disposed');
+  }
+  inputTexture(name: string) {
+    return this.#inputManager.get(name);
+  }
+  get inputMediaPath() {
+    return this.#inputManager.mediaPath;
+  }
+  async whenInputsReady() {
+    await Promise.all(this.#lutJobs.values());
   }
   #snapshotImage(value: unknown): HTMLCanvasElement {
     if (!value || typeof value !== 'object')
@@ -367,6 +519,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#listeners.add(listener);
     return () => {
       this.#listeners.delete(listener);
+    };
+  }
+  onRendered(listener: () => void) {
+    this.#renderListeners.add(listener);
+    return () => {
+      this.#renderListeners.delete(listener);
     };
   }
   notify() {
@@ -448,7 +606,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       });
   }
   get textureTaps() {
-    return this.instance?.textureTaps?.() ?? {};
+    return {
+      ...Object.fromEntries(
+        Object.entries(this.#inputManager.taps()).map(([name, tap]) => [`input:${name}`, tap]),
+      ),
+      ...this.instance?.textureTaps?.(),
+    };
   }
   get bufferTaps() {
     return this.instance?.bufferTaps?.() ?? {};
@@ -477,9 +640,13 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#writeFrame();
     this.store.flush(this.session.device, this.#paramsBuffer!);
     const encoder = this.session.encoder();
+    this.#inputManager.prepare(this.frame, encoder);
     this.instance.render(this.frame, encoder, this.surface.target.createView());
     this.surface.present(encoder);
+    for (const listener of this.#renderListeners) listener();
+    for (const invalidate of this.#outputListeners) invalidate();
   }
+  readonly #outputListeners = new Set<() => void>();
   #writeFrame() {
     const bytes = new ArrayBuffer(64);
     const floats = new Float32Array(bytes);
@@ -624,11 +791,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   }
   memory() {
     const owned = this.instance?.memory?.();
+    const inputs = this.#inputManager.memory();
     return {
-      textureBytes: (this.surface?.bytes ?? 0) + (owned?.textureBytes ?? 0),
+      textureBytes: (this.surface?.bytes ?? 0) + (owned?.textureBytes ?? 0) + inputs.textureBytes,
       bufferBytes: this.#disposed
         ? 0
-        : 64 + this.store.layout.byteLength + (owned?.bufferBytes ?? 0),
+        : 64 + this.store.layout.byteLength + (owned?.bufferBytes ?? 0) + inputs.bufferBytes,
       shared: this.session.resources.stats(),
       profilingBytes: this.session.profiler.bytes,
     };
@@ -703,7 +871,15 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.#paramsBuffer?.destroy();
     for (const [name, value] of this.#inputs) this.#releaseInput(name, value);
     this.#inputs.clear();
+    for (const binding of this.#inputFields.values()) binding.remove();
+    this.#inputFields.clear();
+    this.#pendingInputFields.clear();
+    this.#inputManager.dispose();
+    this.#lutJobs.clear();
+    for (const invalidate of this.#outputListeners) invalidate();
+    this.#outputListeners.clear();
     this.#listeners.clear();
+    this.#renderListeners.clear();
     this.#releaseDevice();
   }
 }
