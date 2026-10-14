@@ -1,0 +1,21 @@
+{
+  "entryPoints": [
+    "packages/core/src/index.ts",
+    "packages/dom/src/index.ts",
+    "packages/hologpu/src/index.ts",
+    "packages/hologpu/src/dom.ts",
+    "packages/hologpu/src/element.ts",
+    "packages/react/src/index.tsx"
+  ],
+  "tsconfig": "tsconfig.base.json",
+  "compilerOptions": { "jsx": "react-jsx" },
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "examples/**", "**/node_modules/**"],
+  "out": "docs/api",
+  "name": "HoloGPU API",
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "skipErrorChecking": true,
+  "hideGenerator": true,
+  "categorizeByGroup": true
+}

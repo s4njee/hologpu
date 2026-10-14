@@ -25,6 +25,7 @@
     "check:server": "node scripts/check-server-imports.mjs",
     "catalogue": "node scripts/catalogue.mjs",
     "catalogue:check": "node scripts/catalogue.mjs --check",
+    "docs:api": "typedoc --options typedoc.json",
     "check:package": "node scripts/check-packages.mjs",
     "benchmark:m1": "node scripts/benchmark-m1.mjs",
     "benchmark:m2": "node scripts/benchmark-m2.mjs",
@@ -62,6 +63,7 @@
     "globals": "^17.13.0",
     "prettier": "~3.9.8",
     "publint": "^0.3.25",
+    "typedoc": "^0.28.20",
     "typescript": "catalog:",
     "typescript-eslint": "^8.71.2",
     "vitest": "catalog:"
