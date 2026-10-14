@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs>
+  <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#526063"/><stop offset="1" stop-color="#202a2b"/></linearGradient>
+  <linearGradient id="back" x2="1" y2="1"><stop stop-color="#d6ded9"/><stop offset="1" stop-color="#a8bcb0"/></linearGradient>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="24" stdDeviation="18" flood-color="#192f28" flood-opacity=".22"/></filter>
+</defs><rect width="1200" height="800" fill="url(#back)"/><g filter="url(#shadow)">
+  <rect x="235" y="360" width="720" height="174" rx="24" fill="#354a48" stroke="#ffffff" stroke-opacity=".3" stroke-width="2"/>
+  <text x="267" y="408" fill="#e4eee5" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">BASE / ROUTER</text>
+  <rect x="267" y="438" width="28" height="15" rx="5" fill="#162928"/><rect x="314" y="438" width="28" height="15" rx="5" fill="#162928"/><rect x="361" y="438" width="28" height="15" rx="5" fill="#162928"/><rect x="408" y="438" width="28" height="15" rx="5" fill="#162928"/>
+  <circle cx="913" cy="403" r="5" fill="#ddf4bc"/>
+</g><g filter="url(#shadow)">
+  <rect x="320" y="272" width="580" height="162" rx="24" fill="#51706b" stroke="#ffffff" stroke-opacity=".3" stroke-width="2"/>
+  <text x="352" y="320" fill="#e4eee5" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">CORE / COMPUTE</text>
+  <rect x="352" y="350" width="28" height="15" rx="5" fill="#162928"/><rect x="399" y="350" width="28" height="15" rx="5" fill="#162928"/><rect x="446" y="350" width="28" height="15" rx="5" fill="#162928"/><rect x="493" y="350" width="28" height="15" rx="5" fill="#162928"/>
+  <circle cx="858" cy="315" r="5" fill="#ddf4bc"/>
+</g><g filter="url(#shadow)">
+  <rect x="406" y="195" width="410" height="138" rx="24" fill="#80928a" stroke="#ffffff" stroke-opacity=".3" stroke-width="2"/>
+  <text x="438" y="243" fill="#e4eee5" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">LINK / CONNECT</text>
+  <rect x="438" y="273" width="28" height="15" rx="5" fill="#162928"/><rect x="485" y="273" width="28" height="15" rx="5" fill="#162928"/><rect x="532" y="273" width="28" height="15" rx="5" fill="#162928"/><rect x="579" y="273" width="28" height="15" rx="5" fill="#162928"/>
+  <circle cx="774" cy="238" r="5" fill="#ddf4bc"/>
+</g></svg>

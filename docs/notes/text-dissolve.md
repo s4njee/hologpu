@@ -28,15 +28,17 @@ Baseline sampled textures, uniform buffers and render pipelines. Linear-premulti
 
 <!-- params:start -->
 
-| Parameter | Type  | Default   | Range / choices | Group     | Description                                                             |
-| --------- | ----- | --------- | --------------- | --------- | ----------------------------------------------------------------------- |
-| progress  | f32   | 0         | 0…1             | DOM       | Normalized progress; may be driven by a registered CSS custom property. |
-| grid      | u32   | 128       | 32…256          | Particles | Number of columns in the mask particle grid; rows are half this number. |
-| spread    | f32   | 0.75      | 0…2             | Particles | Normalized displacement at complete dissolution.                        |
-| size      | f32   | 1.8       | 0.5…8           | Particles | Particle quad radius in CSS pixels.                                     |
-| curl      | f32   | 0.3       | 0…2             | Motion    | Perpendicular sinusoidal trajectory amplitude.                          |
-| opacity   | f32   | 0.85      | 0…1             | Particles | Particle opacity, multiplied by the sampled text coverage.              |
-| tint      | color | "#c5bbf2" | —               | Palette   | Linear particle colour.                                                 |
+| Parameter | Type  | Default   | Range / choices | Group     | Description                                                                                                  |
+| --------- | ----- | --------- | --------------- | --------- | ------------------------------------------------------------------------------------------------------------ |
+| progress  | f32   | 0         | 0…1             | DOM       | Normalized progress; may be driven by a registered CSS custom property.                                      |
+| assembly  | bool  | false     | —               | Motion    | Assemble-and-hold mode: progress zero scatters and one restores the mask; reduced motion always restores it. |
+| intensity | f32   | 1         | 0…1             | Particles | Particle intensity; the assembly preset uses a quiet 0.22.                                                   |
+| grid      | u32   | 128       | 32…256          | Particles | Number of columns in the mask particle grid; rows are half this number.                                      |
+| spread    | f32   | 0.75      | 0…2             | Particles | Normalized displacement at complete dissolution.                                                             |
+| size      | f32   | 1.8       | 0.5…8           | Particles | Particle quad radius in CSS pixels.                                                                          |
+| curl      | f32   | 0.3       | 0…2             | Motion    | Perpendicular sinusoidal trajectory amplitude.                                                               |
+| opacity   | f32   | 0.85      | 0…1             | Particles | Particle opacity, multiplied by the sampled text coverage.                                                   |
+| tint      | color | "#c5bbf2" | —               | Palette   | Linear particle colour.                                                                                      |
 
 <!-- params:end -->
 
@@ -64,5 +66,9 @@ A half-filled mask emits particles only in the covered half at progress zero; a 
 Grid sampling can omit strokes narrower than a cell. Additive RGB with over-composited coverage preserves overlapping translucent particles, but high emission may saturate the display; the mask reconstructs a sampled particle text surface rather than pixel-perfect typography. Motion is an analytic scrubbed trajectory, not a spring/fluid simulation. Particle quads can move beyond the host clipping rectangle.
 
 ## Production readiness
+
+The `assemble-and-hold` preset is a separate launch-page mode: 8,192 analytic quads start scattered at progress zero and return to their mask anchors at progress one. The preset uses intensity 0.22 and 1.15 CSS-pixel particle radii. Set `--hgpu-progress` from 0 to 1, then leave it at 1; scrubbing back and forth returns identical seeded poses without simulation or trail history. Reduced motion forces the assembled anchors regardless of progress. A clean assembly field stops submitting GPU work until its parameters, text mask or size change. Tint and intensity accept CSS bindings; accessible text stays in the host's light DOM.
+
+The preset has its own script-generated `poster-assemble-and-hold.png` fallback. The poster reproduces the built-in GPU mask; author-supplied text requires a matching author poster. Default dissolve direction, parameter values, and the `drift` and `burst` preset contents are retained. The new intensity control defaults to one to preserve those existing visuals; select the assembly preset for the quiet launch treatment. Grid sampling still approximates the glyph surface; this treatment should decorate real readable text, never replace it.
 
 Add coverage-adaptive sampling or compact covered cells on the GPU when preserving fine typography and lowering sparse-mask draw cost become production requirements.

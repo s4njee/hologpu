@@ -6,7 +6,7 @@ struct Frame {
   resolution: vec2f, dpr: f32, time: f32,
   pointer: vec2f, velocity: vec2f,
   delta: f32, index: u32, buttons: u32, seed: u32,
-  scroll: f32, visibility: f32, pressure: f32, padding: f32,
+  scroll: f32, visibility: f32, pressure: f32, reducedMotion: f32,
 };
 @group(0) @binding(0) var<uniform> frame: Frame;
 `,

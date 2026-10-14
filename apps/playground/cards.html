@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HoloGPU · Cards in motion</title>
+  </head>
+  <body>
+    <header class="masthead">
+      <a href="./">HOLO<span>GPU</span></a>
+      <nav>
+        <a href="#surfaces">Surfaces</a><a href="#controls">Interactions</a
+        ><button id="motion" aria-pressed="false">Reduce motion</button
+        ><a id="fallback" href="?fallback=1">CSS preview</a>
+      </nav>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">Interface studies / 03</p>
+        <h1>A little depth.<br /><span>A lighter touch.</span></h1>
+        <p>
+          Light that follows. Glass that belongs. Small details for the things you actually use.
+        </p>
+      </div>
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero-heading">
+          <span class="eyebrow">01 / Shared background</span>
+          <h2 id="hero-title">One sky. Three windows.</h2>
+          <p>Drag a window across the light.</p>
+        </div>
+        <div class="windows">
+          <article class="glass" id="glass-one">
+            <div class="glass-content">
+              <button
+                class="drag"
+                aria-label="Move Signal window"
+                title="Drag to move; arrow keys also move"
+              >
+                ⌘ <span>Signal</span><span>↗</span>
+              </button>
+              <p class="glass-label">LIVE ATMOSPHERE</p>
+              <h3>Soft by design.</h3>
+              <p>One continuous field of light, seen through three different surfaces.</p>
+              <div class="spark">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <small>REFRACTION / 02 PX</small>
+            </div>
+          </article>
+          <article class="glass" id="glass-two">
+            <div class="glass-content">
+              <button
+                class="drag"
+                aria-label="Move Clarity window"
+                title="Drag to move; arrow keys also move"
+              >
+                ◉ <span>Clarity</span><span>↗</span>
+              </button>
+              <p class="glass-label">ROOM TO THINK</p>
+              <h3>Keep it clear.</h3>
+              <p>The view follows the window. The words stay right where they belong.</p>
+              <div class="metric">98<span>%</span><small>less visual noise</small></div>
+              <small>FROST / 04 PX</small>
+            </div>
+          </article>
+          <article class="glass" id="glass-three">
+            <div class="glass-content">
+              <button
+                class="drag"
+                aria-label="Move Orbit window"
+                title="Drag to move; arrow keys also move"
+              >
+                ✳ <span>Orbit</span><span>↗</span>
+              </button>
+              <p class="glass-label">A SHARED POINT OF VIEW</p>
+              <h3>Stay connected.</h3>
+              <p>Each window borrows the same background, without making another copy.</p>
+              <div class="orbit"><b></b><b></b><b></b></div>
+              <small>ONE HERO / THREE WINDOWS</small>
+            </div>
+          </article>
+        </div>
+        <p class="hero-footnote">
+          Glass samples the HoloGPU background. Text and other page content remain native HTML.
+        </p>
+      </section>
+      <section id="surfaces" class="surface-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / A shared spotlight</p>
+            <h2>Made to feel responsive.</h2>
+          </div>
+          <p>Move across the grid. Hover to trace an edge.</p>
+        </div>
+        <div id="grid" class="grid">
+          <div class="grid-cards">
+            <article class="lift">
+              <div class="trace">
+                <div class="card-copy">
+                  <span class="icon">↗</span>
+                  <h3>Find your focus.</h3>
+                  <p>A quiet light follows your pointer across the entire grid.</p>
+                  <small>ONE LIGHT / MANY CARDS</small>
+                </div>
+              </div>
+            </article>
+            <article class="lift">
+              <div class="trace">
+                <div class="card-copy">
+                  <span class="icon">◌</span>
+                  <h3>Give it space.</h3>
+                  <p>A rounded contact shadow lifts the surface as you approach.</p>
+                  <small>CSS ELEVATION / SOFT SHADOW</small>
+                </div>
+              </div>
+            </article>
+            <article class="lift">
+              <div class="trace">
+                <div class="card-copy">
+                  <span class="icon">✧</span>
+                  <h3>Follow the edges.</h3>
+                  <p>The border respects every corner, even when they differ.</p>
+                  <small>FOUR CORNERS / ONE CONTOUR</small>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="controls" class="cta">
+        <div>
+          <p class="eyebrow">03 / A softer response</p>
+          <h2>A moment of feedback.</h2>
+          <p>Press once. Press a few times. A small ripple says the action landed.</p>
+        </div>
+        <div id="press" class="press">
+          <button id="action">Start something <span>↗</span></button>
+        </div>
+        <output id="count" aria-live="polite">Ready when you are.</output>
+      </section>
+    </main>
+    <footer>
+      <span>HoloGPU · Interface studies</span
+      ><span id="status" role="status">Preparing surfaces…</span
+      ><a href="./">Explore the catalogue ↗</a>
+    </footer>
+    <script type="module" src="/src/cards.ts"></script>
+  </body>
+</html>

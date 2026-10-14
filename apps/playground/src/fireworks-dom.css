@@ -1,0 +1,157 @@
+@import './fluid-dom.css';
+
+:root {
+  --mint: #c5d1ef;
+}
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+body[data-state='fallback'] #particles {
+  display: none;
+}
+body[data-state='fallback'] {
+  background:
+    radial-gradient(ellipse at 72% 36%, #12234b, transparent 48%),
+    radial-gradient(ellipse at 20% 65%, #3a101b, transparent 50%), #080f14;
+}
+.experiment {
+  min-height: max(760px, calc(100svh - 120px));
+}
+.eyebrow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.color-dots {
+  display: flex;
+  gap: 4px;
+}
+.color-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff3043;
+}
+.color-dots i:nth-child(2) {
+  background: #26ec60;
+}
+.color-dots i:nth-child(3) {
+  background: #2868ff;
+}
+h1 {
+  font-weight: 500;
+}
+h1 span {
+  box-shadow: 0 22px 45px #0009;
+  padding-right: 28px;
+}
+h1 span:nth-child(2) {
+  margin-left: 5vw;
+}
+.floating-card {
+  top: 110px;
+  right: 10vw;
+  width: 280px;
+  color: #111821;
+  background: #e9e8df;
+  border: 0;
+  box-shadow:
+    0 38px 70px #000b,
+    8px 8px 0 #1d2737;
+}
+.drag-handle {
+  color: #3b4654;
+  border-bottom: 1px dashed #26334355;
+}
+.card-content {
+  padding: 27px;
+}
+.card-symbol {
+  display: block;
+  color: #ed302c;
+  font-size: 105px;
+  line-height: 0.9;
+}
+.card-content .ticket-label {
+  font: 8px monospace;
+  letter-spacing: 1.5px;
+  color: #5c646b;
+  margin: 22px 0 14px;
+}
+.card-content h2 {
+  font-size: 34px;
+  letter-spacing: -1.5px;
+  margin: 0 0 18px;
+}
+.card-content p {
+  color: #59616a;
+}
+.card-footnote {
+  display: flex;
+  justify-content: space-between;
+  color: #4b535c;
+  padding-top: 18px;
+  border-top: 1px dashed #26334355;
+}
+.note {
+  box-shadow: 0 22px 50px #0008;
+  border-top: 2px solid #ff3043;
+}
+.note:nth-child(2) {
+  border-top-color: #26ec60;
+}
+.note:nth-child(3) {
+  border-top-color: #2868ff;
+}
+.section-heading h2 {
+  box-shadow: 0 22px 45px #0009;
+}
+#brightness {
+  accent-color: #618bff;
+}
+#brightness-value {
+  color: #b6caff;
+}
+.toolbar {
+  border-color: #465169;
+}
+@media (max-width: 1000px) {
+  .floating-card {
+    right: 5vw;
+    top: 155px;
+    width: 250px;
+  }
+  .card-content h2 {
+    font-size: 29px;
+  }
+}
+@media (max-width: 700px) {
+  .experiment {
+    min-height: 1110px;
+  }
+  h1 {
+    font-size: clamp(90px, 23vw, 150px);
+  }
+  h1 span:nth-child(2) {
+    margin-left: 3vw;
+  }
+  .floating-card {
+    top: 520px;
+    right: 12vw;
+    width: 260px;
+  }
+  .card-content {
+    padding: 22px;
+  }
+  .card-symbol {
+    font-size: 90px;
+  }
+  .experiment-caption {
+    bottom: 100px;
+  }
+}

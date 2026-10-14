@@ -132,7 +132,10 @@ export class CompareStage {
                 : undefined,
           seed: primary.frame.seed,
           playing: primary.requestedPlaying,
-          resolutionScale: primary.surface?.resolutionScale ?? 1,
+          resolutionScale: Math.max(
+            effect.quality.resolutionScale[0],
+            Math.min(effect.quality.resolutionScale[1], primary.surface?.resolutionScale ?? 1),
+          ),
           timeScale: primary.timeScale,
           reducedMotion: primary.reducedMotionOverride,
         });

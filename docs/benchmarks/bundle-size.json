@@ -1,0 +1,3038 @@
+{
+  "recordedAt": "2026-10-08T16:57:10.416Z",
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "vite": "8.3.3"
+  },
+  "method": "Independent browser ESM bundles of the actual public entry exports, including their transitive runtime dependencies and WGSL strings. Repository Vite production minification, ES2022 target, source export condition, gzip level 9, no source maps. Each output chunk compressed separately; posters and other emitted assets are reported separately from JavaScript. All public exports are retained; these are complete entry footprints, not one specific consumer import. The optional dom-with-catalogue-resolver row includes all lazy catalogue loaders, inlined into one bundle to expose its complete graph; normal applications retain lazy splitting and do not transfer that entire graph upfront. Shared core code overlaps between rows, so rows must not be summed into a page transfer estimate. No application dist or source files are changed.",
+  "entries": [
+    {
+      "id": "core",
+      "publicEntry": "@mk7s/hologpu-core",
+      "source": "packages/core/src/index.ts",
+      "jsBytes": 128490,
+      "jsGzipBytes": 39292,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/index-BJfhAcdN.js",
+          "bytes": 128490,
+          "gzipBytes": 39292,
+          "modules": [
+            "packages/core/src/resources.ts",
+            "packages/core/src/scheduler.ts",
+            "packages/core/src/profiler.ts",
+            "packages/core/src/device.ts",
+            "packages/core/src/params.ts",
+            "packages/core/src/measure.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/sdf.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/surface.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/primitives/mipgen.ts",
+            "packages/core/src/inputs.ts",
+            "packages/core/src/quality.ts",
+            "packages/core/src/texture-readback.ts",
+            "packages/core/src/runtime.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/core/src/particles.ts",
+            "packages/core/src/filters.ts",
+            "packages/core/src/distance-fields.ts",
+            "packages/core/src/geometry.ts",
+            "packages/core/src/environment.ts",
+            "packages/core/src/hdr.ts",
+            "packages/core/src/element-capture.ts",
+            "packages/core/src/index.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "dom",
+      "publicEntry": "@mk7s/hologpu-dom",
+      "source": "packages/dom/src/index.ts",
+      "jsBytes": 103173,
+      "jsGzipBytes": 32391,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/index-DRRlx6qp.js",
+          "bytes": 103173,
+          "gzipBytes": 32391,
+          "modules": [
+            "packages/core/src/resources.ts",
+            "packages/core/src/scheduler.ts",
+            "packages/core/src/profiler.ts",
+            "packages/core/src/device.ts",
+            "packages/core/src/params.ts",
+            "packages/core/src/measure.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/surface.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/primitives/mipgen.ts",
+            "packages/core/src/inputs.ts",
+            "packages/core/src/quality.ts",
+            "packages/core/src/texture-readback.ts",
+            "packages/core/src/runtime.ts",
+            "packages/dom/src/bridges.ts",
+            "packages/dom/src/dom-rects.ts",
+            "packages/dom/src/text-mask.ts",
+            "packages/dom/src/card-geometry.ts",
+            "packages/dom/src/page-pointer.ts",
+            "packages/dom/src/budget.ts",
+            "packages/dom/src/attach.ts",
+            "packages/dom/src/element.ts",
+            "packages/dom/src/index.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "dom-with-catalogue-resolver",
+      "publicEntry": "@mk7s/hologpu/dom",
+      "source": "packages/hologpu/src/dom.ts",
+      "jsBytes": 493079,
+      "jsGzipBytes": 152317,
+      "assetBytes": 2582384,
+      "assetGzipBytes": 2534517,
+      "chunks": [
+        {
+          "name": "assets/dom-CUc7aC7B.js",
+          "bytes": 493079,
+          "gzipBytes": 152317,
+          "modules": [
+            "\u0000rolldown/runtime.js",
+            "packages/core/src/resources.ts",
+            "packages/core/src/scheduler.ts",
+            "packages/core/src/profiler.ts",
+            "packages/core/src/device.ts",
+            "packages/core/src/params.ts",
+            "packages/core/src/measure.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/sdf.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/wgsl/index.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/surface.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/primitives/mipgen.ts",
+            "packages/core/src/inputs.ts",
+            "packages/core/src/quality.ts",
+            "packages/core/src/texture-readback.ts",
+            "packages/core/src/runtime.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/core/src/primitives/index.ts",
+            "packages/core/src/particles.ts",
+            "packages/core/src/filters.ts",
+            "packages/core/src/distance-fields.ts",
+            "packages/core/src/geometry.ts",
+            "packages/core/src/environment.ts",
+            "packages/core/src/hdr.ts",
+            "packages/core/src/element-capture.ts",
+            "packages/core/src/index.ts",
+            "packages/dom/src/bridges.ts",
+            "packages/dom/src/dom-rects.ts",
+            "packages/dom/src/text-mask.ts",
+            "packages/dom/src/card-geometry.ts",
+            "packages/dom/src/page-pointer.ts",
+            "packages/dom/src/budget.ts",
+            "packages/dom/src/attach.ts",
+            "packages/dom/src/element.ts",
+            "\u0000vite/preload-helper.js",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_particles/basic.ts",
+            "packages/effects/src/attractors/index.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/audio-spectrum/index.ts",
+            "packages/effects/src/aurora-veil/index.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/backdrop-glass/index.ts",
+            "packages/effects/src/bloom/index.ts",
+            "packages/effects/src/blur/index.ts",
+            "packages/effects/src/_neighbors/params.ts",
+            "packages/effects/src/_neighbors/shaders.ts",
+            "packages/effects/src/_neighbors/program.ts",
+            "packages/effects/src/boids/index.ts",
+            "packages/effects/src/_dom/card-geometry.ts",
+            "packages/effects/src/border-energy/index.ts",
+            "packages/effects/src/bright-pass/index.ts",
+            "packages/effects/src/caustics/index.ts",
+            "packages/effects/src/color-grade/index.ts",
+            "packages/effects/src/constellation/index.ts",
+            "packages/effects/src/depth-parallax/index.ts",
+            "packages/effects/src/displace/index.ts",
+            "packages/effects/src/_filters/blue-noise.ts",
+            "packages/effects/src/dither/index.ts",
+            "packages/effects/src/dot-matrix-field/index.ts",
+            "packages/effects/src/edges/index.ts",
+            "packages/effects/src/emitters/index.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/falling-sand/index.ts",
+            "packages/effects/src/flow-particles/index.ts",
+            "packages/effects/src/_fluid/shaders.ts",
+            "packages/effects/src/_fluid/index.ts",
+            "packages/effects/src/_fluid/params.ts",
+            "packages/effects/src/fluid/index.ts",
+            "packages/effects/src/fluid-obstacles/index.ts",
+            "packages/effects/src/fractal/index.ts",
+            "packages/effects/src/_geometry/common.ts",
+            "packages/effects/src/glass/index.ts",
+            "packages/effects/src/gradient-oklch/index.ts",
+            "packages/effects/src/grain-overlay/index.ts",
+            "packages/effects/src/grid-horizon/index.ts",
+            "packages/effects/src/halftone-ascii/index.ts",
+            "packages/effects/src/_typography/common.ts",
+            "packages/effects/src/heading-reveal/index.ts",
+            "packages/effects/src/hover-lift-shadow/index.ts",
+            "packages/effects/src/image-hover/index.ts",
+            "packages/effects/src/ink/index.ts",
+            "packages/effects/src/instances/index.ts",
+            "packages/effects/src/_lighting/params.ts",
+            "packages/effects/src/_lighting/program.ts",
+            "packages/effects/src/jump-flood/index.ts",
+            "packages/effects/src/lattice-boltzmann/index.ts",
+            "packages/effects/src/lenia/index.ts",
+            "packages/effects/src/lens/index.ts",
+            "packages/effects/src/life/index.ts",
+            "packages/effects/src/light-sweep/index.ts",
+            "packages/effects/src/masked-composite/index.ts",
+            "packages/effects/src/material-ball/index.ts",
+            "packages/effects/src/mipgen/index.ts",
+            "packages/effects/src/morph-particles/targets.ts",
+            "packages/effects/src/morph-particles/index.ts",
+            "packages/effects/src/mpm/index.ts",
+            "packages/effects/src/n-body/index.ts",
+            "packages/effects/src/noise-lab/index.ts",
+            "packages/effects/src/panel-refraction/index.ts",
+            "packages/effects/src/particle-drift/index.ts",
+            "packages/effects/src/_stretch/bvh.ts",
+            "packages/effects/src/path-tracer/index.ts",
+            "packages/effects/src/pbf-fluid/index.ts",
+            "packages/effects/src/physarum/index.ts",
+            "packages/effects/src/pointer-map/index.ts",
+            "packages/effects/src/prefix-sum/demo.ts",
+            "packages/effects/src/prefix-sum/index.ts",
+            "packages/effects/src/press-ripple/index.ts",
+            "packages/effects/src/product-sheen/index.ts",
+            "packages/effects/src/progress-line/index.ts",
+            "packages/effects/src/radiance-cascades/index.ts",
+            "packages/effects/src/raymarch/index.ts",
+            "packages/effects/src/reaction-diffusion/index.ts",
+            "packages/effects/src/scroll-scene/index.ts",
+            "packages/effects/src/sdf-2d/index.ts",
+            "packages/effects/src/section-wipe/index.ts",
+            "packages/effects/src/shadows-2d/index.ts",
+            "packages/effects/src/smoke/index.ts",
+            "packages/effects/src/sort/index.ts",
+            "packages/effects/src/spatial-hash/index.ts",
+            "packages/effects/src/splats/index.ts",
+            "packages/effects/src/spotlight/index.ts",
+            "packages/effects/src/starfield/index.ts",
+            "packages/effects/src/_geometry/height-field.ts",
+            "packages/effects/src/terrain/index.ts",
+            "packages/effects/src/text-dissolve/index.ts",
+            "packages/effects/src/text-outline-glow/index.ts",
+            "packages/effects/src/text-shimmer/index.ts",
+            "packages/effects/src/topographic-lines/index.ts",
+            "packages/effects/src/truchet/index.ts",
+            "packages/effects/src/voronoi/index.ts",
+            "packages/effects/src/wave/index.ts",
+            "packages/effects/src/wave-divider/index.ts",
+            "packages/hologpu/src/effect-loaders.ts",
+            "packages/hologpu/src/dom.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/noise-tile-ceMgAvWJ.png",
+          "bytes": 4628,
+          "gzipBytes": 4648
+        },
+        {
+          "name": "assets/poster-4DDhr_Xk.png",
+          "bytes": 14033,
+          "gzipBytes": 7317
+        },
+        {
+          "name": "assets/poster-9nTRdadm.png",
+          "bytes": 222246,
+          "gzipBytes": 220918
+        },
+        {
+          "name": "assets/poster-AaHq0Tr8.png",
+          "bytes": 39361,
+          "gzipBytes": 37494
+        },
+        {
+          "name": "assets/poster-B3A0MhhA.png",
+          "bytes": 269401,
+          "gzipBytes": 263551
+        },
+        {
+          "name": "assets/poster-B75vkBTy.png",
+          "bytes": 445993,
+          "gzipBytes": 446151
+        },
+        {
+          "name": "assets/poster-BDnYqwiD.png",
+          "bytes": 9342,
+          "gzipBytes": 8518
+        },
+        {
+          "name": "assets/poster-BEKVsfRq.png",
+          "bytes": 22084,
+          "gzipBytes": 17967
+        },
+        {
+          "name": "assets/poster-BHKRqrFL.png",
+          "bytes": 6664,
+          "gzipBytes": 4239
+        },
+        {
+          "name": "assets/poster-BXCVOeoc.png",
+          "bytes": 2883,
+          "gzipBytes": 2050
+        },
+        {
+          "name": "assets/poster-BbHjWw17.png",
+          "bytes": 59197,
+          "gzipBytes": 56866
+        },
+        {
+          "name": "assets/poster-BuRo_5Gd.png",
+          "bytes": 40355,
+          "gzipBytes": 38564
+        },
+        {
+          "name": "assets/poster-C0Bua_cR.png",
+          "bytes": 6651,
+          "gzipBytes": 4214
+        },
+        {
+          "name": "assets/poster-CHIAqEKg.png",
+          "bytes": 169541,
+          "gzipBytes": 168143
+        },
+        {
+          "name": "assets/poster-CVHQKKgf.png",
+          "bytes": 6574,
+          "gzipBytes": 6086
+        },
+        {
+          "name": "assets/poster-CWhiSpfG.png",
+          "bytes": 39651,
+          "gzipBytes": 39590
+        },
+        {
+          "name": "assets/poster-CXG7APfx.png",
+          "bytes": 124416,
+          "gzipBytes": 123691
+        },
+        {
+          "name": "assets/poster-CarexffA.png",
+          "bytes": 71554,
+          "gzipBytes": 69907
+        },
+        {
+          "name": "assets/poster-D8i6zhKu.png",
+          "bytes": 273223,
+          "gzipBytes": 273286
+        },
+        {
+          "name": "assets/poster-DPK5F04H.png",
+          "bytes": 922,
+          "gzipBytes": 910
+        },
+        {
+          "name": "assets/poster-Dvj97H6j.png",
+          "bytes": 24051,
+          "gzipBytes": 23416
+        },
+        {
+          "name": "assets/poster-UPmdEtId.png",
+          "bytes": 46222,
+          "gzipBytes": 44246
+        },
+        {
+          "name": "assets/poster-assemble-and-hold-_h-Ee1cW.png",
+          "bytes": 14346,
+          "gzipBytes": 11804
+        },
+        {
+          "name": "assets/poster-assemble-and-hold-sAgGyRih.png",
+          "bytes": 19935,
+          "gzipBytes": 16997
+        },
+        {
+          "name": "assets/poster-card-spotlight-2CRgsMN8.png",
+          "bytes": 49811,
+          "gzipBytes": 47004
+        },
+        {
+          "name": "assets/poster-ember-DAoEgY1o.png",
+          "bytes": 265167,
+          "gzipBytes": 265222
+        },
+        {
+          "name": "assets/poster-oqjcpr5z.png",
+          "bytes": 36270,
+          "gzipBytes": 35839
+        },
+        {
+          "name": "assets/poster-paper-DlwVzwzj.png",
+          "bytes": 264966,
+          "gzipBytes": 264967
+        },
+        {
+          "name": "assets/poster-zBNYr-LZ.png",
+          "bytes": 32897,
+          "gzipBytes": 30912
+        }
+      ]
+    },
+    {
+      "id": "attractors",
+      "publicEntry": "@mk7s/hologpu/effects/attractors",
+      "source": "packages/hologpu/src/effects/attractors.ts",
+      "jsBytes": 33127,
+      "jsGzipBytes": 11744,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/attractors-BqwE5fGy.js",
+          "bytes": 33127,
+          "gzipBytes": 11744,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_particles/basic.ts",
+            "packages/effects/src/attractors/index.ts",
+            "packages/hologpu/src/effects/attractors.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "audio-spectrum",
+      "publicEntry": "@mk7s/hologpu/effects/audio-spectrum",
+      "source": "packages/hologpu/src/effects/audio-spectrum.ts",
+      "jsBytes": 20627,
+      "jsGzipBytes": 8381,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/audio-spectrum-B-sCuvNR.js",
+          "bytes": 20627,
+          "gzipBytes": 8381,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/audio-spectrum/index.ts",
+            "packages/hologpu/src/effects/audio-spectrum.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "aurora-veil",
+      "publicEntry": "@mk7s/hologpu/effects/aurora-veil",
+      "source": "packages/hologpu/src/effects/aurora-veil.ts",
+      "jsBytes": 20028,
+      "jsGzipBytes": 7992,
+      "assetBytes": 803356,
+      "assetGzipBytes": 803475,
+      "chunks": [
+        {
+          "name": "assets/aurora-veil-1GbY2YW6.js",
+          "bytes": 20028,
+          "gzipBytes": 7992,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/aurora-veil/index.ts",
+            "packages/hologpu/src/effects/aurora-veil.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-D8i6zhKu.png",
+          "bytes": 273223,
+          "gzipBytes": 273286
+        },
+        {
+          "name": "assets/poster-ember-DAoEgY1o.png",
+          "bytes": 265167,
+          "gzipBytes": 265222
+        },
+        {
+          "name": "assets/poster-paper-DlwVzwzj.png",
+          "bytes": 264966,
+          "gzipBytes": 264967
+        }
+      ]
+    },
+    {
+      "id": "backdrop-glass",
+      "publicEntry": "@mk7s/hologpu/effects/backdrop-glass",
+      "source": "packages/hologpu/src/effects/backdrop-glass.ts",
+      "jsBytes": 21154,
+      "jsGzipBytes": 8542,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/backdrop-glass-Dyeq0V_p.js",
+          "bytes": 21154,
+          "gzipBytes": 8542,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/core/src/element-capture.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/backdrop-glass/index.ts",
+            "packages/hologpu/src/effects/backdrop-glass.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "bloom",
+      "publicEntry": "@mk7s/hologpu/effects/bloom",
+      "source": "packages/hologpu/src/effects/bloom.ts",
+      "jsBytes": 20845,
+      "jsGzipBytes": 8290,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/bloom-BhqO6L2d.js",
+          "bytes": 20845,
+          "gzipBytes": 8290,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/bloom/index.ts",
+            "packages/hologpu/src/effects/bloom.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "blur",
+      "publicEntry": "@mk7s/hologpu/effects/blur",
+      "source": "packages/hologpu/src/effects/blur.ts",
+      "jsBytes": 20819,
+      "jsGzipBytes": 8271,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/blur-BqCU-nGz.js",
+          "bytes": 20819,
+          "gzipBytes": 8271,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/blur/index.ts",
+            "packages/hologpu/src/effects/blur.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "boids",
+      "publicEntry": "@mk7s/hologpu/effects/boids",
+      "source": "packages/hologpu/src/effects/boids.ts",
+      "jsBytes": 48887,
+      "jsGzipBytes": 15441,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/boids-DxHSdg90.js",
+          "bytes": 48887,
+          "gzipBytes": 15441,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_neighbors/params.ts",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_neighbors/shaders.ts",
+            "packages/effects/src/_neighbors/program.ts",
+            "packages/effects/src/boids/index.ts",
+            "packages/hologpu/src/effects/boids.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "border-energy",
+      "publicEntry": "@mk7s/hologpu/effects/border-energy",
+      "source": "packages/hologpu/src/effects/border-energy.ts",
+      "jsBytes": 19248,
+      "jsGzipBytes": 7780,
+      "assetBytes": 6651,
+      "assetGzipBytes": 4214,
+      "chunks": [
+        {
+          "name": "assets/border-energy-CTgwOdPJ.js",
+          "bytes": 19248,
+          "gzipBytes": 7780,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/_dom/card-geometry.ts",
+            "packages/effects/src/border-energy/index.ts",
+            "packages/hologpu/src/effects/border-energy.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-border-trace-C0Bua_cR.png",
+          "bytes": 6651,
+          "gzipBytes": 4214
+        }
+      ]
+    },
+    {
+      "id": "bright-pass",
+      "publicEntry": "@mk7s/hologpu/effects/bright-pass",
+      "source": "packages/hologpu/src/effects/bright-pass.ts",
+      "jsBytes": 19030,
+      "jsGzipBytes": 7834,
+      "assetBytes": 59197,
+      "assetGzipBytes": 56866,
+      "chunks": [
+        {
+          "name": "assets/bright-pass-BCMzMvSL.js",
+          "bytes": 19030,
+          "gzipBytes": 7834,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/bright-pass/index.ts",
+            "packages/hologpu/src/effects/bright-pass.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BbHjWw17.png",
+          "bytes": 59197,
+          "gzipBytes": 56866
+        }
+      ]
+    },
+    {
+      "id": "caustics",
+      "publicEntry": "@mk7s/hologpu/effects/caustics",
+      "source": "packages/hologpu/src/effects/caustics.ts",
+      "jsBytes": 17743,
+      "jsGzipBytes": 7458,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/caustics-D2zT8XdG.js",
+          "bytes": 17743,
+          "gzipBytes": 7458,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/caustics/index.ts",
+            "packages/hologpu/src/effects/caustics.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "color-grade",
+      "publicEntry": "@mk7s/hologpu/effects/color-grade",
+      "source": "packages/hologpu/src/effects/color-grade.ts",
+      "jsBytes": 20530,
+      "jsGzipBytes": 8313,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/color-grade-C6gNhNqa.js",
+          "bytes": 20530,
+          "gzipBytes": 8313,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/color-grade/index.ts",
+            "packages/hologpu/src/effects/color-grade.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "constellation",
+      "publicEntry": "@mk7s/hologpu/effects/constellation",
+      "source": "packages/hologpu/src/effects/constellation.ts",
+      "jsBytes": 18432,
+      "jsGzipBytes": 7672,
+      "assetBytes": 39651,
+      "assetGzipBytes": 39590,
+      "chunks": [
+        {
+          "name": "assets/constellation-BJUq5DoR.js",
+          "bytes": 18432,
+          "gzipBytes": 7672,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/constellation/index.ts",
+            "packages/hologpu/src/effects/constellation.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-CWhiSpfG.png",
+          "bytes": 39651,
+          "gzipBytes": 39590
+        }
+      ]
+    },
+    {
+      "id": "depth-parallax",
+      "publicEntry": "@mk7s/hologpu/effects/depth-parallax",
+      "source": "packages/hologpu/src/effects/depth-parallax.ts",
+      "jsBytes": 20706,
+      "jsGzipBytes": 8341,
+      "assetBytes": 22084,
+      "assetGzipBytes": 17967,
+      "chunks": [
+        {
+          "name": "assets/depth-parallax-DRK8vfLL.js",
+          "bytes": 20706,
+          "gzipBytes": 8341,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/depth-parallax/index.ts",
+            "packages/hologpu/src/effects/depth-parallax.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BEKVsfRq.png",
+          "bytes": 22084,
+          "gzipBytes": 17967
+        }
+      ]
+    },
+    {
+      "id": "displace",
+      "publicEntry": "@mk7s/hologpu/effects/displace",
+      "source": "packages/hologpu/src/effects/displace.ts",
+      "jsBytes": 18560,
+      "jsGzipBytes": 7682,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/displace-BCE9TmMa.js",
+          "bytes": 18560,
+          "gzipBytes": 7682,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/displace/index.ts",
+            "packages/hologpu/src/effects/displace.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "dither",
+      "publicEntry": "@mk7s/hologpu/effects/dither",
+      "source": "packages/hologpu/src/effects/dither.ts",
+      "jsBytes": 20416,
+      "jsGzipBytes": 8433,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/dither-ZeO9k088.js",
+          "bytes": 20416,
+          "gzipBytes": 8433,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_filters/blue-noise.ts",
+            "packages/effects/src/dither/index.ts",
+            "packages/hologpu/src/effects/dither.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "dot-matrix-field",
+      "publicEntry": "@mk7s/hologpu/effects/dot-matrix-field",
+      "source": "packages/hologpu/src/effects/dot-matrix-field.ts",
+      "jsBytes": 20013,
+      "jsGzipBytes": 8039,
+      "assetBytes": 14033,
+      "assetGzipBytes": 7317,
+      "chunks": [
+        {
+          "name": "assets/dot-matrix-field-Di3-vxjJ.js",
+          "bytes": 20013,
+          "gzipBytes": 8039,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/sdf.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/dot-matrix-field/index.ts",
+            "packages/hologpu/src/effects/dot-matrix-field.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-4DDhr_Xk.png",
+          "bytes": 14033,
+          "gzipBytes": 7317
+        }
+      ]
+    },
+    {
+      "id": "edges",
+      "publicEntry": "@mk7s/hologpu/effects/edges",
+      "source": "packages/hologpu/src/effects/edges.ts",
+      "jsBytes": 18725,
+      "jsGzipBytes": 7784,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/edges-Br71THEP.js",
+          "bytes": 18725,
+          "gzipBytes": 7784,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/edges/index.ts",
+            "packages/hologpu/src/effects/edges.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "emitters",
+      "publicEntry": "@mk7s/hologpu/effects/emitters",
+      "source": "packages/hologpu/src/effects/emitters.ts",
+      "jsBytes": 37709,
+      "jsGzipBytes": 12632,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/emitters-CXxhlCnO.js",
+          "bytes": 37709,
+          "gzipBytes": 12632,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_particles/basic.ts",
+            "packages/effects/src/emitters/index.ts",
+            "packages/hologpu/src/effects/emitters.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "falling-sand",
+      "publicEntry": "@mk7s/hologpu/effects/falling-sand",
+      "source": "packages/hologpu/src/effects/falling-sand.ts",
+      "jsBytes": 25668,
+      "jsGzipBytes": 9877,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/falling-sand-DCG3xEUm.js",
+          "bytes": 25668,
+          "gzipBytes": 9877,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/falling-sand/index.ts",
+            "packages/hologpu/src/effects/falling-sand.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "flow-particles",
+      "publicEntry": "@mk7s/hologpu/effects/flow-particles",
+      "source": "packages/hologpu/src/effects/flow-particles.ts",
+      "jsBytes": 31451,
+      "jsGzipBytes": 11220,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/flow-particles-D8aXaC1u.js",
+          "bytes": 31451,
+          "gzipBytes": 11220,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_particles/basic.ts",
+            "packages/effects/src/flow-particles/index.ts",
+            "packages/hologpu/src/effects/flow-particles.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "fluid",
+      "publicEntry": "@mk7s/hologpu/effects/fluid",
+      "source": "packages/hologpu/src/effects/fluid.ts",
+      "jsBytes": 40874,
+      "jsGzipBytes": 14269,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/fluid-BD7T9YbG.js",
+          "bytes": 40874,
+          "gzipBytes": 14269,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_fluid/shaders.ts",
+            "packages/effects/src/_fluid/index.ts",
+            "packages/effects/src/_fluid/params.ts",
+            "packages/effects/src/fluid/index.ts",
+            "packages/hologpu/src/effects/fluid.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "fluid-obstacles",
+      "publicEntry": "@mk7s/hologpu/effects/fluid-obstacles",
+      "source": "packages/hologpu/src/effects/fluid-obstacles.ts",
+      "jsBytes": 41025,
+      "jsGzipBytes": 14301,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/fluid-obstacles-Bg4x12r_.js",
+          "bytes": 41025,
+          "gzipBytes": 14301,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_fluid/shaders.ts",
+            "packages/effects/src/_fluid/index.ts",
+            "packages/effects/src/_fluid/params.ts",
+            "packages/effects/src/fluid-obstacles/index.ts",
+            "packages/hologpu/src/effects/fluid-obstacles.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "fractal",
+      "publicEntry": "@mk7s/hologpu/effects/fractal",
+      "source": "packages/hologpu/src/effects/fractal.ts",
+      "jsBytes": 18051,
+      "jsGzipBytes": 7488,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/fractal-8IsuwTnc.js",
+          "bytes": 18051,
+          "gzipBytes": 7488,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/fractal/index.ts",
+            "packages/hologpu/src/effects/fractal.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "glass",
+      "publicEntry": "@mk7s/hologpu/effects/glass",
+      "source": "packages/hologpu/src/effects/glass.ts",
+      "jsBytes": 23440,
+      "jsGzipBytes": 9178,
+      "assetBytes": 124416,
+      "assetGzipBytes": 123691,
+      "chunks": [
+        {
+          "name": "assets/glass-BEl8Kp2u.js",
+          "bytes": 23440,
+          "gzipBytes": 9178,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/geometry.ts",
+            "packages/effects/src/_geometry/common.ts",
+            "packages/effects/src/glass/index.ts",
+            "packages/hologpu/src/effects/glass.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-CXG7APfx.png",
+          "bytes": 124416,
+          "gzipBytes": 123691
+        }
+      ]
+    },
+    {
+      "id": "gradient-oklch",
+      "publicEntry": "@mk7s/hologpu/effects/gradient-oklch",
+      "source": "packages/hologpu/src/effects/gradient-oklch.ts",
+      "jsBytes": 16140,
+      "jsGzipBytes": 6740,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/gradient-oklch-BcbwHZTT.js",
+          "bytes": 16140,
+          "gzipBytes": 6740,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/gradient-oklch/index.ts",
+            "packages/hologpu/src/effects/gradient-oklch.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "grain-overlay",
+      "publicEntry": "@mk7s/hologpu/effects/grain-overlay",
+      "source": "packages/hologpu/src/effects/grain-overlay.ts",
+      "jsBytes": 17322,
+      "jsGzipBytes": 7233,
+      "assetBytes": 274029,
+      "assetGzipBytes": 268199,
+      "chunks": [
+        {
+          "name": "assets/grain-overlay-Dsn-iiyk.js",
+          "bytes": 17322,
+          "gzipBytes": 7233,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/grain-overlay/index.ts",
+            "packages/hologpu/src/effects/grain-overlay.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/noise-tile-ceMgAvWJ.png",
+          "bytes": 4628,
+          "gzipBytes": 4648
+        },
+        {
+          "name": "assets/poster-B3A0MhhA.png",
+          "bytes": 269401,
+          "gzipBytes": 263551
+        }
+      ]
+    },
+    {
+      "id": "grid-horizon",
+      "publicEntry": "@mk7s/hologpu/effects/grid-horizon",
+      "source": "packages/hologpu/src/effects/grid-horizon.ts",
+      "jsBytes": 16855,
+      "jsGzipBytes": 7242,
+      "assetBytes": 40355,
+      "assetGzipBytes": 38564,
+      "chunks": [
+        {
+          "name": "assets/grid-horizon-BnLJzS1t.js",
+          "bytes": 16855,
+          "gzipBytes": 7242,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/grid-horizon/index.ts",
+            "packages/hologpu/src/effects/grid-horizon.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BuRo_5Gd.png",
+          "bytes": 40355,
+          "gzipBytes": 38564
+        }
+      ]
+    },
+    {
+      "id": "halftone-ascii",
+      "publicEntry": "@mk7s/hologpu/effects/halftone-ascii",
+      "source": "packages/hologpu/src/effects/halftone-ascii.ts",
+      "jsBytes": 20071,
+      "jsGzipBytes": 8207,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/halftone-ascii-D1oeCNzt.js",
+          "bytes": 20071,
+          "gzipBytes": 8207,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/halftone-ascii/index.ts",
+            "packages/hologpu/src/effects/halftone-ascii.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "heading-reveal",
+      "publicEntry": "@mk7s/hologpu/effects/heading-reveal",
+      "source": "packages/hologpu/src/effects/heading-reveal.ts",
+      "jsBytes": 19567,
+      "jsGzipBytes": 7986,
+      "assetBytes": 6651,
+      "assetGzipBytes": 4214,
+      "chunks": [
+        {
+          "name": "assets/heading-reveal-zqTy3-3X.js",
+          "bytes": 19567,
+          "gzipBytes": 7986,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_typography/common.ts",
+            "packages/effects/src/heading-reveal/index.ts",
+            "packages/hologpu/src/effects/heading-reveal.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-C0Bua_cR.png",
+          "bytes": 6651,
+          "gzipBytes": 4214
+        }
+      ]
+    },
+    {
+      "id": "hover-lift-shadow",
+      "publicEntry": "@mk7s/hologpu/effects/hover-lift-shadow",
+      "source": "packages/hologpu/src/effects/hover-lift-shadow.ts",
+      "jsBytes": 17553,
+      "jsGzipBytes": 7290,
+      "assetBytes": 9342,
+      "assetGzipBytes": 8518,
+      "chunks": [
+        {
+          "name": "assets/hover-lift-shadow-BSpNtw4I.js",
+          "bytes": 17553,
+          "gzipBytes": 7290,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/card-geometry.ts",
+            "packages/effects/src/hover-lift-shadow/index.ts",
+            "packages/hologpu/src/effects/hover-lift-shadow.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BDnYqwiD.png",
+          "bytes": 9342,
+          "gzipBytes": 8518
+        }
+      ]
+    },
+    {
+      "id": "image-hover",
+      "publicEntry": "@mk7s/hologpu/effects/image-hover",
+      "source": "packages/hologpu/src/effects/image-hover.ts",
+      "jsBytes": 18803,
+      "jsGzipBytes": 7676,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/image-hover-Cpqbnris.js",
+          "bytes": 18803,
+          "gzipBytes": 7676,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/image-hover/index.ts",
+            "packages/hologpu/src/effects/image-hover.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "ink",
+      "publicEntry": "@mk7s/hologpu/effects/ink",
+      "source": "packages/hologpu/src/effects/ink.ts",
+      "jsBytes": 41850,
+      "jsGzipBytes": 14563,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/ink-BCgXRZFS.js",
+          "bytes": 41850,
+          "gzipBytes": 14563,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_fluid/shaders.ts",
+            "packages/effects/src/_fluid/index.ts",
+            "packages/effects/src/_fluid/params.ts",
+            "packages/effects/src/ink/index.ts",
+            "packages/hologpu/src/effects/ink.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "instances",
+      "publicEntry": "@mk7s/hologpu/effects/instances",
+      "source": "packages/hologpu/src/effects/instances.ts",
+      "jsBytes": 23991,
+      "jsGzipBytes": 9587,
+      "assetBytes": 169541,
+      "assetGzipBytes": 168143,
+      "chunks": [
+        {
+          "name": "assets/instances-jPM4MmK3.js",
+          "bytes": 23991,
+          "gzipBytes": 9587,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/geometry.ts",
+            "packages/effects/src/_geometry/common.ts",
+            "packages/effects/src/instances/index.ts",
+            "packages/hologpu/src/effects/instances.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-CHIAqEKg.png",
+          "bytes": 169541,
+          "gzipBytes": 168143
+        }
+      ]
+    },
+    {
+      "id": "jump-flood",
+      "publicEntry": "@mk7s/hologpu/effects/jump-flood",
+      "source": "packages/hologpu/src/effects/jump-flood.ts",
+      "jsBytes": 31767,
+      "jsGzipBytes": 11122,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/jump-flood-B8J-DfGP.js",
+          "bytes": 31767,
+          "gzipBytes": 11122,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/distance-fields.ts",
+            "packages/effects/src/_lighting/params.ts",
+            "packages/effects/src/_lighting/program.ts",
+            "packages/effects/src/jump-flood/index.ts",
+            "packages/hologpu/src/effects/jump-flood.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "lattice-boltzmann",
+      "publicEntry": "@mk7s/hologpu/effects/lattice-boltzmann",
+      "source": "packages/hologpu/src/effects/lattice-boltzmann.ts",
+      "jsBytes": 22009,
+      "jsGzipBytes": 8692,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/lattice-boltzmann-DmWKczXU.js",
+          "bytes": 22009,
+          "gzipBytes": 8692,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/lattice-boltzmann/index.ts",
+            "packages/hologpu/src/effects/lattice-boltzmann.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "lenia",
+      "publicEntry": "@mk7s/hologpu/effects/lenia",
+      "source": "packages/hologpu/src/effects/lenia.ts",
+      "jsBytes": 24121,
+      "jsGzipBytes": 9357,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/lenia-D-UtbkPs.js",
+          "bytes": 24121,
+          "gzipBytes": 9357,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/lenia/index.ts",
+            "packages/hologpu/src/effects/lenia.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "lens",
+      "publicEntry": "@mk7s/hologpu/effects/lens",
+      "source": "packages/hologpu/src/effects/lens.ts",
+      "jsBytes": 17997,
+      "jsGzipBytes": 7541,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/lens-YpMK_oxD.js",
+          "bytes": 17997,
+          "gzipBytes": 7541,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/lens/index.ts",
+            "packages/hologpu/src/effects/lens.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "life",
+      "publicEntry": "@mk7s/hologpu/effects/life",
+      "source": "packages/hologpu/src/effects/life.ts",
+      "jsBytes": 24275,
+      "jsGzipBytes": 9395,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/life-qRRejJi3.js",
+          "bytes": 24275,
+          "gzipBytes": 9395,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/life/index.ts",
+            "packages/hologpu/src/effects/life.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "light-sweep",
+      "publicEntry": "@mk7s/hologpu/effects/light-sweep",
+      "source": "packages/hologpu/src/effects/light-sweep.ts",
+      "jsBytes": 18525,
+      "jsGzipBytes": 7608,
+      "assetBytes": 6651,
+      "assetGzipBytes": 4214,
+      "chunks": [
+        {
+          "name": "assets/light-sweep-C0lQRybD.js",
+          "bytes": 18525,
+          "gzipBytes": 7608,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/light-sweep/index.ts",
+            "packages/hologpu/src/effects/light-sweep.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-C0Bua_cR.png",
+          "bytes": 6651,
+          "gzipBytes": 4214
+        }
+      ]
+    },
+    {
+      "id": "masked-composite",
+      "publicEntry": "@mk7s/hologpu/effects/masked-composite",
+      "source": "packages/hologpu/src/effects/masked-composite.ts",
+      "jsBytes": 19258,
+      "jsGzipBytes": 7860,
+      "assetBytes": 22084,
+      "assetGzipBytes": 17967,
+      "chunks": [
+        {
+          "name": "assets/masked-composite-BOj9mR8P.js",
+          "bytes": 19258,
+          "gzipBytes": 7860,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/masked-composite/index.ts",
+            "packages/hologpu/src/effects/masked-composite.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BEKVsfRq.png",
+          "bytes": 22084,
+          "gzipBytes": 17967
+        }
+      ]
+    },
+    {
+      "id": "material-ball",
+      "publicEntry": "@mk7s/hologpu/effects/material-ball",
+      "source": "packages/hologpu/src/effects/material-ball.ts",
+      "jsBytes": 30305,
+      "jsGzipBytes": 11448,
+      "assetBytes": 46222,
+      "assetGzipBytes": 44246,
+      "chunks": [
+        {
+          "name": "assets/material-ball-DIiJwgRT.js",
+          "bytes": 30305,
+          "gzipBytes": 11448,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/primitives/mipgen.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/geometry.ts",
+            "packages/core/src/environment.ts",
+            "packages/effects/src/_geometry/common.ts",
+            "packages/effects/src/material-ball/index.ts",
+            "packages/hologpu/src/effects/material-ball.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-UPmdEtId.png",
+          "bytes": 46222,
+          "gzipBytes": 44246
+        }
+      ]
+    },
+    {
+      "id": "mipgen",
+      "publicEntry": "@mk7s/hologpu/effects/mipgen",
+      "source": "packages/hologpu/src/effects/mipgen.ts",
+      "jsBytes": 21360,
+      "jsGzipBytes": 8325,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/mipgen-Bh4AuL6p.js",
+          "bytes": 21360,
+          "gzipBytes": 8325,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/primitives/mipgen.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/mipgen/index.ts",
+            "packages/hologpu/src/effects/mipgen.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "morph-particles",
+      "publicEntry": "@mk7s/hologpu/effects/morph-particles",
+      "source": "packages/hologpu/src/effects/morph-particles.ts",
+      "jsBytes": 36705,
+      "jsGzipBytes": 12957,
+      "assetBytes": 19935,
+      "assetGzipBytes": 16997,
+      "chunks": [
+        {
+          "name": "assets/morph-particles-BXV7D3ww.js",
+          "bytes": 36705,
+          "gzipBytes": 12957,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_particles/basic.ts",
+            "packages/effects/src/morph-particles/targets.ts",
+            "packages/effects/src/morph-particles/index.ts",
+            "packages/hologpu/src/effects/morph-particles.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-assemble-and-hold-sAgGyRih.png",
+          "bytes": 19935,
+          "gzipBytes": 16997
+        }
+      ]
+    },
+    {
+      "id": "mpm",
+      "publicEntry": "@mk7s/hologpu/effects/mpm",
+      "source": "packages/hologpu/src/effects/mpm.ts",
+      "jsBytes": 26140,
+      "jsGzipBytes": 9957,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/mpm-DiQQXRdD.js",
+          "bytes": 26140,
+          "gzipBytes": 9957,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/mpm/index.ts",
+            "packages/hologpu/src/effects/mpm.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "n-body",
+      "publicEntry": "@mk7s/hologpu/effects/n-body",
+      "source": "packages/hologpu/src/effects/n-body.ts",
+      "jsBytes": 48725,
+      "jsGzipBytes": 15450,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/n-body-BFcDxMNA.js",
+          "bytes": 48725,
+          "gzipBytes": 15450,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_neighbors/params.ts",
+            "packages/effects/src/_particles/render.ts",
+            "packages/effects/src/_neighbors/shaders.ts",
+            "packages/effects/src/_neighbors/program.ts",
+            "packages/effects/src/n-body/index.ts",
+            "packages/hologpu/src/effects/n-body.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "noise-lab",
+      "publicEntry": "@mk7s/hologpu/effects/noise-lab",
+      "source": "packages/hologpu/src/effects/noise-lab.ts",
+      "jsBytes": 18092,
+      "jsGzipBytes": 7375,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/noise-lab-Cxjo57Zt.js",
+          "bytes": 18092,
+          "gzipBytes": 7375,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/noise-lab/index.ts",
+            "packages/hologpu/src/effects/noise-lab.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "panel-refraction",
+      "publicEntry": "@mk7s/hologpu/effects/panel-refraction",
+      "source": "packages/hologpu/src/effects/panel-refraction.ts",
+      "jsBytes": 21833,
+      "jsGzipBytes": 8730,
+      "assetBytes": 32897,
+      "assetGzipBytes": 30912,
+      "chunks": [
+        {
+          "name": "assets/panel-refraction-BK6-KAAt.js",
+          "bytes": 21833,
+          "gzipBytes": 8730,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/card-geometry.ts",
+            "packages/effects/src/panel-refraction/index.ts",
+            "packages/hologpu/src/effects/panel-refraction.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-zBNYr-LZ.png",
+          "bytes": 32897,
+          "gzipBytes": 30912
+        }
+      ]
+    },
+    {
+      "id": "particle-drift",
+      "publicEntry": "@mk7s/hologpu/effects/particle-drift",
+      "source": "packages/hologpu/src/effects/particle-drift.ts",
+      "jsBytes": 19458,
+      "jsGzipBytes": 7844,
+      "assetBytes": 36270,
+      "assetGzipBytes": 35839,
+      "chunks": [
+        {
+          "name": "assets/particle-drift-C78v3Aoq.js",
+          "bytes": 19458,
+          "gzipBytes": 7844,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/particle-drift/index.ts",
+            "packages/hologpu/src/effects/particle-drift.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-oqjcpr5z.png",
+          "bytes": 36270,
+          "gzipBytes": 35839
+        }
+      ]
+    },
+    {
+      "id": "path-tracer",
+      "publicEntry": "@mk7s/hologpu/effects/path-tracer",
+      "source": "packages/hologpu/src/effects/path-tracer.ts",
+      "jsBytes": 23444,
+      "jsGzipBytes": 9415,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/path-tracer-B1C8SEc2.js",
+          "bytes": 23444,
+          "gzipBytes": 9415,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/_stretch/bvh.ts",
+            "packages/effects/src/path-tracer/index.ts",
+            "packages/hologpu/src/effects/path-tracer.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "pbf-fluid",
+      "publicEntry": "@mk7s/hologpu/effects/pbf-fluid",
+      "source": "packages/hologpu/src/effects/pbf-fluid.ts",
+      "jsBytes": 41987,
+      "jsGzipBytes": 13490,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/pbf-fluid-QmlMAy1i.js",
+          "bytes": 41987,
+          "gzipBytes": 13490,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/pbf-fluid/index.ts",
+            "packages/hologpu/src/effects/pbf-fluid.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "physarum",
+      "publicEntry": "@mk7s/hologpu/effects/physarum",
+      "source": "packages/hologpu/src/effects/physarum.ts",
+      "jsBytes": 25520,
+      "jsGzipBytes": 9444,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/physarum-BoXdv_lc.js",
+          "bytes": 25520,
+          "gzipBytes": 9444,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/physarum/index.ts",
+            "packages/hologpu/src/effects/physarum.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "pointer-map",
+      "publicEntry": "@mk7s/hologpu/effects/pointer-map",
+      "source": "packages/hologpu/src/effects/pointer-map.ts",
+      "jsBytes": 15413,
+      "jsGzipBytes": 6596,
+      "assetBytes": 6664,
+      "assetGzipBytes": 4239,
+      "chunks": [
+        {
+          "name": "assets/pointer-map-Dkszvif9.js",
+          "bytes": 15413,
+          "gzipBytes": 6596,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/pointer-map/index.ts",
+            "packages/hologpu/src/effects/pointer-map.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BHKRqrFL.png",
+          "bytes": 6664,
+          "gzipBytes": 4239
+        }
+      ]
+    },
+    {
+      "id": "prefix-sum",
+      "publicEntry": "@mk7s/hologpu/effects/prefix-sum",
+      "source": "packages/hologpu/src/effects/prefix-sum.ts",
+      "jsBytes": 37060,
+      "jsGzipBytes": 11939,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/prefix-sum-ZUV8y1NR.js",
+          "bytes": 37060,
+          "gzipBytes": 11939,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/effects/src/prefix-sum/demo.ts",
+            "packages/effects/src/prefix-sum/index.ts",
+            "packages/hologpu/src/effects/prefix-sum.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "press-ripple",
+      "publicEntry": "@mk7s/hologpu/effects/press-ripple",
+      "source": "packages/hologpu/src/effects/press-ripple.ts",
+      "jsBytes": 16503,
+      "jsGzipBytes": 6997,
+      "assetBytes": 922,
+      "assetGzipBytes": 910,
+      "chunks": [
+        {
+          "name": "assets/press-ripple-Dr7Gvnoo.js",
+          "bytes": 16503,
+          "gzipBytes": 6997,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/press-ripple/index.ts",
+            "packages/hologpu/src/effects/press-ripple.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-DPK5F04H.png",
+          "bytes": 922,
+          "gzipBytes": 910
+        }
+      ]
+    },
+    {
+      "id": "product-sheen",
+      "publicEntry": "@mk7s/hologpu/effects/product-sheen",
+      "source": "packages/hologpu/src/effects/product-sheen.ts",
+      "jsBytes": 18489,
+      "jsGzipBytes": 7562,
+      "assetBytes": 6651,
+      "assetGzipBytes": 4214,
+      "chunks": [
+        {
+          "name": "assets/product-sheen-B71qn3nY.js",
+          "bytes": 18489,
+          "gzipBytes": 7562,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/product-sheen/index.ts",
+            "packages/hologpu/src/effects/product-sheen.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-C0Bua_cR.png",
+          "bytes": 6651,
+          "gzipBytes": 4214
+        }
+      ]
+    },
+    {
+      "id": "progress-line",
+      "publicEntry": "@mk7s/hologpu/effects/progress-line",
+      "source": "packages/hologpu/src/effects/progress-line.ts",
+      "jsBytes": 17342,
+      "jsGzipBytes": 7311,
+      "assetBytes": 2883,
+      "assetGzipBytes": 2050,
+      "chunks": [
+        {
+          "name": "assets/progress-line-BnA75P0T.js",
+          "bytes": 17342,
+          "gzipBytes": 7311,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/progress-line/index.ts",
+            "packages/hologpu/src/effects/progress-line.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BXCVOeoc.png",
+          "bytes": 2883,
+          "gzipBytes": 2050
+        }
+      ]
+    },
+    {
+      "id": "radiance-cascades",
+      "publicEntry": "@mk7s/hologpu/effects/radiance-cascades",
+      "source": "packages/hologpu/src/effects/radiance-cascades.ts",
+      "jsBytes": 32551,
+      "jsGzipBytes": 11411,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/radiance-cascades-C6moj_bY.js",
+          "bytes": 32551,
+          "gzipBytes": 11411,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/distance-fields.ts",
+            "packages/effects/src/_lighting/params.ts",
+            "packages/effects/src/_lighting/program.ts",
+            "packages/effects/src/radiance-cascades/index.ts",
+            "packages/hologpu/src/effects/radiance-cascades.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "raymarch",
+      "publicEntry": "@mk7s/hologpu/effects/raymarch",
+      "source": "packages/hologpu/src/effects/raymarch.ts",
+      "jsBytes": 17272,
+      "jsGzipBytes": 7221,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/raymarch-D7BO94VP.js",
+          "bytes": 17272,
+          "gzipBytes": 7221,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/sdf.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/raymarch/index.ts",
+            "packages/hologpu/src/effects/raymarch.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "reaction-diffusion",
+      "publicEntry": "@mk7s/hologpu/effects/reaction-diffusion",
+      "source": "packages/hologpu/src/effects/reaction-diffusion.ts",
+      "jsBytes": 24178,
+      "jsGzipBytes": 9333,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/reaction-diffusion-BGsII-_i.js",
+          "bytes": 24178,
+          "gzipBytes": 9333,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/reaction-diffusion/index.ts",
+            "packages/hologpu/src/effects/reaction-diffusion.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "scroll-scene",
+      "publicEntry": "@mk7s/hologpu/effects/scroll-scene",
+      "source": "packages/hologpu/src/effects/scroll-scene.ts",
+      "jsBytes": 15572,
+      "jsGzipBytes": 6696,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/scroll-scene-Czt5gHha.js",
+          "bytes": 15572,
+          "gzipBytes": 6696,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/scroll-scene/index.ts",
+            "packages/hologpu/src/effects/scroll-scene.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "sdf-2d",
+      "publicEntry": "@mk7s/hologpu/effects/sdf-2d",
+      "source": "packages/hologpu/src/effects/sdf-2d.ts",
+      "jsBytes": 16467,
+      "jsGzipBytes": 6835,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/sdf-2d-C9NXIW3x.js",
+          "bytes": 16467,
+          "gzipBytes": 6835,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/sdf.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/sdf-2d/index.ts",
+            "packages/hologpu/src/effects/sdf-2d.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "section-wipe",
+      "publicEntry": "@mk7s/hologpu/effects/section-wipe",
+      "source": "packages/hologpu/src/effects/section-wipe.ts",
+      "jsBytes": 22267,
+      "jsGzipBytes": 8972,
+      "assetBytes": 22084,
+      "assetGzipBytes": 17967,
+      "chunks": [
+        {
+          "name": "assets/section-wipe-9tRLWWHM.js",
+          "bytes": 22267,
+          "gzipBytes": 8972,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/section-wipe/index.ts",
+            "packages/hologpu/src/effects/section-wipe.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-BEKVsfRq.png",
+          "bytes": 22084,
+          "gzipBytes": 17967
+        }
+      ]
+    },
+    {
+      "id": "shadows-2d",
+      "publicEntry": "@mk7s/hologpu/effects/shadows-2d",
+      "source": "packages/hologpu/src/effects/shadows-2d.ts",
+      "jsBytes": 32220,
+      "jsGzipBytes": 11278,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/shadows-2d-BBai8LWD.js",
+          "bytes": 32220,
+          "gzipBytes": 11278,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/distance-fields.ts",
+            "packages/effects/src/_lighting/params.ts",
+            "packages/effects/src/_lighting/program.ts",
+            "packages/effects/src/shadows-2d/index.ts",
+            "packages/hologpu/src/effects/shadows-2d.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "smoke",
+      "publicEntry": "@mk7s/hologpu/effects/smoke",
+      "source": "packages/hologpu/src/effects/smoke.ts",
+      "jsBytes": 42188,
+      "jsGzipBytes": 14620,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/smoke-hQUBmxMT.js",
+          "bytes": 42188,
+          "gzipBytes": 14620,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_fluid/shaders.ts",
+            "packages/effects/src/_fluid/index.ts",
+            "packages/effects/src/_fluid/params.ts",
+            "packages/effects/src/smoke/index.ts",
+            "packages/hologpu/src/effects/smoke.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "sort",
+      "publicEntry": "@mk7s/hologpu/effects/sort",
+      "source": "packages/hologpu/src/effects/sort.ts",
+      "jsBytes": 37054,
+      "jsGzipBytes": 11933,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/sort-DZj9GBr8.js",
+          "bytes": 37054,
+          "gzipBytes": 11933,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/effects/src/prefix-sum/demo.ts",
+            "packages/effects/src/sort/index.ts",
+            "packages/hologpu/src/effects/sort.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "spatial-hash",
+      "publicEntry": "@mk7s/hologpu/effects/spatial-hash",
+      "source": "packages/hologpu/src/effects/spatial-hash.ts",
+      "jsBytes": 37050,
+      "jsGzipBytes": 11928,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/spatial-hash-srKj1WOd.js",
+          "bytes": 37050,
+          "gzipBytes": 11928,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/primitives/spatial-hash.ts",
+            "packages/effects/src/prefix-sum/demo.ts",
+            "packages/effects/src/spatial-hash/index.ts",
+            "packages/hologpu/src/effects/spatial-hash.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "splats",
+      "publicEntry": "@mk7s/hologpu/effects/splats",
+      "source": "packages/hologpu/src/effects/splats.ts",
+      "jsBytes": 34759,
+      "jsGzipBytes": 11701,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/splats-B_ZNQT3g.js",
+          "bytes": 34759,
+          "gzipBytes": 11701,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/primitives/common.ts",
+            "packages/core/src/primitives/prefix-sum.ts",
+            "packages/core/src/primitives/sort.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_stretch/common.ts",
+            "packages/effects/src/splats/index.ts",
+            "packages/hologpu/src/effects/splats.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "spotlight",
+      "publicEntry": "@mk7s/hologpu/effects/spotlight",
+      "source": "packages/hologpu/src/effects/spotlight.ts",
+      "jsBytes": 15864,
+      "jsGzipBytes": 6772,
+      "assetBytes": 49811,
+      "assetGzipBytes": 47004,
+      "chunks": [
+        {
+          "name": "assets/spotlight-sXIIEmku.js",
+          "bytes": 15864,
+          "gzipBytes": 6772,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/spotlight/index.ts",
+            "packages/hologpu/src/effects/spotlight.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-card-spotlight-2CRgsMN8.png",
+          "bytes": 49811,
+          "gzipBytes": 47004
+        }
+      ]
+    },
+    {
+      "id": "starfield",
+      "publicEntry": "@mk7s/hologpu/effects/starfield",
+      "source": "packages/hologpu/src/effects/starfield.ts",
+      "jsBytes": 22829,
+      "jsGzipBytes": 9123,
+      "assetBytes": 445993,
+      "assetGzipBytes": 446151,
+      "chunks": [
+        {
+          "name": "assets/starfield-NNMZ2BS2.js",
+          "bytes": 22829,
+          "gzipBytes": 9123,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/effects/src/starfield/index.ts",
+            "packages/hologpu/src/effects/starfield.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-B75vkBTy.png",
+          "bytes": 445993,
+          "gzipBytes": 446151
+        }
+      ]
+    },
+    {
+      "id": "terrain",
+      "publicEntry": "@mk7s/hologpu/effects/terrain",
+      "source": "packages/hologpu/src/effects/terrain.ts",
+      "jsBytes": 27223,
+      "jsGzipBytes": 10429,
+      "assetBytes": 222246,
+      "assetGzipBytes": 220918,
+      "chunks": [
+        {
+          "name": "assets/terrain-FBP_dXxo.js",
+          "bytes": 27223,
+          "gzipBytes": 10429,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/core/src/geometry.ts",
+            "packages/effects/src/_geometry/height-field.ts",
+            "packages/effects/src/_geometry/common.ts",
+            "packages/effects/src/terrain/index.ts",
+            "packages/hologpu/src/effects/terrain.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-9nTRdadm.png",
+          "bytes": 222246,
+          "gzipBytes": 220918
+        }
+      ]
+    },
+    {
+      "id": "text-dissolve",
+      "publicEntry": "@mk7s/hologpu/effects/text-dissolve",
+      "source": "packages/hologpu/src/effects/text-dissolve.ts",
+      "jsBytes": 16156,
+      "jsGzipBytes": 6879,
+      "assetBytes": 14346,
+      "assetGzipBytes": 11804,
+      "chunks": [
+        {
+          "name": "assets/text-dissolve-BEW_zPmw.js",
+          "bytes": 16156,
+          "gzipBytes": 6879,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/particles.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_dom/common.ts",
+            "packages/effects/src/text-dissolve/index.ts",
+            "packages/hologpu/src/effects/text-dissolve.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-assemble-and-hold-_h-Ee1cW.png",
+          "bytes": 14346,
+          "gzipBytes": 11804
+        }
+      ]
+    },
+    {
+      "id": "text-outline-glow",
+      "publicEntry": "@mk7s/hologpu/effects/text-outline-glow",
+      "source": "packages/hologpu/src/effects/text-outline-glow.ts",
+      "jsBytes": 26588,
+      "jsGzipBytes": 9944,
+      "assetBytes": 71554,
+      "assetGzipBytes": 69907,
+      "chunks": [
+        {
+          "name": "assets/text-outline-glow-DlMniLD1.js",
+          "bytes": 26588,
+          "gzipBytes": 9944,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/filters.ts",
+            "packages/core/src/distance-fields.ts",
+            "packages/effects/src/_typography/common.ts",
+            "packages/effects/src/text-outline-glow/index.ts",
+            "packages/hologpu/src/effects/text-outline-glow.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-CarexffA.png",
+          "bytes": 71554,
+          "gzipBytes": 69907
+        }
+      ]
+    },
+    {
+      "id": "text-shimmer",
+      "publicEntry": "@mk7s/hologpu/effects/text-shimmer",
+      "source": "packages/hologpu/src/effects/text-shimmer.ts",
+      "jsBytes": 20724,
+      "jsGzipBytes": 8298,
+      "assetBytes": 39361,
+      "assetGzipBytes": 37494,
+      "chunks": [
+        {
+          "name": "assets/text-shimmer-B9gViULw.js",
+          "bytes": 20724,
+          "gzipBytes": 8298,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/filters.ts",
+            "packages/effects/src/_filters/common.ts",
+            "packages/effects/src/_typography/common.ts",
+            "packages/effects/src/text-shimmer/index.ts",
+            "packages/hologpu/src/effects/text-shimmer.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-AaHq0Tr8.png",
+          "bytes": 39361,
+          "gzipBytes": 37494
+        }
+      ]
+    },
+    {
+      "id": "topographic-lines",
+      "publicEntry": "@mk7s/hologpu/effects/topographic-lines",
+      "source": "packages/hologpu/src/effects/topographic-lines.ts",
+      "jsBytes": 18877,
+      "jsGzipBytes": 7709,
+      "assetBytes": 24051,
+      "assetGzipBytes": 23416,
+      "chunks": [
+        {
+          "name": "assets/topographic-lines-CMHigRV4.js",
+          "bytes": 18877,
+          "gzipBytes": 7709,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/noise.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/topographic-lines/index.ts",
+            "packages/hologpu/src/effects/topographic-lines.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-Dvj97H6j.png",
+          "bytes": 24051,
+          "gzipBytes": 23416
+        }
+      ]
+    },
+    {
+      "id": "truchet",
+      "publicEntry": "@mk7s/hologpu/effects/truchet",
+      "source": "packages/hologpu/src/effects/truchet.ts",
+      "jsBytes": 19040,
+      "jsGzipBytes": 7913,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/truchet-Bkfzoch3.js",
+          "bytes": 19040,
+          "gzipBytes": 7913,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/truchet/index.ts",
+            "packages/hologpu/src/effects/truchet.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "voronoi",
+      "publicEntry": "@mk7s/hologpu/effects/voronoi",
+      "source": "packages/hologpu/src/effects/voronoi.ts",
+      "jsBytes": 15989,
+      "jsGzipBytes": 6785,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/voronoi-0CmXEMcK.js",
+          "bytes": 15989,
+          "gzipBytes": 6785,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/voronoi/index.ts",
+            "packages/hologpu/src/effects/voronoi.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "wave",
+      "publicEntry": "@mk7s/hologpu/effects/wave",
+      "source": "packages/hologpu/src/effects/wave.ts",
+      "jsBytes": 24739,
+      "jsGzipBytes": 9472,
+      "assetBytes": 0,
+      "assetGzipBytes": 0,
+      "chunks": [
+        {
+          "name": "assets/wave-DBAsK6gM.js",
+          "bytes": 24739,
+          "gzipBytes": 9472,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/hash.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/effect.ts",
+            "packages/core/src/compute.ts",
+            "packages/core/src/feedback.ts",
+            "packages/effects/src/_feedback/grid.ts",
+            "packages/effects/src/wave/index.ts",
+            "packages/hologpu/src/effects/wave.ts"
+          ]
+        }
+      ],
+      "assets": []
+    },
+    {
+      "id": "wave-divider",
+      "publicEntry": "@mk7s/hologpu/effects/wave-divider",
+      "source": "packages/hologpu/src/effects/wave-divider.ts",
+      "jsBytes": 17931,
+      "jsGzipBytes": 7523,
+      "assetBytes": 6574,
+      "assetGzipBytes": 6086,
+      "chunks": [
+        {
+          "name": "assets/wave-divider-CvRZUCvS.js",
+          "bytes": 17931,
+          "gzipBytes": 7523,
+          "modules": [
+            "packages/core/src/params.ts",
+            "packages/core/src/wgsl/composer.ts",
+            "packages/core/src/debug.ts",
+            "packages/core/src/wgsl/colour.ts",
+            "packages/core/src/wgsl/sdf.ts",
+            "packages/core/src/wgsl/standard.ts",
+            "packages/core/src/passes.ts",
+            "packages/core/src/effect.ts",
+            "packages/effects/src/wave-divider/index.ts",
+            "packages/hologpu/src/effects/wave-divider.ts"
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "name": "assets/poster-CVHQKKgf.png",
+          "bytes": 6574,
+          "gzipBytes": 6086
+        }
+      ]
+    }
+  ]
+}

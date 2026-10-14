@@ -47,6 +47,10 @@ export class DeviceSession {
       () => this.submit(),
       undefined,
       () => this.device.queue.onSubmittedWorkDone(),
+      {
+        pipelinedSubmissionLimit:
+          typeof navigator !== 'undefined' && /Firefox\/\d/.test(navigator.userAgent) ? 8 : 1,
+      },
     );
     this.onState((event) => {
       if (event === 'lost') this.scheduler.resetSubmission();

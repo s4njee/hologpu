@@ -6,6 +6,15 @@ import { chunk, compose } from './wgsl/composer.ts';
 
 export type ImageInput = { kind: 'image'; source: HTMLImageElement | ImageBitmap };
 export type CanvasInput = { kind: 'canvas'; source: HTMLCanvasElement | OffscreenCanvas };
+/** Scalar linear coverage; a string is SVG path data rasterized at width/height. */
+export type MaskInput = {
+  kind: 'mask';
+  source: HTMLImageElement | ImageBitmap | HTMLCanvasElement | OffscreenCanvas | string;
+  width?: number;
+  height?: number;
+  channel?: 'alpha' | 'red' | 'luminance';
+  fillRule?: CanvasFillRule;
+};
 export type VideoInput = { kind: 'video'; source: HTMLVideoElement };
 export type TextInput = {
   kind: 'text';
@@ -30,7 +39,14 @@ export type TextureInput = {
 };
 export type DataInput = { kind: 'data'; data: Float32Array; width: number; height: number };
 export type InputSource =
-  ImageInput | CanvasInput | VideoInput | TextInput | AudioInput | TextureInput | DataInput;
+  | ImageInput
+  | CanvasInput
+  | MaskInput
+  | VideoInput
+  | TextInput
+  | AudioInput
+  | TextureInput
+  | DataInput;
 /** Typed descriptor factory. Media creation and browser permission prompts stay with the caller. */
 export function inputSource<T extends InputSource>(source: T): T {
   return source;
@@ -40,7 +56,9 @@ export function isInputSource(value: unknown): value is InputSource {
     !!value &&
     typeof value === 'object' &&
     'kind' in value &&
-    ['image', 'canvas', 'video', 'text', 'audio', 'texture', 'data'].includes(String(value.kind))
+    ['image', 'canvas', 'mask', 'video', 'text', 'audio', 'texture', 'data'].includes(
+      String(value.kind),
+    )
   );
 }
 /** Convenience conversion for existing DOM-image callers; descriptors disambiguate text/audio/textures. */
@@ -85,6 +103,8 @@ interface Entry {
   uniform: GPUBuffer;
   dirty: boolean;
   ready: boolean;
+  version: number;
+  lastTexture?: TextureTap;
   cancelVideo?: () => void;
   cancelAudio?: () => void;
   scratch?: OffscreenCanvas;
@@ -97,6 +117,7 @@ fn normalized(c:vec4f)->vec4f {var rgb=c.rgb;let a=clamp(c.a,0.0,1.0);if(options
 
 /** Per-field, owned linear-premultiplied mip chains. Caller media, tracks and borrowed textures are never disposed. */
 export class InputManager {
+  #contentVersion = 0;
   readonly #entries = new Map<string, Entry>();
   readonly #versions = new Map<string, number>();
   #normal?: ComputePass;
@@ -207,8 +228,9 @@ export class InputManager {
         this.#externalSampler = externalSampler;
         this.#softwareMedia = softwareMedia;
         this.#videoCanvasMedia =
-          /AppleWebKit/.test(navigator.userAgent) &&
-          !/Chrome|Chromium|Edg/.test(navigator.userAgent);
+          /Firefox/.test(navigator.userAgent) ||
+          (/AppleWebKit/.test(navigator.userAgent) &&
+            !/Chrome|Chromium|Edg/.test(navigator.userAgent));
       } catch (error) {
         normal?.dispose();
         external?.dispose();
@@ -239,6 +261,33 @@ export class InputManager {
       if (source.kind === 'image') {
         if (source.source instanceof HTMLImageElement) await source.source.decode();
         owned = await createImageBitmap(source.source);
+      }
+      if (source.kind === 'mask') {
+        if (!['alpha', 'red', 'luminance'].includes(source.channel ?? 'alpha'))
+          throw new TypeError('Mask channel must be alpha, red or luminance');
+        if (!['nonzero', 'evenodd'].includes(source.fillRule ?? 'nonzero'))
+          throw new TypeError('Mask fill rule must be nonzero or evenodd');
+        if (typeof source.source === 'string') {
+          const width = source.width ?? 256,
+            height = source.height ?? 256;
+          inputMipCount(width, height);
+          if (Math.max(width, height) > this.session.device.limits.maxTextureDimension2D)
+            throw new RangeError('Mask exceeds maxTextureDimension2D');
+          const canvas = new OffscreenCanvas(width, height),
+            ctx = canvas.getContext('2d')!;
+          ctx.fillStyle = 'white';
+          ctx.fill(new Path2D(source.source), source.fillRule ?? 'nonzero');
+          owned = await createImageBitmap(canvas);
+        } else if (
+          source.source instanceof HTMLImageElement ||
+          source.source instanceof ImageBitmap
+        ) {
+          if (source.source instanceof HTMLImageElement) await source.source.decode();
+          owned = await createImageBitmap(source.source);
+        } else if (!(
+          source.source instanceof HTMLCanvasElement || source.source instanceof OffscreenCanvas
+        ))
+          throw new TypeError('Mask source must be an image, canvas or SVG path');
       }
       if (source.kind === 'data') {
         inputMipCount(source.width, source.height);
@@ -272,7 +321,7 @@ export class InputManager {
         owned?.close();
         return;
       }
-      await this.#initialize();
+      if (source.kind !== 'mask') await this.#initialize();
       if (
         this.#disposed ||
         epoch !== this.#epoch ||
@@ -291,10 +340,15 @@ export class InputManager {
         }),
         dirty: true,
         ready: false,
+        version: 0,
       };
       try {
         entry.image = owned;
-        if (owned) entry.source = { kind: 'image', source: owned };
+        if (owned)
+          entry.source =
+            source.kind === 'mask'
+              ? { ...source, source: owned }
+              : { kind: 'image', source: owned };
         if (source.kind === 'text') {
           const canvas = new OffscreenCanvas(source.width ?? 512, source.height ?? 256),
             ctx = canvas.getContext('2d')!;
@@ -311,27 +365,53 @@ export class InputManager {
         if (source.kind === 'video') {
           const video = source.source;
           let callback = 0,
-            alive = true;
-          const tick = () => {
-            if (!alive) return;
+            alive = true,
+            lastFrameAt = performance.now(),
+            lastBackupAt = -Infinity,
+            lastMediaTime = video.currentTime;
+          const hasFrameCallback = typeof video.requestVideoFrameCallback === 'function';
+          const invalidate = () => {
+            lastMediaTime = video.currentTime;
             entry.dirty = true;
             this.onChange();
-            if (typeof video.requestVideoFrameCallback === 'function')
-              callback = video.requestVideoFrameCallback(tick);
           };
-          if (typeof video.requestVideoFrameCallback === 'function') {
+          const tick = () => {
+            if (!alive) return;
+            lastFrameAt = performance.now();
+            invalidate();
             callback = video.requestVideoFrameCallback(tick);
-            entry.cancelVideo = () => {
-              alive = false;
+          };
+          // Hidden/non-presenting video can stop delivering frame callbacks while
+          // playback continues. Native media events provide a bounded backup,
+          // without polling currentTime or starting another callback chain.
+          const backup = () => {
+            const now = performance.now();
+            if (
+              !alive ||
+              video.readyState < 2 ||
+              video.currentTime === lastMediaTime ||
+              (hasFrameCallback && now - lastFrameAt <= 100) ||
+              now - lastBackupAt < 100
+            )
+              return;
+            lastBackupAt = now;
+            invalidate();
+          };
+          // A paused seek may emit its only media event before the backup's
+          // freshness window expires, so explicit seeks bypass the rate bound.
+          const seeked = () => {
+            if (alive && video.readyState >= 2 && video.currentTime !== lastMediaTime) invalidate();
+          };
+          video.addEventListener('timeupdate', backup);
+          video.addEventListener('seeked', seeked);
+          if (hasFrameCallback) callback = video.requestVideoFrameCallback(tick);
+          entry.cancelVideo = () => {
+            alive = false;
+            video.removeEventListener('timeupdate', backup);
+            video.removeEventListener('seeked', seeked);
+            if (hasFrameCallback && typeof video.cancelVideoFrameCallback === 'function')
               video.cancelVideoFrameCallback(callback);
-            };
-          } else {
-            video.addEventListener('timeupdate', tick);
-            entry.cancelVideo = () => {
-              alive = false;
-              video.removeEventListener('timeupdate', tick);
-            };
-          }
+          };
         }
         if (
           source.kind === 'audio' &&
@@ -416,8 +496,12 @@ export class InputManager {
       const n = s.analyser?.fftSize ?? Math.max(s.fft?.length ?? 0, s.waveform?.length ?? 0);
       return [Math.max(1, n), 2];
     }
-    const image = entry.image ?? (s.kind === 'canvas' ? s.source : undefined);
-    return image ? [image.width, image.height] : undefined;
+    const image =
+      entry.image ??
+      (s.kind === 'canvas' || (s.kind === 'mask' && typeof s.source !== 'string')
+        ? s.source
+        : undefined);
+    return image && typeof image !== 'string' ? [image.width, image.height] : undefined;
   }
   #resize(entry: Entry, width: number, height: number) {
     const levels = inputMipCount(width, height),
@@ -427,6 +511,19 @@ export class InputManager {
     if (entry.output?.width === width && entry.output.height === height) return;
     entry.output?.destroy();
     entry.upload?.destroy();
+    entry.upload = undefined;
+    if (entry.source.kind === 'mask') {
+      entry.output = d.createTexture({
+        label: 'hgpu-input-mask-linear',
+        size: [width, height],
+        format: 'r8unorm',
+        usage:
+          GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_SRC | GPUTextureUsage.COPY_DST,
+      });
+      entry.dirty = true;
+      entry.ready = false;
+      return;
+    }
     entry.output = d.createTexture({
       label: 'hgpu-input-linear',
       size: [width, height],
@@ -461,11 +558,12 @@ export class InputManager {
     return t
       ? {
           texture: t,
-          format: 'rgba16float',
+          format: t.format,
           width: t.width,
           height: t.height,
           kind: 'float',
           label: `input:${name}`,
+          version: entry!.version,
         }
       : undefined;
   }
@@ -494,8 +592,57 @@ export class InputManager {
         size = this.#size(entry);
       if (!size) continue;
       this.#resize(entry, ...size);
-      const dynamic = ['canvas', 'audio', 'texture'].includes(s.kind);
+      const tap = s.kind === 'texture' ? this.#tap(s) : undefined;
+      const previous = entry.lastTexture;
+      const textureChanged =
+        tap &&
+        (tap.version === undefined ||
+          tap.texture !== previous?.texture ||
+          tap.mipLevel !== previous?.mipLevel ||
+          tap.arrayLayer !== previous?.arrayLayer ||
+          tap.version !== previous?.version);
+      const dynamic =
+        ['canvas', 'audio'].includes(s.kind) ||
+        textureChanged ||
+        (s.kind === 'mask' &&
+          (s.source instanceof HTMLCanvasElement || s.source instanceof OffscreenCanvas));
       if (!entry.dirty && !dynamic) continue;
+      if (s.kind === 'mask') {
+        const scratch = (entry.scratch ??= new OffscreenCanvas(size[0], size[1]));
+        if (scratch.width !== size[0] || scratch.height !== size[1]) {
+          scratch.width = size[0];
+          scratch.height = size[1];
+        }
+        const context = scratch.getContext('2d')!;
+        context.clearRect(0, 0, ...size);
+        context.drawImage(entry.image ?? (s.source as CanvasImageSource), 0, 0, ...size);
+        const rgba = context.getImageData(0, 0, ...size).data;
+        const coverage = new Uint8Array(size[0] * size[1]);
+        for (let i = 0; i < coverage.length; i++) {
+          const offset = i * 4;
+          coverage[i] =
+            s.channel === 'red'
+              ? rgba[offset]!
+              : s.channel === 'luminance'
+                ? Math.round(
+                    (inputSRGBToLinear(rgba[offset]! / 255) * 0.2126 +
+                      inputSRGBToLinear(rgba[offset + 1]! / 255) * 0.7152 +
+                      inputSRGBToLinear(rgba[offset + 2]! / 255) * 0.0722) *
+                      rgba[offset + 3]!,
+                  )
+                : rgba[offset + 3]!;
+        }
+        d.queue.writeTexture(
+          { texture: entry.output! },
+          coverage,
+          { bytesPerRow: size[0], rowsPerImage: size[1] },
+          size,
+        );
+        entry.dirty = false;
+        entry.ready = true;
+        entry.version = ++this.#contentVersion;
+        continue;
+      }
       let resource: GPUBindingResource,
         srgb = 1,
         premultiplied = 0,
@@ -616,6 +763,8 @@ export class InputManager {
       this.#mips!.encode(encoder, entry.output!);
       entry.dirty = false;
       entry.ready = true;
+      entry.version = ++this.#contentVersion;
+      if (tap) entry.lastTexture = { ...tap };
     }
   }
   memory(): EffectMemory {
@@ -623,7 +772,11 @@ export class InputManager {
       bufferBytes = 0;
     for (const e of this.#entries.values()) {
       bufferBytes += 16;
-      if (e.output) textureBytes += inputTextureBytes(e.output.width, e.output.height);
+      if (e.output)
+        textureBytes +=
+          e.source.kind === 'mask'
+            ? e.output.width * e.output.height
+            : inputTextureBytes(e.output.width, e.output.height);
       if (e.upload)
         textureBytes +=
           e.upload.width * e.upload.height * (['audio', 'data'].includes(e.source.kind) ? 16 : 4);

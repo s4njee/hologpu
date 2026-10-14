@@ -66,6 +66,65 @@ const params = {
     group: 'Emitter',
     description: 'Exponential velocity drag per second.',
   },
+  burstInterval: {
+    type: 'f32',
+    default: 0,
+    min: 0,
+    max: 12,
+    step: 0.1,
+    group: 'Emitter',
+    description: 'Seconds between discrete fireworks; zero preserves continuous emission.',
+  },
+  burstSize: {
+    type: 'u32',
+    default: 1024,
+    min: 64,
+    max: 8192,
+    step: 64,
+    group: 'Emitter',
+    description: 'Particles born together in each discrete firework.',
+  },
+  bursts: {
+    type: 'u32',
+    default: 1,
+    min: 1,
+    max: 2,
+    step: 1,
+    group: 'Emitter',
+    description: 'Simultaneous discrete fireworks, each with its own origin and color.',
+  },
+  shape: {
+    type: 'enum',
+    default: 'round',
+    options: ['round', 'ring', 'willow', 'mixed'],
+    group: 'Emitter',
+    description: 'Round shells, thin rings, cascading willows, or a rotating mix.',
+  },
+  secondOrigin: {
+    type: 'vec2',
+    default: [0.45, 0.2],
+    min: -0.9,
+    max: 0.9,
+    step: 0.05,
+    group: 'Emitter',
+    description: 'Second simultaneous firework location in clip coordinates.',
+  },
+  palette: {
+    type: 'enum',
+    default: 'tint',
+    options: ['tint', 'primary', 'vivid'],
+    group: 'Palette',
+    description: 'Tint, RGB primaries, or seven vivid colors, stored per burst.',
+  },
+  wander: {
+    type: 'f32',
+    default: 1,
+    min: 0,
+    max: 1,
+    step: 0.05,
+    group: 'Emitter',
+    description: 'Explosion-center drift; zero anchors fireworks to the supplied origin.',
+  },
   origin: {
     type: 'vec2',
     default: [0, -0.45],
@@ -132,21 +191,45 @@ async function program(ctx: EffectContext<typeof params>): Promise<ParticleProgr
     spawnLayout = layout(['storage', 'read-only-storage', 'read-only-storage']),
     argsLayout = layout(['read-only-storage', 'storage']),
     drawLayout = layout(['read-only-storage', 'read-only-storage'], GPUShaderStage.VERTEX);
-  const seedCode = `fn birth(index:u32,sequence:u32)->Particle{let h=hash_u32(index+frame.seed*65537u+sequence*8191u);let angle=random(h)*6.2831853;let magnitude=params.speed*(.45+.55*random(hash_u32(h+1u)));var velocity=vec2f(cos(angle),sin(angle))*magnitude;var origin=params.origin;if(params.kind==1u){velocity=vec2f((random(h)-.5)*.45, .6+random(hash_u32(h+2u))*.4)*params.speed;}else{origin+=vec2f(sin(f32(sequence)*1.7)*.5,.3+cos(f32(sequence)*.8)*.15);}let life=params.lifetime*(.65+.35*random(hash_u32(h+3u)));return Particle(vec4f(origin,random(hash_u32(h+4u)),life),vec4f(velocity,life,0));}`;
+  // The spare velocity component packs color (low three bits) and birth shape.
+  // Retaining the shape lets willow physics survive later changes to the controls.
+  const seedCode = /* wgsl */ `
+fn birth(index: u32, sequence: u32, lane: u32) -> Particle {
+  let burst = sequence * select(1u, params.bursts, params.burstInterval > 0) + lane;
+  let h = hash_u32(index + frame.seed * 65537u + burst * 8191u);
+  let angle = random(h) * 6.2831853;
+  var magnitude = params.speed * (.45 + .55 * random(hash_u32(h + 1u)));
+  var shape = params.shape;
+  if (shape == 3u) { shape = burst % 3u; }
+  if (params.kind == 1u) { shape = 0u; }
+  if (shape == 1u) { magnitude = params.speed * (.82 + .035 * random(hash_u32(h + 1u))); }
+  var velocity = vec2f(cos(angle), sin(angle)) * magnitude;
+  var origin = select(params.origin, params.secondOrigin, lane == 1u);
+  if (params.kind == 1u) {
+    velocity = vec2f((random(h) - .5) * .45, .6 + random(hash_u32(h + 2u)) * .4) * params.speed;
+  } else {
+    if (shape == 2u) { velocity = vec2f(cos(angle) * .7, sin(angle) * .42 + .25) * magnitude; }
+    origin += params.wander * vec2f(sin(f32(sequence) * 1.7) * .5, .3 + cos(f32(sequence) * .8) * .15);
+    if (params.burstInterval > 0) { velocity.x *= frame.resolution.y / frame.resolution.x; }
+  }
+  let life = params.lifetime * (.65 + .35 * random(hash_u32(h + 3u))) * select(1.0, 1.08, shape == 2u);
+  let color = (burst + lane * 2u) % select(3u, 7u, params.palette == 2u);
+  return Particle(vec4f(origin, random(hash_u32(h + 4u)), life), vec4f(velocity, life, f32(color + shape * 8u)));
+}`;
   const stateDecl = `${particleStruct}@group(1) @binding(0) var<storage,read_write> particles:array<Particle>;@group(1) @binding(1) var<storage,read_write> dead:array<u32>;@group(1) @binding(2) var<storage,read_write> alive:array<u32>;`;
   const sources = {
     initialize: simulationSource(
       params,
-      `${stateDecl}${seedCode}@compute @workgroup_size(128) fn main(@builtin(global_invocation_id) id:vec3u){if(id.x>=arrayLength(&particles)){return;}var p=Particle(vec4f(0),vec4f(0));if(id.x<min(1024u,arrayLength(&particles)/4u)){p=birth(id.x,0u);p.position=vec4f(p.position.xy+p.velocity.xy*.35,p.position.zw);}particles[id.x]=p;dead[id.x]=select(1u,0u,p.position.w>0);alive[id.x]=1u-dead[id.x];}`,
+      `${stateDecl}${seedCode}@compute @workgroup_size(128) fn main(@builtin(global_invocation_id) id:vec3u){if(id.x>=arrayLength(&particles)){return;}var p=Particle(vec4f(0),vec4f(0));if(id.x<min(select(min(1024u,arrayLength(&particles)/4u),params.burstSize*params.bursts,params.burstInterval>0),arrayLength(&particles))){p=birth(id.x,0u,select(0u,id.x/params.burstSize,params.burstInterval>0));p.position=vec4f(p.position.xy+p.velocity.xy*.35,p.position.zw);}particles[id.x]=p;dead[id.x]=select(1u,0u,p.position.w>0);alive[id.x]=1u-dead[id.x];}`,
       [hash],
     ),
     integrate: simulationSource(
       params,
-      `${stateDecl}@compute @workgroup_size(128) fn main(@builtin(global_invocation_id) id:vec3u){if(id.x>=arrayLength(&particles)){return;}var p=particles[id.x];if(p.position.w>0){p.position.w=max(0.0,p.position.w-frame.delta);p.velocity=vec4f(p.velocity.xy*exp(-params.drag*frame.delta)-vec2f(0,params.gravity*frame.delta),p.velocity.zw);p.position=vec4f(p.position.xy+p.velocity.xy*frame.delta,p.position.zw);particles[id.x]=p;}dead[id.x]=select(1u,0u,p.position.w>0);alive[id.x]=1u-dead[id.x];}`,
+      `${stateDecl}@compute @workgroup_size(128) fn main(@builtin(global_invocation_id) id:vec3u){if(id.x>=arrayLength(&particles)){return;}var p=particles[id.x];if(p.position.w>0){p.position.w=max(0.0,p.position.w-frame.delta);p.velocity=vec4f(p.velocity.xy*exp(-params.drag*select(1.0,.55,u32(p.velocity.w)/8u==2u)*frame.delta)-vec2f(0,params.gravity*select(1.0,1.7,u32(p.velocity.w)/8u==2u)*frame.delta),p.velocity.zw);p.position=vec4f(p.position.xy+p.velocity.xy*frame.delta,p.position.zw);particles[id.x]=p;}dead[id.x]=select(1u,0u,p.position.w>0);alive[id.x]=1u-dead[id.x];}`,
     ),
     spawn: simulationSource(
       params,
-      `${particleStruct}@group(1) @binding(0) var<storage,read_write> particles:array<Particle>;@group(1) @binding(1) var<storage,read> freeList:array<u32>;@group(1) @binding(2) var<storage,read> freeCount:array<u32>;${seedCode}@compute @workgroup_size(128) fn main(@builtin(global_invocation_id) id:vec3u){let quota=u32(max(0.0,floor(frame.time*params.rate)-floor(max(0.0,frame.time-frame.delta)*params.rate)));if(id.x>=min(quota,freeCount[0])){return;}let index=freeList[id.x];particles[index]=birth(index,frame.index/30u);}`,
+      `${particleStruct}@group(1) @binding(0) var<storage,read_write> particles:array<Particle>;@group(1) @binding(1) var<storage,read> freeList:array<u32>;@group(1) @binding(2) var<storage,read> freeCount:array<u32>;${seedCode}@compute @workgroup_size(128) fn main(@builtin(global_invocation_id) id:vec3u){var quota=u32(max(0.0,floor(frame.time*params.rate)-floor(max(0.0,frame.time-frame.delta)*params.rate)));var sequence=frame.index/30u;if(params.burstInterval>0){sequence=u32(floor((frame.time+.0001)/params.burstInterval));let previous=u32(floor((max(0.0,frame.time-frame.delta)+.0001)/params.burstInterval));quota=select(0u,params.burstSize*params.bursts,sequence>previous);}if(id.x>=min(quota,freeCount[0])){return;}let index=freeList[id.x];particles[index]=birth(index,sequence,select(0u,id.x/params.burstSize,params.burstInterval>0));}`,
       [hash],
     ),
     flags: simulationSource(
@@ -161,7 +244,7 @@ async function program(ctx: EffectContext<typeof params>): Promise<ParticleProgr
   const shader = (quad: boolean) =>
     simulationSource(
       params,
-      `${particleStruct}@group(1) @binding(0) var<storage,read> particles:array<Particle>;@group(1) @binding(1) var<storage,read> activeIndices:array<u32>;struct Out{@builtin(position) position:vec4f,@location(0) local:vec2f,@location(1) color:vec3f};@vertex fn particleVertex(@builtin(vertex_index) vertex:u32,@builtin(instance_index) instance:u32)->Out{let p=particles[activeIndices[${quad ? 'instance' : 'vertex'}]];var local=vec2f(0);${quad ? 'let corners=array<vec2f,6>(vec2f(-1,-1),vec2f(1,-1),vec2f(-1,1),vec2f(-1,1),vec2f(1,-1),vec2f(1,1));local=corners[vertex];' : ''}var out:Out;out.position=vec4f(p.position.xy+local*params.size/frame.resolution,0,1);out.local=local;out.color=params.tint.rgb*.3*max(0.0,p.position.w/max(.001,p.velocity.z))*mix(.6,1.4,p.position.z)*min(1.0,10000.0/(.42*f32(arrayLength(&particles))));return out;}@fragment fn particleFragment(in:Out)->@location(0)vec4f{${quad ? 'if(dot(in.local,in.local)>1){discard;}' : ''}return vec4f(in.color,1);}`,
+      `${particleStruct}@group(1) @binding(0) var<storage,read> particles:array<Particle>;@group(1) @binding(1) var<storage,read> activeIndices:array<u32>;struct Out{@builtin(position) position:vec4f,@location(0) local:vec2f,@location(1) color:vec3f};@vertex fn particleVertex(@builtin(vertex_index) vertex:u32,@builtin(instance_index) instance:u32)->Out{let p=particles[activeIndices[${quad ? 'instance' : 'vertex'}]];var local=vec2f(0);${quad ? 'let corners=array<vec2f,6>(vec2f(-1,-1),vec2f(1,-1),vec2f(-1,1),vec2f(-1,1),vec2f(1,-1),vec2f(1,1));local=corners[vertex];' : ''}var out:Out;out.position=vec4f(p.position.xy+local*params.size/frame.resolution,0,1);out.local=local;var tint=params.tint.rgb;if(params.palette==1u){let colors=array<vec3f,3>(vec3f(1,.004,.008),vec3f(.006,1,.012),vec3f(.008,.035,1));tint=colors[(u32(p.velocity.w)%8u)%3u];}else if(params.palette==2u){let colors=array<vec3f,7>(vec3f(1,.004,.008),vec3f(.006,1,.012),vec3f(.008,.035,1),vec3f(1,.8,.004),vec3f(.004,.85,1),vec3f(1,.004,.65),vec3f(1,.18,.004));tint=colors[(u32(p.velocity.w)%8u)%7u];}out.color=tint*.3*max(0.0,p.position.w/max(.001,p.velocity.z))*mix(.6,1.4,p.position.z)*min(1.0,10000.0/(.42*f32(arrayLength(&particles))));return out;}@fragment fn particleFragment(in:Out)->@location(0)vec4f{${quad ? 'if(dot(in.local,in.local)>1){discard;}' : ''}return vec4f(in.color,1);}`,
     );
   const leases: { dispose(): void }[] = [];
   try {

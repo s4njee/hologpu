@@ -211,6 +211,8 @@ export function filterEffect<const S extends ParamSchema>(
       return {
         resize: (size) => instance.resize(size),
         update: (f) => instance.update(f),
+        shouldRender: instance.shouldRender?.bind(instance),
+        onPointerDown: instance.onPointerDown?.bind(instance),
         render: (f, e, t) => instance.render(f, e, t),
         reset: (s) => instance.reset(s),
         setInput: instance.setInput?.bind(instance),

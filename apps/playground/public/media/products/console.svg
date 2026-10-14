@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs>
+  <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#526063"/><stop offset="1" stop-color="#202a2b"/></linearGradient>
+  <linearGradient id="back" x2="1" y2="1"><stop stop-color="#d6ded9"/><stop offset="1" stop-color="#a8bcb0"/></linearGradient>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="24" stdDeviation="18" flood-color="#192f28" flood-opacity=".22"/></filter>
+</defs><rect width="1200" height="800" fill="url(#back)"/><g filter="url(#shadow)">
+  <rect x="262" y="220" width="676" height="364" rx="34" fill="url(#body)" stroke="#ffffff" stroke-opacity=".32" stroke-width="2"/>
+  <rect x="296" y="256" width="608" height="168" rx="16" fill="#102323"/>
+  <g fill="#9fcca9" font-family="Arial,sans-serif"><text x="323" y="294" font-size="15" letter-spacing="4">SIGNAL / 01</text><text x="323" y="387" font-size="44">Stay in flow.</text></g>
+  <path d="M 663 342 q 24 -55 48 0 t48 0 t48 0 t48 0" fill="none" stroke="#c9f0c0" stroke-width="3"/>
+  <circle cx="355" cy="499" r="28" fill="#152021"/><circle cx="355" cy="496" r="24" fill="#687673"/><path d="M 355 476 v12" stroke="#dae5dc" stroke-width="3" stroke-linecap="round"/><circle cx="452" cy="499" r="28" fill="#152021"/><circle cx="452" cy="496" r="24" fill="#687673"/><path d="M 452 476 v12" stroke="#dae5dc" stroke-width="3" stroke-linecap="round"/><circle cx="549" cy="499" r="28" fill="#152021"/><circle cx="549" cy="496" r="24" fill="#687673"/><path d="M 549 476 v12" stroke="#dae5dc" stroke-width="3" stroke-linecap="round"/><circle cx="646" cy="499" r="28" fill="#152021"/><circle cx="646" cy="496" r="24" fill="#687673"/><path d="M 646 476 v12" stroke="#dae5dc" stroke-width="3" stroke-linecap="round"/><circle cx="743" cy="499" r="28" fill="#152021"/><circle cx="743" cy="496" r="24" fill="#687673"/><path d="M 743 476 v12" stroke="#dae5dc" stroke-width="3" stroke-linecap="round"/><circle cx="840" cy="499" r="28" fill="#152021"/><circle cx="840" cy="496" r="24" fill="#687673"/><path d="M 840 476 v12" stroke="#dae5dc" stroke-width="3" stroke-linecap="round"/><g fill="#b6c5bd" font-family="Arial,sans-serif" font-size="11" letter-spacing="2"><text x="326" y="551">INPUT</text><text x="820" y="551">OUTPUT</text></g>
+</g></svg>

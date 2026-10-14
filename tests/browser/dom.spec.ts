@@ -134,7 +134,7 @@ test('decorative canvas keeps child hit testing and host pointer/timeline unifor
           params: {},
           wgsl: 'fn effect(uv:vec2f)->vec4f{return vec4f(uv,0,1);}',
         }),
-        { playing: false, layer: 'front' },
+        { playing: false, layer: 'front', adaptiveQuality: false },
       );
       (window as unknown as { attachment: typeof field }).attachment = field;
       document

@@ -148,6 +148,8 @@ export async function createParticleDraw(
     layouts: readonly GPUBindGroupLayout[];
     mode: 'point' | 'quad';
     additive?: boolean;
+    /** Premultiplied source-over, for back-to-front translucent geometry. */
+    alphaOver?: boolean;
     /** Replace alpha for trail targets, or composite coverage for overlapping translucent quads. */
     additiveAlpha?: 'replace' | 'over';
   },
@@ -168,6 +170,22 @@ export async function createParticleDraw(
           targets: [
             {
               format: options.format,
+              ...(options.alphaOver
+                ? {
+                    blend: {
+                      color: {
+                        srcFactor: 'one',
+                        dstFactor: 'one-minus-src-alpha',
+                        operation: 'add',
+                      } as GPUBlendComponent,
+                      alpha: {
+                        srcFactor: 'one',
+                        dstFactor: 'one-minus-src-alpha',
+                        operation: 'add',
+                      } as GPUBlendComponent,
+                    },
+                  }
+                : {}),
               ...(options.additive
                 ? {
                     blend: {

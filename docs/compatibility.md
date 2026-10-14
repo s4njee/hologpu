@@ -49,7 +49,7 @@ This remains a Chromium experiment/origin trial, not baseline DOM screenshot acc
 
 The WebGPU entry point belongs to **`GPUQueue`**. In the Chrome 150–154 API generation it is `copyElementImageToTexture(sourceDict, destDict)`, with `sourceDict.source` and `destDict.destination`, `width`, `height`. The vendor's newer Chrome 155 API generation renames it to `drawElementImageToTexture`, with changed source-coordinate fields and destination `size`. Feature-detect the actual method and version the integration, rather than assuming the signatures are interchangeable. Our installed Chrome 154 exposes neither without enabling the experiment.
 
-Sources: [origin trial introduction](https://developer.chrome.com/blog/html-in-canvas-origin-trial), [API changes across Chrome 150/155](https://developer.chrome.com/blog/html-in-canvas-ot-changes). Keep the input off by default. `backdrop-glass` will need a separate feasibility spike; DOM rectangles remain the portable starting point.
+Sources: [origin trial introduction](https://developer.chrome.com/blog/html-in-canvas-origin-trial), [API changes across Chrome 150/155](https://developer.chrome.com/blog/html-in-canvas-ot-changes). Keep the input off by default. The [M7 backdrop-glass spike](m7.md) captures real DOM paint under the explicit Chrome flag, including edits, resize, translucency and device recovery. Chrome 154 exposes both queue names when flagged, but its draw alias still expects the old dictionary; the adapter selects the copy dialect with legacy canvas markup. The newer drawable-content/draw generation remains unvalidated locally. DOM rectangles remain the portable starting point.
 
 ### Compute Pressure (section 5.9)
 

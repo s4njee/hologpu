@@ -1,0 +1,2297 @@
+{
+  "recordedAt": "2026-10-08T16:56:22.408Z",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "webkit",
+    "browserVersion": "26.6",
+    "viewport": [
+      1200,
+      900
+    ],
+    "dpr": 1,
+    "baseURL": "http://127.0.0.1:5175",
+    "competingLoad": "HoloGPU captures are serialized. Independent user projects may be active; machine-wide load is not controlled."
+  },
+  "method": "Actual launch page, all viewport-intersecting attachments rendered every sampled frame, including interaction-only fields and the ordinarily rate-limited grain. 30 warmup plus 120 samples per section, seed 7, authored resolution scales, actual CSS/input hooks, shared session submit, queue completion awaited each frame. Scheduler is stopped during this manual capture. Completed-work is CPU encode+submit+GPU queue callback, not pure GPU execution or compositor presentation. Initial attachment timings retained separately. This measures the 4ms completed-work page gate; it does not establish individual pure-GPU timing gates.",
+  "firstFrames": [
+    {
+      "id": "aurora-veil",
+      "state": "ready",
+      "timings": {
+        "startedAt": 454,
+        "gpuReadyAt": 497,
+        "firstFrameSubmittedAt": 508,
+        "firstFrameCompletedAt": 513,
+        "firstFrameMs": 59,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "grain-overlay",
+      "state": "ready",
+      "timings": {
+        "startedAt": 513,
+        "gpuReadyAt": 536,
+        "firstFrameSubmittedAt": 538,
+        "firstFrameCompletedAt": 546,
+        "firstFrameMs": 33,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "text-shimmer",
+      "state": "ready",
+      "timings": {
+        "startedAt": 546,
+        "gpuReadyAt": 578,
+        "firstFrameSubmittedAt": 643,
+        "firstFrameCompletedAt": 645,
+        "firstFrameMs": 99,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "spotlight",
+      "state": "ready",
+      "timings": {
+        "startedAt": 645,
+        "gpuReadyAt": 675,
+        "firstFrameSubmittedAt": 677,
+        "firstFrameCompletedAt": 683,
+        "firstFrameMs": 38,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "timings": {
+        "startedAt": 684,
+        "gpuReadyAt": 693,
+        "firstFrameSubmittedAt": 697,
+        "firstFrameCompletedAt": 708,
+        "firstFrameMs": 24,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "timings": {
+        "startedAt": 708,
+        "gpuReadyAt": 712,
+        "firstFrameSubmittedAt": 713,
+        "firstFrameCompletedAt": 718,
+        "firstFrameMs": 10,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "timings": {
+        "startedAt": 718,
+        "gpuReadyAt": 721,
+        "firstFrameSubmittedAt": 723,
+        "firstFrameCompletedAt": 726,
+        "firstFrameMs": 8,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "depth-parallax",
+      "state": "ready",
+      "timings": {
+        "startedAt": 749,
+        "gpuReadyAt": 759,
+        "firstFrameSubmittedAt": 761,
+        "firstFrameCompletedAt": 764,
+        "firstFrameMs": 15,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "wave-divider",
+      "state": "ready",
+      "timings": {
+        "startedAt": 806,
+        "gpuReadyAt": 818,
+        "firstFrameSubmittedAt": 822,
+        "firstFrameCompletedAt": 825,
+        "firstFrameMs": 19,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "grid-horizon",
+      "state": "ready",
+      "timings": {
+        "startedAt": 825,
+        "gpuReadyAt": 858,
+        "firstFrameSubmittedAt": 859,
+        "firstFrameCompletedAt": 862,
+        "firstFrameMs": 37,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "section": "home",
+      "fields": [
+        {
+          "id": "aurora-veil",
+          "size": [
+            300,
+            163
+          ],
+          "resolutionScale": 0.25
+        },
+        {
+          "id": "grain-overlay",
+          "size": [
+            600,
+            319
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "text-shimmer",
+          "size": [
+            696,
+            188
+          ],
+          "resolutionScale": 1
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 7,
+        "p95": 26,
+        "max": 38
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 11,
+        "p95": 35,
+        "max": 41
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 17,
+          "completedWorkMs": 23
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 16,
+          "completedWorkMs": 20
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 26
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 34
+        },
+        {
+          "cpuEncodeSubmitMs": 16,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 26,
+          "completedWorkMs": 30
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 17,
+          "completedWorkMs": 20
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 19,
+          "completedWorkMs": 26
+        },
+        {
+          "cpuEncodeSubmitMs": 22,
+          "completedWorkMs": 25
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 15,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 35,
+          "completedWorkMs": 41
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 26,
+          "completedWorkMs": 31
+        },
+        {
+          "cpuEncodeSubmitMs": 18,
+          "completedWorkMs": 19
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 20
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 23,
+          "completedWorkMs": 35
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 24,
+          "completedWorkMs": 34
+        },
+        {
+          "cpuEncodeSubmitMs": 16,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 29,
+          "completedWorkMs": 34
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 20,
+          "completedWorkMs": 36
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 38,
+          "completedWorkMs": 41
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 30
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 28
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 22
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 19
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 37
+        },
+        {
+          "cpuEncodeSubmitMs": 22,
+          "completedWorkMs": 25
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 20
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 15,
+          "completedWorkMs": 20
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 28,
+          "completedWorkMs": 33
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 21,
+          "completedWorkMs": 22
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 35
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 21
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 21
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        }
+      ],
+      "gpuErrors": []
+    },
+    {
+      "section": "details",
+      "fields": [
+        {
+          "id": "aurora-veil",
+          "size": [
+            300,
+            163
+          ],
+          "resolutionScale": 0.25
+        },
+        {
+          "id": "grain-overlay",
+          "size": [
+            600,
+            319
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "spotlight",
+          "size": [
+            528,
+            178
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "depth-parallax",
+          "size": [
+            272,
+            181
+          ],
+          "resolutionScale": 0.5
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 7,
+        "p95": 24,
+        "max": 44
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 11,
+        "p95": 35,
+        "max": 50
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 42
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 17,
+          "completedWorkMs": 27
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 32
+        },
+        {
+          "cpuEncodeSubmitMs": 17,
+          "completedWorkMs": 28
+        },
+        {
+          "cpuEncodeSubmitMs": 22,
+          "completedWorkMs": 30
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 22
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 16,
+          "completedWorkMs": 25
+        },
+        {
+          "cpuEncodeSubmitMs": 19,
+          "completedWorkMs": 29
+        },
+        {
+          "cpuEncodeSubmitMs": 25,
+          "completedWorkMs": 34
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 23
+        },
+        {
+          "cpuEncodeSubmitMs": 44,
+          "completedWorkMs": 50
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 17,
+          "completedWorkMs": 37
+        },
+        {
+          "cpuEncodeSubmitMs": 34,
+          "completedWorkMs": 47
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 22
+        },
+        {
+          "cpuEncodeSubmitMs": 21,
+          "completedWorkMs": 30
+        },
+        {
+          "cpuEncodeSubmitMs": 24,
+          "completedWorkMs": 29
+        },
+        {
+          "cpuEncodeSubmitMs": 33,
+          "completedWorkMs": 35
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 49
+        },
+        {
+          "cpuEncodeSubmitMs": 19,
+          "completedWorkMs": 31
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 35
+        },
+        {
+          "cpuEncodeSubmitMs": 21,
+          "completedWorkMs": 33
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 15,
+          "completedWorkMs": 33
+        },
+        {
+          "cpuEncodeSubmitMs": 24,
+          "completedWorkMs": 30
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 11,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        }
+      ],
+      "gpuErrors": []
+    },
+    {
+      "section": "product",
+      "fields": [
+        {
+          "id": "depth-parallax",
+          "size": [
+            272,
+            181
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "wave-divider",
+          "size": [
+            600,
+            45
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "grid-horizon",
+          "size": [
+            600,
+            242
+          ],
+          "resolutionScale": 0.5
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 2,
+        "p95": 7,
+        "max": 14
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 5,
+        "p95": 13,
+        "max": 21
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 13,
+          "completedWorkMs": 16
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 21
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 21
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 1
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 0,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        }
+      ],
+      "gpuErrors": []
+    },
+    {
+      "section": "join",
+      "fields": [
+        {
+          "id": "depth-parallax",
+          "size": [
+            272,
+            181
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "wave-divider",
+          "size": [
+            600,
+            45
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "grid-horizon",
+          "size": [
+            600,
+            242
+          ],
+          "resolutionScale": 0.5
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 3,
+        "p95": 12,
+        "max": 30
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 8,
+        "p95": 23,
+        "max": 47
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 30,
+          "completedWorkMs": 44
+        },
+        {
+          "cpuEncodeSubmitMs": 9,
+          "completedWorkMs": 18
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 14,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 21
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 29
+        },
+        {
+          "cpuEncodeSubmitMs": 19,
+          "completedWorkMs": 32
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 23
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 10
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 10,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 21,
+          "completedWorkMs": 29
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 15
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 14
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 8,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 12,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 7
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 13
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 5,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 11
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 12
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 7,
+          "completedWorkMs": 17
+        },
+        {
+          "cpuEncodeSubmitMs": 22,
+          "completedWorkMs": 47
+        },
+        {
+          "cpuEncodeSubmitMs": 6,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 14
+        }
+      ],
+      "gpuErrors": []
+    }
+  ],
+  "errors": []
+}

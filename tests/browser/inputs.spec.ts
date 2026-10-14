@@ -250,7 +250,7 @@ for (const scenario of ['image', 'canvas', 'text', 'audio', 'texture', 'video', 
               height: 1,
               kind: 'float' as const,
             };
-            let provided: typeof tap | undefined = tap;
+            let provided: (typeof tap & { version?: number }) | undefined = tap;
             await manager.set('source', { kind: 'texture', source: () => provided, session });
             await prepare();
             check(await read(), Array.from(raw));
@@ -262,6 +262,31 @@ for (const scenario of ['image', 'canvas', 'text', 'audio', 'texture', 'video', 
             provided = tap;
             await prepare();
             check(await read(), Array.from(raw));
+            cases++;
+            // Versioned providers retain their normalized copy while content is unchanged.
+            provided = { ...tap, version: 1 };
+            await prepare();
+            const stableVersion = manager.get('source')!.version;
+            await prepare();
+            if (manager.get('source')!.version !== stableVersion)
+              throw new Error('An unchanged versioned texture was uploaded again');
+            const changed = new Float32Array([0.4, 0.2, 0.1, 0.5, 0.1, 0.2, 0.3, 1]);
+            device.queue.writeTexture({ texture }, changed, { bytesPerRow: 32 }, [2, 1]);
+            provided.version = 2;
+            await prepare();
+            check(await read(), Array.from(changed));
+            if (manager.get('source')!.version === stableVersion)
+              throw new Error('Changed texture content did not advance its revision');
+            cases++;
+            // Unversioned providers still normalize every frame and preserve dynamic semantics.
+            provided = tap;
+            device.queue.writeTexture({ texture }, raw, { bytesPerRow: 32 }, [2, 1]);
+            await prepare();
+            const dynamicVersion = manager.get('source')!.version;
+            check(await read(), Array.from(raw));
+            await prepare();
+            if (manager.get('source')!.version === dynamicVersion)
+              throw new Error('An unversioned texture stopped updating');
             cases++;
             let rejected = false;
             try {
@@ -355,6 +380,28 @@ for (const scenario of ['image', 'canvas', 'text', 'audio', 'texture', 'video', 
             const copy = canvas(1920, 1080),
               ctx = copy.getContext('2d')!;
             video.pause();
+            // pause() freezes media time before every browser has exposed its
+            // last decoded frame. Freeze the Canvas reference first, then bind
+            // that stable caller-owned video for both normalization assertions.
+            let cpu: Uint8ClampedArray<ArrayBufferLike> | undefined,
+              stable = 0;
+            const deadline = performance.now() + 5000;
+            while (stable < 3) {
+              await new Promise<void>((resolve) => setTimeout(resolve, 30));
+              ctx.drawImage(video, 0, 0, 1920, 1080);
+              const next = ctx.getImageData(0, 0, 1920, 1080).data;
+              let same = cpu !== undefined;
+              if (cpu)
+                for (let i = 0; i < next.length; i += 17)
+                  if (next[i] !== cpu[i]) {
+                    same = false;
+                    break;
+                  }
+              stable = same ? stable + 1 : 0;
+              cpu = next;
+              if (performance.now() > deadline)
+                throw new Error('Paused video did not expose a stable decoded Canvas frame');
+            }
             // Two renders in the same decoded-frame task must encode normalization+mips only once.
             await manager.set('source', { kind: 'video', source: video });
             const repeat = device.createCommandEncoder(),
@@ -372,20 +419,23 @@ for (const scenario of ['image', 'canvas', 'text', 'audio', 'texture', 'video', 
             session.submitEncoder(repeat);
             await device.queue.onSubmittedWorkDone();
             cases++;
-            ctx.drawImage(video, 0, 0, 1920, 1080);
             await prepare();
             const gpu = await read();
-            const cpu = ctx.getImageData(0, 0, 1920, 1080).data;
+            ctx.drawImage(video, 0, 0, 1920, 1080);
+            const after = ctx.getImageData(0, 0, 1920, 1080).data;
+            for (let i = 0; i < after.length; i += 17)
+              if (after[i] !== cpu![i])
+                throw new Error('Paused decoded Canvas frame changed during GPU normalization');
             for (const pixel of [1920 * 100 + 200, 1920 * 100 + 1100, 1920 * 100 + 1600])
               for (let ch = 0; ch < 3; ch++) {
                 const offset = pixel * 4 + ch;
                 if (
                   Math.abs(
-                    Math.max(0, Math.min(1, gpu[offset]!)) - inputSRGBToLinear(cpu[offset]! / 255),
+                    Math.max(0, Math.min(1, gpu[offset]!)) - inputSRGBToLinear(cpu![offset]! / 255),
                   ) > 0.03
                 )
                   throw new Error(
-                    `Video external texture transfer mismatch pixel ${pixel}, channel ${ch}: gpu ${gpu[offset]}, encoded ${cpu[offset]}, linear ${inputSRGBToLinear(cpu[offset]! / 255)}`,
+                    `Video ${manager.mediaPath} texture transfer mismatch at paused time ${video.currentTime}, pixel ${pixel}, channel ${ch}: gpu ${gpu[offset]}, encoded ${cpu![offset]}, linear ${inputSRGBToLinear(cpu![offset]! / 255)}; RGB GPU ${gpu.slice(pixel * 4, pixel * 4 + 3)}, Canvas ${cpu!.slice(pixel * 4, pixel * 4 + 3)}`,
                   );
               }
             cases++;

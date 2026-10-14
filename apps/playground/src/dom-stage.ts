@@ -63,10 +63,17 @@ export class DOMStage {
       pending: Promise<Attachment | null>[] = [];
     for (let i = 0; i < definitions.length; i++) {
       const definition = definitions[i]!;
+      const front = definition.id === 'text-shimmer' || definition.id === 'heading-reveal';
+      const params =
+        definition.id === 'heading-reveal'
+          ? { page: '#162335', ...(i === 0 ? options.params : undefined) }
+          : i === 0
+            ? options.params
+            : undefined;
       const host = document.createElement(options.overlay ? 'section' : 'hgpu-field');
       host.className = 'm5-card';
       if (options.overlay) {
-        host.style.background = 'transparent';
+        host.style.background = definition.id === 'heading-reveal' ? '#162335' : 'transparent';
         host.style.zIndex = '3';
       }
       host.dataset['demoEffect'] = definition.id;
@@ -74,14 +81,19 @@ export class DOMStage {
       label.textContent = definition.title;
       const paragraph = document.createElement('p');
       paragraph.textContent =
-        definition.id === 'text-dissolve'
-          ? 'Readable light DOM. GPU particles dissolve the mask; the words remain here.'
-          : definition.id === 'fluid-obstacles'
-            ? 'The dye respects the boxes around this heading and button.'
-            : 'One element, one field, one shared device.';
+        definition.id === 'text-shimmer'
+          ? 'A soft gradient passes through the real glyphs, then settles. CSS progress can replay the shimmer.'
+          : definition.id === 'heading-reveal'
+            ? 'Progress uncovers the real words through a noise-eroded cover matching this flat card background.'
+            : definition.id === 'text-dissolve'
+              ? 'Readable light DOM. GPU particles dissolve the mask; the words remain here.'
+              : definition.id === 'fluid-obstacles'
+                ? 'The dye respects the boxes around this heading and button.'
+                : 'One element, one field, one shared device.';
       const button = document.createElement('button');
       button.textContent = 'Focus or press me';
       button.type = 'button';
+      if (definition.id === 'heading-reveal') button.style.background = '#162335';
       button.onclick = () =>
         (button.textContent =
           button.textContent === 'Focus or press me'
@@ -108,10 +120,12 @@ export class DOMStage {
       }
       if (definition.id === 'scroll-scene') host.classList.add('scroll-uniform');
       host.setAttribute('effect', definition.id);
+      if (front) host.setAttribute('layer', 'front');
       host.setAttribute('seed', String(options.seed ?? 7));
       host.setAttribute('playing', String(options.playing ?? true));
+      if (i === 0 || definition.id === 'heading-reveal')
+        host.setAttribute('params', JSON.stringify(params ?? {}));
       if (i === 0) {
-        host.setAttribute('params', JSON.stringify(options.params ?? {}));
         if (options.preset) host.setAttribute('preset', options.preset);
       }
       if (options.forceFallback) host.setAttribute('fallback', '');
@@ -123,9 +137,10 @@ export class DOMStage {
         options.overlay
           ? attach(host, definition, {
               ...options,
-              params: i === 0 ? options.params : undefined,
+              ...(front ? { layer: 'front' as const } : {}),
+              params,
               preset: i === 0 ? options.preset : undefined,
-              present: false,
+              present: front,
             })
           : (host as HGPUFieldElement).ready,
       );
@@ -140,7 +155,10 @@ export class DOMStage {
     this.fields = this.attachments.flatMap((a) => (a.field ? [a.field] : []));
     for (const field of this.fields) {
       field.setAdaptiveQuality(options.adaptiveQuality ?? true);
-      if (options.resolutionScale !== undefined) field.setResolutionScale(options.resolutionScale);
+      if (options.resolutionScale !== undefined) {
+        const [min, max] = field.effect.quality.resolutionScale;
+        field.setResolutionScale(Math.max(min, Math.min(max, options.resolutionScale)));
+      }
       if (options.timeScale !== undefined) field.setTimeScale(options.timeScale);
     }
     if (!CSS.supports('animation-timeline', 'view()')) {
@@ -161,12 +179,11 @@ export class DOMStage {
         this.#cleanup.push(() => driver.dispose());
       }
     }
-    if (options.overlay && this.fields.length) {
-      const overlay = await OverlayRenderer.create(
-        this.attachments.flatMap((a) =>
-          a.field ? [{ host: a.host, field: a.field, clip: root }] : [],
-        ),
-      );
+    const overlaySources = this.attachments.flatMap((a) =>
+      a.field && !a.field.surface?.context ? [{ host: a.host, field: a.field, clip: root }] : [],
+    );
+    if (options.overlay && overlaySources.length) {
+      const overlay = await OverlayRenderer.create(overlaySources);
       if (epoch !== this.#epoch) {
         overlay.destroy();
         return null;
@@ -187,7 +204,8 @@ export class DOMStage {
       instances: this.fields.length,
       textureBytes: this.fields.reduce((n, f) => n + f.memory().textureBytes, 0),
       bufferBytes: this.fields.reduce((n, f) => n + f.memory().bufferBytes, 0),
-      presentationContexts: this.overlay ? 1 : this.fields.length,
+      presentationContexts:
+        (this.overlay ? 1 : 0) + this.fields.filter((field) => field.surface?.context).length,
       overlay: this.overlay?.memory ?? null,
     };
   }

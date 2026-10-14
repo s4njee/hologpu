@@ -28,10 +28,13 @@ export function registerHGPUField(options: { resolveEffect?: EffectResolver; nam
         'params',
         'poster',
         'layer',
+        'padding',
         'seed',
         'playing',
         'reduced-motion',
         'fallback',
+        'render-on',
+        'idle-after',
       ];
     }
     #attachment: Attachment | null = null;
@@ -80,7 +83,13 @@ export function registerHGPUField(options: { resolveEffect?: EffectResolver; nam
         else current.play();
       } else if (current && attribute === 'reduced-motion')
         current.setReducedMotion(newValue === null ? undefined : newValue !== 'false');
-      else if (current && attribute === 'seed') current.reset(this.#seed());
+      else if (current && attribute === 'padding') {
+        try {
+          current.setPadding(Number(newValue ?? '0'));
+        } catch (error) {
+          this.#failure(error);
+        }
+      } else if (current && attribute === 'seed') current.reset(this.#seed());
       else this.#mount();
     }
     #parameters(): ParamValues {
@@ -88,6 +97,13 @@ export function registerHGPUField(options: { resolveEffect?: EffectResolver; nam
       if (!value || typeof value !== 'object' || Array.isArray(value))
         throw new TypeError('params must be a JSON object');
       return value as ParamValues;
+    }
+    #renderOn(): AttachOptions['renderOn'] {
+      const value = this.getAttribute('render-on');
+      if (value === null) return undefined;
+      if (value !== 'always' && value !== 'interaction')
+        throw new TypeError('render-on must be always or interaction');
+      return value;
     }
     #seed() {
       const value = Number(this.getAttribute('seed') ?? '7');
@@ -114,9 +130,16 @@ export function registerHGPUField(options: { resolveEffect?: EffectResolver; nam
             params: this.#parameters(),
             preset: this.getAttribute('preset') ?? undefined,
             poster: this.getAttribute('poster') ?? undefined,
+            padding: Number(this.getAttribute('padding') ?? '0'),
             layer: this.getAttribute('layer') === 'front' ? 'front' : 'behind',
             seed: this.#seed(),
-            playing: this.getAttribute('playing') !== 'false',
+            playing: this.hasAttribute('playing')
+              ? this.getAttribute('playing') !== 'false'
+              : undefined,
+            renderOn: this.#renderOn(),
+            idleAfter: this.hasAttribute('idle-after')
+              ? Number(this.getAttribute('idle-after'))
+              : undefined,
             reducedMotion: this.hasAttribute('reduced-motion')
               ? this.getAttribute('reduced-motion') !== 'false'
               : undefined,

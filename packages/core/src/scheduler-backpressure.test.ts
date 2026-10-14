@@ -1,7 +1,7 @@
 import { expect, it, vi } from 'vitest';
 import { Scheduler, type Clock, type ScheduledSurface } from './scheduler.ts';
 
-function harness() {
+function harness(pipelinedSubmissionLimit = 1) {
   let callback!: (time: number) => void,
     now = 0;
   const clock: Clock = {
@@ -18,6 +18,7 @@ function harness() {
     submissions,
     clock,
     () => new Promise<void>((resolve, reject) => queue.push({ resolve, reject })),
+    { pipelinedSubmissionLimit },
   );
   return {
     clock,
@@ -126,4 +127,101 @@ it('releases queue rejection without leaving healthy scheduled fields blocked', 
   expect(h.scheduler.submissionPending).toBe(false);
   h.tick(16.7);
   expect(f.render).toHaveBeenCalledTimes(2);
+});
+
+it('pipelines delayed completion notifications only up to the explicit bound', async () => {
+  const h = harness(),
+    f = surface();
+  h.scheduler.setSubmissionLimit(8);
+  h.scheduler.add(f);
+  for (let i = 0; i < 8; i++) h.tick(i * 16.7);
+  expect(h.submissions).toHaveBeenCalledTimes(8);
+  const requests = vi.mocked(h.clock.request).mock.calls.length;
+  h.scheduler.invalidate();
+  h.tick(160);
+  expect(h.submissions).toHaveBeenCalledTimes(8);
+  expect(h.clock.request).toHaveBeenCalledTimes(requests);
+  // Notifications can complete out of order; freeing one slot admits only one batch.
+  h.queue[3]!.resolve();
+  await Promise.resolve();
+  h.tick(167);
+  expect(h.submissions).toHaveBeenCalledTimes(9);
+  h.scheduler.resetSubmission();
+  h.tick(184);
+  h.queue[0]!.resolve();
+  await Promise.resolve();
+  expect(h.scheduler.submissionPending).toBe(true);
+  expect(h.scheduler.submissionLimit).toBe(8);
+  expect(() => h.scheduler.setSubmissionLimit(0)).toThrow(RangeError);
+  expect(() => h.scheduler.setSubmissionLimit(9)).toThrow(RangeError);
+});
+
+it('lowering the pipeline bound waits for existing batches to drain', async () => {
+  const h = harness(),
+    f = surface();
+  h.scheduler.setSubmissionLimit(3);
+  h.scheduler.add(f);
+  for (let i = 0; i < 3; i++) h.tick(i * 16.7);
+  h.scheduler.setSubmissionLimit(1);
+  h.queue[0]!.resolve();
+  h.queue[1]!.resolve();
+  await Promise.resolve();
+  h.tick(50);
+  expect(h.submissions).toHaveBeenCalledTimes(3);
+  h.queue[2]!.resolve();
+  await Promise.resolve();
+  h.tick(67);
+  expect(h.submissions).toHaveBeenCalledTimes(4);
+});
+
+it('automatically pipelines stateless scenes and waits for outstanding work when a serial field joins', async () => {
+  const h = harness(8),
+    a = { ...surface(), submissionPipelining: true };
+  const removeA = h.scheduler.add(a);
+  expect(h.scheduler.submissionLimit).toBe(8);
+  for (let i = 0; i < 8; i++) h.tick(i * 16.7);
+  expect(h.submissions).toHaveBeenCalledTimes(8);
+  const serial = surface(),
+    removeSerial = h.scheduler.add(serial);
+  expect(h.scheduler.submissionLimit).toBe(1);
+  h.tick(150);
+  expect(h.submissions).toHaveBeenCalledTimes(8);
+  for (const pending of h.queue) pending.resolve();
+  await Promise.resolve();
+  h.tick(166.7);
+  expect(serial.render).toHaveBeenCalledTimes(1);
+  removeSerial();
+  expect(h.scheduler.submissionLimit).toBe(8);
+  h.scheduler.setSubmissionLimit(2);
+  expect(h.scheduler.submissionLimit).toBe(2);
+  const removeUnknown = h.scheduler.add(surface());
+  expect(h.scheduler.submissionLimit).toBe(2);
+  removeUnknown();
+  removeA();
+});
+it('keeps unknown surfaces serial and validates automatic pipeline configuration', () => {
+  const h = harness(8);
+  h.scheduler.add(surface());
+  expect(h.scheduler.submissionLimit).toBe(1);
+  for (const limit of [0, 9, 1.5, NaN, Infinity]) expect(() => harness(limit)).toThrow(RangeError);
+});
+
+it('includes unregistered dependencies in the automatic serial safety check', () => {
+  const h = harness(8),
+    source = surface();
+  const consumer = { ...surface(), submissionPipelining: true, dependencies: () => [source] };
+  h.scheduler.add(consumer);
+  expect(h.scheduler.submissionLimit).toBe(1);
+  Object.assign(source, { submissionPipelining: true });
+  expect(h.scheduler.submissionLimit).toBe(8);
+});
+it('wakes the available T1 pipeline immediately when the last serial surface leaves', () => {
+  const h = harness(8);
+  h.scheduler.add({ ...surface(), submissionPipelining: true });
+  const removeSerial = h.scheduler.add(surface());
+  h.tick(0);
+  const requests = vi.mocked(h.clock.request).mock.calls.length;
+  removeSerial();
+  expect(h.scheduler.submissionLimit).toBe(8);
+  expect(h.clock.request).toHaveBeenCalledTimes(requests + 1);
 });

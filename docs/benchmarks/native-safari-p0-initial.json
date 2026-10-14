@@ -1,0 +1,241 @@
+{
+  "capturedAt": "2026-10-08T16:15:23.200Z",
+  "device": "Apple M1 Max Mac, macOS 26.6.2, native Safari 27.0",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15",
+  "platform": "MacIntel",
+  "viewport": [
+    1563,
+    937
+  ],
+  "dpr": 2,
+  "forceFallback": false,
+  "rows": [
+    {
+      "id": "aurora-veil",
+      "state": "ready",
+      "size": [
+        1098,
+        180
+      ],
+      "timings": {
+        "startedAt": 146497,
+        "gpuReadyAt": 146658,
+        "firstFrameSubmittedAt": 146664,
+        "firstFrameCompletedAt": 146700,
+        "firstFrameMs": 203,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "grain-overlay",
+      "state": "ready",
+      "size": [
+        541,
+        180
+      ],
+      "timings": {
+        "startedAt": 147477,
+        "gpuReadyAt": 147665,
+        "firstFrameSubmittedAt": 147666,
+        "firstFrameCompletedAt": 147680,
+        "firstFrameMs": 203,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "dot-matrix-field",
+      "state": "ready",
+      "size": [
+        356,
+        180
+      ],
+      "timings": {
+        "startedAt": 148444,
+        "gpuReadyAt": 148487,
+        "firstFrameSubmittedAt": 148487,
+        "firstFrameCompletedAt": 148501,
+        "firstFrameMs": 57,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "grid-horizon",
+      "state": "ready",
+      "size": [
+        263,
+        180
+      ],
+      "timings": {
+        "startedAt": 149258,
+        "gpuReadyAt": 149320,
+        "firstFrameSubmittedAt": 149320,
+        "firstFrameCompletedAt": 149328,
+        "firstFrameMs": 70,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "light-sweep",
+      "state": "ready",
+      "size": [
+        263,
+        180
+      ],
+      "timings": {
+        "startedAt": 150086,
+        "gpuReadyAt": 150238,
+        "firstFrameSubmittedAt": 150239,
+        "firstFrameCompletedAt": 150251,
+        "firstFrameMs": 165,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": false,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "text-shimmer",
+      "state": "ready",
+      "size": [
+        525,
+        360
+      ],
+      "timings": {
+        "startedAt": 151015,
+        "gpuReadyAt": 151184,
+        "firstFrameSubmittedAt": 152001,
+        "firstFrameCompletedAt": 152011,
+        "firstFrameMs": 996,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "wave-divider",
+      "state": "ready",
+      "size": [
+        263,
+        180
+      ],
+      "timings": {
+        "startedAt": 152780,
+        "gpuReadyAt": 152812,
+        "firstFrameSubmittedAt": 152813,
+        "firstFrameCompletedAt": 152821,
+        "firstFrameMs": 41,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "depth-parallax",
+      "state": "ready",
+      "size": [
+        263,
+        180
+      ],
+      "timings": {
+        "startedAt": 153612,
+        "gpuReadyAt": 153768,
+        "firstFrameSubmittedAt": 153770,
+        "firstFrameCompletedAt": 153798,
+        "firstFrameMs": 186,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": true,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "spotlight",
+      "state": "ready",
+      "size": [
+        263,
+        180
+      ],
+      "timings": {
+        "startedAt": 154584,
+        "gpuReadyAt": 154615,
+        "firstFrameSubmittedAt": 154615,
+        "firstFrameCompletedAt": 154627,
+        "firstFrameMs": 43,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": false,
+      "gpuErrors": [],
+      "adapter": {}
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "size": [
+        297,
+        214
+      ],
+      "timings": {
+        "startedAt": 155389,
+        "gpuReadyAt": 155435,
+        "firstFrameSubmittedAt": 155437,
+        "firstFrameCompletedAt": 155455,
+        "firstFrameMs": 66,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      },
+      "poseStable": true,
+      "unchangedScheduledFrames": 0,
+      "hasOutput": false,
+      "gpuErrors": [],
+      "adapter": {}
+    }
+  ],
+  "errors": [],
+  "cleanup": true,
+  "nativeInteraction": {
+    "clicks": 1,
+    "slider": "50"
+  },
+  "note": "GPU completion timing bounds first-frame readiness; browser compositor presentation is not observable. Appearance and native control checks need a human visual pass."
+}

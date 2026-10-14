@@ -1,0 +1,7192 @@
+{
+  "date": "2026-10-08T11:59:51.583Z",
+  "platform": "darwin",
+  "release": "25.6.0",
+  "arch": "arm64",
+  "method": "DPR1 native own-size DOM fields, 30 warmup +80 completed samples. Three captures per scenario. Active fixed-step compute and render; uncontrolled load. Particle count 1024 and maximum 2048, single instance per scenario. CPU, GPU timestamps and completed-work wall latency reported separately.",
+  "results": [
+    {
+      "id": "particle-drift",
+      "run": 1,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 1024,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 16512,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.575,
+        "p50": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.575,
+        "p50": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 1.525,
+        "p50": 1,
+        "p95": 2,
+        "max": 7
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.17759431250000005,
+        "p50": 0.148501,
+        "p95": 0.3525,
+        "max": 0.739166
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.023614050000000004,
+          "p50": 0.018208,
+          "p95": 0.03225,
+          "max": 0.265791
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.0777234625,
+          "p50": 0.069125,
+          "p95": 0.1485,
+          "max": 0.293708
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.07625679999999999,
+          "p50": 0.060791,
+          "p95": 0.173375,
+          "max": 0.429708
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.142458
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.175167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.14962399999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.173666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.3525
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.128417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.122416
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.158541
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.16725099999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12754200000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.140541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.12545800000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.174208
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.17421
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.172542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.126666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.125334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.13974999999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.139334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.173876
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12562500000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.138958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.171917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.128417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.148459
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.17725
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.312459
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.127084
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 7,
+          "gpuMs": 0.427832
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.166041
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12354200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.149042
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.14575000000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.184416
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.16025
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12737500000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.177583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.339833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.739166
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12354100000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.161334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.176126
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.500208
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.176626
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.13337500000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.133792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12604100000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.151167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.129834
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.148501
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.173292
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.150833
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.246624
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12129200000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.123
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.149042
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.33199999999999996
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.17608400000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.145208
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.18154199999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.16004200000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.182917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12220800000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.1335
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.126417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.236124
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.33999999999999997
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.14791700000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.129958
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.131625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.15670800000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.177916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12604200000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.13175
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.17416700000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.139209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.14441700000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.14499900000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.140042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.141625
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "particle-drift",
+      "run": 2,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 1024,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 16512,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.5125,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.525,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.275,
+        "p50": 2,
+        "p95": 4,
+        "max": 7
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.21912035,
+        "p50": 0.16562500000000002,
+        "p95": 0.619583,
+        "max": 0.994667
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.025034974999999994,
+          "p50": 0.0185,
+          "p95": 0.078292,
+          "max": 0.168
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.09610728750000001,
+          "p50": 0.068958,
+          "p95": 0.284333,
+          "max": 0.407167
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.0979780875,
+          "p50": 0.082792,
+          "p95": 0.318625,
+          "max": 0.4195
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.619583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.123
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.125083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.478542
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.17274899999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12154200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17583300000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12275
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.11695900000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.39420700000000003
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.16562500000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.128
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.252291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.12912500000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.162666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.174792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.179
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.171417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12354200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.14466600000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.16937400000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.169083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.12495800000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.242209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.121
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.14841700000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.2445
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.174666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12579200000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.15679200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.277001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.130251
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.14991700000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.120916
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.200126
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.123583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.177375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.279
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 7,
+          "gpuMs": 0.295001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.497917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.311375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.128626
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.174042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.169041
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.149791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12137500000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.139042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.572541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.175291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.125167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.129251
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.16875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.174542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.160834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.48545799999999995
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.148292
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.168166
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12504200000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.125957
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.994667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.309459
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.7295
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.124584
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.134917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.134666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.347083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.122584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.11970900000000001
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 4,
+          "gpuMs": 0.267084
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.6984589999999999
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 3,
+          "gpuMs": 0.12225
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12004100000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.11795900000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.15762500000000002
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 4,
+          "gpuMs": 0.304458
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.12525
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.326583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.170375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.169209
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.171333
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "particle-drift",
+      "run": 3,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 1024,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 16512,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.425,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.4625,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 1.9375,
+        "p50": 2,
+        "p95": 5,
+        "max": 11
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.2057213625,
+        "p50": 0.152584,
+        "p95": 0.659293,
+        "max": 0.8713759999999999
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.022572937499999998,
+          "p50": 0.018292,
+          "p95": 0.042791,
+          "max": 0.145667
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.0895900875,
+          "p50": 0.069083,
+          "p95": 0.243084,
+          "max": 0.310834
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.09355833749999999,
+          "p50": 0.066167,
+          "p95": 0.40025,
+          "max": 0.414875
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.661125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.168584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.7148760000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.8713759999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.16729100000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 2,
+          "completionMs": 6,
+          "gpuMs": 0.37954
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.138292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.120583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12004200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.148208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.12679200000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.170417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.659293
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12970900000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17704199999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.451291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.133791
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12420800000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12025
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.126416
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.423124
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.148126
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.27724899999999997
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 5,
+          "gpuMs": 0.307916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12025
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.130167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12262500000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.172582
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.176834
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.150125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12187400000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.165292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17516700000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.137957
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 11,
+          "gpuMs": 0.127833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.173042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.16075
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.179709
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.12445900000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12504200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.433708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.36125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.174625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.159167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.139457
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.170166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.127582
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12704200000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.16029300000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.16779100000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.290791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.16945900000000003
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12504200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.288875
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.177084
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.12370900000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.16754000000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.167667
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.499625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.127416
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.142625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.162959
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.159167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.129334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.174374
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.15000000000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.152542
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.146625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.137708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.12237500000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.173792
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.129001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.133916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.13521
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.12895800000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.134376
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.152584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.16616599999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.31220899999999996
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "particle-drift-max",
+      "run": 1,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 2048,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 32896,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.6,
+        "p50": 1,
+        "p95": 1,
+        "max": 2
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.6375,
+        "p50": 1,
+        "p95": 1,
+        "max": 2
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.025,
+        "p50": 2,
+        "p95": 4,
+        "max": 5
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.24431836250000005,
+        "p50": 0.176875,
+        "p95": 0.7291669999999999,
+        "max": 0.8329169999999999
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.022984387499999998,
+          "p50": 0.018792,
+          "p95": 0.056542,
+          "max": 0.109583
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.10740005,
+          "p50": 0.072917,
+          "p95": 0.31075,
+          "max": 0.417792
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.11393392499999999,
+          "p50": 0.087708,
+          "p95": 0.404708,
+          "max": 0.467459
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.176875
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.145042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.18729200000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.13275
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 4,
+          "gpuMs": 0.802292
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.158
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.179251
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.163042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.184043
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.133042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17416700000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.181792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.138874
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.157958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.134708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.148042
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.178834
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.124834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.717875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.142083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.174625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.192666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.448667
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.174209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.275042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.166958
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.428959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.186999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.161791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.8329169999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.18595899999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.354083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.137125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.13187500000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.149334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.462541
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.137667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.555001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.137875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.175708
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.17862499999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.336792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.130459
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.181541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.66925
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.177583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.174792
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.153501
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.433251
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.130125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.37529199999999996
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.133124
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.123917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.322792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.181958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12775
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.63475
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.7291669999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.178667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.177
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.134501
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.15074900000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.200041
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.157126
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.187249
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.18395899999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.738291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.16229100000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.253084
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.134251
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.149333
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.127417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.158417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.178916
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.322041
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.183375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.182667
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.24241800000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.16999999999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.14821
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "particle-drift-max",
+      "run": 2,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 2048,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 32896,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.4125,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.4375,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.475,
+        "p50": 2,
+        "p95": 6,
+        "max": 23
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.21951153749999994,
+        "p50": 0.161666,
+        "p95": 0.557875,
+        "max": 0.960417
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.02964584999999999,
+          "p50": 0.0185,
+          "p95": 0.128625,
+          "max": 0.349625
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.09588023749999999,
+          "p50": 0.073292,
+          "p95": 0.267,
+          "max": 0.408916
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.09398544999999998,
+          "p50": 0.071583,
+          "p95": 0.255625,
+          "max": 0.409667
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.777958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.177376
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.131501
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.12687500000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.179667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.177668
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.305583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.184209
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.142875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.129208
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.128958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.1445
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.181834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.129667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.178918
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.188417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.129749
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.280583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.134083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.13458399999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.150709
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.161666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.132751
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.1305
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.161666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.135541
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.132208
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.129582
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.16074899999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.129667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.134208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.557875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.147584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.166167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.477417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 15,
+          "gpuMs": 0.712043
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.137291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12120900000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.40625100000000003
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 6,
+          "gpuMs": 0.392833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.164166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.18795800000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 23,
+          "gpuMs": 0.428334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.171833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.132668
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.132249
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.144
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.158458
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12870800000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.137791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.180332
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.184084
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 6,
+          "gpuMs": 0.18170799999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.183541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.128625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.154125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.288124
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.179833
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.132501
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.24395900000000004
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.543292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.230125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.159749
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12825
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.169209
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.136959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.960417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.205751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.13658399999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.13341799999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.550793
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.384749
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.249
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.12525
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.148291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.167084
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.172876
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.330375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.172374
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "particle-drift-max",
+      "run": 3,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 2048,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 32896,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.4875,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.4875,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.3875,
+        "p50": 2,
+        "p95": 4,
+        "max": 6
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.26935425,
+        "p50": 0.169666,
+        "p95": 0.8302510000000001,
+        "max": 1.0835
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.028544287499999998,
+          "p50": 0.018542,
+          "p95": 0.082542,
+          "max": 0.27975
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.12110784999999995,
+          "p50": 0.07325,
+          "p95": 0.369542,
+          "max": 0.410917
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.11970211249999999,
+          "p50": 0.070291,
+          "p95": 0.416334,
+          "max": 0.434208
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.12787700000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.5005839999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.186292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.125916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.699833
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.130834
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.13166699999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.128917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.13216699999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.180417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.496916
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.6559170000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.696167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.185458
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.27475
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.332042
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.416333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.403625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.216916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.18625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.13521
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.1885
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.124083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.1715
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17358400000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.286875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.132709
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.143959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.127959
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.15962500000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.15179199999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.130624
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.129542
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.135291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.162916
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12775
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.133583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.136417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.17854199999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.133459
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.8733759999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.134082
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.149751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.0835
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.180958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.7086669999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.17266700000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.130791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.156291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.131166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.1575
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.148
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.12454100000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 1,
+          "gpuMs": 0.166417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.13541599999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.17970799999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.158292
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.23812499999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.145
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.40508199999999994
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.12545900000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.134334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.763916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.8302510000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.142708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.841792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.327167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.14121
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.158166
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.209293
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.706541
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.386667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.173792
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.160917
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.178917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.169666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.337625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.309625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.416541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.18162499999999998
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "constellation",
+      "run": 1,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "constellation",
+          "params": {
+            "pitch": 88,
+            "radius": 1.5,
+            "width": 0.7,
+            "jitter": 0.6,
+            "linkDistance": 1.5,
+            "tint": "#a4b4d2",
+            "intensity": 0.22,
+            "lineOpacity": 0.28,
+            "drift": 0.08,
+            "twinkle": 0.15,
+            "speed": 0.04
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 500,
+            "height": 300
+          },
+          "target": [
+            500,
+            300
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 1200000,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.3625,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.3875,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.7375,
+        "p50": 3,
+        "p95": 4,
+        "max": 12
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 1.0019286374999998,
+        "p50": 1.0012919999999998,
+        "p95": 1.4536259999999999,
+        "max": 1.7339570000000002
+      },
+      "passes": {
+        "hgpu-constellation": {
+          "count": 80,
+          "mean": 0.48377345,
+          "p50": 0.457458,
+          "p95": 0.735459,
+          "max": 0.889291
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.5181551874999999,
+          "p50": 0.487667,
+          "p95": 0.7225,
+          "max": 0.844666
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.744875
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.825375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.8325419999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.8247070000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.8340829999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.103209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.826333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.8358749999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.857584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.7339570000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.182958
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.829166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.783417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.068625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.67275
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.728333
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.831958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.369626
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.689999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.6479999999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.0205419999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.830042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.950875
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.8205
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.4536259999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.030708
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.1217920000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.2586249999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.4263750000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.126041
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.094541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.821833
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.352459
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.711001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.846916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.117375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.704083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.768083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.28475
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.795876
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.084959
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.6242920000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.023125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.033
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.132374
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.085792
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.8295840000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.095126
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.104376
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.955667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.543125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.1050840000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.104458
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.999666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.8160000000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.105291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.114042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.108249
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.814542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.059875
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.132958
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.11875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.0012919999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.255083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.9475830000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.8285830000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.2639580000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.822542
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.094458
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.119291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.830542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.0294159999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.125833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.630541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.889334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.794208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.109417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 12,
+          "gpuMs": 0.922292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.919626
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.820542
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "constellation",
+      "run": 2,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "constellation",
+          "params": {
+            "pitch": 88,
+            "radius": 1.5,
+            "width": 0.7,
+            "jitter": 0.6,
+            "linkDistance": 1.5,
+            "tint": "#a4b4d2",
+            "intensity": 0.22,
+            "lineOpacity": 0.28,
+            "drift": 0.08,
+            "twinkle": 0.15,
+            "speed": 0.04
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 500,
+            "height": 300
+          },
+          "target": [
+            500,
+            300
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 1200000,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.55,
+        "p50": 0,
+        "p95": 1,
+        "max": 9
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.575,
+        "p50": 0,
+        "p95": 1,
+        "max": 9
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 3.4625,
+        "p50": 2,
+        "p95": 10,
+        "max": 12
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 0.35945367499999986,
+        "p50": 0.288083,
+        "p95": 0.802125,
+        "max": 2.795125
+      },
+      "passes": {
+        "hgpu-constellation": {
+          "count": 80,
+          "mean": 0.19841979999999998,
+          "p50": 0.153583,
+          "p95": 0.4,
+          "max": 1.256458
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.16103387500000005,
+          "p50": 0.116875,
+          "p95": 0.401834,
+          "max": 1.538667
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 9,
+          "gpuMs": 0.374333
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 7,
+          "gpuMs": 2.795125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.38
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.822667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.6391249999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 10,
+          "gpuMs": 0.362458
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.507958
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.320584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 6,
+          "gpuMs": 0.442583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.27437500000000004
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 10,
+          "gpuMs": 1.23625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.514751
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.5636669999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.802125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.428542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.16349999999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.312083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.231501
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.336541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.196834
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.264124
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.290666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.350541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.238042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.237875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.2475
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.21470899999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.186625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.22329100000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.310334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.17375100000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.239292
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.224
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.271375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.224125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.270292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.288083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.305125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.294833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.2435
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.153625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.159542
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 8,
+          "gpuMs": 0.181709
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.263291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.237625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.23237399999999997
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.304708
+        },
+        {
+          "cpuMs": 3,
+          "cpuSubmitMs": 3,
+          "completionMs": 6,
+          "gpuMs": 0.500625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.41374999999999995
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.293625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 12,
+          "gpuMs": 0.47908300000000004
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.167375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.21420899999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.168626
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.426125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.20487499999999997
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.17912499999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.29804200000000003
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 8,
+          "gpuMs": 0.324334
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.223499
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.236375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.235875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 10,
+          "gpuMs": 0.404292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.801834
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.311
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.323917
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.179167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.36829100000000004
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.310583
+        },
+        {
+          "cpuMs": 9,
+          "cpuSubmitMs": 9,
+          "completionMs": 12,
+          "gpuMs": 0.572457
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.237083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.185084
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.281583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 6,
+          "gpuMs": 0.311041
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.330625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.218333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 7,
+          "gpuMs": 0.440626
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.292126
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.22849999999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.25825
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "constellation",
+      "run": 3,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "constellation",
+          "params": {
+            "pitch": 88,
+            "radius": 1.5,
+            "width": 0.7,
+            "jitter": 0.6,
+            "linkDistance": 1.5,
+            "tint": "#a4b4d2",
+            "intensity": 0.22,
+            "lineOpacity": 0.28,
+            "drift": 0.08,
+            "twinkle": 0.15,
+            "speed": 0.04
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 500,
+            "height": 300
+          },
+          "target": [
+            500,
+            300
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 1200000,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 5,
+              "references": 5,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.3375,
+        "p50": 0,
+        "p95": 1,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.375,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.7625,
+        "p50": 2,
+        "p95": 6,
+        "max": 7
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 1.0487915625,
+        "p50": 1.0117509999999998,
+        "p95": 1.605541,
+        "max": 2.1040419999999997
+      },
+      "passes": {
+        "hgpu-constellation": {
+          "count": 80,
+          "mean": 0.5296035500000001,
+          "p50": 0.502708,
+          "p95": 0.795333,
+          "max": 1.015417
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.5191880125000002,
+          "p50": 0.503083,
+          "p95": 0.810208,
+          "max": 1.088625
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.011708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.584707
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.039458
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.9817910000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.065334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.092374
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.8316669999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.9565
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.121542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.854167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.1112920000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.171917
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.046042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.961292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.9950829999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.862082
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.605541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.074167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.710209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.1040419999999997
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.761791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.575167
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.993916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.505042
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.8385
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.489417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 0.831124
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.842917
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.520333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.850209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.144542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.864708
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.834083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.646625
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.710666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.0815
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.0117509999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.058125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.246833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.2248329999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.711666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.288042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.998667
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 1.2160419999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.471541
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.0489579999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.824667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.373126
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.826333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.833124
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.992541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 7,
+          "gpuMs": 0.816792
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.1226669999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.725541
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.120292
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.209708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.200583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.372375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.752291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.7880419999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.025792
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.982834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.247874
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.223708
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.823291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 2,
+          "completionMs": 4,
+          "gpuMs": 0.828708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.049125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.702917
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.299083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.166749
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.019125
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.838417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.839833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.082126
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.841333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.096291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.721166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.4288340000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.807291
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.9728330000000001
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "mixed-page",
+      "run": 1,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 1024,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 16512,
+            "shared": {
+              "entries": 8,
+              "references": 10,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        },
+        {
+          "id": "constellation",
+          "params": {
+            "pitch": 88,
+            "radius": 1.5,
+            "width": 0.7,
+            "jitter": 0.6,
+            "linkDistance": 1.5,
+            "tint": "#a4b4d2",
+            "intensity": 0.22,
+            "lineOpacity": 0.28,
+            "drift": 0.08,
+            "twinkle": 0.15,
+            "speed": 0.04
+          },
+          "cssBounds": {
+            "left": 760,
+            "top": 120,
+            "width": 500,
+            "height": 300
+          },
+          "target": [
+            500,
+            300
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 1200000,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 8,
+              "references": 10,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.4625,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.475,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.7375,
+        "p50": 3,
+        "p95": 5,
+        "max": 5
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 1.3893416875,
+        "p50": 1.236416,
+        "p95": 2.001583,
+        "max": 5.374874
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.1405734125,
+          "p50": 0.023958,
+          "p95": 0.559458,
+          "max": 1.389583
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.14819161250000001,
+          "p50": 0.099416,
+          "p95": 0.430125,
+          "max": 0.459375
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.6361808125,
+          "p50": 0.5862499999999999,
+          "p95": 1.0575,
+          "max": 2.196333
+        },
+        "hgpu-constellation": {
+          "count": 80,
+          "mean": 0.4643958500000001,
+          "p50": 0.434167,
+          "p95": 0.62025,
+          "max": 1.563375
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.703417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.749668
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.7289999999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.850915
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.896042
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.236416
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.546292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.509375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.806
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.9357089999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.782001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 5.374874
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 5,
+          "gpuMs": 0.820832
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.502332
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.3930420000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.8351649999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.053374
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.1176240000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.042791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.7413759999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.001583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.1855419999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.9752090000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.617542
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 1.002126
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.178791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.03875
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.162333
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.6157929999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.975166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 0.9072089999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.894832
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.205959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.901959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.8959989999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.4415820000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.937001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.3602500000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.916042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.835335
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.993959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.837708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.934334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.4058750000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.5449169999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.155876
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.730667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.127167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.222333
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 4,
+          "gpuMs": 0.9269580000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.773751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.526499
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.931834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.9051669999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.332001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.264751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.216083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.1143750000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.522833
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 3,
+          "gpuMs": 0.91675
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.204874
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.8370419999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.337833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.329667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.463209
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 0.8931660000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.720459
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.050331
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.895375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.164377
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.044874
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.5649990000000003
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.951416
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.5945010000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.0734590000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.129042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.9413339999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.0871659999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.329667
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.4754580000000002
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "mixed-page",
+      "run": 2,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 1024,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 16512,
+            "shared": {
+              "entries": 8,
+              "references": 10,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        },
+        {
+          "id": "constellation",
+          "params": {
+            "pitch": 88,
+            "radius": 1.5,
+            "width": 0.7,
+            "jitter": 0.6,
+            "linkDistance": 1.5,
+            "tint": "#a4b4d2",
+            "intensity": 0.22,
+            "lineOpacity": 0.28,
+            "drift": 0.08,
+            "twinkle": 0.15,
+            "speed": 0.04
+          },
+          "cssBounds": {
+            "left": 760,
+            "top": 120,
+            "width": 500,
+            "height": 300
+          },
+          "target": [
+            500,
+            300
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 1200000,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 8,
+              "references": 10,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.4875,
+        "p50": 0,
+        "p95": 1,
+        "max": 2
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.5375,
+        "p50": 1,
+        "p95": 1,
+        "max": 2
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.6125,
+        "p50": 2,
+        "p95": 5,
+        "max": 6
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 1.4676115749999994,
+        "p50": 1.3734169999999999,
+        "p95": 2.588083,
+        "max": 2.729334
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.142850575,
+          "p50": 0.028083,
+          "p95": 0.748667,
+          "max": 0.778584
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.15409061249999995,
+          "p50": 0.113333,
+          "p95": 0.382375,
+          "max": 0.475416
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.6815188125,
+          "p50": 0.6559579999999999,
+          "p95": 1.0875,
+          "max": 1.500833
+        },
+        "hgpu-constellation": {
+          "count": 80,
+          "mean": 0.4891515749999999,
+          "p50": 0.465833,
+          "p95": 0.713458,
+          "max": 0.825584
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.041541
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.829834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.026292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.089291
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.853833
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.6024999999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.552501
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.8675430000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.376333
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.2851249999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.672583
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.017626
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.131209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.5816649999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.1056660000000003
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.421793
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 6,
+          "gpuMs": 1.5417079999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.563959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.0276239999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.243042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.8617090000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.0186680000000001
+        },
+        {
+          "cpuMs": 2,
+          "cpuSubmitMs": 2,
+          "completionMs": 4,
+          "gpuMs": 1.6662919999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.868083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.970375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 2,
+          "completionMs": 6,
+          "gpuMs": 1.3675000000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.5386250000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.3680399999999997
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.84646
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.44375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.207501
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.3734169999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.881708
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.9122520000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.019125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.126666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.648209
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.7874590000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.450751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.070209
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.335709
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.365167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.917917
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 0.9789589999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.136542
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.450999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.3828750000000003
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.588083
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.031207
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 2.707376
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.9692500000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.0953330000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.729334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.877624
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.0622920000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.4391670000000003
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.167001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.066166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.4756669999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.482251
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.508167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.333417
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.197166
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.340917
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.488624
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.3535840000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.765959
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.8470420000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 1.7180419999999998
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.576667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.713208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 5,
+          "gpuMs": 1.181749
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.2012909999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.6201249999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.127666
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.231043
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.990874
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.916082
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.7505420000000003
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.029375
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "mixed-page",
+      "run": 3,
+      "browser": "webkit",
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "apple",
+        "device": "apple",
+        "description": "apple",
+        "isFallbackAdapter": false
+      },
+      "dpr": 1,
+      "timestampQuery": true,
+      "fields": [
+        {
+          "id": "particle-drift",
+          "params": {
+            "count": 1024,
+            "size": 4,
+            "intensity": 0.18,
+            "tint": "#ffd8ae",
+            "speed": 0.035,
+            "radius": 120,
+            "repulsion": 12
+          },
+          "cssBounds": {
+            "left": 24,
+            "top": 24,
+            "width": 680,
+            "height": 440
+          },
+          "target": [
+            680,
+            440
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 2393600,
+            "bufferBytes": 16512,
+            "shared": {
+              "entries": 8,
+              "references": 10,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        },
+        {
+          "id": "constellation",
+          "params": {
+            "pitch": 88,
+            "radius": 1.5,
+            "width": 0.7,
+            "jitter": 0.6,
+            "linkDistance": 1.5,
+            "tint": "#a4b4d2",
+            "intensity": 0.22,
+            "lineOpacity": 0.28,
+            "drift": 0.08,
+            "twinkle": 0.15,
+            "speed": 0.04
+          },
+          "cssBounds": {
+            "left": 760,
+            "top": 120,
+            "width": 500,
+            "height": 300
+          },
+          "target": [
+            500,
+            300
+          ],
+          "aboveFold": true,
+          "mediaPath": "external",
+          "memory": {
+            "textureBytes": 1200000,
+            "bufferBytes": 144,
+            "shared": {
+              "entries": 8,
+              "references": 10,
+              "bytes": 0
+            },
+            "profilingBytes": 16384
+          }
+        }
+      ],
+      "warmup": 30,
+      "sampleCount": 80,
+      "boundary": "Forced active frames; actual DOM attachments at own CSS sizes. Every sample advances the simulation exactly 1/60 s before rendering; particle compute and draw share a submit boundary. CPU encode/submit, queue completed-work wall latency and summed GPU pass timestamps are separate boundaries. Mixed page has both fields above the fold, one particle-drift instance, no decoder or external image assets.",
+      "cpuMs": {
+        "count": 80,
+        "mean": 0.425,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "cpuSubmitMs": {
+        "count": 80,
+        "mean": 0.4375,
+        "p50": 0,
+        "p95": 1,
+        "max": 3
+      },
+      "completionMs": {
+        "count": 80,
+        "mean": 2.7125,
+        "p50": 2,
+        "p95": 5,
+        "max": 10
+      },
+      "gpuMs": {
+        "count": 80,
+        "mean": 1.5333961875000002,
+        "p50": 1.249333,
+        "p95": 2.9128749999999997,
+        "max": 3.154125
+      },
+      "passes": {
+        "particle-drift-pose": {
+          "count": 80,
+          "mean": 0.18435055000000003,
+          "p50": 0.031209,
+          "p95": 0.838666,
+          "max": 1.014542
+        },
+        "particle-drift-gaussian": {
+          "count": 80,
+          "mean": 0.13827341249999997,
+          "p50": 0.091583,
+          "p95": 0.404375,
+          "max": 0.422208
+        },
+        "hgpu-resolve": {
+          "count": 80,
+          "mean": 0.6941389500000001,
+          "p50": 0.595626,
+          "p95": 1.541042,
+          "max": 1.801625
+        },
+        "hgpu-constellation": {
+          "count": 80,
+          "mean": 0.5166332750000001,
+          "p50": 0.469583,
+          "p95": 0.825417,
+          "max": 0.91375
+        }
+      },
+      "samples": [
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 7,
+          "gpuMs": 1.791709
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.9634590000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.818334
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.9655420000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.353666
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.3974160000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.071583
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.531292
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.100083
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.5397910000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.771375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.739791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.6873330000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.243791
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.6457920000000001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.0772059999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.427916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.377208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.525458
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.072791
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.989001
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.7514580000000004
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.098208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.786167
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.1072929999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.249333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.026751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.1079999999999997
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.042626
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 1.179793
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.343667
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 3.154125
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.9879579999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.9128749999999997
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.643208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.926042
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.690208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.5554569999999996
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.207916
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 4,
+          "gpuMs": 1.8230819999999999
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.6055
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.964834
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.222417
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.7493730000000003
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.018165
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 2.021041
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.982416
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.98975
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.671001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.4711649999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.986166
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.513333
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.241709
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.598667
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 3.061584
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 2.473375
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.3586660000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.92425
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 4,
+          "gpuMs": 2.431625
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.9157500000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 0.9201260000000001
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 1.2945410000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.977751
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 10,
+          "gpuMs": 0.97375
+        },
+        {
+          "cpuMs": 3,
+          "cpuSubmitMs": 3,
+          "completionMs": 7,
+          "gpuMs": 1.1184589999999999
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.0489160000000002
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.983082
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.3389160000000002
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 2,
+          "gpuMs": 0.845458
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.5609579999999998
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 0.994499
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 5,
+          "gpuMs": 1.143084
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 1.457208
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 0.88775
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 1.035749
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 0.911208
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 2,
+          "gpuMs": 0.973582
+        },
+        {
+          "cpuMs": 1,
+          "cpuSubmitMs": 1,
+          "completionMs": 3,
+          "gpuMs": 2.0878330000000003
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 1,
+          "gpuMs": 1.098375
+        },
+        {
+          "cpuMs": 0,
+          "cpuSubmitMs": 0,
+          "completionMs": 3,
+          "gpuMs": 2.1349590000000003
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "errors": []
+}

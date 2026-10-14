@@ -34,7 +34,7 @@ for (const id of ids) {
   };
   await writeFile(
     `packages/hologpu/src/effects/${id}.ts`,
-    `export { default } from '@mk7s/hologpu-effects/${id}';\n`,
+    `export { default } from '@mk7s/hologpu-effects/${id}';\nexport * from '@mk7s/hologpu-effects/${id}';\n`,
   );
 }
 await writeFile(

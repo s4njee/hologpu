@@ -7,6 +7,9 @@ import type { DeviceSession } from './device.ts';
 import type { ShaderDiagnostic } from './debug.ts';
 export interface FrameInfo {
   time: number;
+  /** Independent bounded interaction clock, including while procedural motion is paused. */
+  interactionTime?: number;
+  reducedMotion?: boolean;
   delta: number;
   index: number;
   resolution: readonly [number, number];
@@ -42,6 +45,8 @@ export interface TextureTap {
   readonly label?: string;
   readonly mipLevel?: number;
   readonly arrayLayer?: number;
+  /** Monotonic content revision for caches; unversioned input textures refresh on every draw. */
+  readonly version?: number;
   /** One z plane of a 3D texture, exposed only for raw readback/inspection. */
   readonly depthSlice?: number;
   readonly kind: 'float' | 'uint';
@@ -57,8 +62,12 @@ export interface BufferTap {
   readonly count?: number;
 }
 export interface EffectInstance {
+  /** Normalized canvas position. Return the transient lifetime in seconds (maximum two). */
+  onPointerDown?(position: readonly [number, number], frame: FrameInfo): number | void;
   resize(size: readonly [number, number]): void;
   update(frame: FrameInfo): void;
+  /** Skip unchanged time-driven frames after settlement; dirty/explicit draws still render. */
+  shouldRender?(frame: FrameInfo): boolean;
   render(frame: FrameInfo, encoder: GPUCommandEncoder, target: GPUTextureView): void;
   reset(seed: number): void;
   dispose(): void;
@@ -69,10 +78,17 @@ export interface EffectInstance {
   memory?(): EffectMemory;
   setInput?(name: string, value: unknown): void | Promise<void>;
 }
+/** Authored planning estimate, not an assertion of measured GPU time on every device. */
+export interface EffectBudget {
+  readonly expectedMs: number;
+  /** Reference render-target dimensions in physical pixels. */
+  readonly referenceSize: readonly [number, number];
+}
 export interface EffectDefinition<S extends ParamSchema = ParamSchema> {
   readonly id: string;
   readonly family: string;
   readonly title: string;
+  readonly budget?: EffectBudget;
   readonly tier: 'T1' | 'T2' | 'T3' | 'T4' | 'T5';
   readonly tags: readonly string[];
   readonly core: boolean;
@@ -83,6 +99,25 @@ export interface EffectDefinition<S extends ParamSchema = ParamSchema> {
   readonly quality: { resolutionScale: readonly [number, number] };
   readonly reducedMotion: { time: number };
   readonly fallback: string;
+  /** Bundled settled-frame fallback; attachments use this unless a poster is supplied. */
+  readonly poster?: string;
+  readonly presetPosters?: Readonly<Record<string, string>>;
+  /** Text-aware CSS fallback preserves the host's actual glyphs instead of a fixture poster. */
+  readonly textFallback?: {
+    readonly kind: 'gradient' | 'shadow' | 'none';
+    readonly colors?: readonly string[];
+    readonly shadow?: string;
+  };
+  /** Shape-aware card fallback preserves the authored host rather than a fixture poster. */
+  readonly cardFallback?: { readonly kind: 'glass' | 'shadow' | 'none' };
+  /** Keep the author's light-DOM image as fallback; an explicit poster still takes precedence. */
+  readonly imageFallback?: boolean;
+  /** Base-level samplers can borrow a field's linear output directly, without conversion or mips. */
+  readonly fieldInputSampling?: 'base';
+  /** Initial target scale; callers may still override it within the quality range. */
+  readonly defaultResolutionScale?: number;
+  /** Numeric parameter controlling scheduled render frequency; explicit draws remain immediate. */
+  readonly renderRate?: string;
   create(ctx: EffectContext<S>): EffectInstance | Promise<EffectInstance>;
 }
 export function defineEffect<S extends ParamSchema>(
@@ -90,10 +125,32 @@ export function defineEffect<S extends ParamSchema>(
 ): EffectDefinition<S> {
   if (!/^[a-z][a-z0-9-]*$/.test(definition.id))
     throw new Error(`Invalid effect id: ${definition.id}`);
+  if (definition.budget) {
+    const { expectedMs, referenceSize } = definition.budget;
+    if (
+      !Number.isFinite(expectedMs) ||
+      expectedMs <= 0 ||
+      referenceSize.length !== 2 ||
+      referenceSize.some((n) => !Number.isFinite(n) || n <= 0)
+    )
+      throw new RangeError('Effect budget must have positive finite milliseconds and dimensions');
+  }
   const store = new ParamStore(definition.params);
   for (const preset of Object.values(definition.presets)) store.patch(preset);
   const [min, max] = definition.quality.resolutionScale;
   if (min <= 0 || max < min || max > 1) throw new Error('Invalid resolution scale range');
+  if (
+    definition.defaultResolutionScale !== undefined &&
+    (!Number.isFinite(definition.defaultResolutionScale) ||
+      definition.defaultResolutionScale < min ||
+      definition.defaultResolutionScale > max)
+  )
+    throw new Error('Default resolution scale outside effect quality range');
+  if (
+    definition.renderRate &&
+    !['f32', 'u32', 'i32'].includes(definition.params[definition.renderRate]?.type ?? '')
+  )
+    throw new Error('Render rate must name a numeric parameter');
   return Object.freeze(definition);
 }
 export interface FragmentOptions<S extends ParamSchema> extends Omit<

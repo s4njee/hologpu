@@ -1,0 +1,29 @@
+{
+  "evidenceType": "Native iPhone Mirroring UI observation; not a raw browser report or calibrated benchmark",
+  "recordedOn": "2026-10-08",
+  "deviceMetadata": "Paired iPhone 13 Pro, iOS 27.0.1; original Mirroring connection identified iPhone 13 Pro",
+  "url": "https://5007abab.mk7s.pages.dev/hologpu/device-check.html",
+  "status": "Checks passed. Review appearance on the launch page and download the report.",
+  "statusMeaning": "All ten defined P0 fixtures reached ready, deterministic settled readback, zero unchanged scheduled frames and zero reported GPU errors.",
+  "nativeControls": {
+    "buttonActivations": 1,
+    "harnessSlider": 83,
+    "launchProductScrubPercent": 84
+  },
+  "appearanceObserved": [
+    "Ember hero and real-copy headline",
+    "Authored product image",
+    "Native product anchor",
+    "Wave divider",
+    "Grid horizon footer"
+  ],
+  "download": "Accepted native Safari download prompt for hologpu-device-check.json; raw report remains on the phone and was not copied to this repository.",
+  "limitations": [
+    "No raw per-field timings transcribed",
+    "Original report cleanup query only inspected light DOM; final harness checks shadow canvases too",
+    "Safari floating toolbar covered footer controls; mobile padding fix deployed, physical recheck pending after Mirroring lost connection",
+    "Physical palette, motion-toggle, forced-fallback and card inspection remain pending",
+    "Not evidence of Safari 26 or sustained phone performance"
+  ],
+  "latestPreview": "https://8f674041.mk7s.pages.dev/hologpu/launch.html"
+}

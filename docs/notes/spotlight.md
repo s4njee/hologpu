@@ -8,6 +8,25 @@ Can independently attached canvases display one page light with continuous coord
 
 Each fragment converts local UV into viewport CSS coordinates using pageRect and measures its distance to the shared pagePointer. The same feathered radial light and viewport-anchored weave appear across separate elements. The DOM adapter updates every visible host rectangle and forwards one document pointer position; the shader does not reinterpret it as a local clamped pointer.
 
+## Card grid recipe
+
+For production cards, attach one `card-spotlight` behind the entire grid rather than creating another spotlight for each card. The preset uses a 320 CSS-pixel radius, intensity 0.15, white tint and a transparent background. The authored cards retain their backgrounds, text and native controls. Pointer movement remains continuous through card gaps, and the DOM bridge refreshes the grid's viewport rectangle when scrolling or resizing.
+
+```ts
+import { attach } from "@mk7s/hologpu-dom";
+import spotlight from "@mk7s/hologpu-effects/spotlight";
+await attach(document.querySelector(".spotlight-host")!, spotlight, {
+  preset: "card-spotlight",
+  layer: "behind",
+});
+```
+
+Use `--hgpu-tint` for a brand colour and `--hgpu-intensity` for a quieter or stronger light. A transparent or translucent card surface lets this shared layer show through; an opaque card hides a light placed behind it. Keep card copy and buttons in ordinary HTML. Per-card `border-trace` and contact-shadow treatments can complement the single grid light without duplicating the spotlight field.
+
+Place the CSS grid or flex layout on a native child container inside the spotlight host so the attachment's slot wrapper does not alter the card layout. The cards demo uses one outer `#grid` spotlight host containing a `.grid-cards` layout and three ordinary card elements.
+
+The viewport mapping supports axis-aligned hosts and ordinary translation. Rotated or perspective-transformed grids require a host-transform inverse and are outside this recipe. Reduced motion retains the static pointer-responsive light while freezing authored temporal animation. The original effect defaults and its warm/sharp presets retain their existing rendering.
+
 ## References
 
 [WGSL texture loads and sampling](https://www.w3.org/TR/WGSL/#textureLoad)
@@ -31,6 +50,7 @@ Baseline sampled textures, uniform buffers and render pipelines. Linear-premulti
 | radius      | f32   | 180           | 1…1000          | Light    | Spotlight radius in viewport CSS pixels.                            |
 | softness    | f32   | 0.55          | 0.01…1          | Light    | Fraction of radius occupied by the feathered outer edge.            |
 | intensity   | f32   | 1.2           | 0…5             | Light    | Linear reveal intensity.                                            |
+| card        | bool  | false         | —               | Light    | Transparent quiet overlay for a whole card grid.                    |
 | ambient     | f32   | 0.04          | 0…1             | Light    | Linear intensity outside the spotlight.                             |
 | tint        | color | "#c4c1ff"     | —               | Palette  | Spotlight colour.                                                   |
 | background  | color | "#102133"     | —               | Palette  | Unlit surface colour.                                               |

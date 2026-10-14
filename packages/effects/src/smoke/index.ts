@@ -3,6 +3,8 @@ import { createFluidProgram } from '../_fluid/index.ts';
 import { solverParams, smokeParams } from '../_fluid/params.ts';
 const params = {
   ...solverParams,
+  // Small emitters support fine wisps without changing the default plume.
+  radius: { ...solverParams.radius, min: 0.003, step: 0.001 },
   source: { ...solverParams.source, default: 1.2 },
   vorticity: { ...solverParams.vorticity, default: 1.4 },
   dissipation: { ...solverParams.dissipation, default: 0.22 },

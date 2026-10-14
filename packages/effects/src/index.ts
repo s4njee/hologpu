@@ -2,50 +2,82 @@
 import type { EffectDefinition } from '@mk7s/hologpu-core';
 import effect0 from './attractors/index.ts';
 import effect1 from './audio-spectrum/index.ts';
-import effect2 from './bloom/index.ts';
-import effect3 from './blur/index.ts';
-import effect4 from './boids/index.ts';
-import effect5 from './border-energy/index.ts';
-import effect6 from './caustics/index.ts';
-import effect7 from './color-grade/index.ts';
-import effect8 from './displace/index.ts';
-import effect9 from './dither/index.ts';
-import effect10 from './edges/index.ts';
-import effect11 from './emitters/index.ts';
-import effect12 from './falling-sand/index.ts';
-import effect13 from './flow-particles/index.ts';
-import effect14 from './fluid/index.ts';
-import effect15 from './fluid-obstacles/index.ts';
-import effect16 from './fractal/index.ts';
-import effect17 from './gradient-oklch/index.ts';
-import effect18 from './halftone-ascii/index.ts';
-import effect19 from './image-hover/index.ts';
-import effect20 from './ink/index.ts';
-import effect21 from './jump-flood/index.ts';
-import effect22 from './lenia/index.ts';
-import effect23 from './lens/index.ts';
-import effect24 from './life/index.ts';
-import effect25 from './mipgen/index.ts';
-import effect26 from './morph-particles/index.ts';
-import effect27 from './n-body/index.ts';
-import effect28 from './noise-lab/index.ts';
-import effect29 from './physarum/index.ts';
-import effect30 from './prefix-sum/index.ts';
-import effect31 from './radiance-cascades/index.ts';
-import effect32 from './raymarch/index.ts';
-import effect33 from './reaction-diffusion/index.ts';
-import effect34 from './scroll-scene/index.ts';
-import effect35 from './sdf-2d/index.ts';
-import effect36 from './shadows-2d/index.ts';
-import effect37 from './smoke/index.ts';
-import effect38 from './sort/index.ts';
-import effect39 from './spatial-hash/index.ts';
-import effect40 from './spotlight/index.ts';
-import effect41 from './starfield/index.ts';
-import effect42 from './text-dissolve/index.ts';
-import effect43 from './truchet/index.ts';
-import effect44 from './voronoi/index.ts';
-import effect45 from './wave/index.ts';
+import effect2 from './aurora-veil/index.ts';
+import effect3 from './backdrop-glass/index.ts';
+import effect4 from './bloom/index.ts';
+import effect5 from './blur/index.ts';
+import effect6 from './boids/index.ts';
+import effect7 from './border-energy/index.ts';
+import effect8 from './bright-pass/index.ts';
+import effect9 from './caustics/index.ts';
+import effect10 from './color-grade/index.ts';
+import effect11 from './constellation/index.ts';
+import effect12 from './depth-parallax/index.ts';
+import effect13 from './displace/index.ts';
+import effect14 from './dither/index.ts';
+import effect15 from './dot-matrix-field/index.ts';
+import effect16 from './edges/index.ts';
+import effect17 from './emitters/index.ts';
+import effect18 from './falling-sand/index.ts';
+import effect19 from './flow-particles/index.ts';
+import effect20 from './fluid/index.ts';
+import effect21 from './fluid-obstacles/index.ts';
+import effect22 from './fractal/index.ts';
+import effect23 from './glass/index.ts';
+import effect24 from './gradient-oklch/index.ts';
+import effect25 from './grain-overlay/index.ts';
+import effect26 from './grid-horizon/index.ts';
+import effect27 from './halftone-ascii/index.ts';
+import effect28 from './heading-reveal/index.ts';
+import effect29 from './hover-lift-shadow/index.ts';
+import effect30 from './image-hover/index.ts';
+import effect31 from './ink/index.ts';
+import effect32 from './instances/index.ts';
+import effect33 from './jump-flood/index.ts';
+import effect34 from './lattice-boltzmann/index.ts';
+import effect35 from './lenia/index.ts';
+import effect36 from './lens/index.ts';
+import effect37 from './life/index.ts';
+import effect38 from './light-sweep/index.ts';
+import effect39 from './masked-composite/index.ts';
+import effect40 from './material-ball/index.ts';
+import effect41 from './mipgen/index.ts';
+import effect42 from './morph-particles/index.ts';
+import effect43 from './mpm/index.ts';
+import effect44 from './n-body/index.ts';
+import effect45 from './noise-lab/index.ts';
+import effect46 from './panel-refraction/index.ts';
+import effect47 from './particle-drift/index.ts';
+import effect48 from './path-tracer/index.ts';
+import effect49 from './pbf-fluid/index.ts';
+import effect50 from './physarum/index.ts';
+import effect51 from './pointer-map/index.ts';
+import effect52 from './prefix-sum/index.ts';
+import effect53 from './press-ripple/index.ts';
+import effect54 from './product-sheen/index.ts';
+import effect55 from './progress-line/index.ts';
+import effect56 from './radiance-cascades/index.ts';
+import effect57 from './raymarch/index.ts';
+import effect58 from './reaction-diffusion/index.ts';
+import effect59 from './scroll-scene/index.ts';
+import effect60 from './sdf-2d/index.ts';
+import effect61 from './section-wipe/index.ts';
+import effect62 from './shadows-2d/index.ts';
+import effect63 from './smoke/index.ts';
+import effect64 from './sort/index.ts';
+import effect65 from './spatial-hash/index.ts';
+import effect66 from './splats/index.ts';
+import effect67 from './spotlight/index.ts';
+import effect68 from './starfield/index.ts';
+import effect69 from './terrain/index.ts';
+import effect70 from './text-dissolve/index.ts';
+import effect71 from './text-outline-glow/index.ts';
+import effect72 from './text-shimmer/index.ts';
+import effect73 from './topographic-lines/index.ts';
+import effect74 from './truchet/index.ts';
+import effect75 from './voronoi/index.ts';
+import effect76 from './wave/index.ts';
+import effect77 from './wave-divider/index.ts';
 export const catalogue = [
   effect0,
   effect1,
@@ -93,4 +125,36 @@ export const catalogue = [
   effect43,
   effect44,
   effect45,
+  effect46,
+  effect47,
+  effect48,
+  effect49,
+  effect50,
+  effect51,
+  effect52,
+  effect53,
+  effect54,
+  effect55,
+  effect56,
+  effect57,
+  effect58,
+  effect59,
+  effect60,
+  effect61,
+  effect62,
+  effect63,
+  effect64,
+  effect65,
+  effect66,
+  effect67,
+  effect68,
+  effect69,
+  effect70,
+  effect71,
+  effect72,
+  effect73,
+  effect74,
+  effect75,
+  effect76,
+  effect77,
 ] as unknown as readonly EffectDefinition[];

@@ -3,6 +3,7 @@ import type { EffectDefinition, EffectField } from '../../packages/core/src/inde
 declare global {
   interface Window {
     hologpu: {
+      createHDRCanvas: typeof import('../../packages/core/src/index.ts').createHDRCanvas;
       createEffect: typeof import('../../packages/core/src/index.ts').createEffect;
       fragmentEffect: typeof import('../../packages/core/src/index.ts').fragmentEffect;
       filterEffect: typeof import('../../packages/core/src/index.ts').filterEffect;
@@ -27,7 +28,7 @@ const ids = [
   'starfield',
 ];
 for (const id of ids)
-  test(`${id}: deterministic pixels, two presets, all enum branches and disposal`, async ({
+  test(`${id}: deterministic pixels, presets, all enum branches and disposal`, async ({
     page,
   }, testInfo) => {
     await page.goto(`/?effect=${id}&playing=false&resolution=0.5`);
@@ -74,7 +75,7 @@ for (const id of ids)
           }
       return { summaries, errors: field.session.errors, diagnostics: field.diagnostics };
     });
-    expect(results.summaries).toHaveLength(2);
+    expect(results.summaries).toHaveLength(id === 'starfield' ? 3 : 2);
     expect(results.summaries[0]).not.toEqual(results.summaries[1]);
     expect(results.errors).toEqual([]);
     expect(results.diagnostics).toEqual([]);

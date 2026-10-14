@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#080e12" />
+    <title>Dive Connect · HoloGPU LCD refraction</title>
+  </head>
+  <body>
+    <header class="demo-header">
+      <a class="wordmark" href="/">HOLOGPU <span>/ FIELD STUDIES</span></a>
+      <div class="connection">
+        <i></i><span id="status" role="status" data-state="loading">Connecting…</span>
+      </div>
+    </header>
+    <main>
+      <div class="scene-heading">
+        <div>
+          <p class="eyebrow">EXPERIMENT 01 / OPTICAL SURFACES</p>
+          <h1>Dive Connect<span>Liquid crystal, in motion.</span></h1>
+        </div>
+        <span class="scene-number">35°41′ N / 139°41′ E</span>
+      </div>
+      <div id="scene" class="scene">
+        <img
+          id="photo"
+          src="/media/dive-connect.jpg"
+          alt="A transparent cyan LCD held in a neon-lit Tokyo street, showing a wireframe city and Dive Connect interface."
+        />
+        <canvas
+          id="lcd-canvas"
+          aria-label="Interactive LCD refraction. Move your pointer over the glass to steer the ripples."
+        ></canvas>
+        <div class="scene-caption">
+          <span><i></i> DIVE CONNECT / LIVE SURFACE</span
+          ><span id="hint">Move across the glass to steer the ripples</span>
+        </div>
+      </div>
+      <section class="controls" aria-label="LCD effect controls">
+        <div class="mode-control">
+          <span class="control-label">SURFACE</span>
+          <div class="modes" role="group" aria-label="Refraction mode">
+            <button data-mode="ripple" aria-pressed="true">Ripple</button>
+            <button data-mode="liquid" aria-pressed="false">Liquid</button>
+            <button data-mode="glass" aria-pressed="false">Glass</button>
+            <button data-mode="refraction" aria-pressed="false">Refraction</button>
+          </div>
+        </div>
+        <label class="slider-control" for="amount"
+          ><span class="control-label"
+            >INTENSITY <output id="amount-value" for="amount">10%</output></span
+          ><input id="amount" type="range" min="0" max="100" value="10"
+        /></label>
+        <label class="map-control" for="encoding"
+          ><span class="control-label">MAP</span
+          ><select id="encoding">
+            <option value="normal">Normal</option>
+            <option value="flow">Flow</option>
+          </select></label
+        >
+        <div class="actions">
+          <button id="billboard-motion" aria-pressed="true">Pause signs</button>
+          <button id="light-motion" aria-pressed="true">Pause lights</button>
+          <button id="rain-motion" aria-pressed="false">Play rain</button>
+          <button id="original" aria-pressed="false" disabled>View original</button>
+        </div>
+      </section>
+      <footer>
+        <span>Normal / flow refraction and ripple<span class="footer-divider">·</span>WebGPU</span
+        ><span>HoloCSS signs / HoloGPU surface</span>
+      </footer>
+    </main>
+    <script type="module" src="/src/lcd.ts"></script>
+  </body>
+</html>

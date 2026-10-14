@@ -10,6 +10,7 @@ import {
   type ParticleOptions,
   type EffectContext,
   type ParticleProgram,
+  type EffectInstance,
 } from '@mk7s/hologpu-core';
 import { particlePresentation } from './render.ts';
 export const renderParams = {
@@ -95,6 +96,11 @@ interface ParticleCode<S extends ParamSchema> {
   extra?: string;
   setupTargets?: (ctx: EffectContext<S>, count: number) => Float32Array;
   setInput?: (name: string, data: unknown) => void;
+  /** Optional stateless presentation; legacy simulation and HDR presentation stay unchanged. */
+  analytic?: {
+    active(ctx: EffectContext<S>): boolean;
+    create(ctx: EffectContext<S>, targets: () => GPUBuffer | undefined): Promise<EffectInstance>;
+  };
 }
 export function basicParticleEffect<const S extends ParamSchema>(
   options: Omit<ParticleOptions<S>, 'setup'>,
@@ -166,6 +172,8 @@ async function basicProgram<S extends ParamSchema>(
       drawLayout,
     );
     leases.push(presentation);
+    const analytic = await code.analytic?.create(ctx, () => targets);
+    if (analytic) leases.push(analytic);
     let count = 0,
       side = 0,
       groups: GPUBindGroup[] = [],
@@ -184,7 +192,8 @@ async function basicProgram<S extends ParamSchema>(
     }
     return {
       resize(size) {
-        presentation.resize(size);
+        presentation.resize(code.analytic?.active(ctx) ? [1, 1] : size);
+        analytic?.resize(size);
         const n = Number(ctx.params.values.count);
         if (n === count) {
           if (code.setupTargets && targetSelection !== selection()) uploadTargets();
@@ -233,11 +242,16 @@ async function basicProgram<S extends ParamSchema>(
         for (const g of groups) init.dispatch(encoder, [u, g], [Math.ceil(count / 128)]);
       },
       step(encoder, _frame, u) {
+        if (code.analytic?.active(ctx)) return;
         step.dispatch(encoder, [u, groups[side]!], [Math.ceil(count / 128)]);
         buffers!.swap();
         side = 1 - side;
       },
       display(encoder, target, frame, u) {
+        if (code.analytic?.active(ctx) && analytic) {
+          analytic.render(frame, encoder, target);
+          return;
+        }
         presentation.draw(
           encoder,
           target,
@@ -254,7 +268,8 @@ async function basicProgram<S extends ParamSchema>(
         uploadTargets();
         presentation.reset();
       },
-      textureTaps: () => presentation.textureTaps(),
+      textureTaps: () =>
+        code.analytic?.active(ctx) ? (analytic?.textureTaps?.() ?? {}) : presentation.textureTaps(),
       bufferTaps: () => ({
         particles: {
           buffer: buffers!.read,
@@ -274,11 +289,22 @@ async function basicProgram<S extends ParamSchema>(
           : {}),
       }),
       memory: () => ({
-        textureBytes: presentation.bytes,
-        bufferBytes: (buffers?.bytes ?? 0) + (targets?.size ?? 0),
+        textureBytes: presentation.bytes + (analytic?.memory?.().textureBytes ?? 0),
+        bufferBytes:
+          (buffers?.bytes ?? 0) + (targets?.size ?? 0) + (analytic?.memory?.().bufferBytes ?? 0),
       }),
-      sources: { initialize: initSource, simulate: stepSource, ...presentation.sources },
-      diagnostics: [...init.diagnostics, ...step.diagnostics, ...presentation.diagnostics],
+      sources: {
+        initialize: initSource,
+        simulate: stepSource,
+        ...presentation.sources,
+        ...analytic?.sources,
+      },
+      diagnostics: [
+        ...init.diagnostics,
+        ...step.diagnostics,
+        ...presentation.diagnostics,
+        ...(analytic?.diagnostics ?? []),
+      ],
       dispose() {
         buffers?.dispose();
         targets?.destroy();

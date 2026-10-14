@@ -1,0 +1,97 @@
+@import './fluid-dom.css';
+
+:root {
+  --mint: #83b8ff;
+  --accent-border: #83b8ff80;
+  --particle-color: #1677ff;
+  --attraction-accent: #edba85;
+  --attraction-border: #edba8555;
+  --attraction-divider: #edba8533;
+}
+.toolbar button:hover,
+.toolbar select:hover,
+.toolbar button[aria-pressed='true'] {
+  border-color: var(--accent-border);
+}
+.toolbar {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.toolbar-controls {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.preset-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+.preset-control select {
+  color: var(--mint);
+}
+#brightness {
+  accent-color: var(--mint);
+}
+#brightness-value,
+#output-status {
+  color: var(--mint);
+}
+body[data-state='fallback'] {
+  background:
+    radial-gradient(
+      ellipse at 65% 35%,
+      color-mix(in srgb, var(--particle-color) 25%, #080f14),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 30% 65%,
+      color-mix(in srgb, var(--attraction-accent) 15%, #080f14),
+      transparent 60%
+    ),
+    #080f14;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+body[data-state='fallback'] #particles {
+  display: none;
+}
+h1 {
+  font-size: clamp(90px, 11.5vw, 170px);
+}
+.floating-card {
+  border-color: var(--attraction-border);
+}
+.drag-handle,
+.card-symbol {
+  color: var(--attraction-accent);
+}
+.drag-handle {
+  border-color: var(--attraction-divider);
+}
+.show-boxes [data-push] {
+  outline: 1px dashed var(--mint);
+  outline-offset: 3px;
+}
+.show-boxes [data-pull] {
+  outline: 1px dashed var(--attraction-accent);
+  outline-offset: 3px;
+}
+body.reversed.show-boxes [data-push] {
+  outline-color: var(--attraction-accent);
+}
+body.reversed.show-boxes [data-pull] {
+  outline-color: var(--mint);
+}
+@media (max-width: 700px) {
+  h1 {
+    font-size: clamp(76px, 21vw, 140px);
+  }
+}

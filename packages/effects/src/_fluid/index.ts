@@ -44,6 +44,19 @@ export async function createFluidProgram<S extends ParamSchema>(
 ): Promise<FeedbackProgram> {
   const device = ctx.device;
   const uniformLayout = simulationUniformLayout(device);
+  const resistanceLayout =
+    kind === 'ink'
+      ? device.createBindGroupLayout({
+          label: 'hgpu-ink-paper-resistance',
+          entries: [
+            {
+              binding: 0,
+              visibility: GPUShaderStage.COMPUTE | GPUShaderStage.FRAGMENT,
+              texture: { sampleType: 'unfilterable-float' },
+            },
+          ],
+        })
+      : undefined;
   const obstacleLayout = obstacleMode
     ? device.createBindGroupLayout({
         entries: [
@@ -164,6 +177,7 @@ export async function createFluidProgram<S extends ParamSchema>(
       const pass = await createComputePass(ctx.session, source, `hgpu-${kind}-${name}`, [
         uniformLayout,
         layoutFor(name),
+        ...(resistanceLayout ? [resistanceLayout] : []),
         ...(obstacleLayout ? [obstacleLayout] : []),
       ]);
       passes[name] = pass;
@@ -176,7 +190,7 @@ export async function createFluidProgram<S extends ParamSchema>(
       source,
       ctx.format,
       `hgpu-${kind}-display`,
-      [uniformLayout, displayLayout],
+      [uniformLayout, displayLayout, ...(resistanceLayout ? [resistanceLayout] : [])],
     );
     sources.display = source;
     diagnostics.push(...display.diagnostics);
@@ -231,6 +245,21 @@ export async function createFluidProgram<S extends ParamSchema>(
     return textureIds.get(texture)!;
   };
   const tex = (name: string) => pairs[name]?.read ?? single[name] ?? neutral;
+  let resistanceTexture: GPUTexture | undefined;
+  let resistanceGroup: GPUBindGroup | undefined;
+  const paperGroup = () => {
+    if (!resistanceLayout) return [];
+    const texture = ctx.inputs?.get('resistance')?.texture ?? neutral;
+    if (texture !== resistanceTexture) {
+      resistanceTexture = texture;
+      resistanceGroup = device.createBindGroup({
+        label: 'hgpu-ink-paper-resistance',
+        layout: resistanceLayout,
+        entries: [{ binding: 0, resource: texture.createView() }],
+      });
+    }
+    return [resistanceGroup!];
+  };
   const group = (name: string, inputs: readonly GPUTexture[], output: GPUTexture) => {
     const key = `${storageFormat(kind, name)}:${[...inputs, output].map(texId).join(',')}`;
     let result = groups.get(key);
@@ -262,6 +291,7 @@ export async function createFluidProgram<S extends ParamSchema>(
       [
         uniforms,
         group(name, [src, vel, aux, material], output),
+        ...paperGroup(),
         ...(obstacleGroup ? [obstacleGroup] : []),
       ],
       [Math.ceil(size[0] / 8), Math.ceil(size[1] / 8)],
@@ -518,7 +548,7 @@ export async function createFluidProgram<S extends ParamSchema>(
         });
         displayKey = key;
       }
-      display.draw(encoder, target, [uniforms, displayGroup]);
+      display.draw(encoder, target, [uniforms, displayGroup, ...paperGroup()]);
     },
     sources,
     diagnostics,
@@ -571,6 +601,8 @@ export async function createFluidProgram<S extends ParamSchema>(
       shadowSnapshots?.dispose();
       groups.clear();
       displayGroup = undefined;
+      resistanceGroup = undefined;
+      resistanceTexture = undefined;
     },
   };
 }

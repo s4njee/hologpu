@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#080f14" />
+    <meta
+      name="description"
+      content="Brilliant HDR particles orbit and avoid real page elements. Move a magnetic card, reverse the forces, and turn up the light."
+    />
+    <title>Strange pull · HoloGPU DOM particles</title>
+  </head>
+  <body>
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a class="wordmark solid" data-push href="/">HOLOGPU <span>FIELD STUDIES</span></a>
+      <nav class="solid" data-push aria-label="Demo navigation">
+        <a href="#experiment">Experiment</a><a href="#how-it-works">How it works ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section id="experiment" class="experiment" aria-labelledby="title">
+        <div class="intro">
+          <p class="eyebrow solid" data-push>EXPERIMENT 03 / INVISIBLE FORCES</p>
+          <h1 id="title">
+            <span class="solid" data-push>Strange</span><span class="solid" data-push>pull.</span>
+          </h1>
+          <p class="description solid" data-push>
+            Some things draw you in.<br />A field of light pulled into orbit by the things you read,
+            click, and move.
+          </p>
+          <a class="scroll-link solid" data-push href="#how-it-works"
+            >Scroll to shift the field <span>↓</span></a
+          >
+        </div>
+        <aside
+          id="floating-card"
+          class="floating-card solid"
+          data-pull
+          aria-label="Movable attractor"
+        >
+          <button
+            id="drag-handle"
+            class="drag-handle"
+            aria-label="Move attractor: drag or use arrow keys"
+          >
+            <span>⠿</span> A LITTLE ATTRACTION <span>↗</span>
+          </button>
+          <div class="card-content">
+            <span class="card-symbol">◎</span>
+            <h2>Stay<br />a little closer.</h2>
+            <p>Grab the handle. Move this card.<br />Watch the particles follow.</p>
+            <span class="card-footnote">ATTRACTING / DRAG TO MOVE</span>
+          </div>
+        </aside>
+        <div class="experiment-caption">
+          <span>HEADINGS REPEL / THE FLOATING CARD ATTRACTS</span
+          ><span>01 — DOM AS A FORCE FIELD</span>
+        </div>
+      </section>
+      <section id="how-it-works" class="explanation" aria-labelledby="explanation-title">
+        <div class="section-heading">
+          <p class="eyebrow solid" data-push>A DIFFERENT KIND OF ATTRACTION</p>
+          <h2 id="explanation-title" class="solid" data-push>
+            A little pull.<br />A little space.
+          </h2>
+        </div>
+        <div class="notes">
+          <article class="note solid" data-push>
+            <span class="note-number">01 / CONTENT</span>
+            <h3>Room to read.</h3>
+            <p>
+              Headings and cards push particles away from their edges, opening quiet space for the
+              words. The text stays selectable and the links stay clickable.
+            </p>
+          </article>
+          <article class="note solid" data-push>
+            <span class="note-number">02 / CHANGE</span>
+            <h3>Follow the feeling.</h3>
+            <p>
+              The floating card draws particles toward its outline and into a gentle orbit. Move it,
+              scroll, or rearrange these cards. The forces follow the layout.
+            </p>
+            <button id="rearrange">Rearrange the cards ↗</button>
+          </article>
+          <article class="note solid" data-push>
+            <span class="note-number">03 / INTERACTION</span>
+            <h3>Opposites, on demand.</h3>
+            <p>
+              Reverse the forces to turn attraction into repulsion. Switch them off to see the
+              underlying drift, or reveal the outlines to find each source.
+            </p>
+          </article>
+        </div>
+        <footer>
+          <a class="solid" data-push href="/?effect=attractors"
+            >Explore the original chaotic attractors ↗</a
+          ><span class="solid" data-push>HoloGPU / WebGPU / 2026</span>
+        </footer>
+      </section>
+    </main>
+    <aside class="toolbar solid" data-push aria-label="Particle controls">
+      <div class="live-status">
+        <i></i>
+        <div>
+          <span id="status" role="status" data-state="loading">Starting particles…</span>
+          <span id="output-status" role="status">Preparing light…</span>
+        </div>
+      </div>
+      <div class="light-controls">
+        <label for="brightness">Light</label>
+        <input id="brightness" type="range" min="1" max="16" step="0.5" value="8" disabled />
+        <output id="brightness-value" for="brightness">8×</output>
+        <label class="sr-only" for="output-mode">Dynamic range</label>
+        <select id="output-mode" disabled>
+          <option value="auto" selected>Auto HDR</option>
+          <option value="hdr">HDR</option>
+          <option value="sdr">SDR</option>
+        </select>
+      </div>
+      <div class="toolbar-controls">
+        <button id="pause" disabled>Pause</button><button id="reset" disabled>Reset</button>
+        <label class="boundary-control"><input id="forces" type="checkbox" checked />Forces</label>
+        <button id="show-boxes" aria-pressed="false">Show boxes</button>
+        <button id="reverse" aria-pressed="false">Reverse</button>
+        <label class="preset-control"
+          >Preset
+          <select id="color-preset">
+            <option value="blue">Electric Blue</option>
+            <option value="violet">Ultraviolet</option>
+            <option value="mint">Mint</option>
+            <option value="ember">Ember</option>
+            <option value="rose">Hot Pink</option>
+          </select></label
+        >
+      </div>
+    </aside>
+    <script type="module" src="/src/attractor-dom.ts"></script>
+  </body>
+</html>

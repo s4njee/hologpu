@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#080f14" />
+    <meta
+      name="description"
+      content="Occasional vivid multicolor HDR fireworks behind elevated, movable HTML. A HoloGPU field study."
+    />
+    <title>After hours · HoloGPU fireworks</title>
+  </head>
+  <body>
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a class="wordmark solid" href="./">HOLOGPU <span>FIELD STUDIES</span></a>
+      <nav class="solid" aria-label="Demo navigation">
+        <a href="./fluid-dom.html">Liquid light ↗</a><a href="#the-details">The details ↓</a>
+      </nav>
+    </header>
+    <main>
+      <section class="experiment" aria-labelledby="title">
+        <div class="intro">
+          <p class="eyebrow">
+            <span class="color-dots" aria-hidden="true"><i></i><i></i><i></i></span> EXPERIMENT 04 /
+            AFTER DARK
+          </p>
+          <h1 id="title">
+            <span class="solid" data-launch data-hgpu-obstacle>After</span
+            ><span class="solid" data-launch data-hgpu-obstacle>hours.</span>
+          </h1>
+          <p class="description solid">
+            A little quiet. A sudden spark.<br />Vivid colors light up the space behind the page.
+          </p>
+          <a class="scroll-link solid" href="#the-details">Stay for the next one <span>↓</span></a>
+        </div>
+        <aside
+          id="floating-card"
+          class="floating-card solid"
+          data-launch
+          data-hgpu-obstacle
+          aria-label="Movable foreground card"
+        >
+          <button
+            id="drag-handle"
+            class="drag-handle"
+            aria-label="Move card: drag or use arrow keys"
+          >
+            <span>⠿</span> FRONT ROW / DRAG ME <span>↗</span>
+          </button>
+          <div class="card-content">
+            <span class="card-symbol" aria-hidden="true">✳</span>
+            <p class="ticket-label">A MOMENT IN THE DARK</p>
+            <h2>Good things<br />come in bursts.</h2>
+            <p>Move your front-row seat.<br />The next firework follows you.</p>
+            <span class="card-footnote">ADMIT ONE <span>04 — ∞</span></span>
+          </div>
+        </aside>
+        <div class="experiment-caption">
+          <span>TWO BURSTS / EVERY FEW SECONDS</span><span>SEVEN COLORS / ONE NIGHT</span>
+        </div>
+      </section>
+      <section id="the-details" class="explanation" aria-labelledby="explanation-title">
+        <div class="section-heading">
+          <p class="eyebrow">LIGHT, WITH ROOM TO BREATHE</p>
+          <h2 id="explanation-title" class="solid" data-launch data-hgpu-obstacle>
+            A spark.<br />Then a little space.
+          </h2>
+        </div>
+        <div class="notes">
+          <article class="note solid" data-launch data-hgpu-obstacle>
+            <span class="note-number">01 / RHYTHM</span>
+            <h3>Worth the wait.</h3>
+            <p>
+              Two fireworks share the sky. Rings, round shells, and cascading willows open up, fall
+              away, and fade into the night.
+            </p>
+          </article>
+          <article class="note solid" data-launch data-hgpu-obstacle>
+            <span class="note-number">02 / DEPTH</span>
+            <h3>The page comes first.</h3>
+            <p>
+              Light passes behind raised headings and cards. Drag the ticket, select the text, or
+              rearrange these cards. The next burst finds the new layout.
+            </p>
+            <button id="rearrange">Rearrange the cards ↗</button>
+          </article>
+          <article class="note solid" data-launch data-hgpu-obstacle>
+            <span class="note-number">03 / BRILLIANCE</span>
+            <h3>Turn up the night.</h3>
+            <p>
+              Auto HDR brings extra brightness to compatible displays. Everywhere else, vivid
+              tone-mapped color keeps the show alive.
+            </p>
+          </article>
+        </div>
+        <footer>
+          <a class="solid" href="./?effect=emitters">Explore the original emitter effect ↗</a
+          ><span class="solid">HoloGPU / WebGPU / 2026</span>
+        </footer>
+      </section>
+    </main>
+    <aside class="toolbar solid" aria-label="Fireworks controls">
+      <div class="live-status">
+        <i></i>
+        <div>
+          <span id="status" role="status" data-state="loading">Starting fireworks…</span
+          ><span id="output-status" role="status">Preparing light…</span>
+        </div>
+      </div>
+      <div class="light-controls">
+        <label for="brightness">Light</label
+        ><input
+          id="brightness"
+          type="range"
+          min="1"
+          max="16"
+          step="0.5"
+          value="8"
+          disabled
+        /><output id="brightness-value" for="brightness">8×</output
+        ><label class="sr-only" for="output-mode">Dynamic range</label
+        ><select id="output-mode" disabled>
+          <option value="auto" selected>Auto HDR</option>
+          <option value="hdr">HDR</option>
+          <option value="sdr">SDR</option>
+        </select>
+      </div>
+      <div class="toolbar-controls">
+        <label class="sr-only" for="burst-shape">Firework shape</label>
+        <select id="burst-shape" disabled>
+          <option value="mixed">Mixed shapes</option>
+          <option value="round">Round</option>
+          <option value="ring">Rings</option>
+          <option value="willow">Willows</option>
+        </select>
+        <button id="pause" disabled>Pause</button><button id="reset" disabled>Replay</button
+        ><button id="show-boxes" aria-pressed="false">Show boxes</button>
+      </div>
+    </aside>
+    <script type="module" src="/src/fireworks-dom.ts"></script>
+  </body>
+</html>

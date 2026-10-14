@@ -27,6 +27,7 @@ const page = await browser.newPage({
 await page.emulateMedia({ reducedMotion: 'no-preference' });
 const base = process.env.HOLOGPU_URL ?? 'http://127.0.0.1:5176';
 const results = [];
+const firstFrameCaptures = [];
 const diagnostics = [];
 page.on('pageerror', (error) => diagnostics.push(error.message));
 const six = [
@@ -39,16 +40,16 @@ const six = [
 ];
 const layoutCSS =
   '#stage.dom-mode{height:760px}.m5-cards{grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:1000px}.m5-card{height:220px;min-height:220px}';
-if (name === 'software') {
-  // Apply the declared measurement layout before attachment creation, including cold work.
-  await page.route('**/*', async (route) => {
-    if (route.request().resourceType() !== 'document') return route.continue();
-    const response = await route.fetch();
-    await route.fulfill({
-      response,
-      body: (await response.text()).replace('</head>', `<style>${layoutCSS}</style></head>`),
-    });
+// Apply the measurement layout before attachment creation for cold timings too.
+await page.route('**/*', async (route) => {
+  if (route.request().resourceType() !== 'document') return route.continue();
+  const response = await route.fetch();
+  await route.fulfill({
+    response,
+    body: (await response.text()).replace('</head>', `<style>${layoutCSS}</style></head>`),
   });
+});
+if (name === 'software') {
   await page.addInitScript(() => {
     const quality = [],
       work = [],
@@ -125,7 +126,7 @@ async function stage(overlay = false, adaptive = false, adaptiveFromCreation = f
   await page.locator('#status[data-state="ready"]').waitFor({ timeout: 60_000 });
   const statusReadyMs = performance.now() - navigationStart;
   await page.addStyleTag({ content: layoutCSS });
-  await page.evaluate(async () => {
+  const firstFrames = await page.evaluate(async () => {
     const s = window.hologpu.domStage;
     if (s.fields.length !== 6 || s.attachments.length !== 6 || s.hosts.length !== 6)
       throw new Error('Expected six actual DOM attachments');
@@ -145,12 +146,39 @@ async function stage(overlay = false, adaptive = false, adaptiveFromCreation = f
       )
         throw new Error('All six attached hosts must fit completely inside the visible clip');
     }
+    return s.attachments.map((attachment) => {
+      const timings = attachment.timings;
+      if (
+        !timings ||
+        !Number.isFinite(timings.firstFrameMs) ||
+        timings.firstFrameCompletedAt < timings.firstFrameSubmittedAt ||
+        timings.firstFrameSubmittedAt < timings.startedAt
+      )
+        throw new Error('Actual DOM attachment has no completed first-frame timing');
+      const rect = attachment.host.getBoundingClientRect();
+      return {
+        id: attachment.effect.id,
+        state: attachment.state,
+        cssBounds: { width: rect.width, height: rect.height },
+        target: [...attachment.field.surface.size],
+        timings,
+        compileMs: timings.gpuReadyAt - timings.startedAt,
+        submitMs: timings.firstFrameSubmittedAt - timings.startedAt,
+        firstSubmitToCompletedMs: timings.firstFrameCompletedAt - timings.firstFrameSubmittedAt,
+      };
+    });
   });
-  return {
+  const capture = {
     statusReadyMs,
     visibleInputsReadyMs: performance.now() - navigationStart,
     clock: 'Node wall time from navigation start, including browser protocol/readiness checks',
+    firstFrames,
+    attachmentFirstFrameMs: summarize(firstFrames.map((frame) => frame.timings.firstFrameMs)),
+    firstFrameBoundary:
+      'Browser monotonic performance.now from each actual attach call to its first submitted GPU work completion. Shader compilation, input setup and first-frame encoding are included. This is GPU queue completion, not a browser paint timestamp; source-module/navigation time before attach is excluded.',
   };
+  firstFrameCaptures.push(capture);
+  return capture;
 }
 function summaryRow(data) {
   const { idle, raf, cpu, completion, ...metadata } = data;
@@ -831,6 +859,7 @@ try {
           css: 'Public production bindCSSParameters; 0/1/8 selected bindings, 30 warmup +120 manually sampled visible frame hooks, no GPU rendering in timing region.',
         },
         results,
+        firstFrameCaptures,
       },
       null,
       2,

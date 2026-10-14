@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#e8eae2" />
+    <title>HoloGPU · Product imagery</title>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">HOLOGPU <span>FIELD NOTES / 04</span></a
+      ><a href="/cards.html">Cards &amp; controls ↗</a>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">PRODUCT IMAGERY / QUIET BY DESIGN</p>
+        <h1>A little movement.<br />A clearer picture.</h1>
+        <p class="lead">
+          Depth that follows your hand. Light that respects the silhouette. Small details for the
+          things you make.
+        </p>
+        <div class="toolbar">
+          <button id="original" aria-pressed="false">Show originals</button>
+          <button id="depth-maps" aria-pressed="false">Show depth maps</button>
+          <button id="motion" aria-pressed="false">Reduce motion</button>
+          <label class="progress"
+            >Image progress
+            <input id="progress" type="range" min="0" max="1" step="0.01" value="0.5"
+          /></label>
+        </div>
+        <p id="status" role="status">Preparing the surfaces…</p>
+      </section>
+      <section class="pair" aria-label="Two authored depth maps">
+        <article>
+          <div class="media replace depth" id="console">
+            <img
+              class="original"
+              src="/media/products/console.png"
+              alt="Signal console with six rotary controls and a green waveform display"
+            /><img
+              class="depth-map"
+              src="/media/products/console-depth.png"
+              alt="Depth map for the Signal console; brighter areas sit closer"
+              hidden
+            />
+          </div>
+          <div class="caption">
+            <span>01 / DEPTH PARALLAX</span>
+            <h2>A familiar point of view.</h2>
+            <p>
+              An authored depth map gives the console a subtle shift. Move your pointer or scrub the
+              image progress.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div class="media replace depth" id="modules">
+            <img
+              class="original"
+              src="/media/products/modules.png"
+              alt="Three green modular computing units stacked by size"
+            /><img
+              class="depth-map"
+              src="/media/products/modules-depth.png"
+              alt="Depth map for three modules, with increasing depth on the upper units"
+              hidden
+            />
+          </div>
+          <div class="caption">
+            <span>02 / DEPTH PARALLAX</span>
+            <h2>Room between the layers.</h2>
+            <p>
+              A second image, a second map. The far background holds still while the three modules
+              move by depth.
+            </p>
+          </div>
+        </article>
+      </section>
+      <section class="pair" aria-label="Product light and screenshot glow">
+        <article>
+          <div class="media cutout" id="sheen">
+            <img
+              src="/media/products/console-cutout.png"
+              alt="The Signal console isolated on a soft cream background"
+            />
+          </div>
+          <div class="caption">
+            <span>03 / PRODUCT SHEEN</span>
+            <h2>Light, within the outline.</h2>
+            <p>
+              A soft highlight crosses the product's alpha silhouette. Scrub progress to place it
+              exactly where you want it.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div class="media screenshot" id="glow">
+            <img
+              src="/media/products/screenshot.png"
+              alt="Signal workspace with uptime, events and latency statistics and a rising throughput chart"
+            />
+          </div>
+          <div class="caption">
+            <span>04 / SCREENSHOT GLOW</span>
+            <h2>Let the bright details breathe.</h2>
+            <p>
+              Only selected highlights bloom. The dark interface stays crisp, with the glow drawn at
+              half resolution.
+            </p>
+          </div>
+        </article>
+      </section>
+      <section class="pair" aria-label="Masked refraction and video grading">
+        <article>
+          <div class="media replace lens" id="lens">
+            <img
+              class="original"
+              src="/media/products/screenshot.png"
+              alt="Signal workspace with a pointer-driven lens confined to the throughput chart"
+            />
+          </div>
+          <div class="caption">
+            <span>05 / MASKED COMPOSITE + POINTER MAP</span>
+            <h2>A lens with boundaries.</h2>
+            <p>
+              Move over the chart. A shared vector map refracts only its surface; navigation and
+              surrounding metrics stay still.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div class="media replace video" id="video">
+            <video
+              class="original"
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster="/media/products/screenshot.png"
+              aria-label="A slowly moving view of the Signal workspace"
+            >
+              <source src="/media/products/hero-720p.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="caption">
+            <span>06 / HERO VIDEO GRADE</span>
+            <h2>A softer moving image.</h2>
+            <p>
+              A muted 720p loop, a quiet grade and fine film grain. Motion is optional; the native
+              video remains the fallback.
+            </p>
+            <button id="video-play" aria-pressed="false">Play video</button>
+          </div>
+        </article>
+      </section>
+      <footer>
+        <p>
+          Original illustrations and aligned depth maps. Native images, copy and controls remain in
+          the page.
+        </p>
+        <a href="/">Explore the catalogue ↗</a>
+      </footer>
+    </main>
+    <script type="module" src="/src/products.ts"></script>
+  </body>
+</html>

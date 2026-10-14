@@ -1,0 +1,2321 @@
+{
+  "recordedAt": "2026-10-08T16:55:16.042Z",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "release": "25.6.0",
+    "browser": "chrome",
+    "browserVersion": "154.0.8037.98",
+    "viewport": [
+      1200,
+      900
+    ],
+    "dpr": 1,
+    "baseURL": "http://127.0.0.1:5175",
+    "competingLoad": "HoloGPU captures are serialized. Independent user projects may be active; machine-wide load is not controlled."
+  },
+  "method": "Actual launch page, all viewport-intersecting attachments rendered every sampled frame, including interaction-only fields and the ordinarily rate-limited grain. 30 warmup plus 120 samples per section, seed 7, authored resolution scales, actual CSS/input hooks, shared session submit, queue completion awaited each frame. Scheduler is stopped during this manual capture. Completed-work is CPU encode+submit+GPU queue callback, not pure GPU execution or compositor presentation. Initial attachment timings retained separately. This measures the 4ms completed-work page gate; it does not establish individual pure-GPU timing gates.",
+  "firstFrames": [
+    {
+      "id": "aurora-veil",
+      "state": "ready",
+      "timings": {
+        "startedAt": 426,
+        "gpuReadyAt": 492.7000000476837,
+        "firstFrameSubmittedAt": 513.3000001907349,
+        "firstFrameCompletedAt": 517,
+        "firstFrameMs": 91,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "grain-overlay",
+      "state": "ready",
+      "timings": {
+        "startedAt": 517.1000001430511,
+        "gpuReadyAt": 536.4000000953674,
+        "firstFrameSubmittedAt": 538.6000001430511,
+        "firstFrameCompletedAt": 539.7000000476837,
+        "firstFrameMs": 22.59999990463257,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "text-shimmer",
+      "state": "ready",
+      "timings": {
+        "startedAt": 539.8000001907349,
+        "gpuReadyAt": 561.3000001907349,
+        "firstFrameSubmittedAt": 593.6000001430511,
+        "firstFrameCompletedAt": 601.8000001907349,
+        "firstFrameMs": 62,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "spotlight",
+      "state": "ready",
+      "timings": {
+        "startedAt": 601.9000000953674,
+        "gpuReadyAt": 608.6000001430511,
+        "firstFrameSubmittedAt": 610.2000000476837,
+        "firstFrameCompletedAt": 613.9000000953674,
+        "firstFrameMs": 12,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "timings": {
+        "startedAt": 614.1000001430511,
+        "gpuReadyAt": 629.1000001430511,
+        "firstFrameSubmittedAt": 631.9000000953674,
+        "firstFrameCompletedAt": 633.3000001907349,
+        "firstFrameMs": 19.200000047683716,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "timings": {
+        "startedAt": 633.4000000953674,
+        "gpuReadyAt": 634.6000001430511,
+        "firstFrameSubmittedAt": 635.4000000953674,
+        "firstFrameCompletedAt": 636.6000001430511,
+        "firstFrameMs": 3.200000047683716,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "border-energy",
+      "state": "ready",
+      "timings": {
+        "startedAt": 636.8000001907349,
+        "gpuReadyAt": 638,
+        "firstFrameSubmittedAt": 639.5,
+        "firstFrameCompletedAt": 640.5,
+        "firstFrameMs": 3.6999998092651367,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "depth-parallax",
+      "state": "ready",
+      "timings": {
+        "startedAt": 665.2000000476837,
+        "gpuReadyAt": 675.8000001907349,
+        "firstFrameSubmittedAt": 677.1000001430511,
+        "firstFrameCompletedAt": 680.7000000476837,
+        "firstFrameMs": 15.5,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "wave-divider",
+      "state": "ready",
+      "timings": {
+        "startedAt": 711.6000001430511,
+        "gpuReadyAt": 718.1000001430511,
+        "firstFrameSubmittedAt": 720.3000001907349,
+        "firstFrameCompletedAt": 721.7000000476837,
+        "firstFrameMs": 10.099999904632568,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    },
+    {
+      "id": "grid-horizon",
+      "state": "ready",
+      "timings": {
+        "startedAt": 721.8000001907349,
+        "gpuReadyAt": 734.9000000953674,
+        "firstFrameSubmittedAt": 735.8000001907349,
+        "firstFrameCompletedAt": 737.1000001430511,
+        "firstFrameMs": 15.299999952316284,
+        "fallbackReadyAt": null,
+        "fallbackMs": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "section": "home",
+      "fields": [
+        {
+          "id": "aurora-veil",
+          "size": [
+            300,
+            163
+          ],
+          "resolutionScale": 0.25
+        },
+        {
+          "id": "grain-overlay",
+          "size": [
+            600,
+            319
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "text-shimmer",
+          "size": [
+            696,
+            188
+          ],
+          "resolutionScale": 1
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 2.299999952316284,
+        "p95": 3,
+        "max": 3.3999998569488525
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 4,
+        "p95": 6.400000095367432,
+        "max": 9.900000095367432
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 6.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.199999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 3.1999998092651367,
+          "completedWorkMs": 6.699999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 4.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 5.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 3.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7999999523162842,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3999998569488525,
+          "completedWorkMs": 3.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 6.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 3.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 7.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3999998569488525,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3000001907348633,
+          "completedWorkMs": 4.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 6.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8999998569488525,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1999998092651367,
+          "completedWorkMs": 4.699999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1999998092651367,
+          "completedWorkMs": 4.699999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.9000000953674316,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6999998092651367,
+          "completedWorkMs": 6.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3999998569488525,
+          "completedWorkMs": 5.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3.1999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3.1999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1999998092651367,
+          "completedWorkMs": 5.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.9000000953674316,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3000001907348633,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 5.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1000001430511475,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3000001907348633,
+          "completedWorkMs": 3.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 3.0999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1000001430511475,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8000001907348633,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 5.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1000001430511475,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1000001430511475,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 5.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1999998092651367,
+          "completedWorkMs": 6.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.8999998569488525,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 5.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 6.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3000001907348633,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1999998092651367,
+          "completedWorkMs": 3.6999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 9.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2,
+          "completedWorkMs": 3.3000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1000001430511475,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.3999998569488525,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 3.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 4.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 5.599999904632568
+        }
+      ],
+      "gpuErrors": []
+    },
+    {
+      "section": "details",
+      "fields": [
+        {
+          "id": "aurora-veil",
+          "size": [
+            300,
+            163
+          ],
+          "resolutionScale": 0.25
+        },
+        {
+          "id": "grain-overlay",
+          "size": [
+            600,
+            319
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "spotlight",
+          "size": [
+            528,
+            178
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 2.9000000953674316,
+        "p95": 3.5999999046325684,
+        "max": 4.799999952316284
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 5,
+        "p95": 8.700000047683716,
+        "max": 10.700000047683716
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.4000000953674316,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 8.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.3999998569488525,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 8.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.0999999046325684,
+          "completedWorkMs": 8.399999856948853
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 4.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 5.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 6.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8999998569488525,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.6999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 8
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8999998569488525,
+          "completedWorkMs": 4.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 4.299999952316284,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3.3999998569488525,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 4.799999952316284,
+          "completedWorkMs": 6.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.4000000953674316,
+          "completedWorkMs": 5.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 6.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6999998092651367,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 7.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.5,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.700000047683716,
+          "completedWorkMs": 5.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.300000190734863
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 5.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 3.1000001430511475,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 10.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 6.199999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 5.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8000001907348633,
+          "completedWorkMs": 7.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 4.200000047683716,
+          "completedWorkMs": 5.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.5999999046325684,
+          "completedWorkMs": 6.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8000001907348633,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 7.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 4.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 5.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 8.100000143051147
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.0999999046325684,
+          "completedWorkMs": 5.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 7.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 3.5,
+          "completedWorkMs": 4.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 7.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 3.0999999046325684,
+          "completedWorkMs": 6.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.0999999046325684,
+          "completedWorkMs": 4.699999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 8.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.0999999046325684,
+          "completedWorkMs": 6.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.1000001430511475,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 5.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 7.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 3.5,
+          "completedWorkMs": 5.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 7.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.200000047683716,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 5.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.299999952316284,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 7.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8000001907348633,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.1000001430511475,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 6.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 4.800000190734863
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 9.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 4.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.8999998569488525,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.0999999046325684,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.9000000953674316,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 3.1000001430511475,
+          "completedWorkMs": 5.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 4.599999904632568,
+          "completedWorkMs": 8.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 7.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.3999998569488525,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.0999999046325684,
+          "completedWorkMs": 8.399999856948853
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 3.4000000953674316,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.700000047683716,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.3999998569488525,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 3.4000000953674316,
+          "completedWorkMs": 6.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 9
+        },
+        {
+          "cpuEncodeSubmitMs": 3,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 2.799999952316284,
+          "completedWorkMs": 5.699999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 2.299999952316284,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.5,
+          "completedWorkMs": 6.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.6000001430511475,
+          "completedWorkMs": 4.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 3.200000047683716,
+          "completedWorkMs": 4.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 2.5999999046325684,
+          "completedWorkMs": 7.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.4000000953674316,
+          "completedWorkMs": 4.1000001430511475
+        }
+      ],
+      "gpuErrors": []
+    },
+    {
+      "section": "product",
+      "fields": [
+        {
+          "id": "spotlight",
+          "size": [
+            528,
+            178
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "border-energy",
+          "size": [
+            185,
+            194
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "depth-parallax",
+          "size": [
+            272,
+            182
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "wave-divider",
+          "size": [
+            600,
+            45
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "grid-horizon",
+          "size": [
+            600,
+            243
+          ],
+          "resolutionScale": 0.5
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 1.2999999523162842,
+        "p95": 1.7000000476837158,
+        "max": 2.1000001430511475
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 3.200000047683716,
+        "p95": 6.400000095367432,
+        "max": 8.299999952316284
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 6.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 2.1000001430511475,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 5.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 3.6999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 7.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 3.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 2.8000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 0.8999998569488525,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 4.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 8.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 6.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.6000001430511475,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.0999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.6999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 7.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.6000001430511475,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 4.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 6.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 2.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 5.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 7.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.0999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 5.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 4.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 4.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 3.3000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7999999523162842,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5999999046325684,
+          "completedWorkMs": 5.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.8000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 4
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 5.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1.8999998569488525,
+          "completedWorkMs": 3.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 5.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 5.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 3.0999999046325684
+        }
+      ],
+      "gpuErrors": []
+    },
+    {
+      "section": "join",
+      "fields": [
+        {
+          "id": "depth-parallax",
+          "size": [
+            272,
+            182
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "wave-divider",
+          "size": [
+            600,
+            45
+          ],
+          "resolutionScale": 0.5
+        },
+        {
+          "id": "grid-horizon",
+          "size": [
+            600,
+            243
+          ],
+          "resolutionScale": 0.5
+        }
+      ],
+      "cpuEncodeSubmitMs": {
+        "count": 120,
+        "p50": 1.2000000476837158,
+        "p95": 1.5,
+        "max": 3.1999998092651367
+      },
+      "completedWorkMs": {
+        "count": 120,
+        "p50": 2.5,
+        "p95": 4.900000095367432,
+        "max": 6.699999809265137
+      },
+      "gate": {
+        "budgetMs": 4,
+        "passed": false
+      },
+      "samples": [
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 4.099999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 5.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 4.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 6.400000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.0999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.3000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 2.8000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 0.7999999523162842,
+          "completedWorkMs": 1.7999999523162842
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 3.1999998092651367,
+          "completedWorkMs": 4.599999904632568
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 2.8000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.7000000476837158,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 4.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 3.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 6
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 3.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3000001907348633,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5,
+          "completedWorkMs": 4.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 3.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.3000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3.8000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 3
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.3000001907348633
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1999998092651367,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.4000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 0.8999998569488525,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 3.1999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 0.7999999523162842,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 6.699999809265137
+        },
+        {
+          "cpuEncodeSubmitMs": 0.7999999523162842,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.6000001430511475,
+          "completedWorkMs": 2.700000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 0.8999998569488525,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.6000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.5999999046325684,
+          "completedWorkMs": 2.6999998092651367
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 3.8999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 1.3999998569488525,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.299999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 0.9000000953674316,
+          "completedWorkMs": 2.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.5
+        },
+        {
+          "cpuEncodeSubmitMs": 0.8999998569488525,
+          "completedWorkMs": 2
+        },
+        {
+          "cpuEncodeSubmitMs": 1.1000001430511475,
+          "completedWorkMs": 2.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2999999523162842,
+          "completedWorkMs": 4.900000095367432
+        },
+        {
+          "cpuEncodeSubmitMs": 1.0999999046325684,
+          "completedWorkMs": 2.5999999046325684
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.1000001430511475
+        },
+        {
+          "cpuEncodeSubmitMs": 1,
+          "completedWorkMs": 2.200000047683716
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.3999998569488525
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.9000000953674316
+        },
+        {
+          "cpuEncodeSubmitMs": 1.4000000953674316,
+          "completedWorkMs": 2.799999952316284
+        },
+        {
+          "cpuEncodeSubmitMs": 1.2000000476837158,
+          "completedWorkMs": 2.200000047683716
+        }
+      ],
+      "gpuErrors": []
+    }
+  ],
+  "errors": []
+}

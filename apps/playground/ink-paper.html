@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#e9e5dc" />
+    <meta
+      name="description"
+      content="Crimson pigment sinks into paper, revealing a secret written in wax. An interactive HoloGPU ink study."
+    />
+    <link
+      rel="preload"
+      href="/fonts/Parisienne-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <title>Invisible ink · HoloGPU</title>
+  </head>
+  <body>
+    <div class="studio">
+      <header class="masthead">
+        <a class="wordmark" href="/">HOLOGPU <span>MATERIAL STUDIES</span></a>
+        <span class="edition">Nº 03 <span>—</span> PIGMENT ON PAPER</span>
+      </header>
+      <main>
+        <div class="heading">
+          <div>
+            <p class="eyebrow">A LITTLE EXPERIMENT IN RESISTANCE</p>
+            <h1>Invisible ink<span>.</span></h1>
+          </div>
+          <p class="intro">A wash of red. A secret in wax.<br />Watch the paper give it away.</p>
+        </div>
+        <section class="paper-wrap" aria-label="Ink reveal experiment">
+          <div id="paper" class="paper">
+            <canvas
+              id="ink"
+              aria-label="Red ink soaking down the paper to reveal a cursive message"
+            ></canvas>
+            <div class="paper-fibers" aria-hidden="true"></div>
+            <div class="paper-label" aria-hidden="true">
+              <span>CRIMSON / COTTON / WAX</span><span>↓</span>
+            </div>
+            <div class="signature" aria-hidden="true">a trace of what remains</div>
+          </div>
+          <div class="paper-caption">
+            <div class="live-status">
+              <i id="status-dot"></i
+              ><span id="status" role="status" data-state="loading">Preparing the paper…</span>
+            </div>
+            <div class="transport">
+              <button id="pause" disabled>Pause</button><span class="divider"></span
+              ><button id="replay" disabled>Replay <span>↻</span></button>
+            </div>
+          </div>
+        </section>
+        <form id="message-form" class="controls">
+          <div class="message-control">
+            <label for="message">YOUR HIDDEN MESSAGE <span>/ SEPARATES LINES</span></label
+            ><input
+              id="message"
+              maxlength="72"
+              value="Some things / stay with you."
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="message-hint"
+            /><span id="message-hint" class="sr-only"
+              >Use a slash to separate up to three lines. Maximum 72 characters.</span
+            >
+          </div>
+          <div class="flow-control">
+            <label for="flow">THE PACE <output id="flow-value" for="flow">Unhurried</output></label
+            ><input id="flow" type="range" min="0.12" max="0.3" step="0.01" value="0.19" />
+          </div>
+          <button id="write" class="write-button" type="submit" disabled>
+            Write &amp; reveal <span>↗</span>
+          </button>
+        </form>
+      </main>
+      <footer>
+        <p>The pigment settles. The words remain.</p>
+        <a href="/?effect=ink">Explore the ink effect <span>↗</span></a>
+      </footer>
+    </div>
+    <script type="module" src="/src/ink-paper.ts"></script>
+  </body>
+</html>

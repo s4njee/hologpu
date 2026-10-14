@@ -32,6 +32,14 @@ The default DOM source cap is 128 rectangles; callers may choose 1–4096. The c
 
 Baseline storage buffers, sampled textures and write-only storage textures, with 8×8 compute workgroups. No optional features, browser page rasterization, external textures or JFA are required. Rectangles are tested analytically in solver passes, costing proportional to rectangle count; this is a reference bounded-rectangle implementation. The seeded initial state and CSS fallback support reduced motion and unavailable WebGPU.
 
+## Liquid-light DOM demo
+
+`/fluid-dom.html` defaults to the Ember palette and an 8× linear emission boost, adjustable from 1× to 16×. Auto HDR checks `(dynamic-range: high)` and requests an opaque `rgba16float` canvas with extended tone mapping, preferring Display P3 and falling back to sRGB HDR. A rejected float format or ignored extended configuration falls back to an ordinary SDR canvas. The output menu also lets visitors force HDR or choose SDR. The status distinguishes accepted HDR configuration from an SDR display; successful configuration does not measure physical luminance. Browser and OS output settings and the display's current headroom determine actual brightness above white.
+
+The demo leaves the shared fluid shader and simulation unchanged. Its single final presentation pass subtracts the fixed dark background in linear light, multiplies dye emission, and adds the background back. HDR converts linear sRGB to the selected gamut and applies the nonlinear transfer function without clipping highlights above 1. SDR uses a hue-preserving shoulder to compress boosted emission into its limited range. 1× reproduces the original display mapping. This replaces the usual SDR resolve in the same scheduler encoder, with cached texture bindings and no second animation loop, glow texture, or additional fluid steps. Brightness invalidates a paused field without advancing its simulation. Resizing rebinds the new output texture; device restoration rebuilds the presentation on the replacement device.
+
+For repeatable comparisons, use `?playing=false&output=hdr&brightness=8` or `?playing=false&output=sdr&brightness=1`. Browser tests copy the actual presented canvas texture to verify extended highlights, brightness control, SDR switching, and device restoration alongside existing DOM obstacle tests. Screenshots can show composition but cannot establish HDR display luminance. See [Chrome's extended canvas tone-mapping documentation](https://developer.chrome.com/blog/new-in-webgpu-129#hdr_support_with_canvas_tone_mapping_mode) for the browser presentation contract.
+
 ## Parameters (generated)
 
 <!-- params:start -->

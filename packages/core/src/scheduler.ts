@@ -8,12 +8,18 @@ export interface Tick {
   delta: number;
   index: number;
 }
+export interface SchedulerOptions {
+  /** Default bound for a device containing only stateless pipelined surfaces. */
+  pipelinedSubmissionLimit?: number;
+}
 export interface ScheduledSurface {
+  readonly submissionPipelining?: boolean;
   visible: boolean;
   playing: boolean;
   dirty: boolean;
   polling?: boolean;
   beforeFrame?(): void;
+  shouldRender?(): boolean;
   update(frame: Tick): void;
   render(frame: Tick): void;
   dependencies?(): readonly ScheduledSurface[];
@@ -30,7 +36,9 @@ export class Scheduler {
   readonly #surfaces = new Set<ScheduledSurface>();
   readonly #submit: () => void;
   readonly #completion: (() => Promise<void>) | undefined;
-  #submission: object | null = null;
+  #submissions = new Set<object>();
+  #submissionLimit: number | null = null;
+  readonly #pipelinedSubmissionLimit: number;
   #resumeAfterWait = false;
   #raf = 0;
   #previous: number | null = null;
@@ -39,7 +47,16 @@ export class Scheduler {
   #index = 0;
   #hidden = false;
   cpuFrameMs = 0;
-  constructor(submit: () => void, clock: Clock = browserClock, completion?: () => Promise<void>) {
+  constructor(
+    submit: () => void,
+    clock: Clock = browserClock,
+    completion?: () => Promise<void>,
+    options: SchedulerOptions = {},
+  ) {
+    const limit = options.pipelinedSubmissionLimit ?? 1;
+    if (!Number.isInteger(limit) || limit < 1 || limit > 8)
+      throw new RangeError('Pipelined submission limit must be an integer from 1 to 8');
+    this.#pipelinedSubmissionLimit = limit;
     this.#submit = submit;
     this.#clock = clock;
     this.#completion = completion;
@@ -50,12 +67,13 @@ export class Scheduler {
     return () => {
       this.#surfaces.delete(surface);
       if (!this.#surfaces.size) this.stop();
+      else this.invalidate();
     };
   }
   invalidate() {
     if (
       !this.#raf &&
-      !this.#submission &&
+      this.#submissions.size < this.submissionLimit &&
       !this.#hidden &&
       [...this.#surfaces].some((s) => s.visible && (s.dirty || s.playing || s.polling))
     )
@@ -75,20 +93,38 @@ export class Scheduler {
   }
   /** A device generation ended: an obsolete queue promise must not block its replacement. */
   resetSubmission() {
-    this.#submission = null;
+    this.#submissions.clear();
     this.#previous = null;
     this.#accumulator = 0;
     this.#resumeAfterWait = false;
   }
   get submissionPending() {
-    return this.#submission !== null;
+    return this.#submissions.size > 0;
+  }
+  get submissionLimit() {
+    if (this.#submissionLimit !== null) return this.#submissionLimit;
+    if (!this.#surfaces.size || this.#pipelinedSubmissionLimit === 1) return 1;
+    const seen = new Set<ScheduledSurface>();
+    const safe = (surface: ScheduledSurface): boolean => {
+      if (seen.has(surface)) return true;
+      seen.add(surface);
+      return surface.submissionPipelining === true && (surface.dependencies?.() ?? []).every(safe);
+    };
+    return [...this.#surfaces].every(safe) ? this.#pipelinedSubmissionLimit : 1;
+  }
+  /** Bounded pipelining for engines whose completion notifications arrive in batches. */
+  setSubmissionLimit(limit: number) {
+    if (!Number.isInteger(limit) || limit < 1 || limit > 8)
+      throw new RangeError('Submission limit must be an integer from 1 to 8');
+    this.#submissionLimit = limit;
+    this.invalidate();
   }
   get surfaceCount() {
     return this.#surfaces.size;
   }
   readonly #tick = (now: number) => {
     this.#raf = 0;
-    if (this.#hidden || this.#submission) return;
+    if (this.#hidden || this.#submissions.size >= this.submissionLimit) return;
     const start = this.#clock.now();
     const delta =
       this.#previous === null
@@ -125,6 +161,7 @@ export class Scheduler {
       // Uniform drivers may poll while a paused/reduced-motion field keeps its settled image.
       // Check here, in dependency order: a source render can dirty its later consumers.
       if (!surface.dirty && !surface.playing) continue;
+      if (surface.shouldRender && !surface.shouldRender()) continue;
       surface.render({ time: this.#time, delta, index: this.#index });
       surface.dirty = false;
       rendered.push(surface);
@@ -132,13 +169,13 @@ export class Scheduler {
     if (rendered.length) {
       this.#submit();
       if (this.#completion) {
-        const lease = (this.#submission = {}),
+        const lease = {},
           start = this.#clock.now();
+        this.#submissions.add(lease);
         const completed = () => {
-          if (this.#submission !== lease) return;
-          this.#submission = null;
+          if (!this.#submissions.delete(lease)) return;
           // GPU stalls do not become six expensive catch-up updates on recovery.
-          if (this.#clock.now() - start > 100) {
+          if (!this.#submissions.size && this.#clock.now() - start > 100) {
             this.#accumulator = 0;
             this.#resumeAfterWait = true;
           }

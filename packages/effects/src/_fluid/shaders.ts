@@ -6,6 +6,7 @@ export function solverCommon(kind: FluidKind, obstacles = false) {
 @group(1) @binding(1) var vel: texture_2d<f32>;
 @group(1) @binding(2) var aux: texture_2d<f32>;
 @group(1) @binding(3) var material: texture_2d<f32>;
+${kind === 'ink' ? '@group(2) @binding(0) var resistance: texture_2d<f32>;' : ''}
 ${
   obstacles
     ? `struct Rects {count:u32,pad0:u32,pad1:u32,pad2:u32,rects:array<vec4f>};
@@ -74,9 +75,15 @@ fn paper_grain(i: vec2i) -> f32 {
 }
 ${
   kind === 'ink'
-    ? `fn pigment_transfer(m: vec4f,i: vec2i) -> vec2f {
+    ? `fn paper_resistance(i: vec2i) -> f32 {
+  let n=vec2f(textureDimensions(src));
+  let r=vec2i(textureDimensions(resistance));
+  let uv=(vec2f(i)+0.5)/n;
+  return clamp(textureLoad(resistance,clamp(vec2i(uv*vec2f(r)),vec2i(0),r-1),0).r,0.0,1.0);
+}
+fn pigment_transfer(m: vec4f,i: vec2i) -> vec2f {
   let grain=mix(1.0,0.35+1.3*paper_grain(i),params.grain);
-  let rate=params.absorption*grain*(1.0+1.5*exp(-m.z));
+  let rate=params.absorption*grain*(1.0+1.5*exp(-m.z))*(1.0-paper_resistance(i));
   return m.xy*(1.0-exp(-rate*frame.delta));
 }`
     : ''
@@ -182,11 +189,31 @@ export function computeShader(kind: FluidKind, name: string, obstacles = false) 
   textureStore(destination,i,vec4f(wall_velocity(face_velocity(i)-grad,i,n),0,0));`,
     advectMaterial: /* wgsl */ `
   ${obstacles ? 'if(solid(i,n)) {textureStore(destination,i,vec4f(0));return;}' : ''}
-  let back=cell-velocity_at(cell)*frame.delta*nf.y;
+  ${
+    kind === 'ink'
+      ? `// Capillary transport is material movement through porous paper, separate from the projected fluid.
+  let fibers=0.72+0.22*sin(uv.x*61.0+sin(uv.y*17.0)*1.4)+0.12*sin(uv.x*137.0+uv.y*9.0);
+  let wick=vec2f(sin(uv.y*23.0+uv.x*31.0)*0.04, fibers)*params.paperFlow;
+  let back=cell-(velocity_at(cell)+wick)*frame.delta*nf.y;`
+      : 'let back=cell-velocity_at(cell)*frame.delta*nf.y;'
+  }
   let q=${obstacles ? 'obstacle_backtrace(cell,back,nf)' : 'back'};
   var m=bilerp(src,q);let fade=exp(-params.dissipation*frame.delta);
+  ${kind === 'ink' ? '// Paper transport has clean incoming water at the top, rather than repeating the clamped edge pigment.\n  if(params.paperFlow>0.0 && q.y<0.5) {m=vec4f(0);}' : ''}
   ${kind === 'fluid' ? 'm*=fade;' : kind === 'ink' ? 'm=vec4f(m.xy*fade,m.z*exp(-params.evaporation*frame.delta),0);' : 'm=vec4f(m.x*fade,m.y*exp(-params.cooling*frame.delta),0,0);'}
-  let emitter=gaussian(p,source_position()*vec2f(nf.x/nf.y,1),params.radius);
+  var emitter=gaussian(p,source_position()*vec2f(nf.x/nf.y,1),params.radius);
+  ${
+    kind === 'ink'
+      ? `if(params.feed==1u) {
+    let edge=0.024+0.008*sin(uv.x*27.0)+0.004*sin(uv.x*71.0);
+    let band=exp(-pow((uv.y-edge)/0.021,2.0)*0.5);
+    let sides=smoothstep(0.025,0.12,uv.x)*(1.0-smoothstep(0.88,0.975,uv.x));
+    let variation=0.76+0.16*sin(uv.x*43.0)+0.08*sin(uv.x*107.0);
+    let envelope=select(1.0,1.0-smoothstep(params.feedDuration-1.0,params.feedDuration,frame.time),params.feedDuration>0.0);
+    emitter=band*sides*variation*envelope;
+  }`
+      : ''
+  }
   let pointer=pointer_weight(p,nf)*max(frame.pressure,0.5);
   let amount=(emitter*params.source+pointer*2.0)*frame.delta*3.0;
   let colorMix=0.5+0.5*sin(frame.time*0.63);
@@ -221,6 +248,7 @@ export function displayShader(kind: FluidKind) {
 @group(1) @binding(3) var divergence: texture_2d<f32>;
 @group(1) @binding(4) var curl: texture_2d<f32>;
 @group(1) @binding(5) var extra: texture_2d<f32>;
+${kind === 'ink' ? '@group(2) @binding(0) var resistance: texture_2d<f32>;' : ''}
 @fragment fn fragment(in:VertexOut) -> @location(0) vec4f {
   let m=sample_bilinear(dye,in.uv);var rgb=params.background.rgb;
   ${
@@ -229,7 +257,9 @@ export function displayShader(kind: FluidKind) {
       : kind === 'ink'
         ? `let deposit=sample_bilinear(extra,in.uv).xy;
   let a=-log(max(params.dyeA.rgb,vec3f(0.03)));let b=-log(max(params.dyeB.rgb,vec3f(0.03)));
-  let pigments=max(m.xy+deposit,vec2f(0));
+  // A wax coating rejects the visible wet wash as well as irreversible absorption.
+  let wax=clamp(sample_bilinear(resistance,in.uv).r,0.0,1.0);
+  let pigments=max(m.xy+deposit,vec2f(0))*(1.0-wax);
   let cell=vec2u(in.uv*vec2f(textureDimensions(dye)));
   let grain=f32(hash_u32((cell.x*1664525u) ^ hash_u32(cell.y*1013904223u+frame.seed)))/4294967295.0;
   rgb*=exp(-(a*pigments.x+b*pigments.y)*params.opticalDensity)*(1.0-params.grain*0.035*grain);`

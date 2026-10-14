@@ -81,7 +81,7 @@ for (const id of [...particles, ...primitives])
         sources: Object.keys(f.sources),
       };
     });
-    expect(metadata.presets).toHaveLength(2);
+    expect(metadata.presets).toHaveLength(id === 'morph-particles' ? 3 : 2);
     expect(metadata.fallback.length).toBeGreaterThan(0);
     expect(metadata.quality.resolutionScale).toEqual([0.25, 1]);
     expect(metadata.sources.length).toBeGreaterThan(1);
@@ -90,7 +90,8 @@ for (const id of [...particles, ...primitives])
       expect(spec.group, `${id}.${spec.name} group`).toBeTruthy();
       if (spec.min !== undefined) expect(spec.max).toBeGreaterThanOrEqual(spec.min);
     }
-    for (const preset of metadata.presets) {
+    // Assembly poses have dedicated progress/reduced-motion snapshots in v2-text-assembly.
+    for (const preset of metadata.presets.filter((name) => name !== 'assemble-and-hold')) {
       const pixels = await page.evaluate(
         async ({ preset, params }) => {
           const f = window.hologpu.field!;

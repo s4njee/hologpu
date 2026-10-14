@@ -345,7 +345,7 @@ test('scroll scene is scrubbed by progress, independent of simulation history an
   expect(reformed.pixels).toEqual(start.pixels);
 });
 for (const id of ids)
-  test(`${id}: catalogue defaults, two presets, enums, deterministic DPR replay and disposal`, async ({
+  test(`${id}: catalogue defaults, presets, enums, deterministic DPR replay and disposal`, async ({
     page,
   }, info) => {
     test.setTimeout(120_000);
@@ -373,7 +373,9 @@ for (const id of ids)
       },
       { corePath, effectRoot, id },
     );
-    expect(metadata.presets).toHaveLength(2);
+    expect(metadata.presets).toHaveLength(
+      ['text-dissolve', 'spotlight', 'border-energy'].includes(id) ? 3 : 2,
+    );
     expect(metadata.quality.resolutionScale).toEqual([0.25, 1]);
     expect(metadata.reducedMotion).toEqual({ time: 0 });
     expect(metadata.fallback).toBeTruthy();
@@ -393,7 +395,13 @@ for (const id of ids)
         f.advance(8);
         return Array.from((await f.readPixels()).pixels);
       }, preset);
-    for (const preset of [undefined, ...metadata.presets]) {
+    // Assembly poses have dedicated progress/reduced-motion snapshots in v2-text-assembly.
+    for (const preset of [
+      undefined,
+      ...metadata.presets.filter(
+        (name) => !['assemble-and-hold', 'card-spotlight', 'border-trace'].includes(name),
+      ),
+    ]) {
       const first = await pose(preset);
       expect(first.every(Number.isFinite)).toBe(true);
       expect(new Set(first).size).toBeGreaterThan(2);

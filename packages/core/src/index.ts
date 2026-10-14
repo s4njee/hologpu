@@ -18,3 +18,8 @@ export * from './inputs.ts';
 export * from './filters.ts';
 export * from './distance-fields.ts';
 export * from './wgsl/index.ts';
+
+export * from './geometry.ts';
+export * from './environment.ts';
+export * from './hdr.ts';
+export { createElementCapture, elementCaptureMethod } from './element-capture.ts';

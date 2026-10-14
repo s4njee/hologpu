@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HoloGPU · Between sections</title>
+    <link rel="stylesheet" href="/src/transitions.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/">HOLOGPU <span>/ STUDIES</span></a>
+      <nav aria-label="Demos">
+        <a href="/products.html">Imagery</a><a href="/cards.html">Cards</a
+        ><a href="/">Catalogue ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">05 / SCROLL, TRANSITIONS & DIVIDERS</p>
+        <h1>A softer way<br />to move forward.</h1>
+        <p class="lede">
+          One picture gives way to another. A line follows the story. A quiet wave connects the
+          spaces between.
+        </p>
+        <div class="controls" aria-label="Demo controls">
+          <label class="scrubber" for="progress"
+            >Preview progress <output id="progress-value" for="progress">0%</output
+            ><input id="progress" type="range" min="0" max="1" step="0.01" value="0"
+          /></label>
+          <button id="scroll-mode" type="button" aria-pressed="true">Follow scroll</button>
+          <button id="motion" type="button" aria-pressed="false">Reduce motion</button>
+          <button id="fallback" type="button" aria-pressed="false">Show fallbacks</button>
+        </div>
+        <p id="status" class="status" role="status">Preparing the transitions…</p>
+      </section>
+      <section class="story" id="story">
+        <div class="story-heading">
+          <p class="eyebrow">01 / A CHANGE OF PERSPECTIVE</p>
+          <h2>From an idea<br />to an instrument.</h2>
+          <p>
+            The details evolve. The purpose stays clear. Scroll through the study or use the slider
+            to inspect each moment.
+          </p>
+        </div>
+        <div class="image-column">
+          <div id="wipe" class="wipe media" data-mode="directional">
+            <img
+              class="original first"
+              src="/media/products/console.png"
+              alt="An illustrated console with six controls and a small signal display"
+              width="1200"
+              height="800"
+            />
+            <img
+              class="original second"
+              src="/media/products/modules.png"
+              alt="Three illustrated signal modules arranged in a stack"
+              width="1200"
+              height="800"
+            />
+          </div>
+          <div class="caption">
+            <span>Signal studies / 001 → 002</span
+            ><label for="wipe-mode"
+              >Reveal
+              <select id="wipe-mode">
+                <option value="directional">Directional</option>
+                <option value="noise">Noise</option>
+                <option value="luminance">Luminance</option>
+              </select></label
+            >
+          </div>
+        </div>
+      </section>
+      <div class="divider-wrap">
+        <div id="wave" class="wave media">
+          <svg
+            class="native-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            preserveAspectRatio="none"
+          >
+            <path />
+          </svg>
+        </div>
+      </div>
+      <section class="process">
+        <div class="process-title">
+          <p class="eyebrow">02 / EACH STEP HAS ITS PLACE</p>
+          <h2>A small line.<br />A clear direction.</h2>
+          <p>
+            A path connects the stages without moving the words. The same progress drives the image
+            and the line.
+          </p>
+        </div>
+        <div class="path-panel">
+          <div id="line" class="line media">
+            <svg
+              class="native-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="none"
+            >
+              <path pathLength="1" />
+            </svg>
+          </div>
+          <ol class="steps">
+            <li>
+              <span>01</span>
+              <h3>Explore</h3>
+              <p>Find the shape of the idea.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <h3>Refine</h3>
+              <p>Make room for what matters.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <h3>Release</h3>
+              <p>Give it a place in the world.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <footer>
+        <p>Quiet motion, authored content.</p>
+        <a href="/products.html">See the product imagery study →</a
+        ><small>Original illustrations · native controls · reduced-motion poses</small>
+      </footer>
+    </main>
+    <script type="module" src="/src/transitions.ts"></script>
+  </body>
+</html>

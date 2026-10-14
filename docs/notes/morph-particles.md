@@ -26,21 +26,24 @@ Baseline storage buffers, compute, vertex storage reads and rgba16float render a
 
 <!-- params:start -->
 
-| Parameter  | Type  | Default   | Range / choices  | Group     | Description                                                                                         |
-| ---------- | ----- | --------- | ---------------- | --------- | --------------------------------------------------------------------------------------------------- |
-| count      | u32   | 32768     | 64…1048576       | Particles | Storage particle count; changing it restarts the seeded field.                                      |
-| draw       | enum  | "quad"    | point, quad      | Rendering | One raster point or six-vertex instanced quad per particle.                                         |
-| size       | f32   | 1.6       | 0.5…8            | Rendering | Quad diameter in display pixels; points remain one pixel.                                           |
-| trail      | f32   | 0.94      | 0…0.995          | Rendering | Retained HDR energy per newly displayed simulation index; repeated paused renders preserve history. |
-| exposure   | f32   | 0.8       | 0.01…4           | Rendering | Exposure before Reinhard HDR tone mapping.                                                          |
-| tint       | color | "#72dcd3" | —                | Palette   | Additive particle colour.                                                                           |
-| background | color | "#07111e" | —                | Palette   | Tone mapped empty-field background.                                                                 |
-| mask       | enum  | "text"    | text, image      | Target    | Local raster text mask or image luminance targets; custom input accepted through field.setInput.    |
-| word       | enum  | "GPU"     | GPU, HELLO, FLOW | Target    | Built-in text mask. setInput("text", string) replaces it with custom text.                          |
-| spring     | f32   | 18        | 1…80             | Motion    | Spring acceleration toward the target point.                                                        |
-| damping    | f32   | 5         | 0…12             | Motion    | Exponential velocity damping per second.                                                            |
-| scatter    | f32   | 2         | 0…8              | Motion    | Pointer repulsion strength while pressed.                                                           |
-| radius     | f32   | 0.35      | 0.05…1           | Motion    | Pointer scatter radius in normalized coordinates.                                                   |
+| Parameter  | Type  | Default   | Range / choices  | Group     | Description                                                                                                 |
+| ---------- | ----- | --------- | ---------------- | --------- | ----------------------------------------------------------------------------------------------------------- |
+| count      | u32   | 32768     | 64…1048576       | Particles | Storage particle count; changing it restarts the seeded field.                                              |
+| draw       | enum  | "quad"    | point, quad      | Rendering | One raster point or six-vertex instanced quad per particle.                                                 |
+| size       | f32   | 1.6       | 0.5…8            | Rendering | Quad diameter in display pixels; points remain one pixel.                                                   |
+| trail      | f32   | 0.94      | 0…0.995          | Rendering | Retained HDR energy per newly displayed simulation index; repeated paused renders preserve history.         |
+| exposure   | f32   | 0.8       | 0.01…4           | Rendering | Exposure before Reinhard HDR tone mapping.                                                                  |
+| tint       | color | "#72dcd3" | —                | Palette   | Additive particle colour.                                                                                   |
+| background | color | "#07111e" | —                | Palette   | Tone mapped empty-field background.                                                                         |
+| assembly   | bool  | false     | —                | Motion    | Stateless assemble-and-hold mode; normal spring simulation is retained when disabled.                       |
+| progress   | f32   | 0         | 0…1              | Motion    | Assembly progress: zero is seeded scatter, one is the raster target; reversible without simulation history. |
+| intensity  | f32   | 1         | 0…1              | Rendering | Opacity in assembly mode; the quiet preset uses 0.22. Spring presentation remains unchanged.                |
+| mask       | enum  | "text"    | text, image      | Target    | Local raster text mask or image luminance targets; custom input accepted through field.setInput.            |
+| word       | enum  | "GPU"     | GPU, HELLO, FLOW | Target    | Built-in text mask. setInput("text", string) replaces it with custom text.                                  |
+| spring     | f32   | 18        | 1…80             | Motion    | Spring acceleration toward the target point.                                                                |
+| damping    | f32   | 5         | 0…12             | Motion    | Exponential velocity damping per second.                                                                    |
+| scatter    | f32   | 2         | 0…8              | Motion    | Pointer repulsion strength while pressed.                                                                   |
+| radius     | f32   | 0.35      | 0.05…1           | Motion    | Pointer scatter radius in normalized coordinates.                                                           |
 
 <!-- params:end -->
 
@@ -50,10 +53,10 @@ Baseline storage buffers, compute, vertex storage reads and rgba16float render a
 
 Recorded on the development Apple M1 Max / macOS 26.6.2 using the production preview and the same fixed-scenario runner as the Profiler drawer. Physical display is 512² at DPR 1, seed 7, fixed resolution/work quality. Defaults are retained except million-particle gate rows set count to exactly 1,000,000 and select point or instanced-quad drawing. Each of three runs discards 30 warm-up updates and measures 120 fixed 1/60 s updates, one per rAF, awaiting queue completion and timestamp readback.
 
-| Browser              | Rendering / allocation controls            | CPU mean ms           | Completion p95 ms     | Summed GPU pass p95 ms | rAF median ms            | Million-particle gate | Record                               |
-| -------------------- | ------------------------------------------ | --------------------- | --------------------- | ---------------------- | ------------------------ | --------------------- | ------------------------------------ |
-| chrome 154.0.8037.98 | quad; count=32768, mask="text", word="GPU" | 0.221 / 0.307 / 0.218 | 5.000 / 5.700 / 4.000 | 1.769 / 1.901 / 1.835  | 16.700 / 16.700 / 16.700 | —                     | [JSON](../benchmarks/m3-chrome.json) |
-| webkit 26.6          | quad; count=32768, mask="text", word="GPU" | 0.283 / 0.325 / 0.267 | 5.000 / 6.000 / 6.000 | 2.516 / 2.435 / 3.407  | 16.000 / 16.000 / 16.000 | —                     | [JSON](../benchmarks/m3-webkit.json) |
+| Browser              | Rendering / allocation controls                                | CPU mean ms           | Completion p95 ms     | Summed GPU pass p95 ms | rAF median ms            | Million-particle gate | Record                               |
+| -------------------- | -------------------------------------------------------------- | --------------------- | --------------------- | ---------------------- | ------------------------ | --------------------- | ------------------------------------ |
+| chrome 154.0.8037.98 | quad; count=32768, assembly=undefined, mask="text", word="GPU" | 0.221 / 0.307 / 0.218 | 5.000 / 5.700 / 4.000 | 1.769 / 1.901 / 1.835  | 16.700 / 16.700 / 16.700 | —                     | [JSON](../benchmarks/m3-chrome.json) |
+| webkit 26.6          | quad; count=32768, assembly=undefined, mask="text", word="GPU" | 0.283 / 0.325 / 0.267 | 5.000 / 6.000 / 6.000 | 2.516 / 2.435 / 3.407  | 16.000 / 16.000 / 16.000 | —                     | [JSON](../benchmarks/m3-webkit.json) |
 
 GPU columns use actual pass-boundary timestamp queries when available; values are implementation-defined and may be quantized. Pass intervals may overlap; their sum is a diagnostic rather than whole-frame execution time. These captures include summed intervals larger than queue-completion wall latency, so the columns must not be substituted for one another. CPU encode, queue-completion wall latency and rAF cadence remain separate. The million-particle gate verifies actual storage count, both draw paths, all 150 fixed updates and no GPU errors; M3 specifies particle count rather than a refresh-rate threshold. Machine load is uncontrolled. Logical allocations are not VRAM. Initialization/compilation are excluded. Small deterministic software snapshots and CPU-reference GPU tests establish separate numerical/lifecycle properties, not million-particle speed.
 
@@ -68,5 +71,9 @@ The numerical tests in `tests/browser/particles-core.spec.ts` check seeded stora
 Targets are sampled from a fixed 512×256 raster at a two-pixel stride. Small text details and dark image regions below the luminance threshold are discarded; an empty mask places targets at the origin. Text uses the available sans-serif font, single-line fillText shaping and maximum-width fitting, so target geometry can differ across operating systems. Images are stretched to the local mask and nearest-scaled; aspect-preserving fit, crop and colour-managed input handling are not general bindings yet. Raster extraction and target upload happen on the CPU when inputs or selection change and scale with target count; they are excluded from steady-state frame timing. Browser-tainted canvas sources cannot be read as masks. The damped spring is a visual assembly model, with positions clamped to a finite domain during scatter, rather than a collision-aware particle simulation. Very small point stamps alias; HDR count scaling and rounding change brightness. The static gradient fallback cannot reproduce the supplied text or image.
 
 ## Production readiness
+
+The opt-in `assemble-and-hold` preset uses 8,192 particles and a transparent, direct quad pass with intensity 0.22. Progress zero uses a seeded scatter, progress one uses the fixed raster targets, and intermediate values interpolate with smooth easing. Repeated progress poses are deterministic and reversible: they do not depend on spring integration, elapsed time, or prior displays. Reduced motion forces progress one. Clean assembly fields stop submitting work, and assembly mode skips simulation updates. Its dormant legacy HDR history remains 1×1 rather than allocating viewport trails; the existing 32-byte particle records and 16-byte raster targets remain available for inspection and switching back to spring mode.
+
+CSS `--hgpu-progress`, `--hgpu-intensity` and `--hgpu-tint` drive the preset. The preset-aware `poster-assemble-and-hold.png` supplies a matching settled built-in GPU word; custom text or imagery needs a matching author poster. The `image` and `soft` presets, default 32,768-particle spring behavior, and typed local `setInput` calls retain their previous behavior. The assembly path uses those same local raster targets and font constraints; it does not promise pixel alignment with an arbitrary DOM font. Keep readable text in the DOM and use at most one stateful particle treatment per page.
 
 General media bindings, explicit fit/crop modes, font selection/loading and higher-resolution or distance-field sampling belong in the input layer. Preserve per-instance source ownership and synchronous image copying so callers can release decoded bitmaps, and retain custom sources through shader rebuilds. A production text effect should keep meaningful text in the DOM for accessibility and provide a matching poster when GPU rendering is unavailable. Extend target tests to empty masks, dark/transparent images, loaded fonts and touch pressure, and measure source-change latency separately from steady-state GPU motion. Retain spring CPU checks, pointer scatter, immediate mask selection and custom text/image replay coverage.

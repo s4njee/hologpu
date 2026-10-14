@@ -4,14 +4,17 @@ import { format } from 'prettier';
 const records = [];
 for (const filename of (await readdir('docs/benchmarks')).sort()) {
   if (
-    !/^m(?:1(?:-stretch)?|2(?:-gate)?|3(?:-gate)?|4(?:-gate)?|5)-(chrome|firefox|webkit)\.json$/.test(
+    !/^m(?:1(?:-stretch)?|2(?:-gate)?|3(?:-gate)?|4(?:-gate)?|5|6|7)-(chrome|firefox|webkit)\.json$/.test(
       filename,
     )
   )
     continue;
   records.push({ ...JSON.parse(await readFile(`docs/benchmarks/${filename}`, 'utf8')), filename });
 }
-for (const effect of catalogue) {
+const selected = new Set(process.argv.slice(2));
+for (const id of selected)
+  if (!catalogue.some((effect) => effect.id === id)) throw new Error('Unknown effect note: ' + id);
+for (const effect of catalogue.filter((effect) => !selected.size || selected.has(effect.id))) {
   const path = `docs/notes/${effect.id}.md`;
   let note = await readFile(path, 'utf8');
   const params = [
@@ -33,7 +36,7 @@ for (const effect of catalogue) {
       return `| ${record.environment.browser} ${record.environment.browserVersion} | ${rows.map((r) => (r.cpuEncodeMs ?? r.cpuMs).mean.toFixed(3)).join(' / ')} | ${rows.map((r) => (r.rafIntervalMs ?? r.rafMs).mean.toFixed(3)).join(' / ')} | [JSON](../benchmarks/${record.filename}) |`;
     });
     let text = `Recorded 2026-10-07 on Apple M1 Max / macOS 26.6.2. Default parameters, seed 7, 512×320 physical pixels, DPR 1, resolution scale 1. Three runs; each discards 30 warm-up frames then measures 120 explicit encode/submit calls at fixed 1/60 s in rAF. CPU timings exclude GPU execution; rAF cadence is not a GPU timer. Device state and load are uncontrolled. Logical allocation sizes are not VRAM.\n\n| Browser | CPU mean ms (three runs) | rAF mean ms (three runs) | Record |\n| --- | --- | --- | --- |\n${rows.join('\n')}\n\nShader compilation is excluded. Optional GPU timestamp queries are deferred to M3. The SwiftShader pixel tests verify repeatability and disposal at DPR 1 and 2, both presets, every enum mode, and no compilation warnings. Hardware engines use the same compile/readback/disposal tests without cross-device image comparison.`;
-    if (effect.tier === 'T2' && !measurements.some((r) => /^m[345]/.test(r.filename))) {
+    if (effect.tier === 'T2' && !measurements.some((r) => /^m[34567]/.test(r.filename))) {
       const stateRows = measurements.map((record) => {
         const samples = record.results.filter((r) => r.id === effect.id);
         const first = samples[0],
@@ -103,6 +106,32 @@ CPU encode, queue-completion wall latency and rAF cadence measure different boun
 ${rows.join('\n')}
 
 CPU encode, encoding-through-queue-completion wall latency, summed pass timestamps and rAF cadence measure different boundaries. Timestamp precision and overlapping intervals limit interpretation; the summed GPU column is not whole-frame elapsed time. Compilation and initialization are excluded, machine load is uncontrolled, and allocation sizes are logical rather than VRAM. These standalone measurements exclude live media, DOM geometry, CSS polling and attachment costs. The separate [M5 page measurements](../m5.md) cover six actual DOM attachments, visible uniform bridges and the overlay experiment. Numerical references, deterministic software snapshots and device-loss tests establish correctness separately from performance.`;
+    }
+    if (measurements.some((record) => record.filename.startsWith('m6'))) {
+      const rows = measurements.map((record) => {
+        const samples = record.results.filter((r) => r.id === effect.id);
+        return `| ${record.environment.browser} ${record.environment.browserVersion} | ${samples.map((r) => r.cpuMs.mean.toFixed(3)).join(' / ')} | ${samples.map((r) => r.completionMs.p95.toFixed(3)).join(' / ')} | ${samples.map((r) => r.gpuMs?.p95.toFixed(3) ?? 'unavailable').join(' / ')} | ${samples.map((r) => r.rafMs.p50.toFixed(3)).join(' / ')} | [JSON](../benchmarks/${record.filename}) |`;
+      });
+      text = `Recorded on the development Apple M1 Max / macOS 26.6.2 using the production preview. Typed defaults, seed 7, physical 512² display, DPR 1, 4x MSAA and fixed quality. Each of three runs discards 30 warm-up updates then measures 120 fixed 1/60 s updates, one per rAF, awaiting queue completion and timestamp readback. Instances uses 4096 cubes, a render bundle and both occlusion probes; terrain uses a 128²-cell indexed grid; material-ball uses owned 64² GGX environment cubes; glass captures and composites a full-size scene. Initial environment convolution and terrain height generation are excluded from the steady-state sample window.
+
+| Browser | CPU mean ms | Completion p95 ms | Summed GPU pass p95 ms | rAF median ms | Record |
+| --- | --- | --- | --- | --- | --- |
+${rows.join('\n')}
+
+CPU encoding, encoding-through-queue-completion wall latency, summed GPU pass timestamps and observed rAF cadence are separate measurements. Timestamp quantization and overlapping intervals limit interpretation; summed GPU time is not whole-frame elapsed time. Machine load is uncontrolled (other validation work may be running), logical allocations are not VRAM, and these measurements establish no cross-device refresh guarantee. The M6 exit is baseline capability coverage, not a speed threshold. Deterministic snapshots, CPU references and lifecycle tests establish separate correctness properties; see [M6 validation](../m6.md).`;
+    }
+    if (measurements.some((record) => record.filename.startsWith('m7'))) {
+      const rows = measurements.map((record) => {
+        const samples = record.results.filter((r) => r.id === effect.id);
+        return `| ${record.environment.browser} ${record.environment.browserVersion} | ${samples.map((r) => r.cpuMs.mean.toFixed(3)).join(' / ')} | ${samples.map((r) => r.completionMs.p95.toFixed(3)).join(' / ')} | ${samples.map((r) => r.gpuMs?.p95.toFixed(3) ?? 'unavailable').join(' / ')} | ${samples.map((r) => r.rafMs.p50.toFixed(3)).join(' / ')} | [JSON](../benchmarks/${record.filename}) |`;
+      });
+      text = `Recorded on the development Apple M1 Max / macOS 26.6.2 using the production preview. Typed defaults, seed 7, physical 512² output, DPR 1 and fixed quality. Three runs per engine; each discards 30 warm-up updates and measures 120 fixed 1/60 s updates, one per rAF, awaiting queue completion and timestamp readback. The actual defaults are 1024 material points on a 32² grid, 256 PBF particles with three constraint iterations, 96² D2Q9 with four ticks, one path/pixel/update through seven spheres, and 2048 sorted Gaussian splats. Backdrop glass uses the explicitly labeled owned texture preview; these rows exclude experimental DOM capture.
+
+| Browser | CPU mean ms | Completion p95 ms | Summed GPU pass p95 ms | rAF median ms | Record |
+| --- | --- | --- | --- | --- | --- |
+${rows.join('\n')}
+
+CPU encoding, queue-completion latency, summed GPU timestamps and rAF cadence have different boundaries. Timestamp precision and overlapping intervals limit interpretation; the sum is not whole-frame elapsed time. Initialization/compilation and a separate untimed 150-update numerical reproduction are excluded from timings. That reproduction checks every f32 tap value for finiteness. Machine load is uncontrolled and logical allocations are not VRAM. These are bounded research workloads, not a refresh guarantee on other devices. See [M7 validation](../m7.md) for numerical references, browser gaps and remaining stretches.`;
     }
     note = note.replace(
       /<!-- measurements:start -->[\s\S]*?<!-- measurements:end -->/,

@@ -12,6 +12,7 @@ export class Surface {
   #resolveGeneration = -1;
   #group: GPUBindGroup | null = null;
   #observer: ResizeObserver;
+  #resizeFrame = 0;
   #disposed = false;
   #dpr = 0;
   #physical: { width: number; height: number } | undefined;
@@ -44,7 +45,13 @@ export class Surface {
       this.#cssHeight = entry.contentRect.height;
       const box = entry.devicePixelContentBoxSize?.[0];
       this.#physical = box ? { width: box.inlineSize, height: box.blockSize } : undefined;
-      this.resize();
+      // Backing-store writes during observer delivery can enqueue another canvas
+      // observation in WebKit. Coalesce them into the next animation frame.
+      if (!this.#resizeFrame)
+        this.#resizeFrame = requestAnimationFrame(() => {
+          this.#resizeFrame = 0;
+          this.resize();
+        });
     });
     const rect = canvas.getBoundingClientRect();
     this.#cssWidth = rect.width;
@@ -151,7 +158,10 @@ export class Surface {
       label: 'hgpu-surface-float',
       size: [width, height],
       format: 'rgba16float',
-      usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING,
+      usage:
+        GPUTextureUsage.RENDER_ATTACHMENT |
+        GPUTextureUsage.TEXTURE_BINDING |
+        GPUTextureUsage.COPY_SRC,
     });
     this.#group = this.#resolve
       ? this.session.device.createBindGroup({
@@ -187,6 +197,7 @@ export class Surface {
     if (this.#disposed) return;
     this.#disposed = true;
     this.#observer.disconnect();
+    cancelAnimationFrame(this.#resizeFrame);
     if (owners.get(this.canvas) === this) {
       this.context?.unconfigure();
       owners.delete(this.canvas);

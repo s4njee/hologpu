@@ -1,5 +1,7 @@
+import { backdropInputs } from './backdrop.ts';
 import {
   createEffect,
+  createHDRCanvas,
   ParamStore,
   fragmentEffect,
   filterEffect,
@@ -21,6 +23,16 @@ import { CompareStage, type CompareState } from './compare.ts';
 import { screenshot, VideoCapture } from './capture.ts';
 import { DOMStage } from './dom-stage.ts';
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+function resolutionFor(definition: EffectDefinition, requested: number) {
+  const [min, max] = definition.quality.resolutionScale;
+  return Math.max(min, Math.min(max, requested));
+}
+function setStageResolution(requested: number) {
+  const scale = resolutionFor(effect, requested);
+  $<HTMLSelectElement>('resolution').value = String(scale);
+  for (const item of stageFields()) item.setResolutionScale(resolutionFor(item.effect, scale));
+  if (compare.field) compare.field.setResolutionScale(resolutionFor(compare.field.effect, scale));
+}
 const canvas = $<HTMLCanvasElement>('canvas');
 const query = new URLSearchParams(location.search);
 let effect =
@@ -28,6 +40,16 @@ let effect =
   catalogue.find((e) => e.id === 'gradient-oklch')!;
 let field: EffectField | null = null,
   generation = 0;
+canvas.addEventListener('pointerdown', (event) => {
+  const current = field;
+  if (!current || current.canvas !== canvas || !current.effect.inputs.includes('pointer-down'))
+    return;
+  const bounds = canvas.getBoundingClientRect();
+  current.press([
+    (event.clientX - bounds.left) / Math.max(1, bounds.width),
+    (event.clientY - bounds.top) / Math.max(1, bounds.height),
+  ]);
+});
 const notes = import.meta.glob('../../../docs/notes/*.md', {
   query: '?raw',
   import: 'default',
@@ -446,7 +468,9 @@ async function showNotes(id: string) {
       node.textContent = 'Research note could not be loaded.';
   }
 }
+let removeBackdrop = () => {};
 async function mount(next: EffectDefinition, initial = false) {
+  removeBackdrop();
   const token = ++generation;
   removeMedia();
   compare.disable();
@@ -461,7 +485,8 @@ async function mount(next: EffectDefinition, initial = false) {
   effect = next;
   $('title').textContent = next.title;
   $('tier').textContent = `${next.tier} / ${next.family.toUpperCase()}`;
-  canvas.style.touchAction = next.inputs.includes('pointer') ? 'none' : 'auto';
+  canvas.style.touchAction =
+    next.inputs.includes('pointer') || next.inputs.includes('pointer-down') ? 'none' : 'auto';
   $('passes').replaceChildren();
   $('source-panel').replaceChildren(Object.assign(document.createElement('pre'), { id: 'source' }));
   $('profiler').replaceChildren();
@@ -480,9 +505,15 @@ async function mount(next: EffectDefinition, initial = false) {
     const rawSeed = Number(initial ? (query.get('seed') ?? 7) : $<HTMLInputElement>('seed').value);
     const seed = Number.isFinite(rawSeed) ? rawSeed >>> 0 : 7;
     const rawScale = Number(
-      initial ? (query.get('resolution') ?? 1) : $<HTMLSelectElement>('resolution').value,
+      initial
+        ? (query.get('resolution') ?? next.defaultResolutionScale ?? 1)
+        : $<HTMLSelectElement>('resolution').value,
     );
-    const scale = [1, 0.75, 0.5, 0.25].includes(rawScale) ? rawScale : 1;
+    const scale = resolutionFor(next, [1, 0.75, 0.5, 0.25].includes(rawScale) ? rawScale : 1);
+    for (const option of $<HTMLSelectElement>('resolution').options)
+      option.disabled =
+        Number(option.value) < next.quality.resolutionScale[0] ||
+        Number(option.value) > next.quality.resolutionScale[1];
     if (initial) {
       try {
         new ParamStore(next.params, startingParams);
@@ -522,6 +553,8 @@ async function mount(next: EffectDefinition, initial = false) {
       return;
     }
     field = mounted;
+    if (field && (stageMode === 'full' || stageMode === 'compare'))
+      $('stage').style.background = '';
     $<HTMLSelectElement>('stage-mode').value = stageMode;
     if (!field) {
       canvas.hidden = true;
@@ -544,6 +577,7 @@ async function mount(next: EffectDefinition, initial = false) {
       : 'Full stage uses the selected effect.';
     inspector();
     morphInputs(field, $('effect-inputs'));
+    removeBackdrop = backdropInputs(field, $('effect-inputs'));
     removeMedia = mediaInputs(field, $('media-input-controls'));
     $('media-inputs').hidden = !field.effect.inputs.some((x) =>
       ['image', 'audio', 'text'].includes(x),
@@ -563,11 +597,18 @@ async function mount(next: EffectDefinition, initial = false) {
     field.store.onChange(refreshControls);
     field.onChange(() => {
       if (field?.state === 'error') {
+        $('stage').style.background = next.fallback;
+        canvas.hidden = true;
         $('status').textContent = 'Device recovery failed';
         $('status').dataset['state'] = 'error';
       } else if (field?.state === 'lost' || field?.state === 'building') {
+        if (stageMode === 'full' || stageMode === 'compare')
+          $('stage').style.background = next.fallback;
+        canvas.hidden = true;
         $('status').dataset['state'] = 'lost';
       } else if (field?.state === 'ready') {
+        canvas.hidden = false;
+        if (stageMode === 'full' || stageMode === 'compare') $('stage').style.background = '';
         $('status').dataset['state'] = 'ready';
         $('m5-stage-status').textContent = domStage.fields.length
           ? `${domStage.fields.length} attached fields · device ready`
@@ -589,6 +630,7 @@ async function mount(next: EffectDefinition, initial = false) {
   } catch (error) {
     if (token !== generation) return;
     canvas.hidden = true;
+    $('stage').style.background = next.fallback;
     $('fallback').hidden = false;
     $('fallback').textContent = `${next.title} · CSS fallback`;
     $('status').dataset['state'] = 'error';
@@ -655,9 +697,7 @@ $('adaptive-quality').onchange = () => {
   save();
 };
 $('resolution').onchange = () => {
-  for (const item of stageFields())
-    item.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
-  compare.field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
+  setStageResolution(Number($<HTMLSelectElement>('resolution').value));
   save();
 };
 $<HTMLInputElement>('motion').checked = query.get('motion') === 'reduce';
@@ -727,11 +767,8 @@ $('quality-tier').onchange = () => {
   $<HTMLSelectElement>('resolution').value =
     tier === 'low' ? '0.25' : tier === 'medium' ? '0.5' : '1';
   $<HTMLInputElement>('adaptive-quality').checked = tier === 'auto';
-  for (const item of stageFields()) {
-    item.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
-    item.setAdaptiveQuality(tier === 'auto');
-  }
-  compare.field?.setResolutionScale(Number($<HTMLSelectElement>('resolution').value));
+  setStageResolution(Number($<HTMLSelectElement>('resolution').value));
+  for (const item of stageFields()) item.setAdaptiveQuality(tier === 'auto');
   compare.field?.setAdaptiveQuality(tier === 'auto');
   save();
 };
@@ -872,6 +909,7 @@ Object.assign(window, {
     catalogue,
     domStage,
     createEffect,
+    createHDRCanvas,
     bindCSSParameters,
     ParamStore,
     fragmentEffect,

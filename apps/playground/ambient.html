@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#211d1b" />
+    <title>HoloGPU · Ambient studies</title>
+    <link rel="stylesheet" href="/src/ambient.css" />
+  </head>
+  <body data-palette="ember">
+    <header>
+      <a class="wordmark" href="/">HOLOGPU <span>/ FIELD NOTES</span></a>
+      <nav aria-label="Demos">
+        <a href="/transitions.html">Transitions</a><a href="/">Catalogue ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">06 / AMBIENT PARTICLES</p>
+        <h1>A little atmosphere.<br />Plenty of room.</h1>
+        <p class="lede">
+          A scatter of light. A few quiet connections. Small movements that leave the story in
+          focus.
+        </p>
+      </section>
+      <div class="controls" aria-label="Demo controls">
+        <button id="play" type="button" aria-pressed="false">Play ambient motion</button>
+        <button id="motion" type="button" aria-pressed="false">Reduce motion</button>
+        <button id="reset" type="button">Reset scatter</button>
+        <label for="palette"
+          >Palette
+          <select id="palette">
+            <option value="ember">Ember</option>
+            <option value="dusk">Dusk</option>
+            <option value="paper">Paper</option>
+          </select></label
+        >
+        <label for="intensity"
+          >Intensity <output id="intensity-value" for="intensity">22%</output
+          ><input id="intensity" type="range" min="0" max="1" step="0.01" value="0.22"
+        /></label>
+      </div>
+      <p id="status" class="status" role="status">Preparing the atmosphere…</p>
+      <section class="studies" aria-label="Two ambient studies">
+        <article>
+          <div id="drift" class="scene drift">
+            <div class="scene-copy">
+              <span class="scene-index">01 / A SCATTER OF LIGHT</span>
+              <h2>Space for<br />the next idea.</h2>
+              <p>The atmosphere stays in the background.<br />Your words stay at the centre.</p>
+              <a href="#details" class="scene-link"
+                >Look a little closer <span aria-hidden="true">↗</span></a
+              >
+            </div>
+            <span class="scene-note" aria-hidden="true">SIGNAL / AMBIENT STUDIES</span>
+          </div>
+          <div class="caption">
+            <span>01 / PARTICLE DRIFT</span>
+            <h3>Light that gives you room.</h3>
+            <p>
+              Soft dust motes move slowly and make space around your pointer. Move over the study,
+              touch it, or press Play. At rest, the scatter holds its place.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div id="network" class="scene network">
+            <div class="network-copy">
+              <span class="scene-index">02 / QUIET CONNECTIONS</span>
+              <p>A few points.<br />A shared direction.</p>
+            </div>
+            <span class="network-mark" aria-hidden="true">+<br />+</span>
+          </div>
+          <div class="caption">
+            <span>02 / CONSTELLATION</span>
+            <h3>Every connection, considered.</h3>
+            <p>
+              Neighbouring points form a faint, irregular grid. Press Play to see it breathe; the
+              design is complete without motion or a pointer.
+            </p>
+          </div>
+          <div class="detail" id="details">
+            <span class="eyebrow">MADE TO STAY QUIET</span>
+            <p>
+              Try a softer palette, pause the motion, or reduce it entirely. The words and controls
+              remain yours to use.
+            </p>
+            <a href="/products.html">Explore the imagery study →</a>
+          </div>
+        </article>
+      </section>
+      <footer>
+        <p>Ambient by design. Optional by nature.</p>
+        <a href="/cards.html">Cards & controls ↗</a>
+      </footer>
+    </main>
+    <script type="module" src="/src/ambient.ts"></script>
+  </body>
+</html>

@@ -148,6 +148,38 @@ export const solverParams = {
   },
 } as const satisfies ParamSchema;
 export const inkParams = {
+  resistance: {
+    type: 'texture',
+    default: 'resistance',
+    group: 'Paper',
+    description: 'Optional red-channel wax coverage mask; white prevents pigment deposition.',
+  },
+  feed: {
+    type: 'enum',
+    default: 'orbit',
+    options: ['orbit', 'top'],
+    group: 'Injection',
+    description: 'Orbiting emitter or a wash deposited along the top edge of the paper.',
+  },
+  feedDuration: {
+    type: 'f32',
+    default: 0,
+    min: 0,
+    max: 30,
+    step: 0.5,
+    group: 'Injection',
+    description: 'Seconds before the top feed stops; zero keeps feeding continuously.',
+  },
+  paperFlow: {
+    type: 'f32',
+    default: 0,
+    min: 0,
+    max: 0.5,
+    step: 0.01,
+    group: 'Paper',
+    description:
+      'Downward capillary transport in paper heights per second, independent of the fluid velocity.',
+  },
   absorption: {
     type: 'f32',
     default: 0.9,

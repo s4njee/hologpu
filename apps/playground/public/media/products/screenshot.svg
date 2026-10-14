@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750"><rect width="1200" height="750" rx="24" fill="#11191c"/>
+  <rect x="1" y="1" width="1198" height="748" rx="23" fill="none" stroke="#627478" stroke-opacity=".4"/>
+  <path d="M 220 0 v750 M 220 84 H1200" stroke="#ffffff" stroke-opacity=".08"/>
+  <g font-family="Arial,sans-serif" fill="#d9e7e3">
+    <text x="32" y="52" font-size="24" letter-spacing="4">SIGNAL</text>
+    <text x="32" y="150" font-size="14" fill="#b7d9c0">Overview</text><text x="32" y="206" font-size="14" fill="#6f8784">Activity</text><text x="32" y="262" font-size="14" fill="#6f8784">Connections</text><text x="32" y="318" font-size="14" fill="#6f8784">Settings</text>
+    <text x="260" y="51" font-size="16">Workspace / Overview</text><text x="260" y="141" font-size="26">Everything, connected.</text><text x="260" y="174" font-size="14" fill="#6f8784">A quiet view of your team's daily rhythm.</text>
+    <rect x="260" y="207" width="278" height="125" rx="14" fill="#1a282b"/><text x="282" y="242" font-size="13" fill="#8da8a1">Uptime</text><text x="282" y="293" font-size="32">99.98%</text><rect x="562" y="207" width="278" height="125" rx="14" fill="#1a282b"/><text x="584" y="242" font-size="13" fill="#8da8a1">Events today</text><text x="584" y="293" font-size="32">24,680</text><rect x="864" y="207" width="278" height="125" rx="14" fill="#1a282b"/><text x="886" y="242" font-size="13" fill="#8da8a1">Latency</text><text x="886" y="293" font-size="32">18 ms</text>
+    <rect x="260" y="360" width="882" height="302" rx="16" fill="#182428"/><text x="286" y="402" font-size="16">Throughput</text><text x="1036" y="402" font-size="12" fill="#8da8a1">Last 24h</text>
+    <path d="M 286 464 H1114 M286 520 H1114 M286 576 H1114" stroke="#354549" stroke-width="1"/>
+    <path d="M286 582 L340 573 L389 546 L448 552 L500 520 L555 530 L616 489 L680 501 L739 470 L806 486 L870 451 L938 462 L1000 427 L1058 441 L1114 413" fill="none" stroke="#b7f0bc" stroke-width="4" stroke-linecap="round"/>
+    <text x="286" y="630" font-size="12" fill="#6f8784">00:00</text><text x="1047" y="630" font-size="12" fill="#6f8784">23:59</text>
+  </g></svg>

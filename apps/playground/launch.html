@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#17120f" />
+    <title>Signal · Quiet tools for clear thinking</title>
+  </head>
+  <body data-palette="ember">
+    <header>
+      <a class="brand" href="#home">SIGNAL<span>Make space for your next idea.</span></a>
+      <nav aria-label="Main">
+        <a href="#details">The details</a><a href="#product">Meet Signal</a
+        ><a class="pill" href="#join">Stay in the loop ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section id="home" class="hero">
+        <div id="grain" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">LESS NOISE. MORE POSSIBILITY.</p>
+          <h1 id="headline">Good ideas<br />need room.</h1>
+          <p class="lead">
+            Signal is a small workspace for the things that matter. Gather a thought, find a rhythm,
+            and make something worth keeping.
+          </p>
+          <a class="pill primary" href="#product">Find your focus <span>↗</span></a>
+          <p class="fine">Thoughtfully made. Ready when you are.</p>
+        </div>
+        <div class="hero-mark" aria-hidden="true">
+          <span>01</span><i></i>
+          <p>A LITTLE SPACE<br />GOES A LONG WAY.</p>
+        </div>
+      </section>
+      <section id="details" class="details">
+        <div class="section-title">
+          <p class="eyebrow">A CALMER WAY TO MAKE</p>
+          <h2>Everything you need.<br />Space to hear yourself.</h2>
+        </div>
+        <div id="cards" class="cards">
+          <div class="card-layout">
+            <article class="card">
+              <span class="number">01 / CAPTURE</span>
+              <h3>Keep the spark.</h3>
+              <p>
+                A place for the thought that arrived before the words did. Start small. Keep going.
+              </p>
+              <a href="#product">Explore your workspace ↗</a>
+            </article>
+            <article class="card">
+              <span class="number">02 / CONNECT</span>
+              <h3>Find the thread.</h3>
+              <p>Bring the right ideas together. Let the useful connections rise to the surface.</p>
+              <a href="#product">See the details ↗</a>
+            </article>
+            <article class="card">
+              <span class="number">03 / MAKE</span>
+              <h3>Stay with it.</h3>
+              <p>
+                A gentle rhythm for deep work, with fewer distractions between you and the next
+                step.
+              </p>
+              <a href="#join">Hear what comes next ↗</a>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="product" class="product">
+        <div>
+          <p class="eyebrow">MEET YOUR NEXT WORKSPACE</p>
+          <h2>A familiar feeling.<br />A fresh perspective.</h2>
+          <p>
+            Simple controls. Considered details. Signal brings a little warmth to the work you love.
+          </p>
+          <label for="scrub">Take a closer look</label
+          ><input id="scrub" type="range" min="0" max="1" step="0.01" value="0.5" /><output
+            id="scrub-value"
+            for="scrub"
+            >50%</output
+          >
+        </div>
+        <div id="shot" class="shot">
+          <img
+            src="/media/products/console.png"
+            alt="Signal console with six rotary controls and a green waveform display"
+          />
+        </div>
+      </section>
+      <div id="wave" class="wave" aria-hidden="true">
+        <svg preserveAspectRatio="none"><path></path></svg>
+      </div>
+    </main>
+    <footer id="join">
+      <div id="horizon" aria-hidden="true"></div>
+      <div class="footer-copy">
+        <p class="eyebrow">YOUR NEXT IDEA IS WAITING</p>
+        <h2>Make a little room.</h2>
+        <a class="pill primary" href="mailto:hello@signal.example">Say hello ↗</a>
+        <p class="fine">A HoloGPU reference page. Signal is a fictional product.</p>
+      </div>
+      <div class="demo-controls">
+        <label
+          >Palette
+          <select id="palette">
+            <option value="ember">Ember</option>
+            <option value="dusk">Dusk</option>
+            <option value="paper">Paper</option>
+          </select></label
+        ><button id="motion" aria-pressed="false">Reduce motion</button
+        ><a id="fallback" href="?fallback=1">View fallbacks</a
+        ><span id="status" role="status">Preparing surfaces…</span
+        ><a href="/device-check.html">Device check ↗</a>
+      </div>
+    </footer>
+    <script type="module" src="/src/launch.ts"></script>
+  </body>
+</html>

@@ -6,7 +6,34 @@ Can an effect follow the geometry of a real element without a tessellated border
 
 ## Technique summary
 
-The shader evaluates the analytic rounded-rectangle distance in physical pixels. The DOM attachment supplies a normalized local rectangle and its CSS corner radius; the radius is clamped to half the shorter edge. A derivative-antialiased stroke and exponential distance glow share that geometry. A travelling angular energy pulse modulates the border emission. CSS pixel radii and widths multiply by DPR, preserving their apparent size across displays.
+The default effect retains its original physical-pixel rounded-rectangle shader, emission, alpha and scalar radius. The opt-in `border-trace` preset sets `trace: true` and intensity 0: the entire stroke and glow are exactly transparent at rest. Increasing CSS `--hgpu-intensity` to 1 reveals a quieter travelling pulse. Both intensity and tint accept CSS bindings. Trace alpha includes intensity; the legacy emission control keeps its original behavior, including a visible border when legacy intensity is 0.
+
+DOM attachments supply the host border box relative to the effect canvas, including optional exterior padding. The shared geometry schema exposes normalized `rect`, scalar CSS-pixel `radius`, and `radiiX`/`radiiY` vectors in top-left, top-right, bottom-right, bottom-left order. Vector defaults of -1 preserve the scalar radius; all eight nonnegative radii enable the elliptical-corner branch. The DOM resolves all four computed CSS corner radii and normalizes overlapping radius sums. The shader also normalizes authored vectors and handles legal asymmetric radii larger than half an edge. Ellipse distance uses its local gradient near the rim, with derivative-antialiased stroke coverage. Width, falloff and corner radii retain their CSS size across DPR and render-resolution changes.
+
+```ts
+import { attach } from "@mk7s/hologpu-dom";
+import borderEnergy from "@mk7s/hologpu-effects/border-energy";
+await attach(document.querySelector(".card")!, borderEnergy, {
+  preset: "border-trace",
+  layer: "front",
+  padding: 32,
+});
+```
+
+```css
+.card {
+  --hgpu-intensity: 0;
+  --hgpu-tint: #d9e5f2;
+  transition: --hgpu-intensity 160ms ease;
+  border-radius: 24px 12px 32px 8px / 18px 24px 16px 8px;
+}
+.card:hover,
+.card:focus-within {
+  --hgpu-intensity: 1;
+}
+```
+
+Reduced motion freezes the trace pulse at time 0 while retaining intentional CSS hover/focus opacity changes. Use the authored card itself as the quiet trace fallback; the legacy decorative gradient/poster remains appropriate to the original effect.
 
 ## References
 
@@ -24,15 +51,18 @@ Baseline sampled textures, uniform buffers and render pipelines. Linear-premulti
 
 <!-- params:start -->
 
-| Parameter | Type  | Default               | Range / choices | Group    | Description                                           |
-| --------- | ----- | --------------------- | --------------- | -------- | ----------------------------------------------------- |
-| rect      | vec4  | [0.12,0.18,0.76,0.64] | 0…1             | Geometry | Local normalized rectangle: left, top, width, height. |
-| radius    | f32   | 24                    | 0…200           | Geometry | Rounded corner radius in CSS pixels.                  |
-| width     | f32   | 2                     | 0.5…24          | Geometry | Border stroke width in CSS pixels.                    |
-| glow      | f32   | 14                    | 1…100           | Light    | Exponential glow falloff distance in CSS pixels.      |
-| speed     | f32   | 0.4                   | 0…4             | Motion   | Energy pulse revolutions per second.                  |
-| intensity | f32   | 1.5                   | 0…5             | Light    | Linear border emission multiplier.                    |
-| tint      | color | "#92dfe7"             | —               | Palette  | Linear border emission colour.                        |
+| Parameter | Type  | Default               | Range / choices | Group    | Description                                                                                         |
+| --------- | ----- | --------------------- | --------------- | -------- | --------------------------------------------------------------------------------------------------- |
+| rect      | vec4  | [0.12,0.18,0.76,0.64] | 0…1             | Geometry | Local normalized border box: left, top, width, height.                                              |
+| radius    | f32   | 24                    | 0…200           | Geometry | Legacy rounded corner radius in CSS pixels.                                                         |
+| radiiX    | vec4  | [-1,-1,-1,-1]         | -1…4096         | Geometry | Horizontal CSS corner radii: top-left, top-right, bottom-right, bottom-left; -1 retains radius.     |
+| radiiY    | vec4  | [-1,-1,-1,-1]         | -1…4096         | Geometry | Vertical CSS corner radii: top-left, top-right, bottom-right, bottom-left; -1 retains radius.       |
+| trace     | bool  | false                 | —               | Light    | Hover trace whose entire stroke and glow fade with intensity; legacy rendering remains the default. |
+| width     | f32   | 2                     | 0.5…24          | Geometry | Border stroke width in CSS pixels.                                                                  |
+| glow      | f32   | 14                    | 1…100           | Light    | Exponential glow falloff distance in CSS pixels.                                                    |
+| speed     | f32   | 0.4                   | 0…4             | Motion   | Energy pulse revolutions per second.                                                                |
+| intensity | f32   | 1.5                   | 0…5             | Light    | Legacy emission; in trace mode, opacity of the complete stroke and glow.                            |
+| tint      | color | "#92dfe7"             | —               | Palette  | Linear border emission colour.                                                                      |
 
 <!-- params:end -->
 
@@ -53,12 +83,12 @@ CPU encode, encoding-through-queue-completion wall latency, summed pass timestam
 
 ## Validation
 
-The GPU reference checks glow alpha against the rounded-rectangle CPU distance at symmetric corners and the interior. Large radii remain finite. Catalogue tests exercise both presets, deterministic replay, reduced-motion pose, DPR 1/2 snapshots, shader diagnostics and disposal.
+The GPU reference checks glow alpha against the rounded-rectangle CPU distance at symmetric corners and the interior. Large radii remain finite. Legacy catalogue snapshots preserve the original presets and shader branch. Focused trace tests exercise independent ellipse-parametrized contour positions at DPR 1/2 and half render scale, all four asymmetric corners, radii larger than half the box width, zero alpha at rest and after fade, deterministic replay, a fixed reduced-motion pulse, shader diagnostics and disposal. An actual DOM card test checks typed CSS hover transitions, padded exterior glow, all four computed radii and child click handling.
 
 ## Failure modes
 
-The pulse travels by polar angle rather than constant arc length, so apparent speed differs between long edges and corners. A single radius represents all corners; asymmetric CSS corner radii require a richer schema. A full-element glow clips at the canvas boundary unless the caller reserves padding.
+The pulse travels by polar angle rather than constant arc length, so apparent speed differs between long edges and corners. The ellipse distance is a near-rim approximation, not an exact Euclidean distance far from an eccentric corner; broad glows can expose falloff differences. A full-element glow clips at the canvas boundary unless the caller reserves padding. Ancestor overflow can still clip an oversized canvas. Arbitrary host-transform inversion is outside this attachment geometry contract.
 
 ## Production readiness
 
-Add per-corner radii and a padded host attachment when exterior glows matter; retain the shared analytic shape rather than rasterizing the DOM border.
+For the trace preset, reserve about four falloff lengths of padding (32 CSS px for the default 8 px falloff). Prefer resolutionScale 1 for narrow 1.5 px strokes; half scale is useful at DPR 2 after visual inspection. The effect is one baseline fragment pass with no feedback or simulation. The historical measurements above describe the legacy standalone branch, not the trace/DOM attachment overhead; new budget claims require dedicated captures.

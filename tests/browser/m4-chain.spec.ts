@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { existsSync, readdirSync } from 'node:fs';
 import type {} from './effects.spec.ts';
+import type { ParamValues } from '../../packages/core/src/params.ts';
 
 test('chains parameter LUTs, edits individual duplicate stages, rejects cycles and frees borrowed inputs', async ({
   page,
@@ -192,43 +193,64 @@ test('every T4 filter accepts every current effect output', async ({ page }) => 
       document.body.append(c);
       return c;
     };
+    // Rebind each filter across sources rather than rebuilding the same pipeline
+    // hundreds of times; the test above covers individual instance teardown.
+    const outputs = [];
+    for (const filter of filters)
+      outputs.push(
+        await api.createEffect(canvas(), filter, {
+          playing: false,
+          reducedMotion: false,
+          dprCap: 1,
+          resolutionScale: 1,
+        }),
+      );
     for (const definition of api.catalogue) {
+      // This matrix checks texture interoperability; default solver workloads
+      // are measured separately on hardware rather than repeated per filter.
+      const params: ParamValues =
+        definition.id === 'mpm'
+          ? { count: 64, grid: 16 }
+          : definition.id === 'pbf-fluid'
+            ? { count: 64 }
+            : definition.id === 'lattice-boltzmann'
+              ? { grid: 16 }
+              : definition.id === 'splats'
+                ? { count: 64 }
+                : {};
       const source = await api.createEffect(canvas(), definition, {
         playing: false,
         reducedMotion: false,
         dprCap: 1,
+        resolutionScale: 1,
+        params,
       });
       source.advance(2);
-      for (const filter of filters) {
-        const output = await api.createEffect(canvas(), filter, {
-          playing: false,
-          reducedMotion: false,
-          dprCap: 1,
-        });
-        try {
-          await output.bindInput('image', source);
-          source.drawAt(0.5);
-          output.drawAt(0.5);
-          const pixels = await output.readPixels();
-          const input = output.textureTaps['input:image'];
-          if (
-            pixels.width !== 80 ||
-            pixels.height !== 56 ||
-            !input ||
-            input.width !== 80 ||
-            input.height !== 56 ||
-            input.format !== 'rgba16float' ||
-            input.texture === source.output?.texture
-          )
-            throw new Error(`Wrong output/input ${definition.id}→${filter.id}`);
-          cases.push(`${definition.id}→${filter.id}`);
-        } finally {
-          output.destroy();
-          output.canvas.remove();
-        }
+      source.drawAt(0.5);
+      for (const output of outputs) {
+        const filter = output.effect;
+        await output.bindInput('image', source);
+        output.drawAt(0.5);
+        const pixels = await output.readPixels();
+        const input = output.textureTaps['input:image'];
+        if (
+          pixels.width !== 80 ||
+          pixels.height !== 56 ||
+          !input ||
+          input.width !== 80 ||
+          input.height !== 56 ||
+          input.format !== 'rgba16float' ||
+          input.texture === source.output?.texture
+        )
+          throw new Error(`Wrong output/input ${definition.id}→${filter.id}`);
+        cases.push(`${definition.id}→${filter.id}`);
       }
       source.destroy();
       source.canvas.remove();
+    }
+    for (const output of outputs) {
+      output.destroy();
+      output.canvas.remove();
     }
     await session.device.queue.onSubmittedWorkDone();
     return {

@@ -36,8 +36,22 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   readonly params: ValuesOf<S>;
   surface: Surface | null = null;
   instance: EffectInstance | null = null;
+  /** Only stateless T1 definitions opt into the engine's bounded default pipeline. */
+  get submissionPipelining() {
+    return this.effect.tier === 'T1';
+  }
   visible = true;
-  polling = false;
+  #polling = false;
+  #interactionUntil = 0;
+  #interactionOrigin = 0;
+  #interactionStart = 0;
+  get polling() {
+    return this.#polling || this.#interactionUntil > 0;
+  }
+  set polling(enabled: boolean) {
+    this.#polling = enabled;
+    this.invalidate();
+  }
   readonly #beforeFrameListeners = new Set<() => void>();
   readonly #pointerTarget: HTMLElement;
   playing: boolean;
@@ -91,6 +105,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   #lastPointerTime = 0;
   #listeners = new Set<(field: EffectField<S>) => void>();
   readonly #renderListeners = new Set<() => void>();
+  #renderBucket: number | null = null;
+  #outputVersion = 0;
   private constructor(
     canvas: HTMLCanvasElement,
     effect: EffectDefinition<S>,
@@ -131,6 +147,10 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     effect: EffectDefinition<S>,
     options: MountOptions = {},
   ) {
+    options = {
+      ...options,
+      resolutionScale: options.resolutionScale ?? effect.defaultResolutionScale ?? 1,
+    };
     const scale = options.resolutionScale ?? 1,
       cap = options.dprCap ?? 2;
     if (
@@ -179,12 +199,18 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       field.#intersection.observe(options.observeTarget ?? canvas);
       field.#motion.addEventListener('change', field.#motionChanged);
       document.addEventListener('visibilitychange', field.#visibilityChanged);
-      field.#pointerTarget.addEventListener('pointermove', field.#pointer);
-      field.#pointerTarget.addEventListener('pointerdown', field.#pointer);
-      field.#pointerTarget.addEventListener('pointerup', field.#pointer);
-      field.#pointerTarget.addEventListener('pointerleave', field.#leave);
-      field.#pointerTarget.addEventListener('pointercancel', field.#cancelPointer);
-      field.#pointerTarget.addEventListener('lostpointercapture', field.#cancelPointer);
+      // Unused pointer updates must not defeat rate caps or settled-frame gates.
+      if (
+        (!effect.renderRate && !field.instance?.shouldRender) ||
+        effect.inputs.includes('pointer')
+      ) {
+        field.#pointerTarget.addEventListener('pointermove', field.#pointer);
+        field.#pointerTarget.addEventListener('pointerdown', field.#pointer);
+        field.#pointerTarget.addEventListener('pointerup', field.#pointer);
+        field.#pointerTarget.addEventListener('pointerleave', field.#leave);
+        field.#pointerTarget.addEventListener('pointercancel', field.#cancelPointer);
+        field.#pointerTarget.addEventListener('lostpointercapture', field.#cancelPointer);
+      }
       return field;
     } catch (error) {
       if (field) field.destroy();
@@ -336,7 +362,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
         get: (name: string) => {
           const spec = this.effect.params[name];
           const binding = spec?.type === 'texture' ? String(this.store.values[name]) : name;
-          return this.#inputManager.get(binding);
+          return this.inputTexture(binding);
         },
       },
     };
@@ -470,7 +496,12 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       this.#pendingInputFields.set(name, { field: source as unknown as EffectField, version });
     else this.#pendingInputFields.delete(name);
     try {
-      await this.#inputManager.set(name, descriptor);
+      await this.#inputManager.set(
+        name,
+        source instanceof EffectField && this.effect.fieldInputSampling === 'base'
+          ? null
+          : descriptor,
+      );
       if (this.#disposed) throw new Error('Field was disposed during input binding');
     } catch (error) {
       remove?.();
@@ -505,6 +536,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
           format: 'rgba16float',
           kind: 'float',
           label: `${this.effect.id}:output`,
+          version: this.#outputVersion,
         }
       : undefined;
   }
@@ -514,6 +546,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       .filter((field) => field.state !== 'disposed');
   }
   inputTexture(name: string) {
+    if (this.effect.fieldInputSampling === 'base' && this.#inputFields.has(name))
+      return this.#inputFields.get(name)!.field.output;
     return this.#inputManager.get(name);
   }
   get inputMediaPath() {
@@ -586,6 +620,13 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   /** Runs once per scheduled visible frame, before fixed steps and uniform upload. */
   beforeFrame() {
     if (!this.visible || document.hidden || !this.#readyForGPU()) return;
+    this.frame.reducedMotion = this.reducedMotion;
+    if (this.#interactionUntil > 0) {
+      const now = performance.now();
+      this.frame.interactionTime = this.#interactionStart + (now - this.#interactionOrigin) / 1000;
+      this.dirty = true; // Includes the final transparent frame, without waking a simulation.
+      if (now >= this.#interactionUntil) this.#interactionUntil = 0;
+    }
     for (const listener of this.#beforeFrameListeners) listener();
   }
   onBeforeFrame(listener: () => void) {
@@ -596,7 +637,26 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
   }
   /** Keep uniform drivers awake without advancing a paused simulation. */
   setFramePolling(enabled: boolean) {
-    this.polling = enabled;
+    this.#polling = enabled;
+    this.invalidate();
+  }
+  /** Trigger an analytic interaction; no event is retained across reset or device restoration. */
+  press(position: readonly [number, number]) {
+    if (!position.every(Number.isFinite)) throw new TypeError('Finite press position required');
+    if (!this.#readyForGPU() || !this.instance?.onPointerDown) return;
+    const now = performance.now();
+    if (this.#interactionUntil > 0)
+      this.frame.interactionTime = this.#interactionStart + (now - this.#interactionOrigin) / 1000;
+    this.frame.reducedMotion = this.reducedMotion;
+    const lifetime = this.instance.onPointerDown(
+      [Math.max(0, Math.min(1, position[0])), Math.max(0, Math.min(1, position[1]))],
+      this.frame,
+    );
+    if (typeof lifetime === 'number' && Number.isFinite(lifetime) && lifetime > 0) {
+      this.#interactionOrigin = now;
+      this.#interactionStart = this.frame.interactionTime ?? this.frame.time;
+      this.#interactionUntil = now + Math.min(2, lifetime) * 1000;
+    }
     this.invalidate();
   }
   /** A normalized external clock; scrub procedural time without a hidden rAF clock. */
@@ -704,6 +764,13 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       ...Object.fromEntries(
         Object.entries(this.#inputManager.taps()).map(([name, tap]) => [`input:${name}`, tap]),
       ),
+      ...(this.effect.fieldInputSampling === 'base'
+        ? Object.fromEntries(
+            [...this.#inputFields].flatMap(([name, { field }]) =>
+              field.output ? [[`input:${name}`, field.output]] : [],
+            ),
+          )
+        : {}),
       ...this.instance?.textureTaps?.(),
     };
   }
@@ -726,6 +793,16 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     if (!this.#readyForGPU() || generation !== this.session.generation)
       throw new Error('Field is not ready');
     return result;
+  }
+  shouldRender() {
+    if (this.dirty) return true;
+    if (this.instance?.shouldRender?.(this.frame) === false) return false;
+    if (!this.effect.renderRate) return true;
+    return this.#rateBucket() !== this.#renderBucket;
+  }
+  #rateBucket() {
+    const rate = this.effect.renderRate ? Number(this.params[this.effect.renderRate]) : 0;
+    return Number.isFinite(rate) && rate > 0 ? Math.floor(this.frame.time * rate + 1e-6) : 0;
   }
   render() {
     if (
@@ -750,7 +827,9 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     const encoder = this.session.encoder();
     this.#inputManager.prepare(this.frame, encoder);
     this.instance.render(this.frame, encoder, this.surface.target.createView());
+    this.#renderBucket = this.#rateBucket();
     this.surface.present(encoder);
+    this.#outputVersion++;
     for (const listener of this.#renderListeners) listener();
     for (const invalidate of this.#outputListeners) invalidate();
   }
@@ -770,11 +849,17 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     ints[9] = this.frame.index;
     ints[10] = this.frame.buttons;
     ints[11] = this.frame.seed;
-    floats.set([this.frame.scroll, this.frame.visibility, this.frame.pressure, 0], 12);
+    floats.set(
+      [this.frame.scroll, this.frame.visibility, this.frame.pressure, this.reducedMotion ? 1 : 0],
+      12,
+    );
     this.session.device.queue.writeBuffer(this.#frameBuffer!, 0, bytes);
   }
   drawAt(time: number, seed = this.frame.seed) {
     this.pause();
+    this.#interactionUntil = 0;
+    this.frame.interactionTime = Math.max(0, time);
+    this.frame.reducedMotion = this.reducedMotion;
     this.frame.time = Math.max(0, time);
     this.frame.index = Math.round(time * 60);
     this.frame.delta = 0;
@@ -795,6 +880,8 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.playing = false;
   }
   reset(seed = this.frame.seed) {
+    this.#interactionUntil = 0;
+    this.frame.interactionTime = 0;
     this.frame.time = this.reducedMotion ? this.effect.reducedMotion.time : 0;
     this.frame.index = 0;
     this.#rateAccumulator = 0;
@@ -833,6 +920,10 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     this.invalidate();
   }
   #applyMotion() {
+    this.frame.reducedMotion = this.reducedMotion;
+    this.#interactionUntil = 0;
+    this.frame.interactionTime = 0;
+    if (this.instance?.onPointerDown && !this.reducedMotion) this.instance.reset(this.frame.seed);
     if (this.reducedMotion) {
       this.playing = false;
       this.frame.time = this.effect.reducedMotion.time;

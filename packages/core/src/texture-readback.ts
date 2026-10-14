@@ -21,6 +21,9 @@ export function halfToFloat(bits: number) {
 export async function readTextureTap(device: GPUDevice, tap: TextureTap): Promise<TextureReadback> {
   const formats: Partial<Record<GPUTextureFormat, readonly [number, number, string]>> = {
     r8unorm: [1, 1, 'unorm'],
+    rgba8unorm: [4, 1, 'unorm'],
+    // Readback retains encoded sRGB channel values; shader sampling decodes them.
+    'rgba8unorm-srgb': [4, 1, 'unorm'],
     r32float: [1, 4, 'float'],
     rg32float: [2, 4, 'float'],
     rgba32float: [4, 4, 'float'],

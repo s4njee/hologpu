@@ -1,0 +1,30 @@
+{
+  "dusk": {
+    "base": "#11121b",
+    "first": "#747499",
+    "second": "#598f92",
+    "third": "#9d738b",
+    "intensity": 0.22
+  },
+  "lagoon": {
+    "base": "#0d1a1b",
+    "first": "#6b9193",
+    "second": "#709982",
+    "third": "#979c7b",
+    "intensity": 0.22
+  },
+  "paper": {
+    "base": "#f5f3ef",
+    "first": "#b5bed0",
+    "second": "#bed1c8",
+    "third": "#d9bac5",
+    "intensity": 0.25
+  },
+  "ember": {
+    "base": "#17120f",
+    "first": "#ba8662",
+    "second": "#866c56",
+    "third": "#8f5f51",
+    "intensity": 0.22
+  }
+}
