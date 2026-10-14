@@ -52,8 +52,24 @@ export interface ShaderDiagnostic {
   sourceLine: string;
 }
 
+/**
+ * A runtime include library, for callers that assemble shaders from raw text rather than
+ * precomputed chunks (Water Temple resolves `#include` from its `src/wgsl` library). Fire
+ * Temple relies on the chunks the Vite plugin attached to each imported `.wgsl`.
+ */
+let includeLibrary: ((name: string) => string | undefined) | undefined;
+
+/** Registers a fallback resolver for `#include` targets not present in a source's own chunks. */
+export function setShaderLibrary(resolve: (name: string) => string | undefined): void {
+  includeLibrary = resolve;
+}
+
 export function resolveShader(source: ShaderSource): Preprocessed {
-  return preprocess(source.code, source.label, (name) => source.chunks?.[name]);
+  return preprocess(
+    source.code,
+    source.label,
+    (name) => source.chunks?.[name] ?? includeLibrary?.(name),
+  );
 }
 
 type CompilationMessage = Pick<
