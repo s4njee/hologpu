@@ -1,6 +1,6 @@
 # HoloGPU — WebGPU effects library and playground
 
-**Status:** M0–M4 complete (2026-10-07); all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md), [M2](docs/m2.md), [M3](docs/m3.md), [M4](docs/m4.md) and [T1 stretch validation](docs/t1-stretch.md).
+**Status:** M0–M7 implemented and locally validated (2026-10-07); the six selected M7 stretches and all three Family A T1 stretches implemented. See [M0](docs/m0.md), [M1](docs/m1.md), [M2](docs/m2.md), [M3](docs/m3.md), [M4](docs/m4.md), [M5](docs/m5.md), [M6](docs/m6.md), [M7](docs/m7.md) and [T1 stretch validation](docs/t1-stretch.md).
 **Created:** 2026-10-07
 **Working package name:** `@mk7s/hologpu` (confirm availability before any release)
 **Source:** item 1 of [research.md](../research.md), "WebGPU effects layer for the DOM"
@@ -35,7 +35,7 @@ Each effect should answer a question, for example "can a 1024² fluid solver and
 - A general 3D engine, scene graph or asset pipeline (no glTF loader, no material system beyond what a demo needs).
 - A WebGL fallback renderer. Without WebGPU the element shows a static fallback (section 5.9).
 - Production-ready visual design for the effects. Presets exist to show the parameter space, not to ship on a marketing page.
-- npm publication in the first pass. Keep the package publishable but private.
+- npm publication. The packages are publishable and are published as the `@mk7s/hologpu*` packages; the cross-project plan is in the [holofx backlog](../holofx/backlog.md).
 
 ### 2.4 Success criteria
 
@@ -379,17 +379,17 @@ Each capability must be exercised by at least one effect. Optional features are 
 | Capability | Exercised by |
 | --- | --- |
 | Compute pipelines and storage buffers | Families C, D, I |
-| Read-write storage textures (`r32float`, `r32uint`) | `life`, `wave` |
+| Read-write storage textures (`r32float`, `r32uint`) | `life` (`r32uint`), `terrain` (`r32float`); feature-detected WGSL access with equivalent sampled/write-only fallbacks |
 | Float render targets and ping-pong | Families B, C |
 | Instancing, depth, MSAA | `instances`, `terrain` |
 | Indirect draw | `emitters`, `marching-cubes`, `culling` |
 | Render bundles | `instances` |
-| 3D textures, cube maps, texture arrays | `color-grade`, `material-ball`, `slit-scan` |
+| 3D textures, cube maps, texture arrays | `color-grade` (3D LUT), `material-ball` (cube sampling and storage arrays); `slit-scan` remains stretch |
 | External textures (video) | Family E with video input, `optical-flow` |
 | Atomics in WGSL | `physarum`, `histogram` |
 | Timestamp queries (`timestamp-query`) | Playground profiler |
-| Occlusion queries | `culling` |
-| HDR canvas (`rgba16float` canvas with extended tone mapping, Display P3) | `attractors`, `bloom` ([M0 review](docs/compatibility.md#hdr-canvas-section-611); Firefox float canvas rejected, internal float textures work) |
+| Occlusion queries | `instances` visible/hidden depth probes; `culling` remains stretch |
+| HDR canvas (`rgba16float` canvas with extended tone mapping, Display P3) | `bloom` output through `createHDRCanvas` ([M6 validation](docs/m6.md)); `attractors` ([M0 review](docs/compatibility.md#hdr-canvas-section-611); Firefox float canvas rejected, internal float textures work) |
 | `float32-filterable` | `fluid` at high precision; fallback to `rgba16float` |
 | `shader-f16` | `flow-particles` memory variant |
 | Dual-source blending, clip distances, subgroups, texture format tiers | One experiment each in M8, only where the feature exists ([verified feature strings and local availability](docs/compatibility.md#optional-feature-names-and-availability-section-611)) |
@@ -525,13 +525,15 @@ Each milestone ends with the playground deployable and the listed exit criteria 
 
 ### M6 — Geometry and 3D
 
+**Implementation and local validation completed 2026-10-07.** All four Family G core effects, camera/matrix/mesh helpers, depth, single/4x MSAA, cube prefiltering, render bundles and occlusion probes are implemented. The baseline capability audit includes both scalar read/write storage formats, 3D/array/cube textures, external video and actual extended-HDR canvas rendering where supported. Firefox retains SDR presentation because its float canvas is rejected. See [M6 validation](docs/m6.md) for tests, measurements and remaining M8 hardware/display checks.
+
 - Depth, MSAA, camera and matrix helpers (minimal), mesh primitives, cube maps.
 - Family G core.
 - **Exit:** every row of the capability matrix that does not depend on an optional feature is covered.
 
 ### M7 — Stretch effects
 
-Family A’s three T1 stretches are implemented early at the user’s request; see [validation](docs/t1-stretch.md). Other stretch families remain outstanding.
+**Selected implementation completed 2026-10-07.** The six suggested first picks (`mpm`, `path-tracer`, `lattice-boltzmann`, `pbf-fluid`, `splats`, `backdrop-glass`) are implemented with presets, numerical checks, lifecycle tests, notes and benchmark rows. Existing sort/scan/spatial-hash primitives satisfy their dependencies. Backdrop capture is explicit and experiment-gated; its portable mode is labeled as a texture preview. Family A’s three T1 stretches were implemented earlier; 23 other catalogue stretches remain deferred. See [M7 validation](docs/m7.md) and [T1 validation](docs/t1-stretch.md).
 
 - Stretch effects, chosen by which open research question they answer. Suggested first picks: `mpm`, `path-tracer`, `lattice-boltzmann`, `pbf-fluid`, `splats`, `backdrop-glass`.
 - Remaining Family I primitives as their dependants need them.

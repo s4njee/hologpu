@@ -1,24 +1,28 @@
 # HoloGPU
 
-A native WebGPU effects library and playground research project. M0 foundations, M1's shared runtime and Full-stage playground, all nine Family A procedural effects, and the M2 feedback/fluid implementation are available. See the [plan](plan.md), [M1 validation record](docs/m1.md), [T1 stretch validation](docs/t1-stretch.md), [M2 validation](docs/m2.md) and [frozen T1 contract](docs/adr/005-t1-effect-contract.md).
+WebGPU visual effects for the web. HoloGPU is a runtime plus an effect library:
+one API runs procedural shaders, feedback simulations, particles and small 3D
+scenes on an ordinary page, with presets, seeds, pause/step, reduced-motion poses,
+a poster fallback and device-loss recovery. It ships 78 effects across families
+from gradients and fluids to geometry and HDR.
 
-M3 adds six particle effects, four compute primitive demos, timestamp profiling, fixed-scenario benchmark exports and a live WGSL editor. See [M3 validation](docs/m3.md) for the implementation and current evidence.
+![HoloGPU effect previews](docs/media/hero.png)
 
-M4 adds eight image filters, three distance/light effects, media inputs, filter chains, texture-backed parameters, Compare, screenshots and recording. M4 is complete on the development target: Chrome passes the 1080p video refresh gate in all three runs; WebKit passes correctness checks but misses that performance gate. See [M4 validation](docs/m4.md).
+Part of the [holofx collection](https://github.com/s4njee/holofx) alongside
+[firetemple](https://github.com/s4njee/firetemple),
+[watertemple](https://github.com/s4njee/watertemple) and
+[lighttemple](https://github.com/s4njee/lighttemple).
 
-M5 adds DOM attachments and custom elements, six Family H effects, fluid obstacles, CSS/property/timeline drivers, and In page and Grid modes. Implementation and local validation are complete: the native six-effect refresh gate and matched software-adapter adaptation pass. Physical weaker-device validation remains for M8; see [M5 validation](docs/m5.md).
-
-## Run
-
-Requires Node 22.12+ and pnpm 11.15.1. The DOM demo includes a small vendored MIT-licensed HoloCSS motion stylesheet; its [provenance](apps/playground/src/vendor/holocss/README.md) is retained alongside the source.
+## Install
 
 ```sh
-pnpm install
-pnpm exec playwright install chromium
-pnpm dev
+npm install @mk7s/hologpu
 ```
 
-Open [the playground](http://127.0.0.1:5175). Select an effect, adjust generated controls or presets, inspect composed WGSL and capabilities, and read its research note. The URL retains your state. Transport includes pause, step, reset, seed, resolution and reduced motion. Keyboard: arrows select effects, space pauses, `.` steps, `r` resets and `/` searches. Transport also supports time scale and optional adaptive quality. The Passes drawer captures raw intermediate textures with channel/range selection and false colour, and summarizes simulation buffers. Drag the stage while holding a pointer button to inject into interactive simulations. CPU timing excludes GPU execution. The [M0 foundations lab](http://127.0.0.1:5175/m0.html) retains the shared compute and multi-canvas experiments.
+Requires a WebGPU-capable browser. Without WebGPU the effects fall back to a
+poster or the effect's declared CSS, so the page stays readable.
+
+## Use one effect
 
 ```ts
 import { createEffect } from '@mk7s/hologpu';
@@ -30,6 +34,57 @@ field.pause();
 field.step();
 field.destroy();
 ```
+
+To decorate an existing element instead of managing a canvas yourself, use
+`attach` from `@mk7s/hologpu/dom` (see [DOM fields](#dom-fields-m5) below) or the
+`<hgpu-field>` custom element.
+
+## Run the playground
+
+Requires Node 22.12+ and pnpm 11.15.1. The DOM demo includes a small vendored
+MIT-licensed HoloCSS motion stylesheet; its
+[provenance](apps/playground/src/vendor/holocss/README.md) is retained alongside
+the source.
+
+```sh
+pnpm install
+pnpm exec playwright install chromium
+pnpm dev
+```
+
+Open [the playground](http://127.0.0.1:5175). Select an effect, adjust generated
+controls or presets, inspect composed WGSL and capabilities, and read its research
+note. The URL retains your state.
+
+See [docs/changelog.md](docs/changelog.md) for what each milestone added.
+
+### Playground controls
+
+The M0 playground transport includes pause, step, reset, seed, resolution and reduced motion. Keyboard: arrows select effects, space pauses, `.` steps, `r` resets and `/` searches. Transport also supports time scale and optional adaptive quality. The Passes drawer captures raw intermediate textures with channel/range selection and false colour, and summarizes simulation buffers. Drag the stage while holding a pointer button to inject into interactive simulations. CPU timing excludes GPU execution. The [M0 foundations lab](http://127.0.0.1:5175/m0.html) retains the shared compute and multi-canvas experiments.
+
+### Demo pages
+
+The [LCD refraction demo](http://127.0.0.1:5175/lcd.html) applies the catalogue's normal / flow displacement filter to the transparent display in the supplied Gemini image. A traced surface mask preserves the bezel, hands and street. Move across the display to steer Ripple, Liquid, Glass or Refraction with a GPU-generated pointer map; change the map encoding or compare with the original. It defaults to Ripple at 10% intensity, renders only in response to interaction, and keeps the photograph visible if WebGPU is unavailable.
+
+Six billboard displays retain the photograph's artwork and perspective while scrolling down independently through HoloCSS's registered `--hcss-number` and stagger timing. Their palette shifts to blue and cyan. **Pause signs** controls this motion separately from the mouse-only LCD; **View original** hides the animated signs as well as the refraction.
+
+Three street fixtures flicker independently through a separate HoloGPU HDR bloom chain. Only their bright pixels feed the bloom pyramid, composited over the scene at half resolution. **Pause lights** freezes their flicker, and **View original** hides all added effects.
+
+Three layers of GPU rain fall at different depths and speeds. A foreground mask keeps streaks behind the tablet, hands and nearby figure. Rain is paused by default; **Play rain** controls rainfall independently.
+
+Build and stage the playground and LCD demo in the sibling mk7s site with `pnpm publish:mk7s`. Add `--deploy` to build mk7s and deploy the Cloudflare Pages production branch. The demo is served at `/hologpu/lcd.html`. Run `pnpm test:lcd` to check the production build at DPR 1 and 2.
+
+The [DOM fluid demo](https://mk7s.dev/hologpu/fluid-dom.html) runs one viewport-sized fluid field around the actual bounding boxes of the page's headings, links, cards and fixed controls. Drag the floating card (or focus its handle and use arrow keys), stir the open space, scroll, resize, or rearrange the cards to update the solver's walls. Controls pause/reset the simulation, change dye palettes, disable collisions, or reveal the boxes. Reduced motion starts paused and WebGPU fallback preserves the interactive HTML. The boundaries use axis-aligned rectangles rather than glyph contours. `pnpm test:fluid-dom` verifies the built demo at DPR 1 and 2; `pnpm publish:mk7s --deploy` includes it in the Cloudflare deployment.
+
+The DOM fireworks demo at `/fireworks-dom.html` uses the catalogue's `emitters` effect for pairs of red, green, blue, yellow, cyan, magenta, and orange fireworks every 3.6 seconds. Each pair launches from separate foreground elements. The default mix rotates round shells, rings, and cascading willows; the shape control can also hold a favorite style. Burst origins follow visible elevated headings and a draggable HTML card; opaque page elements naturally occlude the background canvas. Raw float particle trails feed the shared extended-range HDR presenter, with automatic SDR fallback, light/output controls, pause/replay, reduced-motion support, and a usable static page without WebGPU. Run `pnpm exec playwright test tests/browser/fireworks-dom.spec.ts` for cadence, seven-color birth state, HDR output, geometry, controls, and fallback checks at DPR 1 and 2.
+
+The DOM attractor demo at `/attractor-dom.html` (linked from the playground) fills the viewport with 24,576 electric-blue additive HDR particles. Headings and cards repel them; the draggable card attracts them toward its outline with a tangential force that keeps them circulating. Reverse swaps the forces, Forces disables DOM steering, and Show boxes reveals the sources. Scroll, resize, drag, keyboard movement and rearrangement update the measured rectangles. This is a custom damped force field, separate from the catalogue's chaotic attractor equations; boundaries are soft rectangular influences, not collision walls or glyph contours. A bounded eight-submission queue avoids throttling Firefox on its delayed GPU completion notifications. The demo supports up to sixteen tagged elements of each polarity, gradually reseeds particles to keep the background populated, starts paused under reduced motion, and preserves the HTML without WebGPU. Run `pnpm exec playwright test tests/browser/attractor-dom.spec.ts` for GPU force direction, DOM geometry, controls and fallback checks at DPR 1 and 2.
+
+Both DOM demos use Auto HDR and an 8× default Light boost, adjustable from 1× to 16×. On a display reporting high dynamic range, they request verified extended `rgba16float` presentation in Display P3 (or sRGB HDR); unsupported presentation uses a brighter, tone-mapped SDR version. The output menu also offers explicit HDR and SDR modes. The attractor presents its raw additive `hdr` trail tap before Reinhard compression, retaining the particle exposure setting and dark background. Light and output controls work while paused without changing particle positions or trail history, and presentation rebuilds after device loss. Shader/presentation code is shared with the fluid demo through `apps/playground/src/dom-light-presentation.ts`; neither demo adds a second animation loop. Accepted canvas configuration and numeric pixels above white verify the HDR rendering path, while actual luminance depends on display/browser/OS support. `?playing=false&output=hdr&brightness=8` gives a frozen comparison; the same options work on the fluid demo.
+
+This full-page demo uses a 160-cell grid, 16 pressure iterations and a DPR-1 presentation at 75% resolution. DOM observers update stationary geometry without per-frame layout polling. It opts into a bounded eight-batch submission pipeline: headed Firefox 155 on the development Mac delivered even empty-queue completion callbacks at roughly 100 ms, so waiting for each callback limited animation to about 10 fps independently of solver size. The library's default remains one outstanding batch. This demo keeps solver quality fixed because completion-notification latency is not GPU execution time. The browser checks also run in headed Firefox (a graphical session is required).
+
+The [Invisible ink demo](http://127.0.0.1:5175/ink-paper.html) deposits a finite crimson wash along the top of textured paper. Downward porous-paper transport reveals a cursive message whose wax mask blocks absorption. Change the message (use `/` for line breaks), adjust the pace, pause, or replay. It uses the catalogue `ink` effect with a 288-cell grid and a locally bundled OFL-licensed Parisienne font. Reduced motion waits for an explicit reveal; the simulation stops after the wash settles. `pnpm exec playwright test tests/browser/ink-paper.spec.ts` checks the top feed, zero permanent pigment on fully coated letters, message editing and mobile controls at DPR 1 and 2.
 
 ## Author an effect
 
@@ -64,7 +119,32 @@ Import `@mk7s/hologpu/element` to register `<hgpu-field>` with the lazy catalogu
 
 Uniforms can be driven through plain `params` assignments, opted-in typed non-inheriting `--hgpu-*` properties, or `timeline(progress)` with a finite 0–1 value. The CSS bridge reads one computed-style object per visible frame and caps each field at eight scalar, boolean or color bindings. Unset CSS leaves schema defaults and presets intact. Author explicit numeric endpoints for CSS transitions; CSS vectors, texture selectors and allocation controls are not supported. `bindProperties`, `bindCSSParameters` and `bindTimeline` expose disposable drivers for imperative fields. Property and timeline drivers report counters; failed author sources emit bounded `hgpu-error` events while healthy fields continue. An unchanged external clock preserves its settled image.
 
+For a quiet hero, attach `aurora-veil` behind the content; its default resolution scale is 0.25. Attach `grain-overlay` in front of a separate content host at the default 4% opacity. Grain's `rate` limits time-driven draws to 12–24 Hz; parameter and image changes still refresh immediately. The six new effects ship generated settled-frame posters, automatically selected by `attach()` unless a caller supplies a poster. Regenerate one with `pnpm poster aurora-veil default 640x400` while the dev server is running. Aurora's four brand palettes also ship in `packages/effects/src/aurora-veil/brand-presets.json`.
+
+`light-sweep` runs once over 1.2 seconds by default. To drive it with CSS instead, author `--hgpu-progress: 0; transition: --hgpu-progress 1.2s linear` on its host, then change the property to 1. Its `timeline` preset maps `attachment.timeline(0…1)` to the same sweep. Reduced motion keeps the final transparent pose. Dot pitch, dot radius and contour weight use CSS pixels across DPR and resolution changes.
+
 `fluid-obstacles` automatically consumes tagged `[data-hgpu-obstacle]` descendants through packed DOM rectangles. `DomRectsInput` is also available for explicit bindings; the caller owns and disposes that descriptor. Rectangles use transformed axis-aligned bounds rather than arbitrary DOM silhouettes. In page combines six effects with actual content, a HoloCSS image transition and a CSS view timeline. Grid makes repeated attachments; page conditions expose reduced motion, fallback, quality tiers and real device loss. The fixed overlay remains a research option; ordinary attachments use one in-flow canvas per element.
+
+## Geometry and HDR (M6)
+
+Select the Geometry family in the playground to explore the four T5 effects. MSAA switches between single sample and 4x HDR resolve. `instances` compares direct draws with reusable render bundles and exposes visible/hidden u64 occlusion results. `terrain` samples a seeded r32float height field and offers an in-place smoothstep remap. `material-ball` samples six-face GGX specular mips and separate diffuse irradiance. `glass` refracts an owned background capture with separate RGB indices; its thickness is a screen-space approximation.
+
+The core exports `perspective`, `lookAt`, `multiplyMat4`, `createCamera`, `cubeMesh`, `sphereMesh`, `planeMesh`, `uploadMesh`, `createGeometryTargets`, `createMeshPipeline` and `createEnvironment`. The [T5 contract](docs/adr/018-minimal-geometry-and-hdr.md) describes conventions and ownership.
+
+`createHDRCanvas(session, canvas, colorSpace)` optionally presents a field's borrowed `output` to a separate, caller-sized opaque float canvas. It composites over black, converts linear sRGB to the selected gamut, and applies its transfer function while preserving values above one. It verifies extended tone mapping through `getConfiguration()` and rejects unsupported configurations (including this Mac's Firefox). Keep the ordinary field available for SDR presentation. Dispose the HDR presenter before destroying its device, and recreate it after device loss.
+
+```ts
+import { createHDRCanvas } from '@mk7s/hologpu';
+
+hdrCanvas.width = field.output!.width;
+hdrCanvas.height = field.output!.height;
+const hdr = await createHDRCanvas(field.session, hdrCanvas, 'display-p3');
+const encoder = field.session.device.createCommandEncoder();
+hdr.draw(encoder, field.output!);
+field.session.device.queue.submit([encoder.finish()]);
+// Redraw after field updates; keep dimensions matched when resizing.
+hdr.dispose();
+```
 
 ## Inputs and filter chains (M4)
 
@@ -162,6 +242,10 @@ HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 chrome
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 webkit
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 chrome --gate
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m3 webkit --gate
+HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m6 chrome
+HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m6 webkit
+pnpm benchmark:m7 chrome
+pnpm benchmark:m7 webkit
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 chrome
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 webkit
 HOLOGPU_URL=http://127.0.0.1:5176 pnpm benchmark:m4 chrome --gate
@@ -188,6 +272,8 @@ M0 scenarios remain available with `pnpm benchmark chrome`, `pnpm benchmark fire
 - [M3 validation](docs/m3.md)
 - [M4 validation](docs/m4.md)
 - [M5 validation](docs/m5.md)
+- [M6 validation](docs/m6.md)
+- [M7 validation](docs/m7.md)
 - [T1 stretch validation](docs/t1-stretch.md)
 - [Effect notes and template](docs/notes/_template.md)
 

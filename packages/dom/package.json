@@ -28,5 +28,13 @@
   },
   "dependencies": {
     "@mk7s/hologpu-core": "workspace:*"
-  }
+  },
+  "license": "MIT",
+  "description": "DOM attachment helpers for hologpu effects: attach(), <hgpu-field> and the page budget.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4njee/hologpu.git",
+    "directory": "packages/dom"
+  },
+  "homepage": "https://github.com/s4njee/hologpu"
 }

@@ -14,5 +14,13 @@
   "devDependencies": {
     "vite": "catalog:",
     "typescript": "catalog:"
-  }
+  },
+  "license": "MIT",
+  "description": "Interactive gallery playground for @mk7s/hologpu effects.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4njee/hologpu.git",
+    "directory": "apps/playground"
+  },
+  "homepage": "https://github.com/s4njee/hologpu"
 }

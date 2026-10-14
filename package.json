@@ -9,10 +9,13 @@
   },
   "scripts": {
     "dev": "pnpm --filter @mk7s/hologpu-playground dev",
+    "publish:mk7s": "node scripts/publish-site-mk7s.mjs",
     "build": "pnpm -r --sort build",
     "typecheck": "pnpm -r typecheck && tsc --noEmit -p tests/tsconfig.json",
     "test": "vitest run && node scripts/check-catalogue.mjs",
     "test:browser": "playwright test",
+    "test:lcd": "pnpm --filter @mk7s/hologpu-playground build && playwright test --config playwright.lcd.config.ts",
+    "test:fluid-dom": "pnpm --filter @mk7s/hologpu-playground build && playwright test --config playwright.fluid-dom.config.ts",
     "test:hardware": "playwright test --config playwright.hardware.config.ts",
     "benchmark": "node scripts/benchmark.mjs",
     "format": "prettier --write .",
@@ -26,8 +29,20 @@
     "benchmark:m2": "node scripts/benchmark-m2.mjs",
     "benchmark:m3": "node scripts/benchmark-m3.mjs",
     "benchmark:m4": "node scripts/benchmark-m4.mjs",
+    "benchmark:m6": "node scripts/benchmark-m6.mjs",
     "benchmark:m5": "node scripts/benchmark-m5.mjs",
-    "benchmark:m5-page": "node scripts/benchmark-m5-page.mjs"
+    "benchmark:m5-page": "node scripts/benchmark-m5-page.mjs",
+    "benchmark:m7": "node scripts/benchmark-m7.mjs",
+    "poster": "node scripts/poster.mjs",
+    "benchmark:v2-backgrounds": "node scripts/benchmark-v2-backgrounds.mjs",
+    "benchmark:v2-typography": "node scripts/benchmark-v2-typography.mjs",
+    "benchmark:v2-cards": "node scripts/benchmark-v2-cards.mjs",
+    "benchmark:v2-products": "node scripts/benchmark-v2-products.mjs",
+    "benchmark:v2-transitions": "node scripts/benchmark-v2-transitions.mjs",
+    "benchmark:v2-ambient": "node scripts/benchmark-v2-ambient.mjs",
+    "bundle:size": "node scripts/bundle-size.mjs",
+    "benchmark:firefox-submissions": "node scripts/benchmark-firefox-submissions.mjs",
+    "benchmark:v2-launch": "node scripts/benchmark-v2-launch.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
@@ -36,5 +51,12 @@
     "prettier": "~3.9.8",
     "typescript": "catalog:",
     "vitest": "catalog:"
-  }
+  },
+  "license": "MIT",
+  "description": "WebGPU effect runtime and effect library, shipped as the @mk7s/hologpu packages.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4njee/hologpu.git"
+  },
+  "homepage": "https://github.com/s4njee/hologpu"
 }

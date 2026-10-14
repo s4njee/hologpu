@@ -239,10 +239,170 @@
       "source": "./src/text-dissolve/index.ts",
       "types": "./dist/text-dissolve/index.d.ts",
       "import": "./dist/text-dissolve/index.js"
+    },
+    "./glass": {
+      "source": "./src/glass/index.ts",
+      "types": "./dist/glass/index.d.ts",
+      "import": "./dist/glass/index.js"
+    },
+    "./instances": {
+      "source": "./src/instances/index.ts",
+      "types": "./dist/instances/index.d.ts",
+      "import": "./dist/instances/index.js"
+    },
+    "./material-ball": {
+      "source": "./src/material-ball/index.ts",
+      "types": "./dist/material-ball/index.d.ts",
+      "import": "./dist/material-ball/index.js"
+    },
+    "./terrain": {
+      "source": "./src/terrain/index.ts",
+      "types": "./dist/terrain/index.d.ts",
+      "import": "./dist/terrain/index.js"
+    },
+    "./backdrop-glass": {
+      "source": "./src/backdrop-glass/index.ts",
+      "types": "./dist/backdrop-glass/index.d.ts",
+      "import": "./dist/backdrop-glass/index.js"
+    },
+    "./lattice-boltzmann": {
+      "source": "./src/lattice-boltzmann/index.ts",
+      "types": "./dist/lattice-boltzmann/index.d.ts",
+      "import": "./dist/lattice-boltzmann/index.js"
+    },
+    "./mpm": {
+      "source": "./src/mpm/index.ts",
+      "types": "./dist/mpm/index.d.ts",
+      "import": "./dist/mpm/index.js"
+    },
+    "./path-tracer": {
+      "source": "./src/path-tracer/index.ts",
+      "types": "./dist/path-tracer/index.d.ts",
+      "import": "./dist/path-tracer/index.js"
+    },
+    "./pbf-fluid": {
+      "source": "./src/pbf-fluid/index.ts",
+      "types": "./dist/pbf-fluid/index.d.ts",
+      "import": "./dist/pbf-fluid/index.js"
+    },
+    "./splats": {
+      "source": "./src/splats/index.ts",
+      "types": "./dist/splats/index.d.ts",
+      "import": "./dist/splats/index.js"
+    },
+    "./aurora-veil": {
+      "source": "./src/aurora-veil/index.ts",
+      "types": "./dist/aurora-veil/index.d.ts",
+      "import": "./dist/aurora-veil/index.js"
+    },
+    "./dot-matrix-field": {
+      "source": "./src/dot-matrix-field/index.ts",
+      "types": "./dist/dot-matrix-field/index.d.ts",
+      "import": "./dist/dot-matrix-field/index.js"
+    },
+    "./grid-horizon": {
+      "source": "./src/grid-horizon/index.ts",
+      "types": "./dist/grid-horizon/index.d.ts",
+      "import": "./dist/grid-horizon/index.js"
+    },
+    "./topographic-lines": {
+      "source": "./src/topographic-lines/index.ts",
+      "types": "./dist/topographic-lines/index.d.ts",
+      "import": "./dist/topographic-lines/index.js"
+    },
+    "./grain-overlay": {
+      "source": "./src/grain-overlay/index.ts",
+      "types": "./dist/grain-overlay/index.d.ts",
+      "import": "./dist/grain-overlay/index.js"
+    },
+    "./light-sweep": {
+      "source": "./src/light-sweep/index.ts",
+      "types": "./dist/light-sweep/index.d.ts",
+      "import": "./dist/light-sweep/index.js"
+    },
+    "./heading-reveal": {
+      "source": "./src/heading-reveal/index.ts",
+      "types": "./dist/heading-reveal/index.d.ts",
+      "import": "./dist/heading-reveal/index.js"
+    },
+    "./text-outline-glow": {
+      "source": "./src/text-outline-glow/index.ts",
+      "types": "./dist/text-outline-glow/index.d.ts",
+      "import": "./dist/text-outline-glow/index.js"
+    },
+    "./text-shimmer": {
+      "source": "./src/text-shimmer/index.ts",
+      "types": "./dist/text-shimmer/index.d.ts",
+      "import": "./dist/text-shimmer/index.js"
+    },
+    "./hover-lift-shadow": {
+      "source": "./src/hover-lift-shadow/index.ts",
+      "types": "./dist/hover-lift-shadow/index.d.ts",
+      "import": "./dist/hover-lift-shadow/index.js"
+    },
+    "./panel-refraction": {
+      "source": "./src/panel-refraction/index.ts",
+      "types": "./dist/panel-refraction/index.d.ts",
+      "import": "./dist/panel-refraction/index.js"
+    },
+    "./press-ripple": {
+      "source": "./src/press-ripple/index.ts",
+      "types": "./dist/press-ripple/index.d.ts",
+      "import": "./dist/press-ripple/index.js"
+    },
+    "./bright-pass": {
+      "source": "./src/bright-pass/index.ts",
+      "types": "./dist/bright-pass/index.d.ts",
+      "import": "./dist/bright-pass/index.js"
+    },
+    "./depth-parallax": {
+      "source": "./src/depth-parallax/index.ts",
+      "types": "./dist/depth-parallax/index.d.ts",
+      "import": "./dist/depth-parallax/index.js"
+    },
+    "./masked-composite": {
+      "source": "./src/masked-composite/index.ts",
+      "types": "./dist/masked-composite/index.d.ts",
+      "import": "./dist/masked-composite/index.js"
+    },
+    "./pointer-map": {
+      "source": "./src/pointer-map/index.ts",
+      "types": "./dist/pointer-map/index.d.ts",
+      "import": "./dist/pointer-map/index.js"
+    },
+    "./product-sheen": {
+      "source": "./src/product-sheen/index.ts",
+      "types": "./dist/product-sheen/index.d.ts",
+      "import": "./dist/product-sheen/index.js"
+    },
+    "./progress-line": {
+      "source": "./src/progress-line/index.ts",
+      "types": "./dist/progress-line/index.d.ts",
+      "import": "./dist/progress-line/index.js"
+    },
+    "./section-wipe": {
+      "source": "./src/section-wipe/index.ts",
+      "types": "./dist/section-wipe/index.d.ts",
+      "import": "./dist/section-wipe/index.js"
+    },
+    "./wave-divider": {
+      "source": "./src/wave-divider/index.ts",
+      "types": "./dist/wave-divider/index.d.ts",
+      "import": "./dist/wave-divider/index.js"
+    },
+    "./constellation": {
+      "source": "./src/constellation/index.ts",
+      "types": "./dist/constellation/index.d.ts",
+      "import": "./dist/constellation/index.js"
+    },
+    "./particle-drift": {
+      "source": "./src/particle-drift/index.ts",
+      "types": "./dist/particle-drift/index.d.ts",
+      "import": "./dist/particle-drift/index.js"
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node ../../scripts/copy-effect-assets.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
@@ -250,5 +410,13 @@
   },
   "dependencies": {
     "@mk7s/hologpu-core": "workspace:*"
-  }
+  },
+  "license": "MIT",
+  "description": "Shader and compute effect definitions for the hologpu runtime.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4njee/hologpu.git",
+    "directory": "packages/effects"
+  },
+  "homepage": "https://github.com/s4njee/hologpu"
 }
