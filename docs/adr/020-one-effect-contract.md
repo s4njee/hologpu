@@ -70,7 +70,7 @@ limitation.
    HoloGPU's `update`/`render` split buys nothing for them; the adapter does nothing in `update`
    and everything in `render`.
 7. **Profiler shape differs.** The temple wants `{ pass(label): GPURenderPassTimestampWrites |
-   undefined }`; HoloGPU's profiler is a different type. Per-pass GPU timings are dropped unless
+undefined }`; HoloGPU's profiler is a different type. Per-pass GPU timings are dropped unless
    a bridge is written.
 8. **No `sources`, `diagnostics`, `textureTaps`, `bufferTaps` or `memory`.** The temple instance
    exposes none of these, so HoloGPU's Source drawer, Passes drawer and memory accounting do not

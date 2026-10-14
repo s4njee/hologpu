@@ -16,5 +16,5 @@ export default defineConfig({
       '@mk7s/hologpu-dom': source('./packages/dom/src/index.ts'),
     },
   },
-  test: { include: ['packages/*/src/**/*.test.ts'], environment: 'node' },
+  test: { include: ['packages/*/src/**/*.test.{ts,tsx}'], environment: 'node' },
 });
