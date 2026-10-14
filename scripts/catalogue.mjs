@@ -1,4 +1,6 @@
 import { format } from 'prettier';
+import ts from 'typescript';
+import { existsSync, readFileSync } from 'node:fs';
 import { readdir, writeFile, readFile } from 'node:fs/promises';
 const ids = (await readdir('packages/effects/src', { withFileTypes: true }))
   .filter((d) => d.isDirectory() && !d.name.startsWith('_'))
@@ -51,4 +53,103 @@ export async function loadEffect(id: string): Promise<EffectDefinition> { const 
 );
 await writeFile('packages/hologpu/package.json', JSON.stringify(p, null, 2) + '\n');
 await writeFile('packages/effects/package.json', JSON.stringify(e, null, 2) + '\n');
+
+// catalogue.json: one record per effect with a `status` derived from its tier (M3 3.9/3.10).
+/** First real paragraph of an effect's research note, for the catalogue summary. */
+const readSummary = (id) => {
+  const file = `docs/notes/${id}.md`;
+  if (!existsSync(file)) return '';
+  const paragraph = [];
+  for (const line of readFileSync(file, 'utf8').split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t) {
+      if (paragraph.length) break;
+      continue;
+    }
+    if (/^[#>|]|^- |^\d+\. /.test(t)) {
+      if (paragraph.length) break;
+      continue;
+    }
+    paragraph.push(t);
+  }
+  return paragraph
+    .join(' ')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[`*_]/g, '')
+    .trim();
+};
+
+// `docs/backlog-v2.md` §1.3 names the effects that should not run on a launch page.
+const UNSUITABLE = new Set([
+  'fluid-obstacles',
+  'fluid',
+  'flow-particles',
+  'radiance-cascades',
+  'lenia',
+  'reaction-diffusion',
+  'life',
+  'falling-sand',
+  'physarum',
+  'caustics',
+  'attractors',
+  'n-body',
+  'boids',
+  'sort',
+  'spatial-hash',
+]);
+const statusOf = (id, tier, hasPoster) =>
+  UNSUITABLE.has(id)
+    ? 'research'
+    : tier !== 'T1'
+      ? tier === 'T2'
+        ? 'demo'
+        : 'research'
+      : hasPoster
+        ? 'ready'
+        : 'demo';
+const effects = [];
+for (const id of ids) {
+  const file = `packages/effects/src/${id}/index.ts`;
+  const sf = ts.createSourceFile(file, readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
+  const literal = (node) =>
+    !node
+      ? null
+      : ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)
+        ? node.text
+        : ts.isArrayLiteralExpression(node)
+          ? node.elements.map(literal)
+          : null;
+  let meta;
+  const visit = (node) => {
+    if (ts.isObjectLiteralExpression(node)) {
+      const fields = Object.fromEntries(
+        node.properties
+          .filter(ts.isPropertyAssignment)
+          .map((prop) => [prop.name.getText(sf).replace(/['"]/g, ''), literal(prop.initializer)]),
+      );
+      if (fields.id === id && fields.title) meta = fields;
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(sf);
+  const poster = ['poster.png', 'poster.webp']
+    .map((f) => `packages/effects/src/${id}/${f}`)
+    .find(existsSync);
+  effects.push({
+    id,
+    title: meta?.title ?? id,
+    summary: readSummary(id),
+    family: meta?.family ?? 'procedural',
+    tier: meta?.tier ?? 'T1',
+    tags: meta?.tags ?? [],
+    status: statusOf(id, meta?.tier ?? 'T1', Boolean(poster)),
+    poster: poster ?? null,
+  });
+}
+effects.sort((a, b) => a.title.localeCompare(b.title));
+await writeFile('catalogue.json', JSON.stringify({ project: 'hologpu', effects }, null, 2) + '\n');
+console.log(
+  `${effects.length} effects, ${effects.filter((e) => e.status === 'ready').length} ready`,
+);
+
 console.log(`Generated catalogue and public exports for ${ids.length} effects.`);

@@ -1,0 +1,1184 @@
+{
+  "project": "hologpu",
+  "effects": [
+    {
+      "id": "mipgen",
+      "title": "2D and cube mip generation",
+      "summary": "Does GPU mip generation average every source texel, including odd dimensions, across 2D textures and all six cube faces?",
+      "family": "primitives",
+      "tier": "T1",
+      "tags": [
+        "compute",
+        "texture",
+        "mipmap",
+        "cube"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "radiance-cascades",
+      "title": "2D radiance cascades",
+      "summary": "Can a distance/angular hierarchy provide immediate 2D indirect light with inspectable memory and merge behavior?",
+      "family": "lighting",
+      "tier": "T4",
+      "tags": [
+        "radiance",
+        "global-illumination",
+        "hierarchy",
+        "distance"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "color-grade",
+      "title": "3D LUT and tone mapping",
+      "summary": "What does a real 3D texture buy over an analytic colour transform?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "colour",
+        "3d-texture",
+        "hdr"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "product-sheen",
+      "title": "Alpha-masked product sheen",
+      "summary": "A T1 front-layer light band clipped by the bound product image's alpha. It adds only the highlight; the real product image remains beneath it in the light DOM. A missing image produces a transparent field instead of a rectangular sheen.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "product",
+        "image",
+        "sheen",
+        "css",
+        "progress",
+        "launch-page"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/product-sheen/poster.png"
+    },
+    {
+      "id": "audio-spectrum",
+      "title": "Audio FFT, oscilloscope and terrain",
+      "summary": "Does the visual respond to actual analyser amplitudes and signed waveform samples?",
+      "family": "input",
+      "tier": "T1",
+      "tags": [
+        "audio",
+        "fft",
+        "waveform",
+        "terrain"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "section-wipe",
+      "title": "Authored image section wipe",
+      "summary": "This baseline T4 transition reveals a second authored image through a directional soft front, a still noise field, or the destination's linear luminance. Bind the source as image and the destination as next. No page pixels or View Transitions snapshots are captured. Missing next preserves the source. Progress 0 and 1 return the corresponding image exactly; intermediate pixels interpolate premultiplied linear RGBA, including alpha, without tinting the images. Reduced motion uses a hard cut: source below 0.5 and destination at or above 0.5.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "image",
+        "transition",
+        "scroll",
+        "css",
+        "launch-page"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/section-wipe/poster.png"
+    },
+    {
+      "id": "boids",
+      "title": "Boids with sorted spatial neighbors",
+      "summary": "Can a GPU sort and prefix-sum uniform grid reduce neighbor candidates while preserving every periodic boid interaction and the resulting steering update?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "flocking",
+        "spatial-hash",
+        "prefix-sum",
+        "radix-sort"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "smoke",
+      "title": "Buoyant smoke and self-shadow",
+      "summary": "How do advected temperature and density change a projected fluid, and what is the extra cost of a bounded self-shadow display?",
+      "family": "fluids",
+      "tier": "T1",
+      "tags": [
+        "compute",
+        "stable-fluids",
+        "buoyancy",
+        "temperature",
+        "self-shadow"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "text-outline-glow",
+      "title": "Cached text outline and glow",
+      "summary": "Attach this decorative transparent layer over a real DOM heading. A text mask seeds the existing baseline JFA+1 helper once; a single steady fragment pass reads the cached signed distance and paints an exterior exponential halo, crisp outline, or both. Glyph interiors remain transparent so the light-DOM text supplies the content. Intensity defaults to 0.18. Colour, intensity, width, and falloff support CSS bindings.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "text",
+        "outline",
+        "glow",
+        "cached-distance",
+        "css"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/text-outline-glow/poster.png"
+    },
+    {
+      "id": "scroll-scene",
+      "title": "CSS scroll timeline scene",
+      "summary": "Can normalized CSS scroll progress scrub a GPU scene reversibly without advancing simulation time?",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "dom",
+        "scroll",
+        "css",
+        "timeline"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "lattice-boltzmann",
+      "title": "D2Q9 lattice Boltzmann",
+      "summary": "Can a second flow solver conserve mass in periodic mode while producing a driven cylinder wake?",
+      "family": "fluids",
+      "tier": "T1",
+      "tags": [
+        "lbm",
+        "bgk",
+        "vortex-shedding",
+        "bounce-back"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "caustics",
+      "title": "Derivative water caustics",
+      "summary": "Can fragment derivatives turn a seeded procedural water surface into stable, bounded focusing patterns without a simulation or an extra render pass?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "water",
+        "derivatives",
+        "refraction",
+        "jacobian"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "backdrop-glass",
+      "title": "Experimental DOM backdrop glass",
+      "summary": "Can HTML-in-canvas copy real DOM paint into a refracting WebGPU effect, and what happens without the experiment?",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "html-in-canvas",
+        "experimental",
+        "refraction",
+        "dom-capture"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "fluid-obstacles",
+      "title": "Fluid around DOM rectangles",
+      "summary": "Can a projected fluid interact with accessible page headings through their browser bounding boxes, without rasterizing the page or hiding the content in a canvas?",
+      "family": "fluids",
+      "tier": "T1",
+      "tags": [
+        "compute",
+        "stable-fluids",
+        "dom",
+        "pressure",
+        "obstacles",
+        "staggered-grid"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "attractors",
+      "title": "Four additive HDR attractors",
+      "summary": "Can differential and iterated-map chaotic systems share particle storage and additive HDR presentation without hiding their numerical differences?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "lorenz",
+        "aizawa",
+        "clifford",
+        "dejong",
+        "hdr"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "panel-refraction",
+      "title": "Frosted hero refraction panel",
+      "summary": "A frosted card samples another HoloGPU field's premultiplied linear output. It cannot refract arbitrary DOM content: no HTML capture, screenshot, or experimental browser flag is involved. The demo places three draggable cards over an aurora-veil hero.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "card",
+        "glass",
+        "refraction",
+        "blur",
+        "hero",
+        "css"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/panel-refraction/poster.png"
+    },
+    {
+      "id": "blur",
+      "title": "Gaussian / dual Kawase / box blur",
+      "summary": "How do exact separable kernels compare with a compact dual Kawase pyramid?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "blur",
+        "separable",
+        "pyramid"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "pointer-map",
+      "title": "Gaussian pointer normal / flow map",
+      "summary": "A baseline T1 data texture renders a Gaussian lens centred on the pointer. Its circular footprint uses the host aspect ratio and radius as a standard deviation normalized to host height. It has no time-driven grain, swirl or animation: unchanged frames submit no GPU work.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "map",
+        "normal",
+        "flow",
+        "pointer",
+        "product",
+        "lcd"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/pointer-map/poster.png"
+    },
+    {
+      "id": "wave-divider",
+      "title": "Gentle section wave divider",
+      "summary": "One baseline T1 fragment pass fills the lower side of a gently moving two-sine edge. amplitude is measured in CSS pixels through the effective frame DPR, so DPR and resolution scale leave its geometry unchanged. The default amplitude is 18 px, baseline is half the host height, primary frequency is 1.15 cycles across the width, and speed is 0.12 radians per second. The second term has 0.35 amplitude, twice the frequency, and a fixed 1.3-radian phase offset. No texture input, feedback, history, or additional allocation is needed.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "divider",
+        "section",
+        "wave",
+        "css",
+        "launch-page"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/wave-divider/poster.png"
+    },
+    {
+      "id": "material-ball",
+      "title": "GGX material and prefiltered cube lighting",
+      "summary": "Can the minimal mesh runtime provide convincing roughness-dependent image-based lighting without an asset pipeline?",
+      "family": "geometry",
+      "tier": "T5",
+      "tags": [
+        "pbr",
+        "cube-map",
+        "texture-array",
+        "prefiltered-mips",
+        "depth",
+        "msaa"
+      ],
+      "status": "research",
+      "poster": "packages/effects/src/material-ball/poster.png"
+    },
+    {
+      "id": "splats",
+      "title": "GPU sorted anisotropic Gaussian splats",
+      "summary": "Does the GPU sort primitive produce correct transparency on projected anisotropic 3D data?",
+      "family": "geometry",
+      "tier": "T1",
+      "tags": [
+        "gaussian",
+        "covariance",
+        "radix-sort",
+        "alpha-compositing"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "reaction-diffusion",
+      "title": "Gray–Scott reaction diffusion",
+      "summary": "Can a fixed-step, floating-point stencil reproduce reaction fronts without reading a target being written?",
+      "family": "feedback",
+      "tier": "T1",
+      "tags": [
+        "gray-scott",
+        "chemistry",
+        "parameter-map"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "halftone-ascii",
+      "title": "Halftone dots and glyph atlas",
+      "summary": "Can image density map to real glyph coverage instead of procedural pseudo-text?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "halftone",
+        "ascii",
+        "atlas"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "bloom",
+      "title": "HDR mip-pyramid bloom",
+      "summary": "Can a chain preserve HDR energy until tone mapping and expose each bloom level?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "hdr",
+        "bloom",
+        "pyramid"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "image-hover",
+      "title": "Image hover and scroll transition",
+      "summary": "Can CSS hover or scroll interpolate two actual image textures while the field preserves their owners?",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "dom",
+        "image",
+        "hover",
+        "css",
+        "transition"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "terrain",
+      "title": "Indexed height field and moving camera",
+      "summary": "How much terrain detail can vertex-stage noise displacement provide with a minimal camera and index buffer?",
+      "family": "geometry",
+      "tier": "T5",
+      "tags": [
+        "index-buffer",
+        "vertex-displacement",
+        "depth",
+        "msaa",
+        "fog"
+      ],
+      "status": "research",
+      "poster": "packages/effects/src/terrain/poster.png"
+    },
+    {
+      "id": "emitters",
+      "title": "Indirect fireworks and spark emitters",
+      "summary": "Can lifetime-driven births and deaths remain reproducible while live GPU counts drive rendering without a CPU count round trip?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "free-list",
+        "stream-compaction",
+        "indirect-draw"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "fractal",
+      "title": "Julia / Mandelbrot explorer",
+      "summary": "When does f32 lose deep-zoom detail, and what can paired f32 arithmetic preserve?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "fractal",
+        "precision",
+        "double-single"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "jump-flood",
+      "title": "Jump-flood distance fields",
+      "summary": "Can a reusable GPU mask-to-distance transform serve outlines, Voronoi inspection and 2D lighting without readback?",
+      "family": "lighting",
+      "tier": "T2",
+      "tags": [
+        "distance",
+        "mask",
+        "outline",
+        "voronoi"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "lenia",
+      "title": "Lenia continuous cellular automaton",
+      "summary": "How costly is a continuous neighborhood rule when its radial kernel is stored in a LUT instead of recomputed for every sample?",
+      "family": "feedback",
+      "tier": "T1",
+      "tags": [
+        "lenia",
+        "convolution",
+        "kernel-lut"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "lens",
+      "title": "Lens and film stack",
+      "summary": "How much optical character fits into one bounded sampling pass?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "lens",
+        "grain"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "life",
+      "title": "Life and life-like rules",
+      "summary": "Can synchronous integer cellular rules remain exact across reset, batching and storage-texture access modes?",
+      "family": "feedback",
+      "tier": "T1",
+      "tags": [
+        "cellular-automata",
+        "integer",
+        "life"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "bright-pass",
+      "title": "Luminance-selected screenshot highlights",
+      "summary": "A T4 highlight extractor for screenshot glow. Selection uses unpremultiplied linear Rec.709 luminance, not maximum RGB: a saturated red pixel and equally bright green pixel can fall on opposite sides of the threshold. The default threshold is 0.65, softness 0.1 and intensity 0.25. softness: 0 selects values at or above the threshold exactly. HDR input values above one remain HDR; extraction does not tone-map them.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "product",
+        "image",
+        "luminance",
+        "mask",
+        "launch-page"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/bright-pass/poster.png"
+    },
+    {
+      "id": "falling-sand",
+      "title": "Margolus sand, water and fire",
+      "summary": "Can moving materials remain race-free while their block neighborhood changes every subiteration?",
+      "family": "feedback",
+      "tier": "T1",
+      "tags": [
+        "margolus",
+        "block-ca",
+        "integer"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "text-shimmer",
+      "title": "Masked OKLCH headline shimmer",
+      "summary": "One T1 fragment pass gates a three-stop OKLCH gradient with the real headline's alpha mask. A soft Gaussian highlight travels horizontally once in 1.2 seconds, then the overlay becomes transparent. Real text remains in the light DOM beneath the front canvas, preserving selection and accessibility. Default opacity is 0.25; palette stops and intensity accept CSS custom properties.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "text",
+        "mask",
+        "gradient",
+        "oklch",
+        "css",
+        "typography"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/text-shimmer/poster.png"
+    },
+    {
+      "id": "masked-composite",
+      "title": "Masked original / filtered composite",
+      "summary": "Mix an original image with a filtered output through an authored coverage mask. Both colour inputs use linear premultiplied RGBA; the filter interpolates all four channels together, so translucent edges retain correct colour and alpha.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "mask",
+        "composite",
+        "product",
+        "lcd"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/masked-composite/poster.png"
+    },
+    {
+      "id": "mpm",
+      "title": "Material point transfers",
+      "summary": "Can portable WebGPU run particle/grid material transfers without float atomics?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "mpm",
+        "apic",
+        "particle-grid",
+        "elasticity"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "glass",
+      "title": "Mesh refraction and chromatic dispersion",
+      "summary": "Can a small multi-pass graph refract a captured background through actual geometry with chromatic dispersion?",
+      "family": "geometry",
+      "tier": "T5",
+      "tags": [
+        "refraction",
+        "dispersion",
+        "scene-capture",
+        "depth",
+        "msaa"
+      ],
+      "status": "research",
+      "poster": "packages/effects/src/glass/poster.png"
+    },
+    {
+      "id": "sdf-2d",
+      "title": "Metaballs and Boolean shapes",
+      "summary": "Can analytic distance fields create smooth moving unions and crisp Boolean cuts without geometry?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "sdf",
+        "boolean",
+        "metaballs",
+        "derivatives"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "flow-particles",
+      "title": "Million curl-noise particles",
+      "summary": "Can one million independently advected storage particles sustain a usable visual update, and how much do points and instanced quads change rendering cost?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "compute",
+        "curl-noise",
+        "million-particles",
+        "trails"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "voronoi",
+      "title": "Moving Voronoi cells",
+      "summary": "How do distance metrics change moving cellular boundaries?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "cellular",
+        "distance",
+        "fragment-loops"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "noise-lab",
+      "title": "Noise laboratory",
+      "summary": "How do interpolation, lattice geometry, cellular distance, curl, octaves, and domain warp change a procedural field?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "noise",
+        "fbm",
+        "domain-warp",
+        "curl"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "instances",
+      "title": "Noise-displaced instanced meshes",
+      "summary": "Can a reusable render bundle draw a large depth-tested field while changing noise displacement without re-encoding its draw commands?",
+      "family": "geometry",
+      "tier": "T5",
+      "tags": [
+        "instancing",
+        "depth",
+        "msaa",
+        "render-bundles",
+        "occlusion-queries"
+      ],
+      "status": "research",
+      "poster": "packages/effects/src/instances/poster.png"
+    },
+    {
+      "id": "heading-reveal",
+      "title": "Noise-eroded heading reveal",
+      "summary": "One T1 fragment pass lays a flat page-colour cover over masked glyphs. Stable seeded noise perturbs a left-to-right progress boundary, eroding that cover to uncover the original DOM heading. The default progress is 1, leaving ordinary text fully visible. Explicit zero covers the glyphs, halfway progress reveals approximately half, and final progress is exactly transparent. Reduced motion always forces the final visible heading regardless of CSS or timeline position.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "text",
+        "mask",
+        "noise",
+        "reveal",
+        "css",
+        "typography"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/heading-reveal/poster.png"
+    },
+    {
+      "id": "displace",
+      "title": "Normal / flow refraction and ripple",
+      "summary": "Can a filter consume another effect’s physical state or rendered colour without rebinding code?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "displace",
+        "flow-map",
+        "refraction"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "gradient-oklch",
+      "title": "OKLCH mesh gradient",
+      "summary": "Can three moving colour stops remain perceptually balanced while avoiding SDR banding?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "colour",
+        "mesh",
+        "dither"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "dither",
+      "title": "Ordered / blue-noise / palette / CRT",
+      "summary": "Can generated noise reduce banding while preserving average binary brightness?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "quantisation",
+        "blue-noise",
+        "crt"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "starfield",
+      "title": "Parallax stars and nebula",
+      "summary": "Can layered, stateless stars remain stable while crossing lattice boundaries, and how does coordinate hashing affect their spatial distribution?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "parallax",
+        "hash",
+        "noise",
+        "temporal-stability"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/starfield/poster.png"
+    },
+    {
+      "id": "physarum",
+      "title": "Physarum agents and atomic trail",
+      "summary": "Can independent agents sense a diffusing trail and deposit into shared cells without order-dependent write races?",
+      "family": "feedback",
+      "tier": "T1",
+      "tags": [
+        "agents",
+        "storage-buffer",
+        "atomics"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "ink",
+      "title": "Pigment deposition on paper",
+      "summary": "Can a stationary paper deposit preserve the history of a moving fluid wash, and how much extra state and work does that material model cost?",
+      "family": "fluids",
+      "tier": "T1",
+      "tags": [
+        "compute",
+        "stable-fluids",
+        "pigment",
+        "paper",
+        "absorption"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "progress-line",
+      "title": "Polyline progress rule",
+      "summary": "A thin transparent rule reveals a polyline by its actual length in CSS pixels. Edit p0 through p7 as normalized [x, y] coordinates and set pointCount to 2…8. Unequal horizontal, vertical and diagonal segments consume progress in proportion to their visible length, rather than one equal interval per segment. Resizing recomputes the length in the new aspect ratio.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "progress",
+        "polyline",
+        "divider",
+        "css",
+        "scroll"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/progress-line/poster.png"
+    },
+    {
+      "id": "pbf-fluid",
+      "title": "Position based fluid constraints",
+      "summary": "How much work does rebuilding exact sorted neighbors add to each density constraint iteration?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "pbf",
+        "sph",
+        "spatial-hash",
+        "jacobi"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "prefix-sum",
+      "title": "prefix-sum",
+      "summary": "Can an exclusive scan retain exact unsigned offsets across workgroup boundaries and provide deterministic particle allocation?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "path-tracer",
+      "title": "Progressive BVH path tracer",
+      "summary": "How does compute-only progressive rendering fit the fixed-step contract and paused DOM surfaces?",
+      "family": "geometry",
+      "tier": "T1",
+      "tags": [
+        "bvh",
+        "path-tracing",
+        "progressive",
+        "compute-rendering"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "fluid",
+      "title": "Projected fluid and dye",
+      "summary": "How much pressure convergence can a reference multi-pass fluid solver buy per frame at an actual 1024×1024 simulation grid, while a DOM page continues to render?",
+      "family": "fluids",
+      "tier": "T1",
+      "tags": [
+        "compute",
+        "stable-fluids",
+        "pressure",
+        "vorticity",
+        "staggered-grid"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "particle-drift",
+      "title": "Quiet bokeh dust drift",
+      "summary": "A local T3 overlay of 256–2048 Gaussian dust quads. The default is 512 records, 4 CSS-pixel nominal diameter and 0.18 intensity, with warm ember, pearl and rose presets. Its default resolution scale is 0.5: the bilinear upscale softly blends the small Gaussian sprites while reducing the draw and resolve area. Explicit resolutionScale: 1 remains available. Effective DPR retains every geometry and interaction measurement in CSS pixels at either scale. --hgpu-tint and --hgpu-intensity drive the brand appearance. Dust has no meaning; keep the native page content in the light DOM.",
+      "family": "particles",
+      "tier": "T3",
+      "tags": [
+        "dust",
+        "bokeh",
+        "pointer",
+        "ambient",
+        "launch-page"
+      ],
+      "status": "research",
+      "poster": "packages/effects/src/particle-drift/poster.png"
+    },
+    {
+      "id": "dot-matrix-field",
+      "title": "Quiet CSS-pixel dot matrix",
+      "summary": "A transparent technical backdrop with a regular CSS-pixel lattice. The default 24 px pitch and 1.15 px dot radius stay constant at DPR 1 and 2 and when resolution scale changes: the shader divides target resolution by the effective frame DPR. A signed-distance circle uses an analytic half-pixel edge. The shared value-noise chunk gently modulates radius and opacity by at most ±15%.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "background",
+        "launch-page",
+        "dots",
+        "pointer"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/dot-matrix-field/poster.png"
+    },
+    {
+      "id": "grain-overlay",
+      "title": "Quiet film grain",
+      "summary": "A transparent T1 layer adds fine seeded film grain over an existing light or dark page background. Use attach(host, grain, { layer: 'front' }); light DOM content remains interactive. Default opacity is 4%. The image input is optional and only weights grain by image luminance; it does not paint the image itself.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "launch-page",
+        "grain",
+        "transparent",
+        "rate-limited"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/grain-overlay/poster.png"
+    },
+    {
+      "id": "constellation",
+      "title": "Quiet linked constellation",
+      "summary": "A transparent, faint network for a launch-page section. Each seeded grid cell holds one point and connects only to its eight immediate neighbours. The 88 CSS-pixel default pitch, 1.5 px point radius and 0.7 px stroke remain stable across DPR and resolution scale. Shorter connections fade in more strongly; linkDistance is expressed in lattice pitches. The default 0.22 point opacity and relative 0.28 connection opacity keep copy dominant.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "ambient",
+        "particles",
+        "background",
+        "launch-page",
+        "network"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/constellation/poster.png"
+    },
+    {
+      "id": "topographic-lines",
+      "title": "Quiet topographic contours",
+      "summary": "One T1 fragment pass evaluates a two-octave value-noise height field and draws isolines with fract and derivative antialiasing. Both stroke edges are integrated over a derivative pixel footprint, so subpixel lines fade with their coverage rather than keeping full brightness. Height amplitude is limited to 0.2 times the terrain wavelength: the bounded value-noise slope stays below one, so the height interval also supplies a lower bound on adjacent-line separation. spacing is clamped to at least 12 CSS pixels to control moiré. No textures, feedback, or optional WebGPU features are required.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "background",
+        "contours",
+        "noise",
+        "derivatives"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/topographic-lines/poster.png"
+    },
+    {
+      "id": "border-energy",
+      "title": "Rounded rectangle border energy",
+      "summary": "Can an effect follow the geometry of a real element without a tessellated border mesh?",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "dom",
+        "sdf",
+        "border",
+        "glow"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "shadows-2d",
+      "title": "SDF soft shadows",
+      "summary": "Can the same text/image distance field support bounded 2D shadow rays and a useful penumbra diagnostic?",
+      "family": "lighting",
+      "tier": "T4",
+      "tags": [
+        "distance",
+        "lighting",
+        "shadows",
+        "rects"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "spotlight",
+      "title": "Shared page spotlight reveal",
+      "summary": "Can independently attached canvases display one page light with continuous coordinates?",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "dom",
+        "pointer",
+        "multiple-surfaces",
+        "light"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "edges",
+      "title": "Sobel / toon / Kuwahara",
+      "summary": "How does neighbourhood cost change between edge extraction and painterly smoothing?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "filter",
+        "edges",
+        "neighbourhood",
+        "painterly"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "aurora-veil",
+      "title": "Soft aurora veil",
+      "summary": "One T1 fragment pass uses two-octave value-noise fBm from the shared noise chunk, warped by two additional noise channels. The field bends three wide, softly overlapping bands. Colour stops interpolate in OKLCH with chroma-weighted circular hue; a flat base keeps contrast low. Static display-code-value dither reduces SDR banding. There are no optional WebGPU features or persistent simulation resources.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "background",
+        "brand",
+        "oklch",
+        "domain-warp"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/aurora-veil/poster.png"
+    },
+    {
+      "id": "hover-lift-shadow",
+      "title": "Soft coloured card contact shadow",
+      "summary": "A T1 Gaussian contact shadow outside a rounded card. The default tint is blue-grey at 0.2 intensity. elevation is a CSS-driven 0…1 value: it spreads the shadow and moves its centre down by 3…15 CSS pixels. There is no time-driven motion; reduced motion keeps the same finished pose. Unchanged frames submit no GPU work.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "card",
+        "shadow",
+        "css",
+        "launch-page"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/hover-lift-shadow/poster.png"
+    },
+    {
+      "id": "grid-horizon",
+      "title": "Soft perspective floor grid",
+      "summary": "A transparent, low-alpha perspective floor. Rays from a fixed camera intersect a horizontal plane. The plane coordinates form a regular grid, with line coverage derived from fwidth so the projected line weight is expressed in CSS pixels. High-frequency lines fade before they become unresolved; exponential distance fog and a soft horizon gate prevent a bright or shimmering vanishing point. Derivatives execute uniformly across the fragment pass.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "background",
+        "launch-page",
+        "perspective",
+        "grid"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/grid-horizon/poster.png"
+    },
+    {
+      "id": "press-ripple",
+      "title": "Soft press wavefront",
+      "summary": "A T1 circular wavefront after a button or card press. Four oldest-first event slots store normalized canvas position, start time and an active flag in one 64-byte uniform buffer, with a separate 16-byte interaction-clock uniform. A fifth press replaces the oldest slot. Every wave expires after 600 ms; initial and settled frames are transparent. There is no simulation or feedback texture. Idle fields do not submit GPU work.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "button",
+        "card",
+        "press",
+        "interaction",
+        "launch-page"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/press-ripple/poster.png"
+    },
+    {
+      "id": "light-sweep",
+      "title": "Soft specular light sweep",
+      "summary": "A single T1 fullscreen fragment pass evaluates an angled Gaussian band. The default intensity is 0.22; tint and intensity accept CSS tokens. Output is premultiplied linear colour, so attach it front over the real hero or image. The effect carries no information and leaves the underlying page visible.",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "background",
+        "sheen",
+        "progress",
+        "css",
+        "image"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/light-sweep/poster.png"
+    },
+    {
+      "id": "sort",
+      "title": "sort",
+      "summary": "Can both sorting algorithms preserve arbitrary associated values and original order for equal full-width unsigned keys?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "spatial-hash",
+      "title": "spatial-hash",
+      "summary": "Can a uniform grid construct stable neighbor ranges without dropping particles at cell boundaries or in empty cells?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "raymarch",
+      "title": "Sphere-traced sculpture",
+      "summary": "How much 3D form can a single fullscreen fragment pass convey with soft shadows and ambient occlusion?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "raymarch",
+        "sdf-3d",
+        "shadows",
+        "ao"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "depth-parallax",
+      "title": "Subtle product image depth parallax",
+      "summary": "This baseline T4 filter shifts a product image using an aligned, authored grayscale depth map. White represents near content and black leaves far content fixed. The effect owns no simulation or history: pointer, progress and image/depth changes drive one fragment pass, which settles between changes. The default amount is 0.015 of the displayed image width with intensity 0.25, giving at most 0.375% of width (2.25 CSS px on a 600 px image). Increasing intensity strengthens this motion, with an absolute vector displacement limit of 2% of image width even in combined mode. Reduced motion returns the original image with zero offset; amount or intensity 0 also preserves the image.",
+      "family": "dom",
+      "tier": "T1",
+      "tags": [
+        "image",
+        "depth",
+        "parallax",
+        "pointer",
+        "progress",
+        "css"
+      ],
+      "status": "ready",
+      "poster": "packages/effects/src/depth-parallax/poster.png"
+    },
+    {
+      "id": "morph-particles",
+      "title": "Text and image particle morph",
+      "summary": "Can local text and image masks define useful particle targets while GPU springs and pointer repulsion remain independent of future general input bindings?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "text",
+        "image",
+        "spring",
+        "pointer"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "text-dissolve",
+      "title": "Text mask particle dissolve and reform",
+      "summary": "Can text become real particle primitives while its accessible light-DOM text remains intact?",
+      "family": "dom",
+      "tier": "T3",
+      "tags": [
+        "dom",
+        "text",
+        "particles",
+        "mask",
+        "css"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "n-body",
+      "title": "Tiled and grid-accelerated gravity",
+      "summary": "How do exact workgroup-tiled gravitational forces compare with a GPU grid that resolves nearby bodies individually and approximates distant cells by their center of mass?",
+      "family": "particles",
+      "tier": "T1",
+      "tags": [
+        "gravity",
+        "workgroup-tiling",
+        "spatial-hash"
+      ],
+      "status": "research",
+      "poster": null
+    },
+    {
+      "id": "truchet",
+      "title": "Truchet, hex and quasi-crystal contours",
+      "summary": "Can signed cell coordinates, unsigned bit operations, and a seed create connected tile motifs without a texture or topology buffer? How does a quasiperiodic contour field differ from an actual aperiodic tiling?",
+      "family": "procedural",
+      "tier": "T1",
+      "tags": [
+        "tiling",
+        "integer-hash",
+        "bit-operations",
+        "quasiperiodic"
+      ],
+      "status": "demo",
+      "poster": null
+    },
+    {
+      "id": "wave",
+      "title": "Wave history and refraction",
+      "summary": "Can two time levels support a stable two-dimensional wave update and an interactive refracted display?",
+      "family": "feedback",
+      "tier": "T1",
+      "tags": [
+        "wave-equation",
+        "history",
+        "refraction"
+      ],
+      "status": "demo",
+      "poster": null
+    }
+  ]
+}
