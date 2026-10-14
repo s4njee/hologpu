@@ -43,9 +43,13 @@
     "benchmark:v2-ambient": "node scripts/benchmark-v2-ambient.mjs",
     "bundle:size": "node scripts/bundle-size.mjs",
     "benchmark:firefox-submissions": "node scripts/benchmark-firefox-submissions.mjs",
-    "benchmark:v2-launch": "node scripts/benchmark-v2-launch.mjs"
+    "benchmark:v2-launch": "node scripts/benchmark-v2-launch.mjs",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.2",
     "@webgpu/types": "^0.1.69",

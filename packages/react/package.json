@@ -1,7 +1,6 @@
 {
   "name": "@mk7s/hologpu-react",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "sideEffects": false,
   "exports": {
@@ -29,5 +28,21 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "catalog:"
+  },
+  "description": "React wrapper (<HoloField>) for the hologpu effect library.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4njee/hologpu.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/s4njee/hologpu",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

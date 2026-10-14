@@ -1,7 +1,6 @@
 {
   "name": "@mk7s/hologpu-dom",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "sideEffects": [
     "./src/register.ts",
@@ -36,5 +35,13 @@
     "url": "https://github.com/s4njee/hologpu.git",
     "directory": "packages/dom"
   },
-  "homepage": "https://github.com/s4njee/hologpu"
+  "homepage": "https://github.com/s4njee/hologpu",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }

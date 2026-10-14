@@ -1,7 +1,6 @@
 {
   "name": "@mk7s/hologpu-core",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "sideEffects": false,
   "exports": {
@@ -30,5 +29,13 @@
     "url": "https://github.com/s4njee/hologpu.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/s4njee/hologpu"
+  "homepage": "https://github.com/s4njee/hologpu",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
