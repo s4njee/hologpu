@@ -111,7 +111,7 @@ test('light-sweep: one CSS progress transition renders the band and settles', as
   );
   await page.goto('/__v2_sweep_css');
   const result = await page.evaluate(
-    async ({ core, dom, sweep }) => {
+    async ({ dom, sweep }) => {
       const { attach } = (await import(dom)) as typeof import('../../packages/dom/src/index.ts');
       const { default: effect } = (await import(
         sweep

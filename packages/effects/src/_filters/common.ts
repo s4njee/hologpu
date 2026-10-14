@@ -1,11 +1,5 @@
 import { createFilterPass, filterGroup, filterTarget } from '@mk7s/hologpu-core';
-import type {
-  EffectContext,
-  TextureTap,
-  FullscreenPass,
-  ParamSchema,
-  ParamSpec,
-} from '@mk7s/hologpu-core';
+import type { EffectContext, TextureTap, FullscreenPass, ParamSpec } from '@mk7s/hologpu-core';
 export const f = (value: number, min: number, max: number, description: string, group = 'Filter') =>
   ({
     type: 'f32' as const,

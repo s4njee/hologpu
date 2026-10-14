@@ -54,7 +54,7 @@ async function read(page: Page, name: string, kind: 'float' | 'uint' = 'float') 
     { name, kind },
   );
 }
-async function write(page: Page, data: number[]) {
+async function _write(page: Page, data: number[]) {
   await page.evaluate((data) => {
     const f = window.hologpu.field!;
     f.session.device.queue.writeBuffer(f.bufferTaps.particles!.buffer, 0, new Float32Array(data));

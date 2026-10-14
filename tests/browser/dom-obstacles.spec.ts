@@ -356,7 +356,7 @@ test('Attached fluid normalizes tagged boxes to its canvas inside authored paddi
         new URL('../../packages/effects/src/fluid-obstacles/index.ts', import.meta.url),
       );
   const result = await page.evaluate(
-    async ({ core, dom, fluid }) => {
+    async ({ dom, fluid }) => {
       const { attach } = (await import(dom)) as typeof import('../../packages/dom/src/index.ts');
       const { default: definition } = (await import(
         fluid

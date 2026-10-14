@@ -118,10 +118,12 @@ export class SpikeSession {
         resolve: await renderPipeline('hgpu-m0-resolve', resolve, format),
         readbackResolve: await renderPipeline('hgpu-m0-readback', resolve, 'rgba8unorm'),
       };
-    } finally {
-      const error = await device.popErrorScope();
-      if (error) throw new Error(error.message);
+    } catch (error) {
+      await device.popErrorScope();
+      throw error;
     }
+    const scopeError = await device.popErrorScope();
+    if (scopeError) throw new Error(scopeError.message);
     const session = new SpikeSession(adapter, device, format, canvases, options, pipelines);
     session.diagnostics.push(...diagnostics);
     try {

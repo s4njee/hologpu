@@ -150,16 +150,15 @@ export class DeviceSession {
     const run = this.#validation.then(async () => {
       const device = this.device;
       device.pushErrorScope('validation');
-      let failed = false;
       try {
         result = await create();
       } catch (error) {
-        failed = true;
+        // Pop the scope before rethrowing so the push/pop stay balanced.
+        await device.popErrorScope();
         throw error;
-      } finally {
-        const error = await device.popErrorScope();
-        if (error && !failed) throw new Error(error.message);
       }
+      const error = await device.popErrorScope();
+      if (error) throw new Error(error.message);
     });
     this.#validation = run.then(
       () => {},

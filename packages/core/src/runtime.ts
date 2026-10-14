@@ -1012,7 +1012,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
     try {
       pass = await createFullscreenPass(this.session, resolveSource, 'rgba8unorm', 'hgpu-readback');
     } catch (error) {
-      if (!current()) throw new Error('Field is not ready');
+      if (!current()) throw new Error('Field is not ready', { cause: error });
       throw error;
     }
     let texture: GPUTexture | undefined, buffer: GPUBuffer | undefined;
@@ -1052,7 +1052,7 @@ export class EffectField<S extends ParamSchema = ParamSchema> implements Schedul
       try {
         await buffer.mapAsync(GPUMapMode.READ);
       } catch (error) {
-        if (!current()) throw new Error('Field is not ready');
+        if (!current()) throw new Error('Field is not ready', { cause: error });
         throw error;
       }
       // The submitted resolve/copy owns its staging allocations. A same-device

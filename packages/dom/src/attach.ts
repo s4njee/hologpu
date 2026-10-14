@@ -382,18 +382,17 @@ export class Attachment<S extends ParamSchema = ParamSchema> {
   #waitForDeviceLoss(device: GPUDevice): Promise<boolean> {
     return new Promise((resolve) => {
       let settled = false;
-      let timer: ReturnType<typeof setTimeout> | undefined;
       const finish = (lost: boolean) => {
         if (settled) return;
         settled = true;
-        if (timer !== undefined) clearTimeout(timer);
+        clearTimeout(timer);
         const index = this.#cleanup.indexOf(cancel);
         if (index >= 0) this.#cleanup.splice(index, 1);
         resolve(lost);
       };
       const cancel = () => finish(false);
       this.#cleanup.push(cancel);
-      timer = setTimeout(cancel, 1000);
+      const timer = setTimeout(cancel, 1000);
       void device.lost.then(() => finish(true), cancel);
     });
   }

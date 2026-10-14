@@ -34,5 +34,8 @@
     "type": "git",
     "url": "git+https://github.com/s4njee/hologpu.git",
     "directory": "packages/temple-core"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

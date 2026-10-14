@@ -22,5 +22,8 @@
     "url": "https://github.com/s4njee/hologpu.git",
     "directory": "apps/playground"
   },
-  "homepage": "https://github.com/s4njee/hologpu"
+  "homepage": "https://github.com/s4njee/hologpu",
+  "engines": {
+    "node": ">=22.12"
+  }
 }

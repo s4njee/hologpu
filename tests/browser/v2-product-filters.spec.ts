@@ -253,7 +253,7 @@ test('product sheen CSS progress drives the actual attachment and fallback retai
 }) => {
   await fixture(page);
   const result = await page.evaluate(
-    async ({ core, dom, path }) => {
+    async ({ dom, path }) => {
       const { attach } = (await import(dom)) as typeof import('../../packages/dom/src/index.ts');
       const { default: effect } = (await import(path)) as { default: EffectDefinition };
       const host = document.getElementById('product')!,
