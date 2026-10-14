@@ -41,6 +41,7 @@
     "benchmark:v2-transitions": "node scripts/benchmark-v2-transitions.mjs",
     "benchmark:v2-ambient": "node scripts/benchmark-v2-ambient.mjs",
     "bundle:size": "node scripts/bundle-size.mjs",
+    "bundle:check": "node scripts/bundle-size.mjs --json node_modules/.cache/bundle-size.json && node scripts/check-bundle-budget.mjs --report node_modules/.cache/bundle-size.json",
     "benchmark:firefox-submissions": "node scripts/benchmark-firefox-submissions.mjs",
     "benchmark:v2-launch": "node scripts/benchmark-v2-launch.mjs",
     "changeset": "changeset",

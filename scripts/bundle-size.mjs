@@ -2,7 +2,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { gzipSync } from 'node:zlib';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { resolve, relative } from 'node:path';
+import { resolve, relative, dirname } from 'node:path';
 import { platform, arch, release } from 'node:os';
 
 // Use the repository's existing Vite runtime; no install or application build is needed.
@@ -29,9 +29,15 @@ const entries = [
       source: 'packages/hologpu/' + value.source.replace(/^\.\//, ''),
     })),
 ];
-const requested = process.argv.slice(2);
+const args = process.argv.slice(2);
+const jsonIndex = args.indexOf('--json');
+// `--json <file>` records the report elsewhere (used by `bundle:check` so the committed
+// benchmark file is only rewritten by an explicit `bundle:size`).
+const outPath = jsonIndex >= 0 ? args[jsonIndex + 1] : undefined;
+const requested =
+  jsonIndex >= 0 ? args.filter((_value, i) => i !== jsonIndex && i !== jsonIndex + 1) : args;
 if (requested.some((id) => !entries.some((entry) => entry.id === id)))
-  throw new Error('Usage: node scripts/bundle-size.mjs [core|dom|effect-id ...]');
+  throw new Error('Usage: node scripts/bundle-size.mjs [core|dom|effect-id ...] [--json <file>]');
 
 const rows = [];
 for (const entry of entries.filter((entry) => !requested.length || requested.includes(entry.id))) {
@@ -88,9 +94,12 @@ for (const entry of entries.filter((entry) => !requested.length || requested.inc
   });
   console.log(JSON.stringify({ id: entry.id, jsGzipBytes: rows.at(-1).jsGzipBytes }));
 }
-await mkdir(resolve(root, 'docs/benchmarks'), { recursive: true });
+const reportPath =
+  outPath ??
+  resolve(root, `docs/benchmarks/bundle-size${requested.length ? '-selected' : ''}.json`);
+await mkdir(dirname(reportPath), { recursive: true });
 await writeFile(
-  resolve(root, `docs/benchmarks/bundle-size${requested.length ? '-selected' : ''}.json`),
+  reportPath,
   JSON.stringify(
     {
       recordedAt: new Date().toISOString(),
