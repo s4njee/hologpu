@@ -15,6 +15,10 @@ const field = await attach(document.querySelector('.hero')!, gradient, { preset:
 `WebGPUUnavailableError` without WebGPU); `attach` and `<hgpu-field>` degrade to a
 poster or the effect's declared CSS.
 
+Requires Node 22.12 or later to install and build (declared in `engines`). The
+browser requirement is separate: a WebGPU-capable browser, with the effects'
+CSS fallback everywhere else.
+
 ## Posters and asset URLs
 
 Effects that ship a poster set it with `poster: new URL('./poster.png', import.meta.url).href`.
