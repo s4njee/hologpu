@@ -13,11 +13,11 @@ Each fragment converts local UV into viewport CSS coordinates using pageRect and
 For production cards, attach one `card-spotlight` behind the entire grid rather than creating another spotlight for each card. The preset uses a 320 CSS-pixel radius, intensity 0.15, white tint and a transparent background. The authored cards retain their backgrounds, text and native controls. Pointer movement remains continuous through card gaps, and the DOM bridge refreshes the grid's viewport rectangle when scrolling or resizing.
 
 ```ts
-import { attach } from "@mk7s/hologpu-dom";
-import spotlight from "@mk7s/hologpu-effects/spotlight";
-await attach(document.querySelector(".spotlight-host")!, spotlight, {
-  preset: "card-spotlight",
-  layer: "behind",
+import { attach } from '@mk7s/hologpu-dom';
+import spotlight from '@mk7s/hologpu-effects/spotlight';
+await attach(document.querySelector('.spotlight-host')!, spotlight, {
+  preset: 'card-spotlight',
+  layer: 'behind',
 });
 ```
 

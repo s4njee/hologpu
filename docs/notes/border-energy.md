@@ -11,11 +11,11 @@ The default effect retains its original physical-pixel rounded-rectangle shader,
 DOM attachments supply the host border box relative to the effect canvas, including optional exterior padding. The shared geometry schema exposes normalized `rect`, scalar CSS-pixel `radius`, and `radiiX`/`radiiY` vectors in top-left, top-right, bottom-right, bottom-left order. Vector defaults of -1 preserve the scalar radius; all eight nonnegative radii enable the elliptical-corner branch. The DOM resolves all four computed CSS corner radii and normalizes overlapping radius sums. The shader also normalizes authored vectors and handles legal asymmetric radii larger than half an edge. Ellipse distance uses its local gradient near the rim, with derivative-antialiased stroke coverage. Width, falloff and corner radii retain their CSS size across DPR and render-resolution changes.
 
 ```ts
-import { attach } from "@mk7s/hologpu-dom";
-import borderEnergy from "@mk7s/hologpu-effects/border-energy";
-await attach(document.querySelector(".card")!, borderEnergy, {
-  preset: "border-trace",
-  layer: "front",
+import { attach } from '@mk7s/hologpu-dom';
+import borderEnergy from '@mk7s/hologpu-effects/border-energy';
+await attach(document.querySelector('.card')!, borderEnergy, {
+  preset: 'border-trace',
+  layer: 'front',
   padding: 32,
 });
 ```
