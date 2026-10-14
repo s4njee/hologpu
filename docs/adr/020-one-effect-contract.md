@@ -96,3 +96,21 @@ undefined }`; HoloGPU's profiler is a different type. Per-pass GPU timings are d
   (stories 3.8, 3.11 and the adapter), not worked around per effect.
 - Story 3.3 (library entries), 3.4 (shader packaging), 3.5 (shared core) and 3.7 (Light Temple)
   proceed on this decision.
+
+## Addendum (story 3.7, 2026-10-14): hosting Light Temple
+
+Light Temple's mismatch was not the encode boundary but the ownership of the frame: an experiment
+reads `ctx.surface.currentTexture()`, encodes into its own command encoder and submits, whereas
+HoloGPU supplies an `encoder` and a `target` and presents afterwards. Rather than rewrite all ten
+experiments, story 3.7 introduces a `RenderSurface` interface (`canvas`, `size`,
+`currentTexture()`, `onResize`) and a `TargetSurface` whose `currentTexture().createView()` returns
+the caller's view. `ExperimentContext.surface` is now a `RenderSurface`, so an experiment draws into
+HoloGPU's target unchanged.
+
+`spikes/lighttemple-adapter` wraps `pointer-light-2d` as an `EffectDefinition` via
+`createTargetExperiment(factory, { device, format, size, getTarget })` and drives it with
+`createEffect`; the field resized once and rendered 91 frames with no errors, and the frame matches
+the gallery. Two limitations remain, matching rule 6: the experiment submits its own command buffer
+(HoloGPU's encoder stays empty), and `reset` is a no-op because the experiment has no seed. Parameter
+mapping reuses rule 2/3 (a snapshot is pulled each frame); Light Temple's `text` params stay at their
+defaults since HoloGPU has no text type.
