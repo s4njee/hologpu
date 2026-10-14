@@ -414,7 +414,7 @@
   "description": "Shader and compute effect definitions for the hologpu runtime.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/s4njee/hologpu.git",
+    "url": "git+https://github.com/s4njee/hologpu.git",
     "directory": "packages/effects"
   },
   "homepage": "https://github.com/s4njee/hologpu",

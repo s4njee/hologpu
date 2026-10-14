@@ -444,7 +444,7 @@
   "description": "WebGPU effect library: createEffect, attach and the <hgpu-field> custom element.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/s4njee/hologpu.git",
+    "url": "git+https://github.com/s4njee/hologpu.git",
     "directory": "packages/hologpu"
   },
   "homepage": "https://github.com/s4njee/hologpu",

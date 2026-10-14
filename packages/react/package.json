@@ -33,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/s4njee/hologpu.git",
+    "url": "git+https://github.com/s4njee/hologpu.git",
     "directory": "packages/react"
   },
   "homepage": "https://github.com/s4njee/hologpu",
