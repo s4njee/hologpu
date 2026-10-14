@@ -15,4 +15,21 @@ const field = await attach(document.querySelector('.hero')!, gradient, { preset:
 `WebGPUUnavailableError` without WebGPU); `attach` and `<hgpu-field>` degrade to a
 poster or the effect's declared CSS.
 
+## Posters and asset URLs
+
+Effects that ship a poster set it with `poster: new URL('./poster.png', import.meta.url).href`.
+The image is emitted next to the built effect (`dist/<id>/poster.png`), so the URL resolves whether
+or not your bundler understands `new URL(..., import.meta.url)`:
+
+- Vite, webpack 5, Rollup and esbuild rewrite it to a hashed asset URL — nothing to configure.
+- A bundler that leaves it untouched still resolves it, because `poster.png` sits beside
+  `index.js` in the package.
+- The DOM attachment renders the poster as a hidden `<img>` and hides it once the field draws. A
+  poster that fails to load is not fatal: the effect keeps running and the element shows its CSS
+  `fallback` background.
+
+If your bundler rewrites the effect into a different directory _without_ handling `new URL`, pass
+your own image via the `attach` `poster` option (or the element's `poster` attribute). Posters are
+optional; every effect also declares a CSS `fallback`.
+
 Licence: MIT. See the [repository](https://github.com/s4njee/hologpu).
