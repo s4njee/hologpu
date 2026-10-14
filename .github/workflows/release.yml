@@ -1,8 +1,9 @@
 name: Release
 
 on:
-  push:
-    branches: [main]
+  # Manual only until an NPM_TOKEN secret is configured; change back to push-on-main to
+  # reinstate the automatic Version Packages flow.
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
