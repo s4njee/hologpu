@@ -1,0 +1,39 @@
+{
+  "name": "@mk7s/hologpu-temple-core",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "sideEffects": false,
+  "description": "Shared WebGPU core for the holofx temples: device helpers, targets, passes, scene primitives and the shared WGSL library.",
+  "exports": {
+    "./*": {
+      "source": "./src/*.ts",
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json && node scripts/rewrite-dts.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "wgpu-matrix": "^3.4.2"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4njee/hologpu.git",
+    "directory": "packages/temple-core"
+  }
+}

@@ -125,6 +125,19 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
 
+  packages/temple-core:
+    dependencies:
+      wgpu-matrix:
+        specifier: ^3.4.2
+        version: 3.4.2
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.3.3(@types/node@26.6.4)(yaml@2.9.1)
+
 packages:
 
   '@asamuzakjp/css-color@3.2.0':
@@ -828,6 +841,9 @@ packages:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
     engines: {node: '>=12'}
 
+  wgpu-matrix@3.4.2:
+    resolution: {integrity: sha512-IfZFbG7olEYBD76VCZy2TzqM57GKy3LT++AZh37tMHPPByO6R2h61zXGBZFNPi2IzxNivNi8y5dvze5PjaczjA==}
+
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
@@ -1453,6 +1469,8 @@ snapshots:
       xml-name-validator: 5.0.0
 
   webidl-conversions@7.0.0: {}
+
+  wgpu-matrix@3.4.2: {}
 
   whatwg-encoding@3.1.1:
     dependencies:

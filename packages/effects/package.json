@@ -423,7 +423,6 @@
     "README.md"
   ],
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   }
 }
