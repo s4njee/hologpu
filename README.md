@@ -24,9 +24,28 @@ poster or the effect's declared CSS, so the page stays readable.
 
 ## Use one effect
 
+For progressive enhancement, use `attach` from `@mk7s/hologpu/dom`. It degrades to
+the effect's poster or declared CSS when WebGPU is unavailable, so the page stays
+readable (see [DOM fields](#dom-fields-m5) for the full API and the
+`<hgpu-field>` custom element).
+
+```ts
+import { attach } from '@mk7s/hologpu/dom';
+import gradient from '@mk7s/hologpu/effects/gradient-oklch';
+
+const field = await attach(document.querySelector('.hero')!, gradient, {
+  preset: 'lagoon',
+  seed: 7,
+});
+field.params.speed = 0.3;
+field.destroy();
+```
+
+If you manage your own canvas, use `createEffect`. It needs a WebGPU device and
+throws `WebGPUUnavailableError` when there is none, rather than falling back:
+
 ```ts
 import { createEffect } from '@mk7s/hologpu';
-import gradient from '@mk7s/hologpu/effects/gradient-oklch';
 
 const field = await createEffect(canvas, gradient, { preset: 'lagoon', seed: 7 });
 field.params.speed = 0.3;
@@ -34,10 +53,6 @@ field.pause();
 field.step();
 field.destroy();
 ```
-
-To decorate an existing element instead of managing a canvas yourself, use
-`attach` from `@mk7s/hologpu/dom` (see [DOM fields](#dom-fields-m5) below) or the
-`<hgpu-field>` custom element.
 
 ## Run the playground
 

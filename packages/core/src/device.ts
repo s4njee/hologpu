@@ -257,7 +257,10 @@ export async function acquireDevice(
   features: readonly GPUFeatureName[] = [],
   gpu: GPU | undefined = globalThis.navigator?.gpu,
 ) {
-  if (!gpu) throw new WebGPUUnavailableError();
+  if (!gpu)
+    throw new WebGPUUnavailableError(
+      'WebGPU is unavailable. createEffect needs a GPU device; use attach() or <hgpu-field> from @mk7s/hologpu/dom for a poster or CSS fallback.',
+    );
   let session = sessions.get(gpu);
   if (!session) {
     session = new DeviceSession(gpu, features);
