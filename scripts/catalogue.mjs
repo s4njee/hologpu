@@ -130,9 +130,20 @@ for (const id of ids) {
       ? null
       : ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)
         ? node.text
-        : ts.isArrayLiteralExpression(node)
-          ? node.elements.map(literal)
-          : null;
+        : ts.isNumericLiteral(node)
+          ? Number(node.text)
+          : ts.isArrayLiteralExpression(node)
+            ? node.elements.map(literal)
+            : ts.isObjectLiteralExpression(node)
+              ? Object.fromEntries(
+                  node.properties
+                    .filter(ts.isPropertyAssignment)
+                    .map((prop) => [
+                      prop.name.getText(sf).replace(/['"]/g, ''),
+                      literal(prop.initializer),
+                    ]),
+                )
+              : null;
   let meta;
   const visit = (node) => {
     if (ts.isObjectLiteralExpression(node)) {
@@ -158,6 +169,10 @@ for (const id of ids) {
     tags: meta?.tags ?? [],
     status: statusOf(id, meta?.tier ?? 'T1', Boolean(poster)),
     poster: poster ?? null,
+    // Facets for the site's filters (M5 story 5.9).
+    needsPointer: (meta?.inputs ?? []).includes('pointer'),
+    behindDom: (meta?.tags ?? []).some((tag) => tag === 'overlay' || tag.startsWith('dom')),
+    reducedMotionSafe: (meta?.reducedMotion?.time ?? 0) === 0,
   });
 }
 effects.sort((a, b) => a.title.localeCompare(b.title));
