@@ -19,8 +19,9 @@ Part of the [holofx collection](https://github.com/s4njee/holofx) alongside
 npm install @mk7s/hologpu
 ```
 
-Requires a WebGPU-capable browser. Without WebGPU the effects fall back to a
-poster or the effect's declared CSS, so the page stays readable.
+Still pre-1.0: the API can change in `0.x` releases. Requires a WebGPU-capable
+browser. Without WebGPU the effects fall back to a poster or the effect's
+declared CSS, so the page stays readable.
 
 ## Use one effect
 
