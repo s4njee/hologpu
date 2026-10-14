@@ -122,6 +122,9 @@ const statusOf = (id, tier, hasPoster) =>
         ? 'ready'
         : 'demo';
 const effects = [];
+// Hand-written one-line summaries (M5 story 5.11): what each effect looks like and where it fits.
+// Falls back to the first paragraph of its research note when one is missing.
+const summaries = JSON.parse(readFileSync('docs/summaries.json', 'utf8'));
 for (const id of ids) {
   const file = `packages/effects/src/${id}/index.ts`;
   const sf = ts.createSourceFile(file, readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
@@ -163,7 +166,7 @@ for (const id of ids) {
   effects.push({
     id,
     title: meta?.title ?? id,
-    summary: readSummary(id),
+    summary: summaries[id] ?? readSummary(id),
     family: meta?.family ?? 'procedural',
     tier: meta?.tier ?? 'T1',
     tags: meta?.tags ?? [],
